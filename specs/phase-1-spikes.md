@@ -51,7 +51,7 @@
 **Plan B:** strict not supported by `ChatOpenAI` → `with_structured_output(method="json_schema")` or a direct call inside `src/llm/`. Opik nesting fails → manual spans in one place.
 
 ## 1.3b Draft-like loop latency (needs key)
-- [ ] Time a 4-call LLM loop through the HTTP server
+- [x] Time a 4-call LLM loop through the HTTP server
 
 **Go if:** the whole loop fits under half the smallest host timeout; otherwise bounded steps (see 1.3 plan B).
 
@@ -96,4 +96,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.4 done (GO). Next: spike 1.3b (draft-like loop latency), then 1.5.
+Stopped at: spike 1.3b done (4-call loop ~15 s, fits the 30 s budget). Next: spike 1.5 (idea validation with 15 real postings).
