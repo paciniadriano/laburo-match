@@ -56,12 +56,14 @@
 **Go if:** the whole loop fits under half the smallest host timeout; otherwise bounded steps (see 1.3 plan B).
 
 ## 1.5 Idea validation
-- [ ] 15 real postings, contact data scrubbed, saved in `fixtures/`
-- [ ] Hand labels (restrictions, explicit/inferred/contradictory, eligible/not/doubtful)
-- [ ] Extraction run; metrics and cost per job recorded
+- [x] 15 real postings, contact data scrubbed, saved in `fixtures/`
+- [x] Hand labels (restrictions, explicit/inferred/contradictory, eligible/not/doubtful)
+- [x] Extraction run; metrics and cost per job recorded
 
 **Go if:** recall of explicit restrictions ≥ 90 %; explicit/inferred/contradictory correct ≥ 80 %; **0 valid jobs marked `not_eligible`**; ≥ 3/15 postings carry a location restriction the aggregator does not show (proves the problem exists).
 **Plan B:** recall < 90 % → few-shots or split prompt, one iteration. Still < 75 % → narrow scope (remote only) and re-plan. < 3/15 hidden restrictions → revisit the core value before phase 2.
+
+**Outcome:** GO. Recall 95% (strict), evidence kind 89%, 0 valid jobs discarded, 8/15 postings with a location restriction the aggregator does not show. Untested: citizenship / work authorization / W2 cases (cover with synthetic eligibility cases).
 
 ## 1.6 PDF parsing with pypdf
 - [ ] Fictional sample CV created in `data/samples/`
@@ -96,4 +98,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.3b done (4-call loop ~15 s, fits the 30 s budget). Next: spike 1.5 (idea validation with 15 real postings).
+Stopped at: spike 1.5 done (GO). Next: spike 1.6 (pypdf, needs the fictional sample CV and the user's real CV), then 1.7.
