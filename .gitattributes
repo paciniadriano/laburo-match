@@ -1,0 +1,10 @@
+# Force LF line endings for every text file, regardless of the OS that checks it out
+* text=auto eol=lf
+
+# Binary files: never touch line endings, never diff as text
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+*.gz binary
