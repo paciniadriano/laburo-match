@@ -1,0 +1,12 @@
+[project]
+name = "laburo-match"
+version = "0.1.0"
+description = "MCP server that finds jobs you can actually apply to from where you live, measures your fit with cited evidence and helps you prepare the application."
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
+]

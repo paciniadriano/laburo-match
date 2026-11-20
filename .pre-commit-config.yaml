@@ -1,0 +1,31 @@
+# Git hooks that run before every commit (`uv run pre-commit install` enables them).
+# Revs are pinned by commit SHA; refresh with `uv run pre-commit autoupdate --freeze`.
+repos:
+  # Block private files even when someone forces them past .gitignore (`git add -f`).
+  - repo: local
+    hooks:
+      - id: forbid-private-files
+        name: forbid private files (CLAUDE.local.md, .env*)
+        language: fail
+        entry: "Private file staged. Never commit CLAUDE.local.md or .env files (only .env.sample is allowed):"
+        files: '(^|/)CLAUDE\.local\.md$|(^|/)\.env($|\.(?!sample$))'
+
+  # Secret detection on staged changes.
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce  # frozen: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  # Basic file hygiene.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-toml
