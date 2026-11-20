@@ -3,7 +3,7 @@
 **Goal:** find out, cheaply and before building, whether the risky assumptions of `specs/system.md` hold. Every spike has numeric go/no-go thresholds and a plan B, written **before** running it.
 
 **Timebox:** 1.5× the estimate of each spike; if exceeded, stop and decide with what was measured.
-**Code:** `spikes/<n>-<name>/` (disposable but committed), each with a short `RESULTS.md`: measured vs threshold, go/no-go, decision.
+**Code:** `spikes/<n>-<name>/` is a local notebook, git-ignored and never committed, each with a short `RESULTS.md` (measured vs threshold, go/no-go, decision). What a spike proves ends up in the repo only as project files (config, `src/`, tests, fixtures) and one-line decisions in `CLAUDE.md`.
 **Order:** 1.1 → 1.2 → 1.3 (no LLM) → 1.4 → 1.3b → 1.5 → 1.6 → 1.7 → 1.8.
 
 ## Prerequisites (carried over from phase 0)
@@ -11,19 +11,19 @@
 - [ ] Azure budget alert created (needed before 1.8)
 
 ## 1.1 Dependencies on Python 3.14
-- [ ] Add runtime and dev dependencies; `uv sync --frozen` works
-- [ ] Smoke test of imports (`spikes/1.1-deps/smoke_imports.py`)
-- [ ] LiteLLM check in `uv.lock`; constraint added if present
-- [ ] FastMCP 3.x latest release date checked
+- [x] Add runtime and dev dependencies; `uv sync --frozen` works
+- [x] Smoke test of imports (`spikes/1.1-deps/smoke_imports.py`)
+- [x] LiteLLM check in `uv.lock`; constraint added if present
+- [x] FastMCP 3.x latest release date checked
 
 **Go if:** FastMCP `>=3.4.7,<4`, SQLAlchemy 2 async, psycopg 3 (binary), alembic, langgraph + checkpoint-postgres, langchain-core/openai, opik, httpx, pypdf, pydantic-settings and the pytest stack resolve on 3.14 **without compiling from source**; the smoke test passes; LiteLLM is absent from `uv.lock` or outside the compromised versions; last FastMCP 3.x release is ≤ 90 days old.
 **Plan B:** no psycopg binary wheel → `psycopg[c]` or pure psycopg + system `libpq`. A package without 3.14 support → pin an older version that has it, or replace it. FastMCP 3.x abandoned → evaluate 4.x and record the decision.
 
 ## 1.2 Docker + Postgres + Alembic
-- [ ] Compose with Postgres; init script creates `laburo` and `laburo_test`
-- [ ] Alembic up/down/up on a dummy table
-- [ ] Checkpointer `setup()` after Alembic under one advisory lock
-- [ ] Alembic autogenerate ignores checkpointer tables
+- [x] Compose with Postgres; init script creates `laburo` and `laburo_test`
+- [x] Alembic up/down/up on a dummy table
+- [x] Checkpointer `setup()` after Alembic under one advisory lock
+- [x] Alembic autogenerate ignores checkpointer tables
 
 **Go if:** Postgres major = highest one supported by Azure Flexible Server (verified); compose healthy in < 30 s; both databases created; migration up/down/up works; no autogenerate diff from checkpointer tables.
 **Plan B:** checkpointer/Alembic conflict → separate Postgres schema for the checkpointer.
@@ -87,9 +87,9 @@ Requires the Azure budget alert.
 **Plan B:** progress does not arrive in stateless mode → rely on short calls only (already the design). Not enough credits → Postgres on Neon, app still on Container Apps.
 
 ## Definition of done
-- [ ] Each spike has a `RESULTS.md` with go/no-go against the thresholds above
+- [ ] Each spike has a local `RESULTS.md` with go/no-go against the thresholds above
 - [ ] Scrubbed fixtures and first dev/test labels saved
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spec written, nothing run yet.
+Stopped at: spike 1.2 done (GO). Next: spike 1.3 (FastMCP HTTP tool + host timeouts, no LLM).
