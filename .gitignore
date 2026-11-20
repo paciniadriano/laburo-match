@@ -32,3 +32,6 @@ htmlcov/
 .idea/
 .DS_Store
 Thumbs.db
+
+# --- Local spike notebook (experiments and results; never committed) ---
+spikes/

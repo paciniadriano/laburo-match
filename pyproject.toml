@@ -4,9 +4,32 @@ version = "0.1.0"
 description = "MCP server that finds jobs you can actually apply to from where you live, measures your fit with cited evidence and helps you prepare the application."
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
-dependencies = []
+dependencies = [
+    "alembic>=1.20.1",
+    "fastmcp>=3.4.7,<4",
+    "httpx>=0.28.1",
+    "langchain-core>=1.8.4",
+    "langchain-openai>=1.8.5",
+    "langgraph>=1.2.24",
+    "langgraph-checkpoint-postgres>=3.2.1",
+    "opik>=2.2.138",
+    "psycopg[binary]>=3.2",
+    "pydantic-settings>=2.16.3",
+    "pypdf>=7.1.1",
+    "sqlalchemy[asyncio]>=2",
+]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.7.0",
+    "pyright>=1.1.414",
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+    "respx>=0.23.1",
+    "ruff>=0.17.6",
 ]
+
+[tool.uv]
+# LiteLLM arrives only through Opik, which does not pin it. These releases were
+# published by compromised pipelines (March and October 2026); keep them out of the lock.
+constraint-dependencies = ["litellm!=1.82.7,!=1.82.8,!=1.107.0"]
