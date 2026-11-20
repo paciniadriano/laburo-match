@@ -29,12 +29,16 @@
 **Plan B:** checkpointer/Alembic conflict → separate Postgres schema for the checkpointer.
 
 ## 1.3 Hosts and timeouts (no LLM)
-- [ ] FastMCP HTTP server with a `sleep(seconds)` tool, with and without progress
-- [ ] Tool visible and callable in Inspector, Claude Code, Cursor, Claude Desktop (Windows → `npx mcp-remote` → localhost)
-- [ ] Timeout of each host measured
+- [x] FastMCP HTTP server with a `sleep(seconds)` tool, with and without progress
+- [x] Tool visible and callable in Inspector and Claude Code (Windows → WSL `localhost` works)
+- [ ] Cursor and Claude Desktop: deferred until a real problem appears
+- [x] Timeouts measured: Inspector 60 s (progress did not extend it by CLI), Claude Code > 90 s
+- [ ] Cursor and Claude Desktop timeouts: deferred
 
 **Go if:** at least 3 of 4 hosts work and the **smallest measured timeout is ≥ 60 s**.
 **Plan B:** a host that does not work is documented as unsupported. Timeout < 60 s → lower `SCREEN_MAX_JOBS_PER_CALL` and make drafts advance in bounded steps from day one.
+
+**Outcome:** conditional GO. Working assumption: smallest host timeout = 60 s, so one call must finish under ~30 s. Revisit when Cursor or Claude Desktop is first used for real.
 
 ## 1.4 LLM layer
 - [ ] `ChatOpenAI` on the Responses API with strict structured output (10 calls)
@@ -92,4 +96,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.2 done (GO). Next: spike 1.3 (FastMCP HTTP tool + host timeouts, no LLM).
+Stopped at: spike 1.3 done without LLM (conditional GO; Cursor and Claude Desktop deferred). Next: spike 1.4 (needs OPENAI_API_KEY in the real .env).
