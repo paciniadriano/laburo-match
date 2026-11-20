@@ -253,6 +253,7 @@ alembic/                 # migrations
 - OpenAI only, through `ChatOpenAI` built in `src/llm/factory.py` → fewest dependencies; changing the model is an env var, changing the provider touches one file.
 - Responses API → GPT-6 models support function calling with reasoning only there.
 - Base model `gpt-6-luna` for every task, with per-task overrides in `LLM_TASKS` and a separate client model setting → Luna is built for extraction/classification at low cost; drafts or the ReAct client may need a larger model if an eval says so.
+- `llm.run` never sends `temperature` and uses reasoning effort `low` or `none` (never `minimal`) → `gpt-6-luna` rejects `temperature` and `minimal` with a 400; strict structured output, tool calling with reasoning and prompt caching (99% of a 3.2k-token prefix cached on the 2nd call) all work on the Responses API.
 - Judge = base model by default; a larger model (e.g. Sol) is a candidate, adopted only if a judge-agreement experiment on the dev split justifies it → no cost commitment before evidence.
 - No LiteLLM as a direct dependency; current Opik already excludes the compromised versions, and a uv constraint keeps them excluded as defense in depth → LiteLLM was compromised twice on PyPI in 2026.
 - Eval criteria are binary (pass/fail) rubrics; deterministic criteria reuse the same functions as the draft reviewer → consistent, actionable, no duplicated logic.

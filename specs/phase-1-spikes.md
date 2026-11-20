@@ -41,11 +41,11 @@
 **Outcome:** conditional GO. Working assumption: smallest host timeout = 60 s, so one call must finish under ~30 s. Revisit when Cursor or Claude Desktop is first used for real.
 
 ## 1.4 LLM layer
-- [ ] `ChatOpenAI` on the Responses API with strict structured output (10 calls)
-- [ ] Tool calling with reasoning
-- [ ] `cached_tokens` on a second call with a prefix ≥ 1024 tokens
-- [ ] Opik: LLM span nested under the tool trace
-- [ ] Accepted parameters, model names and prices recorded
+- [x] `ChatOpenAI` on the Responses API with strict structured output (10 calls)
+- [x] Tool calling with reasoning
+- [x] `cached_tokens` on a second call with a prefix ≥ 1024 tokens
+- [x] Opik: LLM span nested under the tool trace
+- [x] Accepted parameters, model names and prices recorded
 
 **Go if:** strict output valid 10/10; tool calling with reasoning works; `cached_tokens` > 0 on the 2nd call; span nesting visible in Opik.
 **Plan B:** strict not supported by `ChatOpenAI` → `with_structured_output(method="json_schema")` or a direct call inside `src/llm/`. Opik nesting fails → manual spans in one place.
@@ -96,4 +96,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.3 done without LLM (conditional GO; Cursor and Claude Desktop deferred). Next: spike 1.4 (needs OPENAI_API_KEY in the real .env).
+Stopped at: spike 1.4 done (GO). Next: spike 1.3b (draft-like loop latency), then 1.5.
