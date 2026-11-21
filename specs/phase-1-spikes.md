@@ -101,4 +101,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.5 done (GO). Next: spike 1.6 (pypdf, needs the fictional sample CV and the user's real CV), then 1.7.
+Stopped at: spike 1.6, sample CV done. Next: hard-layout test set (needs the user's real CV and a Canva export; two-column and scanned are generated), then 1.7.
