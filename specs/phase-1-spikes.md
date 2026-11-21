@@ -66,7 +66,7 @@
 **Outcome:** GO. Recall 95% (strict), evidence kind 89%, 0 valid jobs discarded, 8/15 postings with a location restriction the aggregator does not show. Untested: citizenship / work authorization / W2 cases (cover with synthetic eligibility cases).
 
 ## 1.6 PDF parsing with pypdf
-- [ ] Fictional sample CV created in `data/samples/`
+- [x] Fictional sample CV created in `data/samples/`
 - [ ] Test set: sample CV, real CV, and 3 hard layouts (two-column, design-tool export such as Canva, image-only scan)
 - [ ] Parse in a subprocess with timeout on every PDF of the set
 - [ ] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
