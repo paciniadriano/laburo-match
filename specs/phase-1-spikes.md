@@ -67,12 +67,15 @@
 
 ## 1.6 PDF parsing with pypdf
 - [ ] Fictional sample CV created in `data/samples/`
-- [ ] Parse in a subprocess with timeout on the sample and on a real CV
-- [ ] Scanned PDF detection (characters-per-page threshold)
+- [ ] Test set: sample CV, real CV, and 3 hard layouts (two-column, design-tool export such as Canva, image-only scan)
+- [ ] Parse in a subprocess with timeout on every PDF of the set
+- [ ] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
 - [ ] Evidence and language-level quality checked
+- [ ] Optional probe (≤ 10 min, ≤ $0.10): send the scanned PDF to `gpt-6-luna` as a Responses API file input; record whether it works, latency, cost and transcription accuracy
 
-**Go if:** text extracted in < 5 s; timeout kills the process; scanned PDF detected; ≥ 90 % of experiences/skills extracted vs a manual count; language levels correct.
+**Go if:** text extracted in < 5 s; timeout kills the process; scanned **and** garbled PDFs detected (0 bad texts reach the profile); ≥ 90 % of experiences/skills extracted vs a manual count on text-based CVs; language levels correct.
 **Plan B:** broken layout with pypdf → `pdfminer.six` (MIT). Never PyMuPDF.
+**Plan C (vision):** if, after Plan B, ≥ 2 of the 4 text-based CVs are still unreadable or < 90 %, bring vision into v1 as a fallback that only **transcribes** pages into `cv_files.extracted_text` (normal pipeline after it, user confirms at the `build_profile` stop). Otherwise vision stays in the roadmap and `CV_SCANNED` / `CV_UNREADABLE` tell the user how to export a text PDF.
 
 ## 1.7 Linking + level rules
 - [ ] 5 jobs, ~30 requirements labelled
