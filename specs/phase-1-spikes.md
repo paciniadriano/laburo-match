@@ -71,19 +71,21 @@
 - [x] Parse in a subprocess with timeout on every PDF of the set
 - [x] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
 - [x] Evidence and language-level quality checked
-- [ ] Optional probe (≤ 10 min, ≤ $0.10): send the scanned PDF to `gpt-6-luna` as a Responses API file input; record whether it works, latency, cost and transcription accuracy
+- [x] ~~Optional probe~~ skipped on purpose: vision is only explored if failures show up, and after pdfminer.six 0 of 4 text-based CVs failed
 
 **Go if:** text extracted in < 5 s; timeout kills the process; scanned **and** garbled PDFs detected (0 bad texts reach the profile); ≥ 90 % of experiences/skills extracted vs a manual count on text-based CVs; language levels correct.
 **Plan B:** broken layout with pypdf → `pdfminer.six` (MIT). Never PyMuPDF.
 **Plan C (vision):** if, after Plan B, ≥ 2 of the 4 text-based CVs are still unreadable or < 90 %, bring vision into v1 as a fallback that only **transcribes** pages into `cv_files.extracted_text` (normal pipeline after it, user confirms at the `build_profile` stop). Otherwise vision stays in the roadmap and `CV_SCANNED` / `CV_UNREADABLE` tell the user how to export a text PDF.
 
 ## 1.7 Linking + level rules
-- [ ] 5 jobs, ~30 requirements labelled
-- [ ] Link requirements to evidence; compute levels in code
-- [ ] 3 runs for stability
+- [x] 5 jobs, ~30 requirements labelled (35, plus 23 on 2 held-out postings)
+- [x] Link requirements to evidence; compute levels in code
+- [x] 3 runs for stability
 
 **Go if:** **0 false `met`**; level accuracy ≥ 80 %; ≥ 90 % identical results across 3 runs.
 **Plan B:** chunk size 1, few-shots, or a larger model override for linking only.
+
+**Outcome:** GO with a redesigned contract. Three designs judged compound-requirement coverage inside the prompt and failed (too cautious, too generous, or unstable). Final design: requirements split once per job into atoms; the LLM links atoms with `direct`/`related` (only `direct` counts); code computes levels and combines atoms; new `weak` evidence strength. Main set (31): 0 false `met`, accuracy 84–87 %, 93 % stable (one label changed after seeing results, recorded). Held-out postings 05 and 12 (20): 0 false `met`, 90 %, 94 %. Open: requirement-side qualifiers ("advanced") are not checked by code; SQL ↔ PostgreSQL judged `related` (cautious); split stability unmeasured; one profile and model.
 
 ## 1.8 Azure hello-world
 Requires the Azure budget alert.
@@ -101,4 +103,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.6 closed except the optional vision probe (skipped for now; vision stays in the roadmap). Text engine decided: pdfminer.six only (CLAUDE.md updated). Next: spike 1.7, start in plan mode (5 jobs, ~30 requirements labelled).
+Stopped at: spike 1.7 GO (design v4: atoms + direct/related + weak strength; system.md §11.4 and CLAUDE.md updated). Next: spike 1.8 (Azure hello-world), which needs the Azure budget alert first; then the phase 1 definition of done.

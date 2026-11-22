@@ -155,7 +155,8 @@ All calls go through `llm.run(task, variable_input, ...)`. The registry declares
 | `profile_build` | CV text | Evidence list + inferred fields (incl. language levels with source) | Once per CV |
 | `search_plan` | Profile summary, decisions summary, past run stats | `SearchPlan` (queries per source, excluded terms, notes) | Validated by code; ≤ 1 replan; not cached (stored in the run) |
 | `job_extraction` | One job | `JobFacts` (below) | Cached per job; 2 few-shots |
-| `requirement_linking` | Chunk of unique pending requirements + enumerated evidence | Per requirement: list of `{evidence_id, relation}` with relation ∈ `same` / `equivalent` / `related`; empty list if none | **No level**; cached per evidence set; one-line few-shots |
+| `requirement_split` | One job's requirements | Per requirement: `combinator` ∈ `all` / `any` and `atoms[]` (one thing each; qualifiers, purposes and years dropped; "A or B" → `any`) | Cached per job; one-line invented examples |
+| `requirement_linking` | Chunk of unique pending **atoms** + enumerated evidence (names and quotes only: no dates, years or strength) | Per atom: list of `{evidence_id, relation}` with relation ∈ `direct` / `related`; empty list if none | **No level**; cached per evidence set; one-line invented examples |
 | `profile_update_parse` | User's change in natural language | Structured profile diff | Preview only (stored in `profile_changes`); applied on confirmation |
 | `job_qa` | Question + job text | Status + answer + verbatim quote(s) | Only when extracted facts cannot answer |
 | `draft_write` | Job facts, linked evidence, guidelines, user style | Cover letter + CV bullets + screening answers | |
@@ -169,7 +170,7 @@ All calls go through `llm.run(task, variable_input, ...)`. The registry declares
 - `restrictions[]`: each with `type` (country/region allowed, work authorization, citizenship, clearance, payroll, timezone/hours, contract type, modality, office location, office days), normalized value, `evidence_kind` ∈ `explicit` / `inferred`, quote, section.
 - `contradictions[]`: pairs of conflicting statements with both quotes.
 - `office_locations[]`: each `{city, region, country_code}` normalized from the text; empty if none, several when the posting names several offices.
-- `requirements[]`: each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote.
+- `requirements[]`: each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote, plus `combinator` and `atoms[]` filled by the `requirement_split` task.
 - `flags`: agency signals, laundry-list signals.
 
 Rules: Responses API (function calling with reasoning) **[verify]**; strict structured outputs (all fields required, nullable where optional) **[verify]**; the client ReAct loop uses `LLM_CLIENT_MODEL` through the same factory.
@@ -186,7 +187,7 @@ Required for `is_complete`: **country, work authorizations, accepted modalities,
 | Hard constraints | country; citizenships (ISO list); work authorizations (countries/regions, e.g. `AR`, `EU`); security clearance (bool); visa sponsorship needed; accepted modalities (`remote`, `hybrid`, `onsite`); home location (geonameid, name, region, country, lat, lon, `source` = `exact` / `nearest_town`); `max_commute_km`; `extra_accepted_cities`; relocation countries; max office days per week; timezone (derived, editable); working-hours window; accepted contract types (`employee_local`, `contractor`, `eor`) with preference order; accepted payment currencies | Eligibility (filter) |
 | Soft preferences | target roles, seniority, preferred stack, avoided stack, company types, min salary (amount, currency, period), full/part time, notice period | Ranking, drafts |
 | Exclusions | companies, keywords, agencies flag, max job age | Prefilter |
-| Evidence | items with id + label (E1…), kind (experience/skill/project/education/certification/language/other), normalized name, years (computed from dates), dates, quote, strength (`detailed` / `mention`), source (`cv` / `user`), content hash, active flag; language items carry language, CEFR level and level source (`certificate` / `self_assessed` / `user_confirmed`) | Matching, drafts |
+| Evidence | items with id + label (E1…), kind (experience/skill/project/education/certification/language/other), normalized name, years (computed from dates), dates, quote, strength (`detailed` = used in a job bullet, dated by the jobs that use it / `mention` = only listed / `weak` = the CV itself qualifies it as basic or vague: "basic", "coursework", "familiar with"), source (`cv` / `user`), content hash, active flag; language items carry language, CEFR level and level source (`certificate` / `self_assessed` / `user_confirmed`) | Matching, drafts |
 | Writing style | tone (`formal`/`neutral`/`casual`), length (`short`/`standard`), phrases to avoid, signature, notes (≤ 500 chars) | Drafts |
 | Meta | `schema_version`, `profile_version`, `is_complete` | |
 
@@ -215,7 +216,7 @@ UUID primary keys exposed to the LLM; every private table has `user_id NOT NULL`
 | `geo_places` | geonameid, name, names TEXT[] (normalized name + alternate names), country_code, admin1_code, admin1_name, lat, lon, population | Shared reference data from the pinned GeoNames snapshot; GIN index on `names`, index on `country_code` |
 | `search_runs` | id, user_id, kind (`search`/`single`), plan JSONB, status, created_at, expires_at, funnel counters (in, after_prefilter, over_cap, extracted, extraction cache hits, linking cache hits, llm calls, tokens, cached tokens, cost) | `single` runs: `analyze_posting` and re-screens of one job |
 | `run_jobs` | run_id, job_id, user_id, position (run-scoped display number), status (`pending`/`processing`/`done`/`failed`), attempts, claimed_at, last_error, prefilter_reason, eligibility, eligibility_reason, eligibility_quotes, recruiter_questions JSONB, profile_questions JSONB, distance_km, fit_band, gaps JSONB, flags JSONB, screening_hash, screened_at | PK (run_id, job_id); composite FK (run_id, user_id) → `search_runs` keeps `user_id` consistent; index (user_id, job_id, screened_at); claimed with `FOR UPDATE SKIP LOCKED` |
-| `requirement_links` | user_id, requirement_key, evidence_set_hash, version_hash, links JSONB (`evidence_id`, `relation`, `evidence_content_hash`), level, created_at | Linking cache (§11.4, §14) |
+| `atom_links` | user_id, atom_key, evidence_set_hash, version_hash, links JSONB (`evidence_id`, `relation`, `evidence_content_hash`), level, created_at | Linking cache (§11.4, §14) |
 | `decisions` | user_id, job_id (canonical), status (`saved`/`discarded`/`applied`/`interviewing`/`rejected`/`offer`), reason, reason_tags, eligibility_wrong, updated_at | One row per (user, job); idempotent upsert |
 | `drafts` | id, user_id, job_id (canonical), version, status (`running`/`done`/`failed`), lease_until, attempt, content JSONB, reviews JSONB, created_at, updated_at | One row per (user, job): the row is the lease. Each generation increments `version` and runs on `thread_id = {draft_id}:{version}`; when it ends, the result is stored in `content` and the LangGraph thread is deleted |
 | `usage_events` | user_id, kind (`tool_call`/`llm`/`serpapi`), task, units, cost_usd, cached_tokens, created_at | Quotas, SerpApi monthly cap, ceilings, cost display |
@@ -295,23 +296,27 @@ The LLM **links**; code **decides**.
 | Step | Type | What happens |
 |---|---|---|
 | Code-only types | Code | `language`: compare CEFR levels per language (equal or higher → `met`; lower → `partial` with gap size; absent → `missing`; self-assessed noted). `education`: ordinal scale; "or equivalent experience" counts as met with sufficient years. `soft` → `not_assessable` (hidden by default, never scored). `condition` → shown separately, never scored |
-| Key | Code | `requirement_key` = normalized requirement text + type + min_years |
-| Cache | Code | Exact lookup by `(user, requirement_key, evidence_set_hash, version_hash)`. On a miss, the latest row for `(user, requirement_key, version_hash)` is reused only if its stored level was `met` and every linked evidence item is unchanged (same content hash) and still active; everything else is re-linked |
-| Linking | LLM | Remaining requirements, **deduplicated across the run**, chunked, in parallel: per requirement, the related evidence IDs with relation `same` / `equivalent` / `related` (or none). The LLM never decides levels or compares years |
+| Split | LLM (job level) | Each requirement of a job becomes `{combinator, atoms[]}` once, cached with the job; the same for every user. Linking only ever sees atoms |
+| Key | Code | `atom_key` = normalized atom text + min_years (the requirement's); `requirement_key` = normalized requirement text + type + min_years identifies the requirement inside a job |
+| Cache | Code | Exact lookup by `(user, atom_key, evidence_set_hash, version_hash)`. On a miss, the latest row for `(user, atom_key, version_hash)` is reused only if its stored level was `met` and every linked evidence item is unchanged (same content hash) and still active; everything else is re-linked |
+| Linking | LLM | Remaining atoms, **deduplicated across the run**, chunked, in parallel: per atom, the evidence IDs with relation `direct` (the evidence is that thing under any name) or `related` (similar but different; only an argument hint), or none. The LLM never decides levels, compares years or judges whether a compound requirement is covered |
 | Validation | Code | Evidence IDs must exist; unknown IDs are dropped and flagged |
-| Level | Code | Rules below |
+| Level | Code | Per atom, then per requirement: rules below |
 | Store | Code | Cache row with links, level and the content hash of each linked evidence item |
 
-**Level rules** (code). Years are the union of the date intervals of the linked `same`/`equivalent` detailed evidence, so overlapping experiences are not counted twice.
+**Level rules** (code). Years are the union of the date intervals of the `direct` detailed evidence linked to the atom, so overlapping experiences are not counted twice.
 
-| Links | Condition | Level |
+| Links of the atom | Condition | Level |
 |---|---|---|
-| `same`/`equivalent` with detailed evidence | Years ≥ `min_years`, or no years requested | `met` |
-| `same`/`equivalent` with detailed evidence | Years < `min_years` | `partial` with `gap_size` (`small` ≤ 50% short, else `large`) and an argument hint |
-| `same`/`equivalent`, mention-only evidence | Requirement asks for years | `partial` ("mentioned without detail") |
-| `same`/`equivalent`, mention-only evidence | No years requested | `met` |
-| Only `related` | — | `partial` with an argument hint |
+| `direct`, detailed evidence | Years ≥ `min_years`, or no years requested | `met` |
+| `direct`, detailed evidence | Years < `min_years` | `partial` with `gap_size` (`small` ≤ 50% short, else `large`) and an argument hint |
+| `direct`, mention-only evidence | Requirement asks for years | `partial` ("mentioned without detail") |
+| `direct`, mention-only evidence | No years requested | `met` |
+| `direct`, only `weak` evidence | — | `partial` ("weak mention"), never `met` |
+| Only `related` | — | `missing`; the related evidence is shown as the argument hint ("you have X; argue it for Y") |
 | None | — | `missing` |
+
+**Combining atoms** (code, per requirement): `all` → `met` only if every atom is `met`; `missing` if no atom has any coverage; otherwise `partial`. `any` → the best atom wins.
 
 - **Fit band**: required requirements weigh more; any `missing` required requirement caps the band at Medium; `unspecified` weighs in between.
 - **Seniority fit** (code): job seniority words + required years vs user seniority and years → under / fit / over.
@@ -424,7 +429,7 @@ Both prompts are built from shared fragments in `src/prompts/fragments.py`; `get
 | Cache | Key | Invalidation |
 |---|---|---|
 | Job extraction | job_id + version_hash + content_hash | Prompt/examples/schema/model/params change, or job content changes |
-| Requirement links | user + requirement_key + evidence_set_hash + version_hash | Evidence change → new evidence_set_hash; a previous result is reused only if its level was `met` and all linked evidence is unchanged and active, the rest re-linked; model/prompt change → new version_hash |
+| Atom links | user + atom_key + evidence_set_hash + version_hash | Evidence change → new evidence_set_hash; a previous result is reused only if its level was `met` and all linked evidence is unchanged and active, the rest re-linked; model/prompt change → new version_hash |
 | Provider prompt caching | Stable prefix per task (+ `prompt_cache_key`) | Automatic (≥ 1,024 tokens on OpenAI) **[verify]** |
 | Eval LLM cache | task + version_hash + model + messages + params | Eval runner only; `--no-cache` for design experiments |
 
@@ -560,7 +565,8 @@ Each phase starts by writing `specs/phase-N-<name>.md` in plan mode (goal, tasks
 - **Position**: run-scoped display number in a shortlist ("the 3"); tools never accept it.
 - **Card**: compact representation of a job in a shortlist.
 - **Evidence / evidence ID**: a labelled item (E1…) from the CV or the user that can support a requirement; the LLM refers to evidence only by ID.
-- **Link**: the LLM's statement that an evidence item relates to a requirement (`same` / `equivalent` / `related`); levels are computed by code.
+- **Link**: the LLM's statement that an evidence item relates to an atom of a requirement (`direct` / `related`); levels are computed by code.
+- **Atom**: one thing a requirement asks for (a technology, tool, practice or kind of experience); requirements are split into atoms once per job.
 - **Explicit / inferred restriction**: stated in the posting vs deduced from indirect signals.
 - **Profile question**: a question to the user when a restriction depends on a profile field they have not answered yet.
 - **Filtered / discarded**: discarded automatically by prefilters or eligibility / discarded by the user.
