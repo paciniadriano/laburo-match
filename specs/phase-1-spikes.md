@@ -101,4 +101,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.6, pdfminer.six verified in the subprocess (same speed and detection; fixes Canva ordering). Next: optional vision probe, record the text-engine decision (pdfminer.six) in CLAUDE.md, then 1.7.
+Stopped at: spike 1.6 closed except the optional vision probe (skipped for now; vision stays in the roadmap). Text engine decided: pdfminer.six only (CLAUDE.md updated). Next: spike 1.7, start in plan mode (5 jobs, ~30 requirements labelled).
