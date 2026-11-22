@@ -101,4 +101,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.6, LLM quality done (Canva + pypdf puts 5/9 bullets under the wrong job; pdfminer.six fixes it, so Plan B is needed). Next: run pdfminer in the subprocess (timing, timeout, garbled/scanned), optional vision probe, then record the text-engine decision and go to 1.7.
+Stopped at: spike 1.6, pdfminer.six verified in the subprocess (same speed and detection; fixes Canva ordering). Next: optional vision probe, record the text-engine decision (pdfminer.six) in CLAUDE.md, then 1.7.
