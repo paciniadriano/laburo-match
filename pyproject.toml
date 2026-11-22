@@ -13,9 +13,9 @@ dependencies = [
     "langgraph>=1.2.24",
     "langgraph-checkpoint-postgres>=3.2.1",
     "opik>=2.2.138",
+    "pdfminer-six>=20251230",
     "psycopg[binary]>=3.2",
     "pydantic-settings>=2.16.3",
-    "pypdf>=7.1.1",
     "sqlalchemy[asyncio]>=2",
 ]
 

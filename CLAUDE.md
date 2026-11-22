@@ -40,7 +40,7 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 | Workflow engine | LangGraph functional API, **only** for the draft workflow; Postgres checkpointer (psycopg 3) |
 | Observability | Opik (optional at runtime: the server works without a key) |
 | HTTP | One shared `httpx.AsyncClient` with timeouts |
-| PDF | `pypdf` (BSD), parsed in a subprocess with a timeout. Never PyMuPDF (AGPL) |
+| PDF | `pdfminer.six` (MIT, `>=20251230`), parsed in a subprocess with a timeout. Never PyMuPDF (AGPL) |
 | Geography | GeoNames `cities500` snapshot (CC BY), loaded into Postgres |
 | Quality | ruff, pyright (basic), pre-commit, gitleaks |
 | Tests | pytest, pytest-asyncio, respx, real Postgres (separate test database) |
@@ -217,6 +217,9 @@ alembic/                 # migrations
 - Extraction: one job per LLM call, in parallel with a concurrency limit; batch size is a setting decided by an experiment → isolation and quality; tokens cost the same either way.
 - Matching: the LLM only **links** requirements to evidence IDs with a relation (`same` / `equivalent` / `related` / none); **code** computes the level from relation, evidence strength and years → semantics where LLMs are strong, arithmetic and thresholds where code is reliable; validated by a small experiment (0 false-`met`, most stable).
 - No text fast path and no skill taxonomy → exact-name matching ignores context and taxonomies fail silently; both produced false-`met` results in the experiment.
+- CV text comes from `pdfminer.six` as the only engine, with no pypdf fallback; `>=20251230` fixes two deserialization CVEs → pypdf returned the Canva CV in scrambled reading order with no quality signal (5 of 9 bullets under the wrong job), so there is no trigger for a fallback; pdfminer orders text by page position at the same speed.
+- CV text quality is checked in code before any LLM call (characters per page, bad-character ratio including `(cid:N)`, share of readable words); thresholds 100 / 5 % / 60 %, language-agnostic → scanned (`CV_SCANNED`) and garbled (`CV_UNREADABLE`) PDFs never reach extraction. Vision/OCR stays in the roadmap: 0 of 4 text-based CVs failed after the engine change.
+- Language levels taken from certificates are confirmed by the user, never assigned automatically, and entries are deduplicated per language → real CVs write "exam taken" or "course of CAE", which a certificate-to-CEFR table would overclaim.
 - Language, education, soft and condition requirements are resolved in code without the LLM → structured and comparable.
 - Requirement links are deduplicated across the run, chunked and cached per `(requirement_key, evidence_set_hash, version_hash)`; after an evidence change, a cached result is reused only if its level was `met` and every linked evidence item is unchanged and active → new evidence can upgrade a `partial`, removed evidence never leaves a stale `met`.
 - LLM cache versions are an automatic hash of prompt + examples + schema + model + model parameters → changing any of them invalidates the cache.
