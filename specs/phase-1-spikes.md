@@ -69,7 +69,7 @@
 - [x] Fictional sample CV created in `data/samples/`
 - [x] Test set: sample CV, real CV, and 3 hard layouts (two-column, design-tool export such as Canva, image-only scan)
 - [x] Parse in a subprocess with timeout on every PDF of the set
-- [ ] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
+- [x] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
 - [ ] Evidence and language-level quality checked
 - [ ] Optional probe (≤ 10 min, ≤ $0.10): send the scanned PDF to `gpt-6-luna` as a Responses API file input; record whether it works, latency, cost and transcription accuracy
 
