@@ -31,9 +31,11 @@
 ## 1.3 Hosts and timeouts (no LLM)
 - [x] FastMCP HTTP server with a `sleep(seconds)` tool, with and without progress
 - [x] Tool visible and callable in Inspector and Claude Code (Windows → WSL `localhost` works)
-- [ ] Cursor and Claude Desktop: deferred until a real problem appears
+- [x] Claude Desktop (Windows Store build, local server via `mcp-remote`): tool visible and callable; its config is read from `%LOCALAPPDATA%\Claude-Data\<package>\`
+- [ ] Cursor: deferred until a real problem appears
 - [x] Timeouts measured: Inspector 60 s (progress did not extend it by CLI), Claude Code > 90 s
-- [ ] Cursor and Claude Desktop timeouts: deferred
+- [x] Claude Desktop timeout: a 70 s `sleep_plain` call completed with no cancellation (upper bound not measured)
+- [ ] Cursor timeout: deferred
 
 **Go if:** at least 3 of 4 hosts work and the **smallest measured timeout is ≥ 60 s**.
 **Plan B:** a host that does not work is documented as unsupported. Timeout < 60 s → lower `SCREEN_MAX_JOBS_PER_CALL` and make drafts advance in bounded steps from day one.
