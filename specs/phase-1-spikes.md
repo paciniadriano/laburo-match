@@ -70,7 +70,7 @@
 - [x] Test set: sample CV, real CV, and 3 hard layouts (two-column, design-tool export such as Canva, image-only scan)
 - [x] Parse in a subprocess with timeout on every PDF of the set
 - [x] Unreadable detection: characters per page (scan) **and** share of readable words (garbled text from fonts without a Unicode map)
-- [ ] Evidence and language-level quality checked
+- [x] Evidence and language-level quality checked
 - [ ] Optional probe (≤ 10 min, ≤ $0.10): send the scanned PDF to `gpt-6-luna` as a Responses API file input; record whether it works, latency, cost and transcription accuracy
 
 **Go if:** text extracted in < 5 s; timeout kills the process; scanned **and** garbled PDFs detected (0 bad texts reach the profile); ≥ 90 % of experiences/skills extracted vs a manual count on text-based CVs; language levels correct.
@@ -101,4 +101,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.6, parsing + unreadable detection done (Canva export reads fine but in wrong order with pypdf; pdfminer orders it). Next: evidence and language-level quality with the LLM, Canva text from both pypdf and pdfminer, then 1.7.
+Stopped at: spike 1.6, LLM quality done (Canva + pypdf puts 5/9 bullets under the wrong job; pdfminer.six fixes it, so Plan B is needed). Next: run pdfminer in the subprocess (timing, timeout, garbled/scanned), optional vision probe, then record the text-engine decision and go to 1.7.
