@@ -82,6 +82,7 @@ Status: v1 design, before implementation. Decisions and their reasons live in `C
 | Claude Desktop | Local: `npx mcp-remote http://localhost:8000/mcp` (Node on Windows) or the `fastmcp-remote` bridge; remote: custom connector with the Azure URL | Skill uploaded as zip, or prompts from the "+" menu |
 
 - Windows hosts reach the server running in WSL2 or Docker through `localhost` (checked in spike 1.3).
+- Claude Desktop installed from the Microsoft Store keeps its config in `%LOCALAPPDATA%\Claude-Data\<package>\claude_desktop_config.json`, not in `%APPDATA%\Claude` (checked in spike 1.3); quit it from the tray before editing. Other people should use the remote custom connector (public HTTPS URL), not the local JSON route.
 - Links: the server never fetches posting URLs. If the user shares a link, the host reads the page with its own web tools (when it has them) and passes the text to `analyze_posting`; for blocked sites (`config/data/known_sites.py`: LinkedIn, Bumeran, ZonaJobs, Computrabajo, Indeed) the host asks the user to paste the text.
 
 ---
