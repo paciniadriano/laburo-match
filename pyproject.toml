@@ -33,3 +33,7 @@ dev = [
 # LiteLLM arrives only through Opik, which does not pin it. These releases were
 # published by compromised pipelines (March and October 2026); keep them out of the lock.
 constraint-dependencies = ["litellm!=1.82.7,!=1.82.8,!=1.107.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

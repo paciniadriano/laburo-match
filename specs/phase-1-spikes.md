@@ -101,8 +101,8 @@ Requires the Azure budget alert.
 
 ## Definition of done
 - [ ] Each spike has a local `RESULTS.md` with go/no-go against the thresholds above
-- [ ] Scrubbed fixtures and first dev/test labels saved
+- [x] Scrubbed fixtures and first dev/test labels saved (`fixtures/postings/getonbrd/`, `evals/datasets/{dev,test}/`, `data/samples/sample_evidence.json`; PII test in `tests/unit/`)
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.7 GO (design v4: atoms + direct/related + weak strength; system.md §11.4 and CLAUDE.md updated). Next: spike 1.8 (Azure hello-world), which needs the Azure budget alert first; then the phase 1 definition of done.
+Stopped at: spike 1.8 measured (HTTPS from Claude Code OK, progress reaches an MCP client, session id changes per call, cold start 23-26 s), not yet closed in the spec; DoD item 2 done. Next: user check of progress in interactive Claude Code, close 1.8 and delete the Azure resource group, `spikes` archive branch, then PR.

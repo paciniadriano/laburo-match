@@ -1,0 +1,88 @@
+{
+  "dataset": "eligibility",
+  "split": "test",
+  "source": "spike 1.5: hand labels written before any extraction run",
+  "reference_profile": "Argentine citizen, resident in Argentina, no US work authorization",
+  "items": [
+    {
+      "job": "03",
+      "fixture": "fixtures/postings/getonbrd/03.txt",
+      "verdict": "not_eligible",
+      "hidden_by_aggregator": true,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "disponibilidad para trabajar remotamente desde Colombia"
+          ],
+          "compatible": false
+        }
+      ]
+    },
+    {
+      "job": "06",
+      "fixture": "fixtures/postings/getonbrd/06.txt",
+      "verdict": "doubtful",
+      "hidden_by_aggregator": false,
+      "restrictions": [
+        {
+          "kind": "modality",
+          "evidence_kind": "contradictory",
+          "quotes": [
+            "Este rol es 100% remoto",
+            "La modalidad híbrida que ofrecemos, ubicada en Las Condes"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "09",
+      "fixture": "fixtures/postings/getonbrd/09.txt",
+      "verdict": "eligible",
+      "hidden_by_aggregator": true,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Location: Remote — Latin America"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "some overlap with US Pacific Time"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "12",
+      "fixture": "fixtures/postings/getonbrd/12.txt",
+      "verdict": "doubtful",
+      "hidden_by_aggregator": false,
+      "doubt": "remote_only"
+    },
+    {
+      "job": "15",
+      "fixture": "fixtures/postings/getonbrd/15.txt",
+      "verdict": "not_eligible",
+      "hidden_by_aggregator": false,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Disponibilidad para trabajar en modalidad híbrida en nuestra oficina en Santiago"
+          ],
+          "compatible": false
+        }
+      ]
+    }
+  ]
+}

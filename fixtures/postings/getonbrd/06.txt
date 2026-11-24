@@ -1,0 +1,30 @@
+JOB 06 | raw_index=260
+title: Developer Back-end Golang LATAM
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=lang_not_specified modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requisitos
+
+[description]
+Buscamos un Developer Backend con al menos 4 años de experiencia, dominio avanzado de Go (exclusivo) y conocimientos en Java. Se valoran experiencia en bases de datos MySQL, PostgreSQL, Redis, MongoDB y Cassandra, así como manejo de Docker, Kubernetes, Git, CI/CD (GitLab CI, GitHub Actions o Jenkins) y mensajería con Kafka o RabbitMQ. Debe estar cómodo trabajando en APIs REST y en entornos Linux/Unix. Se prioriza un perfil orientado a Clean Code, SOLID, TDD, patrones de diseño y trabajo en equipos ágiles.
+Este rol es 100% remoto, con posibilidad de colaboración con equipos en distintos países de LATAM. Se requieren habilidades de comunicación, proactividad y capacidad de trabajar de forma autónoma y en equipo, manteniendo estándares de calidad y entregas a tiempo.
+
+[projects]
+BC Tecnología es una consultora de TI que gestiona portafolio, desarrolla proyectos y ofrece outsourcing y selección de profesionales para áreas de Infraestructura, Desarrollo de Software y unidades de negocio. Trabajamos con clientes de servicios financieros, seguros, retail y gobierno, promoviendo equipos ágiles y soluciones a medida.
+Nuestro enfoque está en la experiencia del cliente, metodologías ágiles, cambio organizacional y desarrollo de productos. En BC Tecnología promovemos un ambiente de trabajo colaborativo, con foco en crecimiento profesional y aprendizaje continuo en un entorno diverso e inclusivo.
+
+[functions]
+- Desarrollar y mantener servicios Backend en Go (Golang) para entornos LATAM, asegurando alto rendimiento y escalabilidad.
+- Diseñar e implementar APIs RESTful, con énfasis en Swagger/OpenAPI para especificaciones claras.
+- Trabajar con bases de datos MySQL, PostgreSQL, Redis, MongoDB y Cassandra; asegurar integridad, rendimiento y análisis de datos.
+- Gestionar contenedores y orquestación con Docker y Kubernetes; colaborar en pipelines CI/CD (GitLab CI, GitHub Actions o Jenkins).
+- Trabajar con mensajería asíncrona (Kafka o RabbitMQ) y sistemas Linux/Unix; implementar buenas prácticas de seguridad y monitoreo.
+- Adoptar prácticas de Clean Code, principios SOLID, TDD y patrones de diseño; participar en equipos ágiles y contribuir a mejoras técnicas y de procesos.
+
+[desirable]
+Experiencia adicional en Java, arquitectura de microservicios, plataformas de mensajería como ActiveMQ o RabbitMQ en entornos complejos, y familiaridad con herramientas de observabilidad (Prometheus, Grafana, ELK). Conocimiento en seguridad de aplicaciones, pruebas de rendimiento y experiencia en entornos regulados o con alto grado de criticidad. Se valoran certificaciones relevantes y experiencia en proyectos para sectores financieros o gobierno.
+
+[benefits]
+En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante. Nuestra cultura se orienta al crecimiento profesional a través de la integración y el intercambio de conocimientos entre equipos.
+La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral.
+Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.

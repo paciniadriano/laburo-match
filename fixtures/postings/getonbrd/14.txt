@@ -1,0 +1,43 @@
+JOB 14 | raw_index=2
+title: Technical Lead (Python, AWS, API)
+aggregator fields: remote_modality=hybrid remote_zone=None countries=['Chile'] lang=es modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requisitos
+
+[description]
+Buscamos un/una Technical Lead con al menos 7 años de experiencia en desarrollo de software y capacidad comprobada para liderar equipos o proyectos tecnológicos complejos.
+Requisitos técnicos:
+- Conocimientos sólidos de Python y AWS, con experiencia en arquitecturas distribuidas.
+- Experiencia desarrollando y consumiendo APIs, trabajando con microservicios y patrones event-driven.
+- Experiencia con CI/CD y prácticas de entrega continua.
+- Conocimiento práctico de React y TypeScript.
+- Experiencia en diseño de sistemas escalables y seguros.
+Soft skills: capacidad de mentoría y liderazgo técnico, comunicación efectiva para alinear decisiones, orientación a la mejora continua y actitud colaborativa, manteniendo transparencia y foco en el impacto del trabajo.
+
+[projects]
+En 42Labs no solo desarrollamos software: construimos soluciones que transforman negocios con impacto real en personas, abarcando distintos verticales como sector financiero, logística y educación. En este rol de Technical Lead, lideramos la evolución de productos y plataformas donde convergen APIs, microservicios y arquitecturas distribuidas, integrando enfoques event-driven y CI/CD. Serás clave para mejorar la escalabilidad, seguridad y confiabilidad de nuestros sistemas, impulsando buenas prácticas técnicas y acompañando al equipo en la toma de decisiones y la entrega de valor continuo.
+
+[functions]
+Como Technical Lead lideraremos técnica y operativamente la construcción y evolución de servicios basados en Python sobre AWS, asegurando arquitecturas distribuidas escalables y seguras.
+- Liderar equipos o proyectos tecnológicos complejos, coordinando diseño, implementación y despliegue.
+- Definir y mantener APIs y microservicios, aplicando patrones event-driven.
+- Impulsar pipelines de CI/CD y prácticas de automatización para mejorar la calidad y la velocidad de entrega.
+- Asegurar integraciones robustas con frontends usando React y TypeScript cuando corresponda.
+- Participar en el diseño de sistemas escalables, confiables y seguros, con foco en performance, observabilidad y mantenibilidad.
+- Mentorear al equipo y fortalecer estándares técnicos a través de revisiones, guías y acompañamiento continuo.
+- Evaluar, implementar y gobernar (cuando aplique) iniciativas con IA Generativa, agentes y plataformas basadas en LLMs.
+
+[desirable]
+- Experiencia en IA Generativa, agentes y plataformas basadas en LLMs.
+- Conocimiento práctico de Amazon Bedrock, LangChain, MCP o tecnologías similares.
+- Experiencia con RAG, embeddings y bases vectoriales.
+- Conocimientos de MLOps, evaluación de modelos y gobernanza de IA.
+- Capacidad de mentorizar y liderazgo técnico sostenido.
+
+[benefits]
+- Salud y protección integral: seguros complementarios de salud, dental, de vida y catastrófico 100% financiados por nosotros (con opción de extender a tu familia). Además, estamos integrados a la red de beneficios de Caja Los Andes y la ACHS.
+- Apoyos para tu estilo de vida: bonos mensuales para tu conexión a internet y tus plataformas de ocio favoritas. Aguinaldos en Fiestas Patrias y Navidad.
+- Tiempo y flexibilidad: Flexi Days y Party Time (tardes libres). Celebramos tu cumpleaños con una tarde libre y damos tiempo extra para hitos como matrimonio, nacimiento de hijos o exámenes de título.
+- Crece con comunidad: Academia 42Labs, planes de desarrollo personalizados y acceso a Udemy Business. Nos mantenemos conectados en Discord y fortalecemos lazos en PartyTwoLabs.
+Trabajamos en un entorno híbrido que confía en tu autonomía.

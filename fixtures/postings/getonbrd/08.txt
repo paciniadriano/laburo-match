@@ -1,0 +1,61 @@
+JOB 08 | raw_index=229
+title: Applied AI Developer, APIs and Business Intelligence
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 2, 'type': 'modality'}}
+
+[description_headline]
+What We Are Looking For
+
+[description]
+- Clear written and spoken English
+- Experience working with AI APIs in real applications
+- Strong experience with APIs, webhooks, and system integrations
+- Proficiency in Python
+- Experience with JavaScript or TypeScript
+- Working knowledge of SQL and relational databases
+- Experience with reporting or business intelligence tools
+- Ability to deploy and maintain web applications or internal tools
+
+[projects]
+PaperStreet is looking for a full-time or part-time developer to help us build, improve, and maintain internal AI tools, automations, integrations, and reporting systems.
+This is a practical development role focused on using existing AI platforms and APIs to solve business problems. We are not looking for someone to build or train large language models from scratch.
+The right person will be comfortable connecting systems, working with APIs, processing data, building simple dashboards, troubleshooting integrations, and helping turn internal ideas into reliable tools.
+In short, we need someone who can also assist with other development, automation, reporting, and technical projects. If hired part-time, the role can increase to full-time.
+
+[functions]
+- Build and maintain integrations using OpenAI, Anthropic, Gemini, or similar AI APIs
+- Connect websites, forms, CRMs, email systems, databases, and other platforms
+- Create internal AI tools, workflows, and automations
+- Work with REST APIs, webhooks, OAuth, and third-party services
+- Build and maintain reporting dashboards and business intelligence tools
+- Organize, clean, and process data using SQL or similar tools
+- Monitor AI applications for errors, performance, and API costs
+- Troubleshoot and improve existing AI systems
+- Document projects so other team members can understand and maintain them
+- Assist with other development and automation projects as needed
+
+[desirable]
+The following experience is helpful, but not required:
+- OpenAI API, Anthropic API, or Google Gemini API
+- Zapier, Make, n8n, or similar automation platforms
+- WordPress and website integrations
+- Microsoft 365, Google Workspace, Slack, or Teams integrations
+- CRM, lead intake, or customer service automation
+- Railway, AWS, Azure, Heroku, or similar hosting platforms
+- Experience working with agencies or professional service companies
+Position Details
+- Remote position
+- Approximately 15 hours per week to start for part-time or 35 hours for full-time
+- Flexible schedule, with some overlap with U.S. Eastern Time
+- 1099 Contractor position
+- Potential to expand into a full-time role
+- Target compensation of approximately $25 to $35 USD per hour, depending on experience
+- Long-term opportunity for the right person
+
+[benefits]
+Please include:
+- A brief introduction
+- Your hourly rate and weekly availability
+- Your location and time zone
+- Examples of AI, API, automation, or business intelligence projects you have completed
+- A link to your GitHub, portfolio, or relevant work samples
+- A short explanation of an AI integration or automation you personally built
