@@ -20,11 +20,11 @@
 - [x] Tests: settings load from `.env.sample`; clock freeze
 
 ## 2.2 Database
-- [ ] SQLAlchemy 2 async models: `users`, `profiles`, `evidence`, `jobs`, `job_extractions`, `search_runs`, `run_jobs` (composite FK, index, statuses)
-- [ ] `db/session.py` (async engine, psycopg 3, `pool_pre_ping`); Alembic async setup; first migration
-- [ ] `db/startup.py`: migrations under a polled `pg_try_advisory_lock` (checkpointer `setup()` joins in phase 6)
-- [ ] `tests/conftest.py`: aborts unless the DB name ends in `_test`; transactional fixture (default) and committed + `TRUNCATE` fixture
-- [ ] Tests: migrations up/down/up; the composite FK rejects a mismatched `user_id`
+- [x] SQLAlchemy 2 async models: `users`, `profiles`, `evidence`, `jobs`, `job_extractions`, `search_runs`, `run_jobs` (composite FK, index, statuses)
+- [x] `db/session.py` (async engine, psycopg 3, `pool_pre_ping`); Alembic set up (synchronous engine, see `CLAUDE.md`); first migration
+- [x] `db/startup.py`: migrations under a polled `pg_try_advisory_lock` (checkpointer `setup()` joins in phase 6)
+- [x] `tests/conftest.py`: aborts unless the DB name ends in `_test`; transactional fixture (default) and committed + `TRUNCATE` fixture
+- [x] Tests: migrations up/down/up; the composite FK rejects a mismatched `user_id`
 
 ## 2.3 Seeded profile
 - [ ] `scripts/seed_profile.py` (`make seed`), idempotent. It creates the `local` user and a complete sample profile (AR citizen, AR work authorization, remote, frontend/full-stack roles), plus evidence from `data/samples/sample_evidence.json`. Sample data only.
@@ -117,4 +117,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.1 done (`make` is not installed in WSL yet: `sudo apt install make`). Next: 2.2 Database.
+Stopped at: 2.2 done (`make` is still not installed in WSL: `sudo apt install make`). Next: 2.3 Seeded profile.

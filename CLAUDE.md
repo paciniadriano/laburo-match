@@ -247,6 +247,7 @@ alembic/                 # migrations
 - Deterministic tables are Python modules (`config/data/`), not YAML → typed, testable, no loader.
 - One usage/cost module for per-user quotas, global ceiling, SerpApi monthly cap, eval budget and cost display → one mechanism, five uses.
 - Migrations, checkpointer setup and the GeoNames load run at container start under one advisory lock → works locally and with multiple replicas.
+- Alembic runs on a synchronous engine (same psycopg 3 driver) while the app is async → startup scripts and test fixtures call it where an event loop may already be running, and `asyncio.run` inside it would fail.
 
 ### MCP interface
 - 12 tools, 2 prompts, 4 resources (see `specs/system.md`).

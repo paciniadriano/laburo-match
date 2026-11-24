@@ -1,5 +1,5 @@
 # Daily commands. Targets are added as the pieces they run are built.
-.PHONY: setup db test test-fast lint format
+.PHONY: setup db migrate test test-fast lint format
 
 setup:  ## Install dependencies exactly as locked and enable the git hooks
 	uv sync --frozen
@@ -7,6 +7,9 @@ setup:  ## Install dependencies exactly as locked and enable the git hooks
 
 db:  ## Start only Postgres (databases `laburo` and `laburo_test`)
 	docker compose up -d --wait db
+
+migrate:  ## Apply migrations to the dev database (same routine as container start)
+	uv run python -m src.db.startup
 
 test:  ## All tests on the laburo_test database ($0, no keys)
 	uv run pytest
