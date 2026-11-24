@@ -1,0 +1,44 @@
+JOB 02 | raw_index=35
+title: Back-end Developer Java (Spring Boot / AWS)
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=es modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requerimientos del cargo
+
+[description]
+- Mínimo 4 años de experiencia profesional en desarrollo de software, utilizando las tecnologías requeridas.
+- Dominio avanzado de Java 8 o superior y Spring Boot.
+- Experiencia sólida en arquitectura y desarrollo de microservicios y APIs RESTful.
+- Experiencia avanzada con bases de datos SQL y NoSQL, especialmente PostgreSQL y MongoDB.
+- Conocimiento de arquitectura de software, código limpio y principios SOLID.
+- Experiencia práctica con Docker y Kubernetes.
+- Experiencia trabajando con AWS, especialmente API Gateway, Lambda, S3 y SQS.
+- Experiencia profesional en proyectos de Telco, Retail o Fintech.
+- Experiencia comprobable en entornos empresariales; no se consideran proyectos personales ni experiencia freelance para cumplir los años requeridos.
+- Habilidades de comunicación, resolución de problemas y trabajo colaborativo.
+- Residencia actual en Colombia o Venezuela.
+
+[projects]
+Angecom es una empresa que combina estrategia, diseño y tecnología para desarrollar soluciones digitales innovadoras que impulsan el crecimiento de sus clientes. Sus servicios incluyen desarrollo de aplicaciones web, automatización de campañas, marketing digital y soluciones tecnológicas para diferentes industrias.
+Buscamos un Backend Developer Java con experiencia en el desarrollo de aplicaciones robustas, escalables y de alto rendimiento, utilizando Java, Spring Boot, microservicios y tecnologías cloud.
+Formarás parte de un entorno colaborativo, trabajando con equipos multidisciplinarios en el diseño, desarrollo y optimización de servicios backend y APIs. Tendrás la oportunidad de participar en soluciones tecnológicas de alto impacto, aplicando buenas prácticas de arquitectura, calidad de código y mejora continua.
+
+[functions]
+- Diseñar, desarrollar y mantener aplicaciones y servicios backend utilizando Java 8 o superior y Spring Boot.
+- Desarrollar y optimizar microservicios y APIs RESTful, garantizando escalabilidad, rendimiento e integración entre sistemas.
+- Diseñar, implementar y optimizar bases de datos SQL y NoSQL, especialmente PostgreSQL y MongoDB.
+- Aplicar principios SOLID, arquitectura limpia y buenas prácticas de desarrollo para asegurar código mantenible y reutilizable.
+- Implementar y mantener aplicaciones contenerizadas utilizando Docker y Kubernetes.
+- Desplegar y administrar servicios backend en AWS, incluyendo API Gateway, Lambda, S3 y SQS.
+- Identificar y resolver problemas técnicos relacionados con rendimiento, disponibilidad e integración.
+- Colaborar con equipos multidisciplinarios para desarrollar soluciones confiables, escalables y alineadas con las necesidades del negocio.
+
+[benefits]
+- Remuneración mensual de USD 2.100 a USD 2.300.
+- Trabajo 100% remoto desde Colombia o Venezuela.
+- Contratación como prestador de servicios independientes (Contractor) a través de Interfell.
+- Contrato de duración indefinida.
+- 10 días de vacaciones remuneradas al año.
+- Medio día libre por cumpleaños.
+- Días festivos oficiales de Chile.
+- Compensación pagada en dólares estadounidenses.- Oportunidad de participar en proyectos de desarrollo backend utilizando Java, Spring Boot, microservicios y AWS.

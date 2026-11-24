@@ -1,0 +1,48 @@
+JOB 03 | raw_index=47
+title: Desarrollador Full-Stack Java
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=lang_not_specified modality={'data': {'id': 2, 'type': 'modality'}}
+
+[description_headline]
+## ¿Qué buscamos en ti?
+
+[description]
+Requisitos indispensables:
+- Profesional o tecnólogo en Ingeniería de Sistemas, Desarrollo de Software o áreas afines.
+- Mínimo 4 años de experiencia comprobable en desarrollo de aplicaciones.
+- Experiencia sólida con Java, Spring Boot y Angular.
+- Conocimientos en bases de datos SQL, consultas y optimización.
+- Experiencia administrando servidores VPS, preferiblemente Linux.
+- Conocimientos de APIs REST, integración de sistemas y control de versiones con Git.
+- Capacidad para diagnosticar problemas, trabajar de manera autónoma y proponer soluciones.
+- Inglés técnico suficiente para comprender documentación.
+- Equipo propio, conexión estable a internet y disponibilidad para trabajar remotamente desde Colombia.
+
+[projects]
+En **CI Canadá**, empresa con 30 años de trayectoria en servicios migratorios hacia Canadá, estamos buscando un(a) **Desarrollador(a) Full Stack** con experiencia en Java, Spring Boot y Angular, que disfrute resolver desafíos tecnológicos, optimizar plataformas y desarrollar soluciones que generen impacto real. Buscamos una persona autónoma, analítica y proactiva, capaz de combinar el desarrollo de software con la administración y el soporte de infraestructura tecnológica.
+
+[functions]
+¿Cuáles serán tus desafíos?
+- Desarrollo Full Stack: desarrollar, mantener y optimizar aplicaciones utilizando Java, Spring Boot y Angular.
+- Administración de infraestructura: apoyar la gestión de servidores VPS, entornos Linux, servicios web y bases de datos.
+- Integraciones y automatización: implementar APIs, conectar plataformas y automatizar procesos para mejorar la eficiencia operativa.
+- Soporte y optimización: diagnosticar y resolver incidencias técnicas en aplicaciones, SuiteCRM y otros sistemas empresariales.
+- Seguridad y estabilidad: supervisar el funcionamiento de las plataformas, identificar oportunidades de mejora y aplicar buenas prácticas de seguridad.
+- Documentación técnica: registrar desarrollos, configuraciones y soluciones para facilitar el mantenimiento y la continuidad de los proyectos.
+
+[desirable]
+- Experiencia con SuiteCRM u otras plataformas CRM.
+- Administración de hosting, cPanel, DNS, certificados SSL y correo corporativo.
+- Conocimientos de Docker, Nginx y despliegue de aplicaciones.
+- Experiencia con herramientas de automatización como n8n.
+- Conocimientos de seguridad informática y monitoreo de infraestructura.
+- Experiencia en integraciones con servicios de terceros y plataformas empresariales.
+*No necesitas dominar todas las tecnologías adicionales. Valoramos especialmente tu capacidad de aprendizaje, iniciativa y experiencia resolviendo problemas reales.*
+
+[benefits]
+- Trabajo 100 % remoto desde cualquier ciudad de Colombia.
+- Remuneración de $30.000 COP por hora.
+- Dedicación de medio tiempo, con horario flexible y coordinación de actividades.
+- Participación en proyectos de desarrollo, integraciones y transformación digital.
+- Oportunidades de aprendizaje en automatización e inteligencia artificial aplicada a procesos empresariales.
+- Ambiente colaborativo, con espacio para proponer mejoras y desarrollar soluciones.
+- Posibilidad de crecimiento profesional de acuerdo con el desempeño y la evolución de los proyectos.

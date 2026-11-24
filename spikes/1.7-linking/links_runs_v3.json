@@ -1,0 +1,2550 @@
+{
+ "model": "gpt-6-luna",
+ "chunk": 15,
+ "runs": [
+  {
+   "parts": {
+    "p01-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Minimum 4 years of proven experience as a software developer",
+       "links": [
+        [
+         "E1",
+         "related"
+        ],
+        [
+         "E2",
+         "related"
+        ],
+        [
+         "E3",
+         "related"
+        ],
+        [
+         "E4",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Node.js",
+       "links": [
+        [
+         "E9",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "JavaScript",
+       "links": [
+        [
+         "E17",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "relational databases",
+       "links": [
+        [
+         "E10",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "NoSQL databases",
+       "links": []
+      }
+     ]
+    },
+    "p01-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Use of data structures and algorithms to solve complex problems",
+       "links": []
+      }
+     ]
+    },
+    "p04-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "5+ years of professional software engineering experience",
+       "links": [
+        [
+         "E1",
+         "related"
+        ],
+        [
+         "E2",
+         "related"
+        ],
+        [
+         "E3",
+         "related"
+        ],
+        [
+         "E4",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "WebRTC",
+       "links": []
+      },
+      {
+       "text": "SIP",
+       "links": []
+      },
+      {
+       "text": "telecommunications",
+       "links": []
+      },
+      {
+       "text": "networking",
+       "links": []
+      },
+      {
+       "text": "AI systems",
+       "links": []
+      },
+      {
+       "text": "ISP software",
+       "links": []
+      }
+     ]
+    },
+    "p09-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Professional TypeScript experience",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React 18",
+       "links": [
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "App Router",
+       "links": []
+      },
+      {
+       "text": "API routes",
+       "links": []
+      },
+      {
+       "text": "server/client component boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p09-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Postgres",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      },
+      {
+       "text": "Supabase",
+       "links": []
+      },
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      },
+      {
+       "text": "migrations",
+       "links": []
+      },
+      {
+       "text": "Row-Level Security",
+       "links": []
+      },
+      {
+       "text": "Auth",
+       "links": []
+      },
+      {
+       "text": "Storage",
+       "links": []
+      }
+     ]
+    },
+    "p09-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "deploying applications on Vercel",
+       "links": []
+      },
+      {
+       "text": "debugging applications on Vercel",
+       "links": []
+      }
+     ]
+    },
+    "p09-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "unit tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "component tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "AI coding tools such as Claude Code or Cursor",
+       "links": []
+      }
+     ]
+    },
+    "p09-r08": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Playwright or similar end-to-end testing",
+       "links": [
+        [
+         "E12",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Contentful content modeling",
+       "links": []
+      },
+      {
+       "text": "space architecture",
+       "links": []
+      }
+     ]
+    },
+    "p11-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Content migration planning",
+       "links": []
+      },
+      {
+       "text": "Content migration execution",
+       "links": []
+      }
+     ]
+    },
+    "p11-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Leading technical decisions",
+       "links": [
+        [
+         "E19",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "working directly with clients",
+       "links": [
+        [
+         "E3",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "JavaScript or TypeScript for writing migration scripts",
+       "links": [
+        [
+         "E6",
+         "related"
+        ],
+        [
+         "E17",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Contentful GraphQL",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Content Delivery APIs",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "At least 7 years of software development experience",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "lead technology teams or complex projects",
+       "links": [
+        [
+         "E19",
+         "same"
+        ],
+        [
+         "E20",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "distributed architectures",
+       "links": []
+      }
+     ]
+    },
+    "p14-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "developing APIs",
+       "links": [
+        [
+         "E9",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "consuming APIs",
+       "links": [
+        [
+         "E13",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "working with microservices",
+       "links": []
+      },
+      {
+       "text": "event-driven patterns",
+       "links": []
+      }
+     ]
+    },
+    "p14-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "CI/CD",
+       "links": [
+        [
+         "E27",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "continuous delivery practices",
+       "links": [
+        [
+         "E27",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "designing scalable systems",
+       "links": [
+        [
+         "E19",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "designing secure systems",
+       "links": []
+      }
+     ]
+    }
+   },
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E9",
+      "same"
+     ],
+     [
+      "E17",
+      "same"
+     ],
+     [
+      "E5",
+      "same"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "same"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "equivalent"
+     ],
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p09-r04": [],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ],
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [],
+    "p11-r03": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E3",
+      "related"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E6",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ],
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E20",
+      "same"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E23",
+      "same"
+     ],
+     [
+      "E14",
+      "same"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E13",
+      "same"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "same"
+     ],
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "same"
+     ],
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p14-r07": [
+     [
+      "E19",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2511,
+    "output_tokens": 2593,
+    "cached_tokens": 0
+   },
+   "calls": 2
+  },
+  {
+   "parts": {
+    "p01-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Minimum 4 years of proven experience as a software developer",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Node.js",
+       "links": [
+        [
+         "E9",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "JavaScript",
+       "links": [
+        [
+         "E17",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "relational databases",
+       "links": [
+        [
+         "E10",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "NoSQL databases",
+       "links": []
+      }
+     ]
+    },
+    "p01-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Use of data structures and algorithms to solve complex problems",
+       "links": []
+      }
+     ]
+    },
+    "p04-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "5+ years of professional software engineering experience",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "WebRTC",
+       "links": []
+      },
+      {
+       "text": "SIP",
+       "links": []
+      },
+      {
+       "text": "telecommunications",
+       "links": []
+      },
+      {
+       "text": "networking",
+       "links": []
+      },
+      {
+       "text": "AI systems",
+       "links": []
+      },
+      {
+       "text": "ISP software",
+       "links": []
+      }
+     ]
+    },
+    "p09-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Professional TypeScript experience",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React 18",
+       "links": [
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "App Router",
+       "links": []
+      },
+      {
+       "text": "API routes",
+       "links": []
+      },
+      {
+       "text": "server/client component boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p09-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Postgres",
+       "links": [
+        [
+         "E10",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "Supabase",
+       "links": []
+      },
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      },
+      {
+       "text": "migrations",
+       "links": []
+      },
+      {
+       "text": "Row-Level Security",
+       "links": []
+      },
+      {
+       "text": "Auth",
+       "links": []
+      },
+      {
+       "text": "Storage",
+       "links": []
+      }
+     ]
+    },
+    "p09-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "deploying and debugging applications on Vercel",
+       "links": [
+        [
+         "E14",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "unit tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "component tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r06": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Claude Code",
+       "links": []
+      },
+      {
+       "text": "Cursor",
+       "links": []
+      }
+     ]
+    },
+    "p09-r08": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Playwright",
+       "links": [
+        [
+         "E12",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "similar end-to-end testing",
+       "links": [
+        [
+         "E12",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Contentful content modeling",
+       "links": []
+      },
+      {
+       "text": "space architecture",
+       "links": []
+      }
+     ]
+    },
+    "p11-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Content migration planning",
+       "links": [
+        [
+         "E7",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Content migration execution",
+       "links": [
+        [
+         "E7",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Leading technical decisions",
+       "links": [
+        [
+         "E19",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "working directly with clients",
+       "links": [
+        [
+         "E3",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "JavaScript or TypeScript for writing migration scripts",
+       "links": [
+        [
+         "E6",
+         "same"
+        ],
+        [
+         "E17",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Contentful GraphQL",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Content Delivery APIs",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "At least 7 years of software development experience",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "lead technology teams",
+       "links": [
+        [
+         "E20",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "lead complex projects",
+       "links": [
+        [
+         "E19",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "same"
+        ],
+        [
+         "E26",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "distributed architectures",
+       "links": []
+      }
+     ]
+    },
+    "p14-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "developing APIs",
+       "links": [
+        [
+         "E9",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "consuming APIs",
+       "links": [
+        [
+         "E13",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "working with microservices",
+       "links": [
+        [
+         "E9",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "event-driven patterns",
+       "links": []
+      }
+     ]
+    },
+    "p14-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "CI/CD",
+       "links": [
+        [
+         "E27",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "continuous delivery practices",
+       "links": [
+        [
+         "E27",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "designing scalable systems",
+       "links": []
+      },
+      {
+       "text": "designing secure systems",
+       "links": []
+      }
+     ]
+    }
+   },
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E9",
+      "same"
+     ],
+     [
+      "E17",
+      "same"
+     ],
+     [
+      "E5",
+      "same"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "same"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "same"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "same"
+     ],
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p09-r04": [
+     [
+      "E14",
+      "related"
+     ]
+    ],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ],
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ],
+     [
+      "E12",
+      "same"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [
+     [
+      "E7",
+      "related"
+     ],
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p11-r03": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E3",
+      "related"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E6",
+      "same"
+     ],
+     [
+      "E17",
+      "same"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ],
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E20",
+      "related"
+     ],
+     [
+      "E19",
+      "same"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E23",
+      "same"
+     ],
+     [
+      "E14",
+      "same"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "same"
+     ],
+     [
+      "E13",
+      "same"
+     ],
+     [
+      "E9",
+      "related"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "related"
+     ],
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "same"
+     ],
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p14-r07": []
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2511,
+    "output_tokens": 2866,
+    "cached_tokens": 2505
+   },
+   "calls": 2
+  },
+  {
+   "parts": {
+    "p01-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "4 years of proven experience as a software developer",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Node.js",
+       "links": [
+        [
+         "E9",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "JavaScript",
+       "links": [
+        [
+         "E17",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p01-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "relational databases",
+       "links": [
+        [
+         "E10",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "NoSQL databases",
+       "links": []
+      }
+     ]
+    },
+    "p01-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "data structures",
+       "links": []
+      },
+      {
+       "text": "algorithms",
+       "links": []
+      },
+      {
+       "text": "solve complex problems",
+       "links": []
+      }
+     ]
+    },
+    "p04-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "5 years of professional software engineering experience",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p04-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "WebRTC",
+       "links": []
+      },
+      {
+       "text": "SIP",
+       "links": []
+      },
+      {
+       "text": "telecommunications",
+       "links": []
+      },
+      {
+       "text": "networking",
+       "links": []
+      },
+      {
+       "text": "AI systems",
+       "links": []
+      },
+      {
+       "text": "ISP software",
+       "links": []
+      }
+     ]
+    },
+    "p09-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Professional TypeScript experience",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React 18",
+       "links": [
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "App Router",
+       "links": []
+      },
+      {
+       "text": "API routes",
+       "links": []
+      },
+      {
+       "text": "server/client component boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p09-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Postgres",
+       "links": [
+        [
+         "E10",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "Supabase",
+       "links": []
+      },
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "equivalent"
+        ]
+       ]
+      },
+      {
+       "text": "migrations",
+       "links": []
+      },
+      {
+       "text": "Row-Level Security",
+       "links": []
+      },
+      {
+       "text": "Auth",
+       "links": []
+      },
+      {
+       "text": "Storage",
+       "links": []
+      }
+     ]
+    },
+    "p09-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "deploying applications on Vercel",
+       "links": [
+        [
+         "E14",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "debugging applications on Vercel",
+       "links": []
+      }
+     ]
+    },
+    "p09-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "unit tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "component tests",
+       "links": [
+        [
+         "E11",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p09-r06": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Claude Code",
+       "links": []
+      },
+      {
+       "text": "Cursor",
+       "links": []
+      }
+     ]
+    },
+    "p09-r08": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Playwright",
+       "links": [
+        [
+         "E12",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "similar end-to-end testing",
+       "links": [
+        [
+         "E11",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Content modeling",
+       "links": []
+      },
+      {
+       "text": "space architecture",
+       "links": []
+      }
+     ]
+    },
+    "p11-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Content migration planning",
+       "links": []
+      },
+      {
+       "text": "Content migration execution",
+       "links": [
+        [
+         "E7",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Leading technical decisions",
+       "links": [
+        [
+         "E19",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "working directly with clients",
+       "links": []
+      }
+     ]
+    },
+    "p11-r05": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "JavaScript for writing migration scripts",
+       "links": [
+        [
+         "E17",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "TypeScript for writing migration scripts",
+       "links": [
+        [
+         "E6",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p11-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Contentful GraphQL",
+       "links": [
+        [
+         "E13",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Content Delivery APIs",
+       "links": []
+      }
+     ]
+    },
+    "p14-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "At least 7 years of software development experience",
+       "links": [
+        [
+         "E1",
+         "same"
+        ],
+        [
+         "E2",
+         "same"
+        ],
+        [
+         "E3",
+         "same"
+        ],
+        [
+         "E4",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "lead technology teams",
+       "links": [
+        [
+         "E20",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "lead complex projects",
+       "links": [
+        [
+         "E19",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "same"
+        ],
+        [
+         "E26",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "distributed architectures",
+       "links": [
+        [
+         "E9",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "developing APIs",
+       "links": [
+        [
+         "E9",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "consuming APIs",
+       "links": [
+        [
+         "E13",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "microservices",
+       "links": [
+        [
+         "E9",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "event-driven patterns",
+       "links": []
+      }
+     ]
+    },
+    "p14-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "CI/CD",
+       "links": [
+        [
+         "E27",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "continuous delivery practices",
+       "links": [
+        [
+         "E27",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "same"
+        ]
+       ]
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "same"
+        ]
+       ]
+      }
+     ]
+    },
+    "p14-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "designing scalable systems",
+       "links": [
+        [
+         "E19",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "designing secure systems",
+       "links": []
+      }
+     ]
+    }
+   },
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E9",
+      "same"
+     ],
+     [
+      "E17",
+      "same"
+     ],
+     [
+      "E5",
+      "same"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "same"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "same"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "same"
+     ],
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p09-r04": [
+     [
+      "E14",
+      "related"
+     ]
+    ],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ],
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ],
+     [
+      "E11",
+      "related"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p11-r03": [
+     [
+      "E19",
+      "same"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E17",
+      "related"
+     ],
+     [
+      "E6",
+      "related"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E20",
+      "related"
+     ],
+     [
+      "E19",
+      "same"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E23",
+      "same"
+     ],
+     [
+      "E14",
+      "same"
+     ],
+     [
+      "E26",
+      "related"
+     ],
+     [
+      "E9",
+      "related"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E13",
+      "same"
+     ],
+     [
+      "E9",
+      "related"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "same"
+     ],
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "same"
+     ],
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p14-r07": [
+     [
+      "E19",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2511,
+    "output_tokens": 3158,
+    "cached_tokens": 2505
+   },
+   "calls": 2
+  }
+ ]
+}

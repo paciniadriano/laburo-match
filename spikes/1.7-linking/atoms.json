@@ -1,0 +1,201 @@
+{
+ "p01-r03": {
+  "combinator": "all",
+  "atoms": [
+   "software development"
+  ]
+ },
+ "p01-r04": {
+  "combinator": "all",
+  "atoms": [
+   "Node.js",
+   "JavaScript",
+   "React"
+  ]
+ },
+ "p01-r05": {
+  "combinator": "all",
+  "atoms": [
+   "relational databases",
+   "NoSQL databases"
+  ]
+ },
+ "p01-r06": {
+  "combinator": "all",
+  "atoms": [
+   "data structures",
+   "algorithms"
+  ]
+ },
+ "p04-r01": {
+  "combinator": "all",
+  "atoms": [
+   "software engineering"
+  ]
+ },
+ "p04-r02": {
+  "combinator": "all",
+  "atoms": [
+   "SQL"
+  ]
+ },
+ "p04-r03": {
+  "combinator": "all",
+  "atoms": [
+   "third-party API integrations"
+  ]
+ },
+ "p04-r05": {
+  "combinator": "any",
+  "atoms": [
+   "WebRTC",
+   "SIP",
+   "telecommunications",
+   "networking",
+   "AI systems",
+   "ISP software"
+  ]
+ },
+ "p09-r01": {
+  "combinator": "all",
+  "atoms": [
+   "TypeScript"
+  ]
+ },
+ "p09-r02": {
+  "combinator": "all",
+  "atoms": [
+   "React 18",
+   "Next.js",
+   "App Router",
+   "API routes",
+   "server/client component boundaries"
+  ]
+ },
+ "p09-r03": {
+  "combinator": "all",
+  "atoms": [
+   "Postgres",
+   "Supabase",
+   "SQL",
+   "migrations",
+   "Row-Level Security",
+   "Auth",
+   "Storage"
+  ]
+ },
+ "p09-r04": {
+  "combinator": "all",
+  "atoms": [
+   "Vercel deployment",
+   "Vercel debugging"
+  ]
+ },
+ "p09-r05": {
+  "combinator": "all",
+  "atoms": [
+   "unit testing",
+   "component testing"
+  ]
+ },
+ "p09-r06": {
+  "combinator": "any",
+  "atoms": [
+   "Claude Code",
+   "Cursor"
+  ]
+ },
+ "p09-r08": {
+  "combinator": "any",
+  "atoms": [
+   "Playwright",
+   "end-to-end testing"
+  ]
+ },
+ "p11-r01": {
+  "combinator": "all",
+  "atoms": [
+   "Contentful content modeling",
+   "Contentful space architecture"
+  ]
+ },
+ "p11-r02": {
+  "combinator": "all",
+  "atoms": [
+   "content migration planning",
+   "content migration execution"
+  ]
+ },
+ "p11-r03": {
+  "combinator": "all",
+  "atoms": [
+   "technical decision-making",
+   "client collaboration"
+  ]
+ },
+ "p11-r05": {
+  "combinator": "any",
+  "atoms": [
+   "JavaScript",
+   "TypeScript"
+  ]
+ },
+ "p11-r06": {
+  "combinator": "all",
+  "atoms": [
+   "Contentful GraphQL API",
+   "Contentful Content Delivery API"
+  ]
+ },
+ "p14-r01": {
+  "combinator": "all",
+  "atoms": [
+   "software development"
+  ]
+ },
+ "p14-r02": {
+  "combinator": "any",
+  "atoms": [
+   "technology team leadership",
+   "complex project leadership"
+  ]
+ },
+ "p14-r03": {
+  "combinator": "all",
+  "atoms": [
+   "Python",
+   "AWS",
+   "distributed architectures"
+  ]
+ },
+ "p14-r04": {
+  "combinator": "all",
+  "atoms": [
+   "API development",
+   "API consumption",
+   "microservices",
+   "event-driven patterns"
+  ]
+ },
+ "p14-r05": {
+  "combinator": "all",
+  "atoms": [
+   "CI/CD",
+   "continuous delivery"
+  ]
+ },
+ "p14-r06": {
+  "combinator": "all",
+  "atoms": [
+   "React",
+   "TypeScript"
+  ]
+ },
+ "p14-r07": {
+  "combinator": "all",
+  "atoms": [
+   "scalable system design",
+   "secure system design"
+  ]
+ }
+}

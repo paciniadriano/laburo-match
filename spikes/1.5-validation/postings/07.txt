@@ -1,0 +1,44 @@
+JOB 07 | raw_index=140
+title: Senior Forward Deployed Engineer
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requerimientos del cargo
+
+[description]
+- 5+ years of software engineering or integration engineering experience.
+- C1 English level or higher.
+- Demonstrated experience building or deploying agentic AI systems that select tools, plan and execute multi-step tasks.
+- Working knowledge of Model Context Protocol (MCP) or equivalent production tool-orchestration frameworks.
+- Solid experience with enterprise integration patterns: APIs, ETL/ELT, data pipelines, middleware and event-driven architectures.
+- Proven experience navigating enterprise infosec reviews and data governance requirements.
+- Strong customer-facing communication; able to explain technical concepts to non-technical operators.
+- Comfortable working autonomously with minimal supervision inside a customer's environment.
+- Experience with AI-first development practices (AI-assisted development, AI-generated testing, agent-based workflows).
+- Able to travel to the U.S. on short notice for up to two weeks, with a valid B1/B2 visa or ESTA eligibility already in place.
+
+[projects]
+Niuro connects elite LATAM engineers with top-tier U.S. companies, handling all administrative tasks so engineers can focus on high-impact work. For this role, you'll join a fast-growing U.S. startup that builds an operating platform for self-storage operators. As it lands larger enterprise accounts, it needs its first Forward Deployed Engineer: the technical bridge between the platform and each customer's operation.Y ou'll work directly with the two founders and with customer leadership teams, both remotely and during scheduled customer-site visits in the U.S.
+
+[functions]
+As a Senior Forward Deployed Engineer, you will lead the technical integration of the platform directly into customer environments. You will:
+- Lead integration projects inside customer environments, connecting the platform to the systems the operator already runs.
+- Map customer operational workflows and translate them into platform configurations, data models and automated integrations.
+- Build and maintain production agentic AI systems using Model Context Protocol (MCP) to manage tools, context and memory.
+- Own onboarding acceleration: configuration, data migration and ingestion pipelines.
+- Guide deployments through customer IT and cybersecurity reviews.
+- Serve as the named technical contact for assigned accounts.
+- Identify repeatable integration patterns and turn them into productization candidates for the core engineering team.
+This is a remote role based in LATAM with required travel: expect periodic trips to customer sites in the U.S. of up to two weeks at a time, sometimes as the sole company representative on site.
+
+[desirable]
+- Enterprise ERP or property management system (PMS) integration experience.
+- Prior customer-facing engineering role (Solutions Architect, Implementation Engineer, Technical Account Manager).
+- Background in real estate operations, self-storage or PropTech.
+- Experience in small, empowered teams (1–4 people) owning the full development lifecycle with AI agents.
+
+[benefits]
+Remote from LATAM (full-time contracting), with required periodic travel to customer sites in the U.S. (up to 2 weeks per trip).
+Niuro supports a 100% remote work model, allowing flexibility in work location globally. We invest in career development through ongoing training programs and leadership opportunities, ensuring continuous growth and success.
+Upon successful completion of the initial contract, there is potential for long-term collaboration and stable, full-time employment, reflecting our long-term commitment to our team members.
+Joining Niuro means becoming part of a global community dedicated to technological excellence and benefiting from a strong administrative support infrastructure that enables you to focus on impactful work without distraction.

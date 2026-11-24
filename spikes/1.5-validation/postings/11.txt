@@ -1,0 +1,42 @@
+JOB 11 | raw_index=158
+title: Front-end Software Engineer
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Required skills and tech stack
+
+[description]
+We are looking for a Lead Software Engineer with proven experience in Contentful and client-facing technical leadership.
+- Strong expertise in Contentful content modeling and space architecture, built according to best practices.
+- Experience with multi-space consolidation.
+- Hands-on work with content migration planning and execution.
+- Ability to design authoring templates that enable self-service for non-engineers (marketers).
+- Experience leading technical decisions and working directly with clients.
+- Advanced English (written and spoken) for daily communication with US-based clients.
+We value clear communication, ownership, and the ability to coordinate across engineering, marketing, and product stakeholders. You should be comfortable taking lead on technical strategy, translating it into practical implementation steps, and helping the team follow consistent standards.
+
+[projects]
+At Zaelot, we build scalable, enterprise-grade solutions with a collaborative team across 9 countries. In this project, we support a client’s content platform by owning the Contentful content model and space architecture. You will lead multi-space consolidation efforts, define best practices the team follows, and ensure content migrations are planned, executed safely, and remain repeatable. The work includes enabling self-service content creation through authoring templates, while collaborating closely with the client’s engineering, marketing, and product teams to deliver a clean, maintainable structure without disrupting live sites.
+
+[functions]
+You will lead the ownership of the Contentful content model and space architecture, establishing the best practices our team follows.
+- Lead multi-space consolidation: merge separate Contentful spaces into a clean, maintainable structure without disrupting live sites.
+- Plan, oversee, and support content migrations that run safely and are repeatable.
+- Design authoring templates so marketers can create and publish content independently, without engineering help.
+- Act as the main technical contact with the client’s engineering, marketing, and product teams.
+- Guide and support other engineers on the project through technical decisions and day-to-day collaboration.
+
+[desirable]
+- JavaScript/TypeScript experience for writing migration scripts and working with Contentful tooling.
+- Experience with Contentful Migration CLI, Contentful Management API, and App Framework.
+- Familiarity with Contentful GraphQL and Content Delivery APIs.
+
+[benefits]
+- 20 days of paid vacation after completing one year.
+- Referral program for successful candidate recommendations.
+- Finder's fee.
+- Comprehensive training and certification programs for continuous professional development.
+- Work-from-home aid to create a comfortable remote setup.
+- English classes to support communication and career growth.
+- Fitness program and coaching sessions to support personal and professional development.
+- Profit sharing reflecting our commitment to collective success.

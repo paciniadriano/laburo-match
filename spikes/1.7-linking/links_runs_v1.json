@@ -1,0 +1,682 @@
+{
+ "model": "gpt-6-luna",
+ "chunk": 15,
+ "runs": [
+  {
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p09-r04": [],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p11-r03": [
+     [
+      "E19",
+      "related"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E6",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E20",
+      "same"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E14",
+      "related"
+     ],
+     [
+      "E23",
+      "related"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E6",
+      "related"
+     ]
+    ],
+    "p14-r07": []
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2231,
+    "output_tokens": 1599,
+    "cached_tokens": 0
+   },
+   "calls": 2
+  },
+  {
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ],
+     [
+      "E5",
+      "related"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p09-r04": [
+     [
+      "E14",
+      "related"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p11-r03": [
+     [
+      "E19",
+      "related"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E17",
+      "related"
+     ],
+     [
+      "E6",
+      "related"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E20",
+      "related"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E23",
+      "related"
+     ],
+     [
+      "E14",
+      "related"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E6",
+      "related"
+     ]
+    ],
+    "p14-r07": [
+     [
+      "E19",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2231,
+    "output_tokens": 1639,
+    "cached_tokens": 2225
+   },
+   "calls": 2
+  },
+  {
+   "links": {
+    "p01-r03": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p01-r04": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ]
+    ],
+    "p01-r05": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p01-r06": [],
+    "p04-r01": [
+     [
+      "E1",
+      "same"
+     ],
+     [
+      "E2",
+      "same"
+     ],
+     [
+      "E3",
+      "same"
+     ],
+     [
+      "E4",
+      "same"
+     ]
+    ],
+    "p04-r02": [
+     [
+      "E10",
+      "equivalent"
+     ]
+    ],
+    "p04-r03": [
+     [
+      "E13",
+      "same"
+     ]
+    ],
+    "p04-r05": [],
+    "p09-r01": [
+     [
+      "E6",
+      "same"
+     ]
+    ],
+    "p09-r02": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p09-r03": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p09-r04": [
+     [
+      "E14",
+      "related"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ],
+    "p09-r05": [
+     [
+      "E11",
+      "same"
+     ]
+    ],
+    "p09-r06": [],
+    "p09-r08": [
+     [
+      "E12",
+      "same"
+     ]
+    ],
+    "p11-r01": [],
+    "p11-r02": [
+     [
+      "E7",
+      "related"
+     ]
+    ],
+    "p11-r03": [
+     [
+      "E19",
+      "related"
+     ]
+    ],
+    "p11-r05": [
+     [
+      "E6",
+      "related"
+     ],
+     [
+      "E17",
+      "related"
+     ]
+    ],
+    "p11-r06": [
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r01": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E3",
+      "related"
+     ],
+     [
+      "E4",
+      "related"
+     ]
+    ],
+    "p14-r02": [
+     [
+      "E19",
+      "same"
+     ],
+     [
+      "E20",
+      "same"
+     ]
+    ],
+    "p14-r03": [
+     [
+      "E23",
+      "related"
+     ],
+     [
+      "E14",
+      "related"
+     ]
+    ],
+    "p14-r04": [
+     [
+      "E9",
+      "related"
+     ],
+     [
+      "E13",
+      "related"
+     ]
+    ],
+    "p14-r05": [
+     [
+      "E27",
+      "related"
+     ]
+    ],
+    "p14-r06": [
+     [
+      "E5",
+      "related"
+     ],
+     [
+      "E6",
+      "related"
+     ]
+    ],
+    "p14-r07": [
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E7",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 2231,
+    "output_tokens": 1759,
+    "cached_tokens": 2225
+   },
+   "calls": 2
+  }
+ ]
+}

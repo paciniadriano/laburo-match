@@ -1,0 +1,696 @@
+{
+ "01": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Debes vivir en cualquier estado de USA (excluyente)"
+     ],
+     "places": [
+      "USA"
+     ],
+     "place_scope": "countries"
+    }
+   ],
+   "work_modality": "unknown",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1554,
+   "output_tokens": 241,
+   "total_tokens": 1795,
+   "input_token_details": {
+    "cache_creation": 1551,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 179
+   }
+  }
+ },
+ "02": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Residencia actual en Colombia o Venezuela.",
+      "Trabajo 100% remoto desde Colombia o Venezuela."
+     ],
+     "places": [
+      "Colombia",
+      "Venezuela"
+     ],
+     "place_scope": "countries"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Contratación como prestador de servicios independientes (Contractor) a través de Interfell."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Trabajo 100% remoto desde Colombia o Venezuela."
+     ],
+     "places": [
+      "Colombia",
+      "Venezuela"
+     ],
+     "place_scope": "countries"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1195,
+   "output_tokens": 238,
+   "total_tokens": 1433,
+   "input_token_details": {
+    "cache_creation": 1192,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 85
+   }
+  }
+ },
+ "03": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "disponibilidad para trabajar remotamente desde Colombia.",
+      "Trabajo 100 % remoto desde cualquier ciudad de Colombia."
+     ],
+     "places": [
+      "Colombia"
+     ],
+     "place_scope": "countries"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "disponibilidad para trabajar remotamente desde Colombia.",
+      "Trabajo 100 % remoto desde cualquier ciudad de Colombia."
+     ],
+     "places": [
+      "Colombia"
+     ],
+     "place_scope": "countries"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1180,
+   "output_tokens": 215,
+   "total_tokens": 1395,
+   "input_token_details": {
+    "cache_creation": 1177,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 99
+   }
+  }
+ },
+ "04": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Remote within Latin America"
+     ],
+     "places": [
+      "Latin America"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "At least five working hours of overlap with Pacific Time"
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Remote within Latin America"
+     ],
+     "places": [
+      "Latin America"
+     ],
+     "place_scope": "region"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 910,
+   "output_tokens": 195,
+   "total_tokens": 1105,
+   "input_token_details": {
+    "cache_creation": 0,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 77
+   }
+  }
+ },
+ "05": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Based in Latin America with at least 6 hours of overlap with US Pacific time."
+     ],
+     "places": [
+      "Latin America"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Based in Latin America with at least 6 hours of overlap with US Pacific time."
+     ],
+     "places": [
+      "US Pacific time"
+     ],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "USD $3,500–$5,500/month depending on experience (full-time contractor)."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Fully remote, long-term position; direct hire with no agency in the middle."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1128,
+   "output_tokens": 316,
+   "total_tokens": 1444,
+   "input_token_details": {
+    "cache_creation": 1125,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 122
+   }
+  }
+ },
+ "06": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "modality",
+     "evidence_kind": "contradictory",
+     "quotes": [
+      "Este rol es 100% remoto, con posibilidad de colaboración con equipos en distintos países de LATAM.",
+      "La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral."
+     ],
+     "places": [
+      "Las Condes"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral."
+     ],
+     "places": [
+      "Las Condes"
+     ],
+     "place_scope": "region"
+    }
+   ],
+   "work_modality": "unknown",
+   "office_locations": [
+    "Las Condes, Chile"
+   ]
+  },
+  "usage": {
+   "input_tokens": 1249,
+   "output_tokens": 357,
+   "total_tokens": 1606,
+   "input_token_details": {
+    "cache_creation": 1246,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 179
+   }
+  }
+ },
+ "07": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "contradictory",
+     "quotes": [
+      "This is a remote role based in LATAM with required travel: expect periodic trips to customer sites in the U.S. of up to two weeks at a time, sometimes as the sole company representative on site.",
+      "Remote from LATAM (full-time contracting), with required periodic travel to customer sites in the U.S. (up to 2 weeks per trip).",
+      "Niuro supports a 100% remote work model, allowing flexibility in work location globally."
+     ],
+     "places": [
+      "LATAM",
+      "U.S.",
+      "globally"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "visa",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Able to travel to the U.S. on short notice for up to two weeks, with a valid B1/B2 visa or ESTA eligibility already in place."
+     ],
+     "places": [
+      "U.S."
+     ],
+     "place_scope": "countries"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Remote from LATAM (full-time contracting), with required periodic travel to customer sites in the U.S. (up to 2 weeks per trip)."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "This is a remote role based in LATAM with required travel: expect periodic trips to customer sites in the U.S. of up to two weeks at a time, sometimes as the sole company representative on site.",
+      "Remote from LATAM (full-time contracting), with required periodic travel to customer sites in the U.S. (up to 2 weeks per trip)."
+     ],
+     "places": [
+      "LATAM",
+      "U.S."
+     ],
+     "place_scope": "region"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1253,
+   "output_tokens": 674,
+   "total_tokens": 1927,
+   "input_token_details": {
+    "cache_creation": 1250,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 313
+   }
+  }
+ },
+ "08": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Remote position"
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Flexible schedule, with some overlap with U.S. Eastern Time"
+     ],
+     "places": [
+      "U.S. Eastern Time"
+     ],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "1099 Contractor position"
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1184,
+   "output_tokens": 210,
+   "total_tokens": 1394,
+   "input_token_details": {
+    "cache_creation": 1181,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 87
+   }
+  }
+ },
+ "09": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Location: Remote — Latin America"
+     ],
+     "places": [
+      "Latin America"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "This is a long-term independent contractor engagement, not an employee position.",
+      "Please apply as an individual contractor, not through an agency."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Working style: Mostly asynchronous, with some overlap with US Pacific Time"
+     ],
+     "places": [
+      "US Pacific Time"
+     ],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Location: Remote — Latin America"
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1180,
+   "output_tokens": 301,
+   "total_tokens": 1481,
+   "input_token_details": {
+    "cache_creation": 1177,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 123
+   }
+  }
+ },
+ "10": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Work from anywhere, with a team spread across several countries."
+     ],
+     "places": [
+      "anywhere"
+     ],
+     "place_scope": "worldwide"
+    },
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Daily overlap with US Eastern business hours."
+     ],
+     "places": [
+      "US Eastern"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Fully remote."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1248,
+   "output_tokens": 200,
+   "total_tokens": 1448,
+   "input_token_details": {
+    "cache_creation": 1245,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 79
+   }
+  }
+ },
+ "11": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Work-from-home aid to create a comfortable remote setup."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1090,
+   "output_tokens": 237,
+   "total_tokens": 1327,
+   "input_token_details": {
+    "cache_creation": 1087,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 177
+   }
+  }
+ },
+ "12": {
+  "extraction": {
+   "restrictions": [],
+   "work_modality": "unknown",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1322,
+   "output_tokens": 61,
+   "total_tokens": 1383,
+   "input_token_details": {
+    "cache_creation": 1319,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 37
+   }
+  }
+ },
+ "13": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "timezone",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Disponibilidad completa en horario de Ciudad de México, de 9:00 a 18:00.",
+      "Tiempo completo, en horario de Ciudad de México (9:00 a 18:00)."
+     ],
+     "places": [
+      "Ciudad de México"
+     ],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "payroll",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "700 USD al mes, por prestación de servicios."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    },
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "100% remoto, desde cualquier país de Latinoamérica."
+     ],
+     "places": [
+      "Latinoamérica"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "100% remoto, desde cualquier país de Latinoamérica."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "remote",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1432,
+   "output_tokens": 196,
+   "total_tokens": 1628,
+   "input_token_details": {
+    "cache_creation": 1429,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 0
+   }
+  }
+ },
+ "14": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Trabajamos en un entorno híbrido que confía en tu autonomía."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "hybrid",
+   "office_locations": []
+  },
+  "usage": {
+   "input_tokens": 1310,
+   "output_tokens": 124,
+   "total_tokens": 1434,
+   "input_token_details": {
+    "cache_creation": 1307,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 59
+   }
+  }
+ },
+ "15": {
+  "extraction": {
+   "restrictions": [
+    {
+     "kind": "location",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Disponibilidad para trabajar en modalidad híbrida en nuestra oficina en Santiago. 3 días en oficina y 2 días trabajamos desde casa."
+     ],
+     "places": [
+      "Santiago"
+     ],
+     "place_scope": "region"
+    },
+    {
+     "kind": "modality",
+     "evidence_kind": "explicit",
+     "quotes": [
+      "Disponibilidad para trabajar en modalidad híbrida en nuestra oficina en Santiago. 3 días en oficina y 2 días trabajamos desde casa."
+     ],
+     "places": [],
+     "place_scope": "not_applicable"
+    }
+   ],
+   "work_modality": "hybrid",
+   "office_locations": [
+    "Santiago, Chile"
+   ]
+  },
+  "usage": {
+   "input_tokens": 1480,
+   "output_tokens": 293,
+   "total_tokens": 1773,
+   "input_token_details": {
+    "cache_creation": 1477,
+    "cache_read": 0
+   },
+   "output_token_details": {
+    "reasoning": 158
+   }
+  }
+ }
+}

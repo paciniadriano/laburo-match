@@ -1,0 +1,140 @@
+{
+ "p05-r01": {
+  "combinator": "all",
+  "atoms": [
+   "full-stack development"
+  ]
+ },
+ "p05-r02": {
+  "combinator": "any",
+  "atoms": [
+   "Go",
+   "TypeScript"
+  ]
+ },
+ "p05-r03": {
+  "combinator": "all",
+  "atoms": [
+   "React",
+   "Next.js"
+  ]
+ },
+ "p05-r04": {
+  "combinator": "all",
+  "atoms": [
+   "React Native"
+  ]
+ },
+ "p05-r05": {
+  "combinator": "all",
+  "atoms": [
+   "webhook-driven systems",
+   "telephony systems",
+   "event-based systems",
+   "debugging asynchronous flows across service boundaries"
+  ]
+ },
+ "p05-r07": {
+  "combinator": "all",
+  "atoms": [
+   "SQL",
+   "PostgreSQL production operations"
+  ]
+ },
+ "p05-r10": {
+  "combinator": "any",
+  "atoms": [
+   "Telnyx programmable voice",
+   "Telnyx programmable messaging",
+   "Twilio programmable voice",
+   "Twilio programmable messaging"
+  ]
+ },
+ "p05-r11": {
+  "combinator": "all",
+  "atoms": [
+   "LLM-powered feature development"
+  ]
+ },
+ "p12-r01": {
+  "combinator": "all",
+  "atoms": [
+   "backend development",
+   "Python",
+   "Django"
+  ]
+ },
+ "p12-r02": {
+  "combinator": "all",
+  "atoms": [
+   "PostgreSQL production experience",
+   "schema changes on live systems"
+  ]
+ },
+ "p12-r03": {
+  "combinator": "any",
+  "atoms": [
+   "Celery",
+   "RabbitMQ",
+   "Redis",
+   "similar background-processing technology"
+  ]
+ },
+ "p12-r04": {
+  "combinator": "all",
+  "atoms": [
+   "third-party API integrations",
+   "handling third-party API failures"
+  ]
+ },
+ "p12-r05": {
+  "combinator": "all",
+  "atoms": [
+   "testing",
+   "code quality",
+   "constructive code reviews"
+  ]
+ },
+ "p12-r06": {
+  "combinator": "all",
+  "atoms": [
+   "production monitoring",
+   "production debugging",
+   "incident support"
+  ]
+ },
+ "p12-r09": {
+  "combinator": "all",
+  "atoms": [
+   "travel industry experience",
+   "hotel industry experience",
+   "airline industry experience",
+   "cruise industry experience",
+   "booking systems"
+  ]
+ },
+ "p12-r10": {
+  "combinator": "any",
+  "atoms": [
+   "payments",
+   "financial flows",
+   "Stripe",
+   "invoicing",
+   "payouts"
+  ]
+ },
+ "p12-r11": {
+  "combinator": "all",
+  "atoms": [
+   "AI-powered feature development"
+  ]
+ },
+ "p12-r12": {
+  "combinator": "any",
+  "atoms": [
+   "Docker",
+   "Kubernetes",
+   "AWS"
+  ]
+ }
+}

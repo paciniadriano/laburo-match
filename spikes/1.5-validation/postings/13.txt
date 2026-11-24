@@ -1,0 +1,41 @@
+JOB 13 | raw_index=75
+title: Desarrollador Semi Senior · Automatizaciones e Integraciones
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=es modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requerimientos del cargo
+
+[description]
+LO QUE NECESITAS SÍ O SÍ
+· Flujos que hayas construido y dejado funcionando en n8n, Make o Zapier, conectando dos o más plataformas por API. No tutoriales: cosas que quedaron corriendo para alguien.
+· Capacidad para leer, modificar y depurar código, incluido el que genera la inteligencia artificial. Vas a trabajar con autonomía técnica, así que tienes que saber auditar lo que entregas.
+· Disponibilidad completa en horario de Ciudad de México, de 9:00 a 18:00.
+
+[projects]
+Somos una academia de e-commerce con alumnos en toda Latinoamérica y España. Les enseñamos a montar y escalar tiendas en línea, y acompañamos ese proceso con un equipo de coaches, mentores y asesores. Detrás de eso hay un ecosistema digital grande: un CRM, formularios, pasarelas de pago, plataformas de contenido, herramientas de marketing y varios tableros de indicadores. Alguien tiene que hacer que todo eso converse entre sí. Esa persona eres tú.
+
+[functions]
+· Construir y mantener automatizaciones en n8n, Make o Zapier que conecten el CRM, los formularios, las plataformas de pago y las herramientas de marketing.
+· Integrar plataformas por API y webhooks, y dejar los flujos con manejo de errores, reintentos y alertas. No basta con que funcionen el día que se publican.
+· Montar y corregir el tracking completo: UTMs, eventos, conversiones, Google Tag Manager y los paneles de analítica.
+· Automatizar la fuente de los indicadores de la empresa, para que los tableros se alimenten solos y nadie tenga que copiar datos a mano.
+· Crear y optimizar landing pages y funnels, y apoyar el desarrollo de la plataforma interna.
+· Diagnosticar cuando algo se rompe. Te va a llegar «esta campaña genera leads pero las conversiones no se ven» y vas a tener que encontrar dónde está el problema: tracking, UTM, API, formulario, CRM, automatización o base de datos.
+· Documentar lo que construyes, para que la operación no dependa de que tú estés disponible.
+· Proponer mejoras. Si ves algo que se puede automatizar y nadie te lo pidió, queremos que lo digas.
+CÓMO SE VE UNA SEMANA NORMAL
+Arrancas revisando que los flujos de la noche corrieron bien y que los tableros tienen datos frescos. Entra una solicitud de Marketing: necesitan que los leads de una campaña nueva lleguen etiquetados al CRM con su origen. La montas, la pruebas con casos límite y la documentas. En paralelo, Operaciones te pide que las ventas del mes se escriban solas en el tablero financiero en vez de a mano. A media semana algo se rompe —una API cambió un campo— y lo resuelves antes de que alguien lo note. El viernes dejas escrito qué construiste y qué sigue.
+
+[desirable]
+LO QUE SUMA, PERO NO ES EXCLUYENTE
+GoHighLevel u otro CRM · Google Analytics 4, Meta Pixel y Google Tag Manager · SQL y bases de datos · WordPress, Webflow, Lovable o similares · funnels de venta y optimización de conversión · nociones de UX/UI · inglés técnico de lectura · experiencia previa en e-commerce o en infoproductos.
+
+[benefits]
+- 700 USD al mes, por prestación de servicios.
+- 100% remoto, desde cualquier país de Latinoamérica.
+- Tiempo completo, en horario de Ciudad de México (9:00 a 18:00).
+- Reporte directo al Director de Operaciones, sin capas intermedias y con acceso a Dirección.
+- Es un rol de construcción: la capa de automatización y datos de la empresa se define e implementa desde esta posición.
+- Vas a tomar decisiones técnicas desde el primer mes y vas a ver el efecto de lo que construyes en los números del negocio.
+- Acceso a los programas de formación de la academia.
+- Evaluación a los 30 días, con conversación de ajuste y plan de crecimiento.

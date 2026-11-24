@@ -1,0 +1,1603 @@
+{
+ "model": "gpt-6-luna",
+ "chunk": 15,
+ "runs": [
+  {
+   "parts": {
+    "p05-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "full-stack development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ],
+        [
+         "E10",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Go",
+       "links": []
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React Native",
+       "links": []
+      }
+     ]
+    },
+    "p05-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "webhook-driven systems",
+       "links": []
+      },
+      {
+       "text": "telephony systems",
+       "links": []
+      },
+      {
+       "text": "event-based systems",
+       "links": []
+      },
+      {
+       "text": "debugging asynchronous flows across service boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p05-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "PostgreSQL production operations",
+       "links": [
+        [
+         "E10",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Telnyx programmable voice",
+       "links": []
+      },
+      {
+       "text": "Telnyx programmable messaging",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable voice",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable messaging",
+       "links": []
+      }
+     ]
+    },
+    "p05-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "LLM-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "backend development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Django",
+       "links": []
+      }
+     ]
+    },
+    "p12-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "PostgreSQL production experience",
+       "links": [
+        [
+         "E10",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "schema changes on live systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r03": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Celery",
+       "links": []
+      },
+      {
+       "text": "RabbitMQ",
+       "links": []
+      },
+      {
+       "text": "Redis",
+       "links": []
+      },
+      {
+       "text": "similar background-processing technology",
+       "links": []
+      }
+     ]
+    },
+    "p12-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "handling third-party API failures",
+       "links": []
+      }
+     ]
+    },
+    "p12-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "testing",
+       "links": [
+        [
+         "E11",
+         "direct"
+        ],
+        [
+         "E12",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "code quality",
+       "links": [
+        [
+         "E19",
+         "related"
+        ],
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "constructive code reviews",
+       "links": [
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p12-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "production monitoring",
+       "links": []
+      },
+      {
+       "text": "production debugging",
+       "links": [
+        [
+         "E4",
+         "related"
+        ],
+        [
+         "E18",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "incident support",
+       "links": []
+      }
+     ]
+    },
+    "p12-r09": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "travel industry experience",
+       "links": []
+      },
+      {
+       "text": "hotel industry experience",
+       "links": []
+      },
+      {
+       "text": "airline industry experience",
+       "links": []
+      },
+      {
+       "text": "cruise industry experience",
+       "links": []
+      },
+      {
+       "text": "booking systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "payments",
+       "links": [
+        [
+         "E2",
+         "direct"
+        ],
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "financial flows",
+       "links": [
+        [
+         "E2",
+         "related"
+        ],
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Stripe",
+       "links": []
+      },
+      {
+       "text": "invoicing",
+       "links": []
+      },
+      {
+       "text": "payouts",
+       "links": []
+      }
+     ]
+    },
+    "p12-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "AI-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r12": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Docker",
+       "links": [
+        [
+         "E22",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Kubernetes",
+       "links": [
+        [
+         "E22",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "direct"
+        ],
+        [
+         "E26",
+         "related"
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "links": {
+    "p05-r01": [
+     [
+      "E9",
+      "direct"
+     ],
+     [
+      "E10",
+      "direct"
+     ]
+    ],
+    "p05-r02": [
+     [
+      "E6",
+      "direct"
+     ]
+    ],
+    "p05-r03": [
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E7",
+      "direct"
+     ]
+    ],
+    "p05-r04": [],
+    "p05-r05": [],
+    "p05-r07": [
+     [
+      "E10",
+      "direct"
+     ],
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p05-r10": [],
+    "p05-r11": [],
+    "p12-r01": [
+     [
+      "E9",
+      "direct"
+     ],
+     [
+      "E23",
+      "direct"
+     ]
+    ],
+    "p12-r02": [
+     [
+      "E10",
+      "direct"
+     ]
+    ],
+    "p12-r03": [],
+    "p12-r04": [
+     [
+      "E13",
+      "direct"
+     ]
+    ],
+    "p12-r05": [
+     [
+      "E11",
+      "direct"
+     ],
+     [
+      "E12",
+      "direct"
+     ],
+     [
+      "E19",
+      "related"
+     ],
+     [
+      "E20",
+      "direct"
+     ],
+     [
+      "E20",
+      "direct"
+     ]
+    ],
+    "p12-r06": [
+     [
+      "E4",
+      "related"
+     ],
+     [
+      "E18",
+      "related"
+     ]
+    ],
+    "p12-r09": [],
+    "p12-r10": [
+     [
+      "E2",
+      "direct"
+     ],
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E5",
+      "related"
+     ]
+    ],
+    "p12-r11": [],
+    "p12-r12": [
+     [
+      "E22",
+      "direct"
+     ],
+     [
+      "E22",
+      "related"
+     ],
+     [
+      "E14",
+      "direct"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 4117,
+    "output_tokens": 1004,
+    "cached_tokens": 0
+   },
+   "calls": 4,
+   "unique_atoms": 48
+  },
+  {
+   "parts": {
+    "p05-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "full-stack development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Go",
+       "links": []
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React Native",
+       "links": []
+      }
+     ]
+    },
+    "p05-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "webhook-driven systems",
+       "links": []
+      },
+      {
+       "text": "telephony systems",
+       "links": []
+      },
+      {
+       "text": "event-based systems",
+       "links": []
+      },
+      {
+       "text": "debugging asynchronous flows across service boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p05-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "PostgreSQL production operations",
+       "links": [
+        [
+         "E10",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Telnyx programmable voice",
+       "links": []
+      },
+      {
+       "text": "Telnyx programmable messaging",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable voice",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable messaging",
+       "links": []
+      }
+     ]
+    },
+    "p05-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "LLM-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "backend development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Django",
+       "links": []
+      }
+     ]
+    },
+    "p12-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "PostgreSQL production experience",
+       "links": [
+        [
+         "E10",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "schema changes on live systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r03": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Celery",
+       "links": []
+      },
+      {
+       "text": "RabbitMQ",
+       "links": []
+      },
+      {
+       "text": "Redis",
+       "links": []
+      },
+      {
+       "text": "similar background-processing technology",
+       "links": []
+      }
+     ]
+    },
+    "p12-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "handling third-party API failures",
+       "links": []
+      }
+     ]
+    },
+    "p12-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "testing",
+       "links": [
+        [
+         "E11",
+         "direct"
+        ],
+        [
+         "E12",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "code quality",
+       "links": [
+        [
+         "E19",
+         "related"
+        ],
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "constructive code reviews",
+       "links": [
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p12-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "production monitoring",
+       "links": []
+      },
+      {
+       "text": "production debugging",
+       "links": []
+      },
+      {
+       "text": "incident support",
+       "links": []
+      }
+     ]
+    },
+    "p12-r09": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "travel industry experience",
+       "links": []
+      },
+      {
+       "text": "hotel industry experience",
+       "links": []
+      },
+      {
+       "text": "airline industry experience",
+       "links": []
+      },
+      {
+       "text": "cruise industry experience",
+       "links": []
+      },
+      {
+       "text": "booking systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "payments",
+       "links": [
+        [
+         "E2",
+         "direct"
+        ],
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "financial flows",
+       "links": [
+        [
+         "E2",
+         "related"
+        ],
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Stripe",
+       "links": []
+      },
+      {
+       "text": "invoicing",
+       "links": []
+      },
+      {
+       "text": "payouts",
+       "links": []
+      }
+     ]
+    },
+    "p12-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "AI-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r12": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Docker",
+       "links": [
+        [
+         "E22",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Kubernetes",
+       "links": [
+        [
+         "E22",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "direct"
+        ],
+        [
+         "E26",
+         "related"
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "links": {
+    "p05-r01": [
+     [
+      "E9",
+      "direct"
+     ]
+    ],
+    "p05-r02": [
+     [
+      "E6",
+      "direct"
+     ]
+    ],
+    "p05-r03": [
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E7",
+      "direct"
+     ]
+    ],
+    "p05-r04": [],
+    "p05-r05": [],
+    "p05-r07": [
+     [
+      "E10",
+      "related"
+     ],
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p05-r10": [],
+    "p05-r11": [],
+    "p12-r01": [
+     [
+      "E9",
+      "direct"
+     ],
+     [
+      "E23",
+      "direct"
+     ]
+    ],
+    "p12-r02": [
+     [
+      "E10",
+      "direct"
+     ]
+    ],
+    "p12-r03": [],
+    "p12-r04": [
+     [
+      "E13",
+      "direct"
+     ]
+    ],
+    "p12-r05": [
+     [
+      "E11",
+      "direct"
+     ],
+     [
+      "E12",
+      "direct"
+     ],
+     [
+      "E19",
+      "related"
+     ],
+     [
+      "E20",
+      "direct"
+     ],
+     [
+      "E20",
+      "direct"
+     ]
+    ],
+    "p12-r06": [],
+    "p12-r09": [],
+    "p12-r10": [
+     [
+      "E2",
+      "direct"
+     ],
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E5",
+      "related"
+     ]
+    ],
+    "p12-r11": [],
+    "p12-r12": [
+     [
+      "E22",
+      "direct"
+     ],
+     [
+      "E22",
+      "related"
+     ],
+     [
+      "E14",
+      "direct"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 4117,
+    "output_tokens": 885,
+    "cached_tokens": 3188
+   },
+   "calls": 4,
+   "unique_atoms": 48
+  },
+  {
+   "parts": {
+    "p05-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "full-stack development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ],
+        [
+         "E1",
+         "related"
+        ],
+        [
+         "E2",
+         "related"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r02": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Go",
+       "links": []
+      },
+      {
+       "text": "TypeScript",
+       "links": [
+        [
+         "E6",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r03": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React",
+       "links": [
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Next.js",
+       "links": [
+        [
+         "E7",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p05-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "React Native",
+       "links": []
+      }
+     ]
+    },
+    "p05-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "webhook-driven systems",
+       "links": []
+      },
+      {
+       "text": "telephony systems",
+       "links": []
+      },
+      {
+       "text": "event-based systems",
+       "links": []
+      },
+      {
+       "text": "debugging asynchronous flows across service boundaries",
+       "links": []
+      }
+     ]
+    },
+    "p05-r07": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "SQL",
+       "links": [
+        [
+         "E10",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "PostgreSQL production operations",
+       "links": []
+      }
+     ]
+    },
+    "p05-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Telnyx programmable voice",
+       "links": []
+      },
+      {
+       "text": "Telnyx programmable messaging",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable voice",
+       "links": []
+      },
+      {
+       "text": "Twilio programmable messaging",
+       "links": []
+      }
+     ]
+    },
+    "p05-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "LLM-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r01": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "backend development",
+       "links": [
+        [
+         "E9",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Python",
+       "links": [
+        [
+         "E23",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Django",
+       "links": []
+      }
+     ]
+    },
+    "p12-r02": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "PostgreSQL production experience",
+       "links": [
+        [
+         "E10",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "schema changes on live systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r03": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Celery",
+       "links": []
+      },
+      {
+       "text": "RabbitMQ",
+       "links": []
+      },
+      {
+       "text": "Redis",
+       "links": []
+      },
+      {
+       "text": "similar background-processing technology",
+       "links": []
+      }
+     ]
+    },
+    "p12-r04": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "third-party API integrations",
+       "links": [
+        [
+         "E13",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "handling third-party API failures",
+       "links": []
+      }
+     ]
+    },
+    "p12-r05": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "testing",
+       "links": [
+        [
+         "E11",
+         "direct"
+        ],
+        [
+         "E12",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "code quality",
+       "links": [
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "constructive code reviews",
+       "links": [
+        [
+         "E20",
+         "direct"
+        ]
+       ]
+      }
+     ]
+    },
+    "p12-r06": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "production monitoring",
+       "links": []
+      },
+      {
+       "text": "production debugging",
+       "links": []
+      },
+      {
+       "text": "incident support",
+       "links": []
+      }
+     ]
+    },
+    "p12-r09": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "travel industry experience",
+       "links": []
+      },
+      {
+       "text": "hotel industry experience",
+       "links": []
+      },
+      {
+       "text": "airline industry experience",
+       "links": []
+      },
+      {
+       "text": "cruise industry experience",
+       "links": []
+      },
+      {
+       "text": "booking systems",
+       "links": []
+      }
+     ]
+    },
+    "p12-r10": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "payments",
+       "links": [
+        [
+         "E2",
+         "direct"
+        ],
+        [
+         "E5",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "financial flows",
+       "links": [
+        [
+         "E2",
+         "related"
+        ],
+        [
+         "E5",
+         "related"
+        ]
+       ]
+      },
+      {
+       "text": "Stripe",
+       "links": []
+      },
+      {
+       "text": "invoicing",
+       "links": []
+      },
+      {
+       "text": "payouts",
+       "links": []
+      }
+     ]
+    },
+    "p12-r11": {
+     "combinator": "all",
+     "parts": [
+      {
+       "text": "AI-powered feature development",
+       "links": []
+      }
+     ]
+    },
+    "p12-r12": {
+     "combinator": "any",
+     "parts": [
+      {
+       "text": "Docker",
+       "links": [
+        [
+         "E22",
+         "direct"
+        ]
+       ]
+      },
+      {
+       "text": "Kubernetes",
+       "links": []
+      },
+      {
+       "text": "AWS",
+       "links": [
+        [
+         "E14",
+         "direct"
+        ],
+        [
+         "E26",
+         "related"
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "links": {
+    "p05-r01": [
+     [
+      "E9",
+      "direct"
+     ],
+     [
+      "E1",
+      "related"
+     ],
+     [
+      "E2",
+      "related"
+     ]
+    ],
+    "p05-r02": [
+     [
+      "E6",
+      "direct"
+     ]
+    ],
+    "p05-r03": [
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E7",
+      "direct"
+     ]
+    ],
+    "p05-r04": [],
+    "p05-r05": [],
+    "p05-r07": [
+     [
+      "E10",
+      "related"
+     ]
+    ],
+    "p05-r10": [],
+    "p05-r11": [],
+    "p12-r01": [
+     [
+      "E9",
+      "direct"
+     ],
+     [
+      "E23",
+      "direct"
+     ]
+    ],
+    "p12-r02": [
+     [
+      "E10",
+      "direct"
+     ]
+    ],
+    "p12-r03": [],
+    "p12-r04": [
+     [
+      "E13",
+      "direct"
+     ]
+    ],
+    "p12-r05": [
+     [
+      "E11",
+      "direct"
+     ],
+     [
+      "E12",
+      "direct"
+     ],
+     [
+      "E20",
+      "direct"
+     ],
+     [
+      "E20",
+      "direct"
+     ]
+    ],
+    "p12-r06": [],
+    "p12-r09": [],
+    "p12-r10": [
+     [
+      "E2",
+      "direct"
+     ],
+     [
+      "E5",
+      "direct"
+     ],
+     [
+      "E2",
+      "related"
+     ],
+     [
+      "E5",
+      "related"
+     ]
+    ],
+    "p12-r11": [],
+    "p12-r12": [
+     [
+      "E22",
+      "direct"
+     ],
+     [
+      "E14",
+      "direct"
+     ],
+     [
+      "E26",
+      "related"
+     ]
+    ]
+   },
+   "dropped": 0,
+   "missing_keys": [],
+   "usage": {
+    "input_tokens": 4117,
+    "output_tokens": 836,
+    "cached_tokens": 3188
+   },
+   "calls": 4,
+   "unique_atoms": 48
+  }
+ ]
+}
