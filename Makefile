@@ -1,0 +1,24 @@
+# Daily commands. Targets are added as the pieces they run are built.
+.PHONY: setup db test test-fast lint format
+
+setup:  ## Install dependencies exactly as locked and enable the git hooks
+	uv sync --frozen
+	uv run pre-commit install
+
+db:  ## Start only Postgres (databases `laburo` and `laburo_test`)
+	docker compose up -d --wait db
+
+test:  ## All tests on the laburo_test database ($0, no keys)
+	uv run pytest
+
+test-fast:  ## Tests that need no database
+	uv run pytest tests/unit
+
+lint:  ## ruff + pyright
+	uv run ruff check .
+	uv run ruff format --check .
+	uv run pyright
+
+format:  ## Apply ruff formatting and safe fixes
+	uv run ruff check --fix .
+	uv run ruff format .

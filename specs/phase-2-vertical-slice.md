@@ -13,11 +13,11 @@
 - [ ] OpenAI key in the real `.env`. Tasks up to 2.10 run on fakes; the key is needed from 2.11 (client demo) and 2.13 (eval).
 
 ## 2.1 Skeleton and tooling
-- [ ] `src/` layout from `CLAUDE.md` (only the folders this phase uses) and a `Makefile` with `setup`, `db`, `dev`, `up`, `down`, `migrate`, `seed`, `test`, `test-fast`, `lint`, `eval`
-- [ ] ruff + pyright (basic) config, pytest-asyncio mode, ruff in pre-commit
-- [ ] `config/settings.py` (pydantic-settings, `ENV_FILE_PATH`, `SecretStr`), `config/constants.py`
-- [ ] `core/clock.py` (freezable `now()`), `core/errors.py` (domain errors with `error_code`), `core/logging.py` (JSON to stdout, no PII)
-- [ ] Tests: settings load from `.env.sample`; clock freeze
+- [x] `src/` layout from `CLAUDE.md` (only the folders this phase uses) and a `Makefile`. It starts with `setup`, `db`, `test`, `test-fast`, `lint`, `format`; the other targets (`dev`, `up`, `down`, `migrate`, `seed`, `client`, `eval`) arrive with the pieces they run.
+- [x] ruff + pyright (basic) config, pytest-asyncio mode, ruff in pre-commit
+- [x] `config/settings.py` (pydantic-settings, `ENV_FILE_PATH`, `SecretStr`), `config/constants.py`
+- [x] `core/clock.py` (freezable `now()`), `core/errors.py` (domain errors with `error_code`), `core/logging.py` (JSON to stdout, no PII)
+- [x] Tests: settings load from `.env.sample`; clock freeze
 
 ## 2.2 Database
 - [ ] SQLAlchemy 2 async models: `users`, `profiles`, `evidence`, `jobs`, `job_extractions`, `search_runs`, `run_jobs` (composite FK, index, statuses)
@@ -116,3 +116,5 @@
 - [ ] Eligibility eval on dev: 0 valid jobs `not_eligible`; result recorded here
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
+
+Stopped at: 2.1 done (`make` is not installed in WSL yet: `sudo apt install make`). Next: 2.2 Database.

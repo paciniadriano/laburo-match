@@ -37,3 +37,22 @@ constraint-dependencies = ["litellm!=1.82.7,!=1.82.8,!=1.107.0"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+# Async tests need no decorator: every `async def test_...` runs in an event loop.
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+# E/F: errors and unused code · I: import order · UP: modern syntax · B: likely bugs ·
+# ASYNC: blocking calls inside async code
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.14"
+venvPath = "."
+venv = ".venv"
+# Add `client` and `evals` when those folders exist.
+include = ["src", "tests", "scripts"]

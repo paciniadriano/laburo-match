@@ -1,8 +1,8 @@
 """Fixtures from real postings must not carry third-party contact data (the repo is public).
 
-Two guards: the detector behaves as expected on a table of cases, and no file under fixtures/ contains
-an email outside example.com or a phone number. Names cannot be detected reliably with a regex: the
-scrub script lists lines with contact words for a human look instead.
+Two guards: the detector behaves as expected on a table of cases, and no file under fixtures/
+contains an email outside example.com or a phone number. Names cannot be detected reliably with a
+regex: the scrub script lists lines with contact words for a human look instead.
 """
 
 from pathlib import Path
