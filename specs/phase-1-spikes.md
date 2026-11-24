@@ -102,9 +102,9 @@ Requires the Azure budget alert.
 **Outcome:** GO. Reachable over HTTPS from Claude Code; progress arrives; cold start < 30 s but with little margin: a request that wakes a scaled-to-zero app pays ~25 s, which can stack on a ~30 s tool call. Resources deleted after the spike.
 
 ## Definition of done
-- [ ] Each spike has a local `RESULTS.md` with go/no-go against the thresholds above
+- [x] Each spike has a local `RESULTS.md` with go/no-go against the thresholds above (archived on the orphan `spikes` branch)
 - [x] Scrubbed fixtures and first dev/test labels saved (`fixtures/postings/getonbrd/`, `evals/datasets/{dev,test}/`, `data/samples/sample_evidence.json`; PII test in `tests/unit/`)
-- [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
-- [ ] PR to `main`; **Current phase** updated to 2
+- [x] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
+- [x] PR to `main`; **Current phase** updated to 2
 
-Stopped at: all spikes done (1.1–1.8 GO); DoD items 1–3 done; spike archive on the orphan `spikes` branch. Next: PR to `main` and **Current phase** → 2.
+Stopped at: phase 1 closed (all spikes GO, definition of done complete). Next: phase 2 starts in plan mode with `specs/phase-2-vertical-slice.md`.
