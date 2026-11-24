@@ -526,7 +526,7 @@ Fakes: `FakeLLM` (scripted per task + schema, fails on unscripted calls, records
 
 - **CI** (every PR): ruff, pyright, gitleaks, pip-audit, unit/contract/integration/e2e tests with a Postgres service (same major as Azure), on Python 3.14 (from `.python-version`). No secrets.
 - **CD** (push to `main`, after CI): build image → push to GHCR (tag = commit SHA) → deploy to Azure Container Apps with `azure/container-apps-deploy-action` and OIDC → at container start, under one advisory lock: migrations, checkpointer setup, GeoNames load → `/health` smoke test.
-- **Azure**: Container Apps (scale to zero; HTTPS ingress; secrets as Container Apps secrets; `stateless_http=True`); managed Postgres (Azure Flexible Server if credits allow, else Neon direct endpoint) with TLS and firewall; budget alert. Document in `docs/azure-deployment.md`.
+- **Azure**: Container Apps (scale to zero; HTTPS ingress; secrets as Container Apps secrets; `stateless_http=True`; cold start measured at 23–26 s in spike 1.8, so a request that wakes the app can stack ~25 s on a tool call: decide in phase 8 between `min-replicas 1` during demos and evaluation windows, or a smaller image); managed Postgres (Azure Flexible Server if credits allow, else Neon direct endpoint) with TLS and firewall; budget alert. Document in `docs/azure-deployment.md`.
 
 ---
 

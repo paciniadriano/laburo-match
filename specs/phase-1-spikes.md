@@ -91,13 +91,15 @@
 
 ## 1.8 Azure hello-world
 Requires the Azure budget alert.
-- [ ] Hello-world MCP on Container Apps with `stateless_http=True` over HTTPS
-- [ ] Progress notifications received by Claude Code
-- [ ] `ctx.session_id` behaviour documented
-- [ ] Cold start measured
+- [x] Hello-world MCP on Container Apps with `stateless_http=True` over HTTPS (Brazil South, 0.25 vCPU, image from public GHCR)
+- [x] Progress notifications received by Claude Code (interactive shows 1/10, 2/10…; not visible in the `claude -p` event stream; an MCP client received 5/5)
+- [x] `ctx.session_id` behaviour documented: a new id on every call in stateless mode, locally and behind the ingress
+- [x] Cold start measured: 25.7 s and 23.4 s (2 samples after scale to zero); warm 0.24–0.27 s
 
 **Go if:** reachable over HTTPS from Claude Code; progress notifications arrive; cold start < 30 s.
 **Plan B:** progress does not arrive in stateless mode → rely on short calls only (already the design). Not enough credits → Postgres on Neon, app still on Container Apps.
+
+**Outcome:** GO. Reachable over HTTPS from Claude Code; progress arrives; cold start < 30 s but with little margin: a request that wakes a scaled-to-zero app pays ~25 s, which can stack on a ~30 s tool call. Resources deleted after the spike.
 
 ## Definition of done
 - [ ] Each spike has a local `RESULTS.md` with go/no-go against the thresholds above
@@ -105,4 +107,4 @@ Requires the Azure budget alert.
 - [ ] New decisions added as one line in `CLAUDE.md`; `system.md` updated where a contract changed
 - [ ] PR to `main`; **Current phase** updated to 2
 
-Stopped at: spike 1.8 measured (HTTPS from Claude Code OK, progress reaches an MCP client, session id changes per call, cold start 23-26 s), not yet closed in the spec; DoD item 2 done. Next: user check of progress in interactive Claude Code, close 1.8 and delete the Azure resource group, `spikes` archive branch, then PR.
+Stopped at: all spikes done (1.1–1.8 GO); DoD items 1–3 done; spike archive on the orphan `spikes` branch. Next: PR to `main` and **Current phase** → 2.
