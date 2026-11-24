@@ -54,3 +54,24 @@ def gob_item(external_id: str = "job-1", **attributes: Any) -> dict[str, Any]:
 
 def gob_page(items: list[Any], page: int = 1, total_pages: int = 1) -> dict[str, Any]:
     return {"data": items, "meta": {"page": page, "per_page": 120, "total_pages": total_pages}}
+
+
+def make_source_job(external_id: str, title: str = "Frontend Engineer", **changes: Any) -> Any:
+    """A normalized job as a source adapter would return it."""
+    from datetime import UTC, datetime
+
+    from src.sources.base import SourceJob
+
+    base: dict[str, Any] = {
+        "source": "getonbrd",
+        "external_id": external_id,
+        "title": title,
+        "company": "Acme",
+        "url": f"https://www.getonbrd.com/jobs/{external_id}",
+        "apply_url": f"https://www.getonbrd.com/jobs/{external_id}",
+        "location_text": "Remote",
+        "body": f"[description]\nWork on {title}",
+        "language": "en",
+        "posted_at": datetime(2026, 11, 23, 12, 0, tzinfo=UTC),
+    }
+    return SourceJob(**{**base, **changes})

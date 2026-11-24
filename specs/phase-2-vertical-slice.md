@@ -45,7 +45,7 @@
 - [x] Tests: respx with `assert_all_mocked=True`; normalization; source error → warning; PII test covers the new fixtures
 
 ## 2.6 `search_jobs` (basic)
-- [ ] The search runs these steps in order:
+- [x] The search runs these steps in order:
   1. `PROFILE_REQUIRED` if the profile is incomplete.
   2. Deterministic plan (roles × categories), stored in the run.
   3. Fetch from the source.
@@ -54,7 +54,8 @@
   6. Prefilter: max age and closed only.
   7. Cap by recency; the rest count as `over_cap`.
   8. Create the `search_runs` row and `run_jobs` rows (`pending`, with positions).
-- [ ] Tests (integration): full path; a second search does not re-add the user's jobs
+- [x] Tests (integration): full path; a second search does not re-add the user's jobs
+- [x] The caller owns the transaction: `tools/search_jobs.py` never commits, so a search is saved whole or not at all (the router commits in 2.9)
 
 ## 2.7 Minimal eligibility (code)
 - [ ] `app/eligibility/` with the three §11.3 definitions, location/country/region checks only, and a small `config/data/locations.py` (ISO countries; LATAM/Americas/Worldwide with ambiguity flags). Unknown profile value → `doubtful`. Disclaimer constant.
@@ -118,4 +119,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.5 done. Next: 2.6 search_jobs (basic).
+Stopped at: 2.6 done. Next: 2.7 minimal eligibility (code).

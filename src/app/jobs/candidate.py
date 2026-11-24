@@ -1,0 +1,13 @@
+"""A stored job as seen by the search steps that filter and rank it."""
+
+from dataclasses import dataclass
+from datetime import datetime
+from uuid import UUID
+
+
+@dataclass(frozen=True)
+class Candidate:
+    job_id: UUID
+    title: str
+    posted_at: datetime | None
+    closed_at: datetime | None

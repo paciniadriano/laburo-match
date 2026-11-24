@@ -16,3 +16,8 @@ LLM_MAX_RETRIES = 2  # the SDK retries 429 and 5xx by itself
 # One shared HTTP client for every outbound call (sources, later others).
 HTTP_TIMEOUT_SECONDS = 10
 HTTP_CONNECT_TIMEOUT_SECONDS = 5
+
+# How long a search run stays usable by `screen_batch`.
+RUN_TTL_HOURS = 24
+# Jobs asked from a source per search; a whole category is ~300, ranked before the cap applies.
+SEARCH_FETCH_LIMIT = 500

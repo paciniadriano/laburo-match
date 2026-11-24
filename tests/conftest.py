@@ -1,11 +1,15 @@
 """Shared fixtures. The database ones always target the separate `_test` database."""
 
+import json
+import uuid
 from collections.abc import AsyncIterator, Iterator
+from pathlib import Path
 
 import pytest
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import NullPool
 
+from src.app.profile.seed import seed_sample_profile
 from src.config.settings import get_settings
 from src.db.migrate import upgrade_to_head
 from src.db.session import make_engine
@@ -60,3 +64,13 @@ def fake_llm() -> Iterator[FakeLLM]:
     fake = FakeLLM()
     with use_backend(fake):
         yield fake
+
+
+SAMPLE_EVIDENCE = Path(__file__).resolve().parents[1] / "data" / "samples" / "sample_evidence.json"
+
+
+@pytest.fixture
+async def user_id(session: AsyncSession) -> uuid.UUID:
+    """The seeded `local` user: a complete fictional profile (AR, remote, frontend roles)."""
+    sample = json.loads(SAMPLE_EVIDENCE.read_text())
+    return (await seed_sample_profile(session, sample, max_job_age_days=30)).user_id
