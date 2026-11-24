@@ -58,13 +58,15 @@
 - [x] The caller owns the transaction: `tools/search_jobs.py` never commits, so a search is saved whole or not at all (the router commits in 2.9)
 
 ## 2.7 Minimal eligibility (code)
-- [ ] `app/eligibility/` with the three §11.3 definitions, location/country/region checks only, and a small `config/data/locations.py` (ISO countries; LATAM/Americas/Worldwide with ambiguity flags). Unknown profile value → `doubtful`. Disclaimer constant.
-- [ ] Unit tests:
+- [x] `app/eligibility/` with the three §11.3 definitions, location/country/region checks only, and a small `config/data/locations.py` (ISO countries; LATAM/Americas/Worldwide with ambiguity flags). Unknown profile value → `doubtful`. Disclaimer constant.
+- [x] Unit tests:
   - explicit unmet → `not_eligible`
   - inferred only → `doubtful`
   - contradiction → `doubtful`
   - explicit LATAM for AR → `eligible`
   - no location signal → `doubtful`
+- [x] Rules per restriction kind (phase 2): location is compared with the profile country; working hours are a warning; an ordinary contract type is a badge; explicit visa, citizenship, work authorization and US payroll phrases (W2, 1099, SSN) keep the job `doubtful` until phase 4 can compare them; hybrid/on-site jobs stay `doubtful` until phase 4 checks offices. An explicit location that excludes the country is `not_eligible` only when every place was understood
+- [x] Free preview on the 15 hand-labelled spike postings (spike extractions, no LLM): 12/15 verdicts agree, **0 valid jobs `not_eligible`**. The 3 differences are conservative: two hybrid jobs (phase 4) and job 10, "Work from anywhere", which the spec's ambiguous-region rule keeps `doubtful`
 
 ## 2.8 `screen_batch` (basic, with claims)
 - [ ] Claims: up to `SCREEN_MAX_JOBS_PER_CALL` with `FOR UPDATE SKIP LOCKED`; stale `processing` rows reset using `:now`; claims released in `finally` when the call is cancelled
@@ -119,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.6 done; architecture review applied (LLM prompts in `llm/prompts/`, SQL-with-domain and tool-recipe rules in `CLAUDE.md`, `normalize_name` in `core/text.py`, `search_jobs` split into `app/search/` functions). Next: 2.7 minimal eligibility (code).
+Stopped at: 2.7 done. Next: 2.8 screen_batch (claims, extraction cache, eligibility). Open question for the user: should an explicit "work from anywhere" count as an eligible location signal?

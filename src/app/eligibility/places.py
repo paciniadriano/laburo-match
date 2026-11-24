@@ -1,0 +1,78 @@
+"""Turn the places a posting names ("Latin America", "Colombia o Venezuela") into countries."""
+
+import re
+from dataclasses import dataclass, field
+
+from src.config.data.locations import AMBIGUOUS_TERMS, COUNTRIES, REGION_NAMES, REGIONS
+from src.core.text import fold
+
+# Short names that are also ordinary words: accepted only when, ignoring filler words, they
+# are all that the text says ("any US state" yes, "join us in Chile" no).
+_EXACT_ONLY = {"us", "uk", "ue", "eu"}
+# Words that may surround a place without adding or removing any place.
+_FILLER = set(
+    "or and o y e any of in within the a an state states estado estados resident residents "
+    "residentes only solo solamente remote remoto based countries country paises pais region "
+    "residence residencia en de del la el los las from to live living vivir located ubicado".split()
+)
+# A place with one of these words is an exclusion ("not US"), which this table cannot read.
+_NEGATIONS = {"not", "except", "excluding", "excepto", "sin", "no", "outside", "fuera"}
+
+
+def _build_names() -> list[tuple[str, frozenset[str]]]:
+    names: dict[str, frozenset[str]] = {}
+    for iso, spellings in COUNTRIES.items():
+        for spelling in spellings:
+            names[fold(spelling)] = frozenset({iso})
+    for region, spellings in REGION_NAMES.items():
+        for spelling in spellings:
+            names[fold(spelling)] = REGIONS[region]
+    # Longest first, so "united states" is taken whole before "us" could match inside it.
+    return sorted(names.items(), key=lambda item: -len(item[0]))
+
+
+_NAMES = _build_names()
+_AMBIGUOUS = {fold(term) for term in AMBIGUOUS_TERMS}
+
+
+@dataclass(frozen=True)
+class PlaceResolution:
+    countries: frozenset[str] = frozenset()  # every country the places clearly include
+    ambiguous: bool = False  # some place names no definite set ("Worldwide")
+    unknown: bool = False  # some place is not in the table, or is an exclusion
+    names: list[str] = field(default_factory=list)  # the places as written, for messages
+
+
+def _resolve_one(place: str) -> tuple[frozenset[str], bool, bool]:
+    """Returns (countries, ambiguous, unknown) for one place as written."""
+    text = fold(place)
+    if text in _AMBIGUOUS:
+        return frozenset(), True, False
+    if _NEGATIONS & set(text.split()):
+        return frozenset(), False, True
+
+    countries: set[str] = set()
+    for name, members in _NAMES:
+        if name in _EXACT_ONLY:
+            if set(text.split()) - _FILLER == {name}:
+                countries |= members
+                text = ""
+            continue
+        pattern = rf"(?<![a-z0-9]){re.escape(name)}(?![a-z0-9])"
+        if re.search(pattern, text):
+            countries |= members
+            text = re.sub(pattern, " ", text)
+    leftover = set(text.split()) - _FILLER
+    # Words we do not understand next to a known place may name another place: do not guess.
+    return frozenset(countries), False, bool(leftover) or not countries
+
+
+def resolve_places(places: list[str]) -> PlaceResolution:
+    countries: set[str] = set()
+    ambiguous = unknown = False
+    for place in places:
+        found, is_ambiguous, is_unknown = _resolve_one(place)
+        countries |= found
+        ambiguous |= is_ambiguous
+        unknown |= is_unknown
+    return PlaceResolution(frozenset(countries), ambiguous, unknown or not places, list(places))
