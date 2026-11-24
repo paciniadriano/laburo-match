@@ -45,6 +45,7 @@ class _Issue:
 @dataclass
 class _Findings:
     met: list[Restriction] = field(default_factory=list)
+    anywhere: list[Restriction] = field(default_factory=list)  # the met ones that say "anywhere"
     unmet: list[Restriction] = field(default_factory=list)
     issues: list[_Issue] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
@@ -78,9 +79,26 @@ def _judge_location(
             found.met.append(restriction)  # an inferred hint is never a compatible signal
         return
 
+    # "Work from anywhere" and nothing else about places: open to the user too. Any other
+    # restriction of the posting is still judged on its own and can exclude them.
+    pure_anywhere = (
+        places.worldwide or (not restriction.places and restriction.place_scope == "worldwide")
+    ) and not (places.countries or places.ambiguous or places.unknown)
+    if pure_anywhere:
+        if restriction.evidence_kind == "explicit":
+            found.met.append(restriction)
+            found.anywhere.append(restriction)
+        return
+
     where = ", ".join(restriction.places) or "an unspecified place"
     question = f"Is the role open to candidates living in {_country_name(country)}?"
-    undetermined = places.ambiguous or places.unknown or restriction.place_scope == "worldwide"
+    undetermined = (
+        places.ambiguous
+        or places.unknown
+        or places.worldwide
+        or not restriction.places
+        or restriction.place_scope == "worldwide"
+    )
     if undetermined:
         # The unreadable part might include the user's country: not enough to rule them out.
         found.issues.append(
@@ -196,9 +214,11 @@ def evaluate_eligibility(facts: JobFacts, constraints: Constraints) -> Eligibili
 
     country = _country_name(constraints.country or "")
     if found.met:
+        first = found.met[0]
+        audience = "candidates anywhere" if first in found.anywhere else country
         return EligibilityResult(
             "eligible",
-            f'The posting is open to {country} ("{_first_quote(found.met[0])}") and no '
+            f'The posting is open to {audience} ("{_first_quote(first)}") and no '
             "restriction you do not meet was found.",
             quotes=[q for r in found.met for q in r.quotes],
             warnings=found.warnings,

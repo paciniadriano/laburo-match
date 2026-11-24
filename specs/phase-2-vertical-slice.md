@@ -66,7 +66,7 @@
   - explicit LATAM for AR → `eligible`
   - no location signal → `doubtful`
 - [x] Rules per restriction kind (phase 2): location is compared with the profile country; working hours are a warning; an ordinary contract type is a badge; explicit visa, citizenship, work authorization and US payroll phrases (W2, 1099, SSN) keep the job `doubtful` until phase 4 can compare them; hybrid/on-site jobs stay `doubtful` until phase 4 checks offices. An explicit location that excludes the country is `not_eligible` only when every place was understood
-- [x] Free preview on the 15 hand-labelled spike postings (spike extractions, no LLM): 12/15 verdicts agree, **0 valid jobs `not_eligible`**. The 3 differences are conservative: two hybrid jobs (phase 4) and job 10, "Work from anywhere", which the spec's ambiguous-region rule keeps `doubtful`
+- [x] Free preview on the 15 hand-labelled spike postings (spike extractions, no LLM): 13/15 verdicts agree, **0 valid jobs `not_eligible`**. The 2 differences are the hybrid jobs (14 and 15), which phase 4 resolves with office data. "Work from anywhere" counts as a compatible location when nothing else excludes the user's country (user decision)
 
 ## 2.8 `screen_batch` (basic, with claims)
 - [ ] Claims: up to `SCREEN_MAX_JOBS_PER_CALL` with `FOR UPDATE SKIP LOCKED`; stale `processing` rows reset using `:now`; claims released in `finally` when the call is cancelled
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.7 done. Next: 2.8 screen_batch (claims, extraction cache, eligibility). Open question for the user: should an explicit "work from anywhere" count as an eligible location signal?
+Stopped at: 2.7 done. Next: 2.8 screen_batch (claims, extraction cache, eligibility).

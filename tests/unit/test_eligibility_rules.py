@@ -144,7 +144,7 @@ def test_an_inferred_requirement_the_code_cannot_compare_is_only_a_warning():
     assert "inferred" in result.warnings[0]
 
 
-@pytest.mark.parametrize("place", ["Worldwide", "Americas"])
+@pytest.mark.parametrize("place", ["Americas", "EMEA"])
 def test_ambiguous_places_are_doubtful_not_eligible(place: str):
     result = verdict([make_restriction(places=[place], quotes=[f"Open to {place}"])])
 
@@ -219,3 +219,64 @@ def test_a_word_that_merely_contains_a_marker_is_not_us_payroll():
     unrelated = make_restriction(kind="payroll", quotes=["Pay in 10990 pesos"], places=[])
 
     assert verdict([LATAM, unrelated]).verdict == "eligible"
+
+
+# --- "work from anywhere" ---------------------------------------------------------------------
+ANYWHERE = make_restriction(
+    quotes=["Work from anywhere"], places=["anywhere"], place_scope="worldwide"
+)
+
+
+def test_work_from_anywhere_alone_is_a_compatible_location():
+    result = verdict([ANYWHERE])
+
+    assert result.verdict == "eligible"
+    assert "candidates anywhere" in result.reason
+    assert result.quotes == ["Work from anywhere"]
+
+
+def test_anywhere_with_the_places_left_empty_but_a_worldwide_scope_counts_too():
+    scoped = make_restriction(quotes=["Work from anywhere"], places=[], place_scope="worldwide")
+
+    assert verdict([scoped]).verdict == "eligible"
+
+
+def test_anywhere_does_not_override_another_part_of_the_posting_that_excludes_the_country():
+    assert verdict([ANYWHERE, US_ONLY]).verdict == "not_eligible"
+
+
+def test_anywhere_still_needs_every_other_requirement_to_be_understood():
+    visa = make_restriction(kind="visa", quotes=["Must hold a work visa"], places=[])
+
+    assert verdict([ANYWHERE, visa]).verdict == "doubtful"
+
+
+def test_anywhere_with_a_time_zone_is_still_eligible_with_a_warning():
+    overlap = make_restriction(kind="timezone", quotes=["US Eastern overlap"], places=[])
+
+    result = verdict([ANYWHERE, overlap])
+
+    assert result.verdict == "eligible"
+    assert result.warnings == ['Working hours: "US Eastern overlap"']
+
+
+def test_an_inferred_anywhere_is_not_a_compatible_signal():
+    inferred = make_restriction(
+        evidence_kind="inferred", quotes=[], places=["anywhere"], place_scope="worldwide"
+    )
+
+    assert verdict([inferred]).verdict == "doubtful"
+
+
+def test_anywhere_next_to_named_countries_is_not_a_pure_anywhere():
+    mixed = make_restriction(
+        quotes=["Anywhere, but mostly Chile"], places=["anywhere", "Chile"], place_scope="worldwide"
+    )
+
+    assert verdict([mixed]).verdict == "doubtful"
+
+
+def test_a_location_with_no_places_and_no_worldwide_scope_says_nothing():
+    vague = make_restriction(quotes=["Remote"], places=[], place_scope="not_applicable")
+
+    assert verdict([vague]).verdict == "doubtful"

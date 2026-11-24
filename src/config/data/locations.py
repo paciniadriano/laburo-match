@@ -67,12 +67,16 @@ REGION_NAMES: dict[str, tuple[str, ...]] = {
     "SOUTH_AMERICA": ("South America", "Sudamerica", "America del Sur"),
 }
 
-# Terms that name no definite set of countries. A job open to "Worldwide" may still exclude
-# yours; "Americas" may or may not include a given country. They can only mean `doubtful`.
-AMBIGUOUS_TERMS = (
-    "worldwide", "global", "anywhere", "everywhere", "international", "world",
-    "americas", "emea", "apac", "remote", "remoto",
+# Words that say a job is open to people anywhere ("Worldwide", "Work from anywhere").
+# When nothing else in the posting excludes the user's country, this is a compatible location.
+WORLDWIDE_WORDS = (
+    "worldwide", "global", "globally", "anywhere", "everywhere", "international", "world",
+    "mundo", "mundial", "cualquier", "lugar", "parte",
 )  # fmt: skip
+
+# Terms that name no definite set of countries. "Americas" may or may not include a given
+# country, and "remote" says nothing about where. They can only mean `doubtful`.
+AMBIGUOUS_TERMS = ("americas", "emea", "apac", "remote", "remoto")
 
 # Payroll phrases that only make sense for someone who can be paid through the US system.
 # Ordinary contract types ("contractor", "prestacion de servicios") say nothing about where

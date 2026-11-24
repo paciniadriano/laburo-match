@@ -34,7 +34,18 @@ def test_several_places_are_added_together():
     assert resolve_places(["Chile", "Peru"]).countries == {"CL", "PE"}
 
 
-@pytest.mark.parametrize("term", ["Worldwide", "Global", "Americas", "EMEA", "Anywhere"])
+@pytest.mark.parametrize(
+    "place", ["Worldwide", "Global", "Anywhere", "Anywhere in the world", "Desde cualquier lugar"]
+)
+def test_words_that_open_the_job_to_everyone_are_worldwide(place: str):
+    resolved = resolve_places([place])
+
+    assert resolved.worldwide is True
+    assert (resolved.ambiguous, resolved.unknown) == (False, False)
+    assert resolved.countries == frozenset()
+
+
+@pytest.mark.parametrize("term", ["Americas", "EMEA", "APAC", "Remote"])
 def test_terms_that_name_no_definite_set_are_ambiguous(term: str):
     resolved = resolve_places([term])
 
@@ -54,8 +65,11 @@ def test_a_known_place_next_to_an_unknown_one_keeps_what_it_knows_and_flags_the_
     assert resolved.unknown is True
 
 
-def test_no_places_at_all_is_unknown():
-    assert resolve_places([]).unknown is True
+def test_no_places_at_all_resolves_to_nothing_and_the_rules_decide():
+    resolved = resolve_places([])
+
+    assert resolved.countries == frozenset()
+    assert (resolved.worldwide, resolved.ambiguous, resolved.unknown) == (False, False, False)
 
 
 def test_short_names_only_count_when_they_are_the_whole_text():
