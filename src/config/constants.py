@@ -12,3 +12,7 @@ MIGRATION_LOCK_KEY = 727_001
 # One model call must leave room inside a ~30 s tool call (hosts cut at 60 s; see CLAUDE.md).
 LLM_REQUEST_TIMEOUT_SECONDS = 45
 LLM_MAX_RETRIES = 2  # the SDK retries 429 and 5xx by itself
+
+# One shared HTTP client for every outbound call (sources, later others).
+HTTP_TIMEOUT_SECONDS = 10
+HTTP_CONNECT_TIMEOUT_SECONDS = 5

@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.scrub_fixtures import find_contact_data, scrub
+from scripts.scrub_fixtures import find_contact_data, scrub, scrub_json_values
 
 FIXTURES = Path(__file__).resolve().parents[2] / "fixtures"
 
@@ -61,3 +61,24 @@ def test_fixtures_have_no_contact_data() -> None:
         for p in files
     }
     assert {k: v for k, v in leaks.items() if v} == {}
+
+
+def test_scrub_json_values_touches_only_text_and_keeps_the_structure() -> None:
+    payload = {
+        "id": "job-1",
+        "published_at": 1795535105,  # a long number that is not a phone
+        "attributes": {
+            "description": "Write to jobs@acme.com",
+            "tags": ["call +54 9 11 5555-1234"],
+        },
+        "flag": True,
+        "nothing": None,
+    }
+
+    out = scrub_json_values(payload)
+
+    assert out["published_at"] == 1795535105
+    assert out["flag"] is True and out["nothing"] is None
+    assert "jobs@acme.com" not in out["attributes"]["description"]
+    assert "5555-1234" not in out["attributes"]["tags"][0]
+    assert list(out) == list(payload)  # same keys in the same order

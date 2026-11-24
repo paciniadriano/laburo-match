@@ -202,6 +202,7 @@ alembic/                 # migrations
 ### Sources
 - Google Jobs via SerpApi + Get on Board; any other posting is pasted into `analyze_posting` → legal, public, no scraping.
 - The server never fetches posting URLs; hosts with web tools may read a page and pass its text, except blocked sites, where the user pastes it → no SSRF surface, no crawler or headless browser; hosts already have web access.
+- Get on Board jobs always carry the source name and a link to their `public_url`, and that link is their apply route; our analysis is shown apart and labelled as an estimate; one page at a time, backing off on 429 → its terms require attribution and sending applicants to its page, keep job data as returned and allow 20 requests per 5 s per IP.
 - Remotive is not used → its terms (≤ 4 requests/day, no use to collect sign-ups) do not fit a multi-user server.
 - SerpApi has a hard monthly cap in code (200 of the 250 free searches); replans and fixture recording count against it → the quota is never exceeded by accident.
 - No per-user source settings: location and language come from the profile, categories from the planner, max age from the exclusions → no extra table and no tool to edit it.

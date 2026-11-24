@@ -11,6 +11,7 @@ record them elsewhere, then scrub the copy that goes into fixtures/.
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,}")
 # A run of digits with optional phone separators. Commas and slashes are not separators, so salaries
@@ -54,6 +55,21 @@ def scrub(text: str) -> str:
         text,
     )
     return PHONE_RUN.sub(lambda m: PHONE_PLACEHOLDER if _is_phone(m.group(0)) else m.group(0), text)
+
+
+def scrub_json_values(value: Any) -> Any:
+    """Scrub only the string values of parsed JSON.
+
+    Scrubbing the raw text of a JSON file could rewrite a long number that is not a phone
+    (a timestamp, an id) and break the file; walking the values cannot.
+    """
+    if isinstance(value, str):
+        return scrub(value)
+    if isinstance(value, list):
+        return [scrub_json_values(item) for item in value]
+    if isinstance(value, dict):
+        return {key: scrub_json_values(item) for key, item in value.items()}
+    return value
 
 
 def main(root: Path) -> None:

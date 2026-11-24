@@ -39,10 +39,10 @@
 - [x] Real call verified once with `scripts/llm_smoke.py`: strict output valid, `prompt_cache_key` accepted, 1025 of 1028 input tokens cached on the second call
 
 ## 2.5 Get on Board adapter
-- [ ] Current endpoints, fields and terms verified
-- [ ] Shared `httpx.AsyncClient` with timeouts; `sources/base.py` (protocol, `Job` model); `sources/getonbrd.py` (normalize; a source error becomes a warning)
-- [ ] `scripts/record_fixtures.py` (Get on Board only): one raw response, scrubbed, in `fixtures/sources/getonbrd/`; replayed in `DEMO_MODE`
-- [ ] Tests: respx with `assert_all_mocked=True`; normalization; source error → warning; PII test covers the new fixtures
+- [x] Current endpoints, fields and terms verified
+- [x] Shared `httpx.AsyncClient` with timeouts; `sources/base.py` (`JobSource` protocol, `SourceJob`), `sources/html_text.py` (HTML to plain text) and `sources/getonbrd.py` (normalize; one page at a time; backoff on 429; a source error becomes a warning); `sources/registry.py` picks recordings in demo mode
+- [x] `scripts/record_fixtures.py` (Get on Board only): one raw page (30 jobs), JSON string values scrubbed, in `fixtures/sources/getonbrd/page-1.json`; replayed in `DEMO_MODE` with dates moved to now
+- [x] Tests: respx with `assert_all_mocked=True`; normalization; source error → warning; PII test covers the new fixtures
 
 ## 2.6 `search_jobs` (basic)
 - [ ] The search runs these steps in order:
@@ -118,4 +118,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.4 done. Next: 2.5 Get on Board adapter (verify current endpoints first).
+Stopped at: 2.5 done. Next: 2.6 search_jobs (basic).

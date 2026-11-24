@@ -234,8 +234,12 @@ Runtime:
 | Source | Access | Parameters | Notes |
 |---|---|---|---|
 | Google Jobs (SerpApi) | API key, 250 searches/month and 50/hour on the free plan **[verify]**; hard cap in code (`SERPAPI_MONTHLY_CAP`) | queries (from the plan); location and language (from the profile); recency | Aggregates Bumeran, Computrabajo, LinkedIn, etc.; full descriptions; prefer the original portal link |
-| Get on Board | Public API, no key | keywords and categories (from the plan); remote/seniority filtered on our side | Main LATAM tech source |
+| Get on Board | Public API v0, no key: `GET /api/v0/categories/{category}/jobs?per_page=120&page=N&expand=["company"]` (and `/api/v0/search/jobs?query=` for keywords, phase 4) | categories (from the plan) in phase 2; keywords from phase 4; remote/seniority filtered on our side | Main LATAM tech source. `per_page` is capped at 120 (a category is ~290 jobs: 3 requests). Structured location fields `countries` and `remote_modality` (`fully_remote` / `remote_local` / `hybrid` / `no_remote`) are what hybrid/on-site needs in phase 4. See the terms below |
 | Pasted posting | `analyze_posting(text)` | — | See §11.6; private to the user |
+
+**Get on Board terms** (help article "How can I use Get on Board's public API to show jobs on my site?", binding text in Section 7.1 of its Terms; read in phase 2): free and no key, including inside an AI product, as long as: (1) "Get on Board" is shown as the source with a link to each job's `public_url`; (2) applicants apply on its page and we never collect applications, CVs or contact details for these jobs (the server never sends applications anyway); (3) job data is shown as the API returns it and our analysis is kept apart and labelled as ours; (4) jobs are refreshed at least every 24 h and removed within 24 h of the API no longer returning them; (5) stay under the rate limit (20 requests per 5 s per IP at the time of writing, not contractual; slow down on 429); (6) no charging job seekers, no selling the data, no model training, no profiling professionals. A personal assistant that fetches jobs at one user's request, only for that user, and builds no listing of its own is explicitly not affected: every search fetches live, `jobs` is a cache. Apply route for these jobs is `public_url`; none of the 15 spike postings carried an email. Phase 4 must mark jobs the API stops returning as closed; phase 8 must keep results per user's own fetch.
+
+`DEMO_MODE` replays one recorded page (`fixtures/sources/getonbrd/page-1.json`, 30 jobs, recorded with `scripts/record_fixtures.py`) and moves its dates forward so the newest job reads as published now.
 
 All adapters share one protocol, normalize to the same `Job` model, report per-source errors without failing the search, and replay fixtures in `DEMO_MODE`. There are no per-user source settings: parameters come from the profile and the plan, and a source is enabled when its key (if any) is configured.
 
@@ -556,7 +560,7 @@ Each phase starts by writing `specs/phase-N-<name>.md` in plan mode (goal, tasks
 - Host tool timeouts (Cursor, Claude Code, Claude Desktop, from Windows to WSL2/Docker) and real screening and draft latency → set `SCREEN_MAX_JOBS_PER_CALL` so a call stays under half the smallest timeout, `CLAIM_STALE_SECONDS`, `DRAFT_LEASE_SECONDS`, and whether drafts need bounded steps.
 - FastMCP with `stateless_http=True`: progress notifications reach the client; `ctx.session_id` behaviour.
 - SerpApi Google Jobs response fields in Argentina (`via`, description length, apply links); free plan limits.
-- Get on Board current API endpoints, fields and terms.
+- ~~Get on Board current API endpoints, fields and terms~~ (verified in phase 2, see §10).
 - GeoNames `cities500` file, size and license terms; `geo_places` load time.
 - Postgres major supported by Azure Flexible Server; Azure Container Apps free grant; Descope plan.
 
