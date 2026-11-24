@@ -90,13 +90,14 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 src/
   server.py              # create_mcp_server(): FastMCP app, lifespan (DB pools, httpx), auth, middleware
   routers/               # MCP contract only: tools.py, resources.py, prompts.py, ui.py (custom HTTP routes)
-  tools/                 # one file per tool: orchestration + DB reads/writes
-  app/                   # business logic: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
+  tools/                 # one file per tool, written as the ordered steps of that tool (see Code conventions)
+  resources/             # one file per MCP resource (phase 5)
+  app/                   # business logic by domain, with its own SQL: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
   sources/               # source adapters (google_jobs, getonbrd)
-  llm/                   # tasks.py (LLM_TASKS registry), runner.py (llm.run), messages.py, versioning.py, openai_backend.py, eval cache
-  models/                # Pydantic domain models and tool I/O schemas
-  db/                    # SQLAlchemy models, session, query helpers
-  prompts/               # MCP prompt texts + shared fragments + LLM prompt templates + few-shot examples + application_guidelines.md
+  llm/                   # tasks.py (LLM_TASKS registry), runner.py (llm.run), messages.py, versioning.py, openai_backend.py, prompts/ (one file per LLM task), eval cache
+  models/                # Pydantic contracts: LLM outputs, profile blocks, tool I/O schemas
+  db/                    # database infrastructure only: base, session, models/ (the tables), migrations, startup
+  prompts/               # host-facing only: MCP prompt texts, shared workflow fragments, application_guidelines.md (LLM task prompts live in llm/prompts/)
   config/                # settings.py (pydantic-settings), constants.py, data/{locations,levels,known_sites,role_families}.py
   core/                  # errors.py, logging.py, observability.py, usage.py (costs/limits), clock.py, security.py
   ui/upload.html         # CV upload page (plain HTML + vanilla JS)
@@ -119,6 +120,8 @@ alembic/                 # migrations
 - All code, comments, docs and commit messages in **English**. Server messages (errors, hints, disclaimers) are in English too; the host translates them.
 - **Readable over clever.** Small functions, explicit names, docstrings that explain the *why* of the current design (never the history of how we got there).
 - Three layers: `routers/` (MCP contract and docstrings for the LLM) → `tools/` (orchestration) → `app/` (logic and API clients). Routers never contain logic.
+- **A `tools/` file reads as the ordered steps of the tool** (validate → call named functions → shape the result). Any step longer than a few lines becomes a function in `app/<domain>/`, named for what it does, so the tool stays short and each piece is testable alone.
+- **SQL lives with its domain** (`app/jobs/store.py`, `app/search/runs.py`), never in `tools/` or `routers/`. `db/` holds no queries. `models/` are Pydantic contracts; `db/models/` are the tables. Helpers used by several domains go in `core/`, never imported sideways from another domain.
 - **Tool parameters use simple types**: `str`, `int`, `bool`, `list[str]`, `Literal[...]`, with defaults instead of `None`. No `Optional`, no unions. A contract test enforces it on input schemas.
 - Tools exchange **IDs** (`run_id`, `job_id`), not large text. Results are typed Pydantic models, compact, with a short `next_step_hint`.
 - Errors: domain exceptions mapped to `ToolError` with a stable `error_code` and an actionable message. Never return stack traces (`mask_error_details=True`).

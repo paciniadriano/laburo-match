@@ -119,4 +119,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.6 done. Next: 2.7 minimal eligibility (code).
+Stopped at: 2.6 done; architecture review applied (LLM prompts in `llm/prompts/`, SQL-with-domain and tool-recipe rules in `CLAUDE.md`, `normalize_name` in `core/text.py`, `search_jobs` split into `app/search/` functions). Next: 2.7 minimal eligibility (code).

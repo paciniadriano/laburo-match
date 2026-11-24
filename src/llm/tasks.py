@@ -10,8 +10,8 @@ from typing import Literal
 
 from pydantic import BaseModel
 
+from src.llm.prompts.job_extraction import SYSTEM_PROMPT as JOB_EXTRACTION_PROMPT
 from src.models.job_facts import JobFacts
-from src.prompts.job_extraction import SYSTEM_PROMPT as JOB_EXTRACTION_PROMPT
 
 
 @dataclass(frozen=True)

@@ -1,4 +1,4 @@
-"""Pure helpers for evidence items: years, normalized name and content hash."""
+"""Pure helpers for evidence items: years and content hash."""
 
 import hashlib
 import json
@@ -22,11 +22,6 @@ def union_years(periods: Sequence[Sequence[str]]) -> float:
             merged.append([start, end])
     days = sum((end - start).days for start, end in merged)
     return round(days / 365.25, 2)
-
-
-def normalize_name(name: str) -> str:
-    """Lowercase with collapsed spaces: the key used to compare names."""
-    return " ".join(name.lower().split())
 
 
 def content_hash(

@@ -1,6 +1,6 @@
 import pytest
 
-from src.app.profile.evidence import content_hash, normalize_name, union_years
+from src.app.profile.evidence import content_hash, union_years
 
 
 def test_overlapping_periods_are_counted_once():
@@ -24,11 +24,6 @@ def test_a_period_inside_another_adds_nothing():
 
 def test_no_periods_means_zero_years():
     assert union_years([]) == 0.0
-
-
-def test_normalize_name_ignores_case_and_extra_spaces():
-    assert normalize_name("  Next.JS  ") == "next.js"
-    assert normalize_name("Senior  Frontend   Engineer") == "senior frontend engineer"
 
 
 def _hash(

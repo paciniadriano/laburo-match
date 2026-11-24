@@ -8,7 +8,7 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.jobs.candidate import Candidate
-from src.app.profile.evidence import normalize_name
+from src.core.text import normalize_name
 from src.db.models import Job
 from src.sources.base import SourceJob
 

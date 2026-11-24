@@ -11,7 +11,8 @@ from typing import Any
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.app.profile.evidence import content_hash, normalize_name, union_years
+from src.app.profile.evidence import content_hash, union_years
+from src.core.text import normalize_name
 from src.db.models import Evidence, Profile, User
 from src.models.profile import Constraints, Exclusions, Preferences
 
