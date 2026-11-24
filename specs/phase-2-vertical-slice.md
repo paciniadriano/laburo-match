@@ -27,8 +27,8 @@
 - [x] Tests: migrations up/down/up; the composite FK rejects a mismatched `user_id`
 
 ## 2.3 Seeded profile
-- [ ] `scripts/seed_profile.py` (`make seed`), idempotent. It creates the `local` user and a complete sample profile (AR citizen, AR work authorization, remote, frontend/full-stack roles), plus evidence from `data/samples/sample_evidence.json`. Sample data only.
-- [ ] Test: two runs leave one user, one profile and the same evidence
+- [x] `scripts/seed_profile.py` (`make seed`), idempotent. It creates the `local` user and a complete sample profile (AR citizen, AR work authorization, remote, frontend/full-stack roles), plus evidence from `data/samples/sample_evidence.json` (language items are skipped until phase 3 adds CEFR columns). Sample data only.
+- [x] Test: two runs leave one user, one profile and the same evidence
 
 ## 2.4 LLM layer
 - [ ] `llm/tasks.py` (`LLM_TASKS`, only `job_extraction`; stable prefix first) and `llm/factory.py` (`ChatOpenAI`, Responses API, strict JSON schema, no `temperature`, effort `low`)
@@ -117,4 +117,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.2 done (`make` is still not installed in WSL: `sudo apt install make`). Next: 2.3 Seeded profile.
+Stopped at: 2.3 done. Next: 2.4 LLM layer (needs no key until the first real call).
