@@ -93,7 +93,7 @@ src/
   tools/                 # one file per tool: orchestration + DB reads/writes
   app/                   # business logic: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
   sources/               # source adapters (google_jobs, getonbrd)
-  llm/                   # tasks.py (LLM_TASKS registry), factory.py, fake.py, eval cache
+  llm/                   # tasks.py (LLM_TASKS registry), runner.py (llm.run), messages.py, versioning.py, openai_backend.py, eval cache
   models/                # Pydantic domain models and tool I/O schemas
   db/                    # SQLAlchemy models, session, query helpers
   prompts/               # MCP prompt texts + shared fragments + LLM prompt templates + few-shot examples + application_guidelines.md
@@ -182,6 +182,7 @@ alembic/                 # migrations
 - Office locations are normalized by the LLM (city, region, ISO country; a list when the posting names several offices) and resolved with a pinned GeoNames `cities500` snapshot; distance is computed in code; unresolvable locations → `doubtful` → global coverage without hand-made zone tables.
 - Hybrid/on-site whose office country is known and differs from the user's country (and is not a relocation country) is `not_eligible` even if the city is unknown; unknown country or unresolvable city in an acceptable country is `doubtful` → a border cannot be crossed daily, so waiting for a city adds nothing.
 - The user's home location is resolved once in setup and confirmed; if it is not in the dataset, the user names the nearest town → ambiguity (many "San Martín") and misses are handled once, not per job.
+- A restriction whose quotes the code cannot verify is downgraded to `inferred`, never deleted → it can only make the job `doubtful`: a fake quote must not discard a good job, and removing a real restriction must not promise an `eligible` one.
 - Eligibility verdicts have formal definitions: `not_eligible` needs an explicit, uncontradicted restriction the profile does not meet; `eligible` needs all explicit restrictions met plus an explicit compatible location signal; everything else is `doubtful` → testable and never overconfident.
 - Inferred restrictions (e.g. US-only benefits) can only make a job `doubtful`; contradictory explicit statements → `doubtful` with both quotes and a question for the recruiter → never discard on guesses.
 - Unknown profile fields (`None` = never asked, different from a confirmed empty value) can only produce `doubtful`; the questions are aggregated at the review stop → never discard on missing data, never ask job by job.
@@ -267,6 +268,7 @@ alembic/                 # migrations
 ### Quality and operations
 - Evaluation starts in phase 1 (idea validation) and grows every phase; datasets split into dev (tuning) and held-out test (milestones only) → no inflated results from tuning on the test set.
 - Spikes have numeric go/no-go thresholds and a plan B, written before running them → results cannot move the goalposts.
+- Every test gets a strict `FakeLLM` through an autouse fixture, and `llm.run` retries an invalid answer exactly once → no test can reach a real provider by accident, and a failing model cannot loop and burn money.
 - Tests use FakeLLM + respx fixtures; one fixture set shared by tests, evals and demo mode → $0 CI, deterministic results.
 - Tests run on a separate `laburo_test` database and abort on any other name → the real profile in the dev database is never touched.
 - Fixtures from real postings are scrubbed of contact data (script + test) → no third-party PII in a public repo.

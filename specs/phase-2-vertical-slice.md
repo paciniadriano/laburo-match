@@ -31,11 +31,12 @@
 - [x] Test: two runs leave one user, one profile and the same evidence
 
 ## 2.4 LLM layer
-- [ ] `llm/tasks.py` (`LLM_TASKS`, only `job_extraction`; stable prefix first) and `llm/factory.py` (`ChatOpenAI`, Responses API, strict JSON schema, no `temperature`, effort `low`)
-- [ ] `llm.run()`: one retry with the validation error; usage counted per run; automatic version hash (prompt + examples + schema + model + params)
-- [ ] `models/job_facts.py` (`JobFacts` subset used now)
-- [ ] `tests/fakes/fake_llm.py`: scripted per task; fails on unscripted calls; records calls
-- [ ] Tests: prompt assembly order; version hash changes with model/prompt/schema; FakeLLM rejects unscripted calls; quotes and `apply_email` kept only on an exact match
+- [x] `llm/tasks.py` (`LLM_TASKS`, only `job_extraction`; stable prefix first in `llm/messages.py`) and `llm/openai_backend.py` (`ChatOpenAI`, Responses API, strict JSON schema, no `temperature`, effort `low`)
+- [x] `llm.run()` (`llm/runner.py`): one retry with the validation error; usage summed over attempts and returned; automatic version hash (`llm/versioning.py`: prompt + examples + schema + model + params)
+- [x] `models/job_facts.py` (`JobFacts` subset used now, in the shape validated in spike 1.5) and `app/jobs/verify.py` (quote and email verification)
+- [x] `tests/fakes/fake_llm.py`: scripted per task; fails on unscripted calls; records calls
+- [x] Tests: prompt assembly order; version hash changes with model/prompt/schema; FakeLLM rejects unscripted calls; quotes and `apply_email` kept only on an exact match
+- [x] Real call verified once with `scripts/llm_smoke.py`: strict output valid, `prompt_cache_key` accepted, 1025 of 1028 input tokens cached on the second call
 
 ## 2.5 Get on Board adapter
 - [ ] Current endpoints, fields and terms verified
@@ -117,4 +118,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.3 done. Next: 2.4 LLM layer (needs no key until the first real call).
+Stopped at: 2.4 done. Next: 2.5 Get on Board adapter (verify current endpoints first).

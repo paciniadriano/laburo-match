@@ -165,14 +165,12 @@ All calls go through `llm.run(task, variable_input, ...)`. The registry declares
 | `draft_edit` | Draft + reviews | Revised draft | |
 | `judge_*` | Eval items | Binary criteria with one-line reasons | Eval only, `LLM_JUDGE_MODEL` |
 
-**`JobFacts`** (all fields with verbatim quotes in the original language; normalized values in English):
-- `language`, `is_job_posting`, title, seniority words, salary (only if stated), apply link.
-- `apply_email`: only if the posting states it, with its quote; code keeps it only if it appears verbatim in the job text and is a valid email address.
-- `restrictions[]`: each with `type` (country/region allowed, work authorization, citizenship, clearance, payroll, timezone/hours, contract type, modality, office location, office days), normalized value, `evidence_kind` ∈ `explicit` / `inferred`, quote, section.
-- `contradictions[]`: pairs of conflicting statements with both quotes.
-- `office_locations[]`: each `{city, region, country_code}` normalized from the text; empty if none, several when the posting names several offices.
-- `requirements[]`: each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote, plus `combinator` and `atoms[]` filled by the `requirement_split` task.
-- `flags`: agency signals, laundry-list signals.
+**`JobFacts`** (quotes verbatim in the original language; normalized values in English). Phase 2 ships the subset below; the rest arrives with its phase. Strict structured output needs every field, so "nothing found" is `[]` or `""`.
+- `is_job_posting`, `language` (ISO 639-1), `work_modality` ∈ `remote` / `hybrid` / `onsite` / `unknown`.
+- `apply_email`: `""` unless the posting states one; code keeps it only if it is a valid address that appears verbatim in the job text.
+- `restrictions[]` (shape validated in spike 1.5): each with `kind` ∈ `location` / `citizenship` / `work_authorization` / `payroll` / `timezone` / `visa` / `modality`, `evidence_kind` ∈ `explicit` / `inferred` / `contradictory`, `quotes[]`, `places[]` (as written), `place_scope` ∈ `countries` / `region` / `worldwide` / `not_applicable`. A contradiction is one restriction with `evidence_kind = contradictory` and both quotes. Code verifies the quotes: an unverifiable quote is dropped, and a restriction left without enough verified quotes (1 for `explicit`, 2 for `contradictory`) is downgraded to `inferred`, so it can only make a job `doubtful`.
+- `office_locations[]`: `"City, Country"` strings as written; empty if none. Phase 4 normalizes them to `{city, region, country_code}` for hybrid/on-site.
+- Title, apply link and salary come from the source adapter in phase 2. Later phases add to the task: `requirements[]` (each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote, plus `combinator` and `atoms[]` filled by the `requirement_split` task), seniority words, and `flags` (agency signals, laundry-list signals).
 
 Rules: Responses API (function calling with reasoning) **[verify]**; strict structured outputs (all fields required, nullable where optional) **[verify]**; the client ReAct loop uses `LLM_CLIENT_MODEL` through the same factory.
 

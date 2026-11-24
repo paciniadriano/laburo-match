@@ -1,6 +1,6 @@
 """Shared fixtures. The database ones always target the separate `_test` database."""
 
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Iterator
 
 import pytest
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
@@ -9,6 +9,8 @@ from sqlalchemy.pool import NullPool
 from src.config.settings import get_settings
 from src.db.migrate import upgrade_to_head
 from src.db.session import make_engine
+from src.llm import use_backend
+from tests.fakes.fake_llm import FakeLLM
 from tests.guards import ensure_test_database
 
 
@@ -50,3 +52,11 @@ async def session(engine: AsyncEngine, migrated_database: None) -> AsyncIterator
         async with factory() as session:
             yield session
         await outer.rollback()
+
+
+@pytest.fixture(autouse=True)
+def fake_llm() -> Iterator[FakeLLM]:
+    """Every test gets a strict FakeLLM, so no test can reach a real provider by accident."""
+    fake = FakeLLM()
+    with use_backend(fake):
+        yield fake

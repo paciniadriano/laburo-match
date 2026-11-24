@@ -37,3 +37,13 @@ class RunExpiredError(DomainError):
 
     def __init__(self) -> None:
         super().__init__("This run expired. Call search_jobs again to start a new one.")
+
+
+class LLMOutputError(DomainError):
+    error_code = "LLM_OUTPUT_INVALID"
+
+    def __init__(self, task_name: str) -> None:
+        super().__init__(
+            f"The model could not produce a valid answer for task {task_name!r}. "
+            "Try again; if it keeps failing, the item is reported as not processed."
+        )
