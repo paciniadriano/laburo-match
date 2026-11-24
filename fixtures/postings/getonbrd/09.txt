@@ -1,0 +1,55 @@
+JOB 09 | raw_index=147
+title: Fractional Full-Stack Engineer
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 3, 'type': 'modality'}}
+
+[description_headline]
+Required
+
+[description]
+- 2+ years of professional TypeScript experience
+- Strong React 18 and Next.js experience, including App Router, API routes, and server/client component boundaries
+- Working knowledge of Postgres and Supabase, including SQL, migrations, Row-Level Security, Auth, and Storage
+- Experience deploying and debugging applications on Vercel
+- Comfortable with Git, short-lived feature branches, pull requests, and feature flags
+- Able to diagnose third-party API integrations, including retries, failures, and rate limits
+- Writes and maintains unit/component tests and fixes failing tests rather than skipping them
+- Able to reproduce user-reported bugs, identify root causes, and ship focused fixes
+- Productive with AI coding tools such as Claude Code or Cursor, while critically reviewing their output
+- Strong written English and ability to work independently
+
+[projects]
+Valsnapp is looking for an experienced, independent full-stack engineer to help us improve and support a live proptech/fintech application. This is a long-term independent contractor engagement, not an employee position.
+What you’ll do
+- Triage and fix bugs across our application and marketing site
+- Take well-scoped tickets from investigation through deployment
+- Debug production issues, third-party APIs, and failed background jobs
+- Maintain dependencies, address security advisories, and keep CI green
+- Improve automated test coverage, including end-to-end testing
+- Work directly with our technical lead through GitHub and Linear
+
+[functions]
+- Triage and fix bugs across our application and marketing site
+- Take well-scoped tickets from investigation through deployment
+- Debug production issues, third-party APIs, and failed background jobs
+- Maintain dependencies, address security advisories, and keep CI green
+- Improve automated test coverage, including end-to-end testing
+- Work directly with our technical lead through GitHub and Linear
+You should be comfortable working independently in a fractional environment. We’ll provide clear priorities and technical review, but we expect you to investigate problems, communicate clearly, and move work forward without continuous supervision. This is a good fit for an experienced engineer who wants a stable, ongoing US startup client alongside other independent work. Please apply as an individual contractor, not through an agency.
+
+[desirable]
+- Stripe subscriptions and webhooks
+- Resend and/or Twilio
+- Playwright or similar end-to-end testing
+- PDF generation or document rendering
+- Google Cloud Run or other containerized services
+- Linear
+Nice to have
+- LLM API integration
+- SOC 2 awareness, audit logging, least-privilege access, and secure secrets handling
+
+[benefits]
+TypeScript / Next.js / Supabase — Remote, Latin America
+This is a long-term independent contractor engagement, not an employee position. Commitment: Minimum 10 hours/week, with the opportunity to increase to 20 hours/week
+Rate: $30–$40 USD/hour, depending on experience
+Location: Remote — Latin America
+Working style: Mostly asynchronous, with some overlap with US Pacific Time

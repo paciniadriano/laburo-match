@@ -1,0 +1,37 @@
+JOB 05 | raw_index=192
+title: Senior Full-Stack Engineer (Go + Next.JS + React Native)
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Qualifications and requirements
+
+[description]
+- 5+ years of full-stack experience; strong in Go (or deep TypeScript experience and proven ability to pick up Go fast).
+- Solid React/Next.js; React Native experience is a major plus.
+- Comfortable with webhook-driven / telephony / event-based systems — you've debugged async flows across service boundaries.
+- Able to read and navigate a large, unfamiliar codebase independently.
+- Strong SQL and comfort operating PostgreSQL in production.
+- English C1+ written and spoken.
+- Based in Latin America with at least 6 hours of overlap with US Pacific time.
+
+[projects]
+California Injury Group, APC (CIG Law) is a growing personal injury law firm in Los Angeles. We built our own all-in-one practice platform in-house — CRM and case management, a complete VoIP phone system (web softphone + iOS and Android apps), SMS/MMS, fax, email pipelines, e-signature, trust accounting, and AI-powered document processing. The entire firm runs on it every day.
+You'll be our first full-time engineer, working directly with the firm's owner — no PM layer, no ticket bureaucracy. The product has real daily users (our staff) who report bugs and request features constantly, so your work ships fast and gets used immediately.
+The stack: Go backend (REST API, PostgreSQL, Redis, webhook-driven telephony), Next.js/React/TypeScript web, React Native (Expo) with CallKit and VoIP push, Telnyx Call Control/WebRTC/SMS/fax, Microsoft 365 integrations, LLM pipelines (Anthropic), Linux/PM2/Caddy/S3 infrastructure.
+
+[functions]
+- Fix bugs at the root cause: triage reports from live users, trace them through the full stack, and fix the underlying problem — not the symptom.
+- Harden reliability: improve test coverage, observability, and error handling across a system built at high velocity.
+- Ship features: case-opening automation, workflow tooling, telephony improvements, AI-assisted document workflows.
+- Own production: deploys, database migrations, and occasional on-call for critical issues.
+
+[desirable]
+- Telnyx or Twilio programmable voice/messaging experience.
+- Expo native modules / config plugins.
+- Experience building LLM-powered features.
+- Legal, medical, or insurance domain exposure.
+
+[benefits]
+- USD $3,500–$5,500/month depending on experience (full-time contractor).
+- Fully remote, long-term position; direct hire with no agency in the middle.
+- Hiring process: application with screening questions → 30-minute video call → paid trial project (about one week, a real item from our backlog, paid pro-rated at your monthly rate) → offer.

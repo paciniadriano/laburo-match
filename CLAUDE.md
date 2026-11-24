@@ -5,7 +5,7 @@
 
 Capstone project for the Agentic AI Engineering course (MCP server track). The full system specification lives in `specs/system.md`; read it when you need details. This file holds the rules, conventions and decisions that apply to every session. Testing rules live in `.claude/rules/testing.md` and load when working on tests, evals or fixtures.
 
-**Current phase: 0 — Setup**
+**Current phase: 2 — Vertical slice**
 
 ---
 
@@ -40,7 +40,7 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 | Workflow engine | LangGraph functional API, **only** for the draft workflow; Postgres checkpointer (psycopg 3) |
 | Observability | Opik (optional at runtime: the server works without a key) |
 | HTTP | One shared `httpx.AsyncClient` with timeouts |
-| PDF | `pypdf` (BSD), parsed in a subprocess with a timeout. Never PyMuPDF (AGPL) |
+| PDF | `pdfminer.six` (MIT, `>=20251230`), parsed in a subprocess with a timeout. Never PyMuPDF (AGPL) |
 | Geography | GeoNames `cities500` snapshot (CC BY), loaded into Postgres |
 | Quality | ruff, pyright (basic), pre-commit, gitleaks |
 | Tests | pytest, pytest-asyncio, respx, real Postgres (separate test database) |
@@ -180,6 +180,7 @@ alembic/                 # migrations
 - Country, citizenships, work authorizations and modalities come from the profile; nothing is hardcoded → works for any country.
 - Remote, hybrid and on-site supported; hybrid/on-site require an office within the max commute distance from the user's confirmed home location, an extra accepted city, or a relocation country where the user can work → covers local markets too. It is the last, decoupled block of phase 4 → it can be postponed without touching the rest.
 - Office locations are normalized by the LLM (city, region, ISO country; a list when the posting names several offices) and resolved with a pinned GeoNames `cities500` snapshot; distance is computed in code; unresolvable locations → `doubtful` → global coverage without hand-made zone tables.
+- Hybrid/on-site whose office country is known and differs from the user's country (and is not a relocation country) is `not_eligible` even if the city is unknown; unknown country or unresolvable city in an acceptable country is `doubtful` → a border cannot be crossed daily, so waiting for a city adds nothing.
 - The user's home location is resolved once in setup and confirmed; if it is not in the dataset, the user names the nearest town → ambiguity (many "San Martín") and misses are handled once, not per job.
 - Eligibility verdicts have formal definitions: `not_eligible` needs an explicit, uncontradicted restriction the profile does not meet; `eligible` needs all explicit restrictions met plus an explicit compatible location signal; everything else is `doubtful` → testable and never overconfident.
 - Inferred restrictions (e.g. US-only benefits) can only make a job `doubtful`; contradictory explicit statements → `doubtful` with both quotes and a question for the recruiter → never discard on guesses.
@@ -209,14 +210,19 @@ alembic/                 # migrations
 - Client = ReAct agent; server = workflows where code controls the path and the LLM does bounded steps → predictable cost, testable, evaluable.
 - `search_jobs` (fast) + `screen_batch` (extract, eligibility, matching) instead of one tool per step → fewer agent turns, protected against host timeouts.
 - `screen_batch` is idempotent and safe under concurrency: jobs are claimed with `SELECT … FOR UPDATE SKIP LOCKED`, have per-job status and attempts, stale `processing` rows are reset, failures are retried once → partial failures never break a run.
+- Design for a 60 s host timeout: one tool call must finish in about 30 s; progress notifications are not relied on to extend it → measured: Inspector cuts at 60 s even with progress, Claude Code waited > 90 s; Claude Desktop (via `mcp-remote`) completed a 70 s call, Cursor not yet measured; on Azure a cold start adds 23–26 s to the first request after idle.
 - `screen_batch` processes a capped number of jobs per call, derived from measured host timeouts, and returns `remaining`; intermediate calls return progress only and the call that finishes returns the full shortlist → long work never exceeds host limits, fewer tokens, no partial lists shown.
 - Job-level facts are extracted once and cached; user-level comparison is code → one LLM call per job regardless of how many users see it.
 - Extraction marks each restriction as explicit, inferred or contradictory, with quotes → eligibility precedence rules need it.
 - Extraction: one job per LLM call, in parallel with a concurrency limit; batch size is a setting decided by an experiment → isolation and quality; tokens cost the same either way.
-- Matching: the LLM only **links** requirements to evidence IDs with a relation (`same` / `equivalent` / `related` / none); **code** computes the level from relation, evidence strength and years → semantics where LLMs are strong, arithmetic and thresholds where code is reliable; validated by a small experiment (0 false-`met`, most stable).
+- Matching: each requirement is split once per job into atoms (`all`/`any`); the LLM only **links** atoms to evidence IDs with `direct` or `related`, and only `direct` counts; **code** computes each atom's level from relation, evidence strength and years and combines the atoms → semantics where LLMs are strong, arithmetic, thresholds and "is the whole requirement covered" where code is reliable; validated in spike 1.7 on 58 requirements (0 false-`met`, 84–90 % level accuracy, 93–94 % identical across 3 runs), after judging coverage of compound requirements inside the prompt was either too cautious or too generous.
+- Evidence strength has three values: `detailed`, `mention` and `weak` (the CV says "basic", "coursework", "familiar with"); weak evidence never gives `met` → a vague claim must not become a verified skill. Qualifiers inside a requirement ("advanced") are not checked by code yet.
 - No text fast path and no skill taxonomy → exact-name matching ignores context and taxonomies fail silently; both produced false-`met` results in the experiment.
+- CV text comes from `pdfminer.six` as the only engine, with no pypdf fallback; `>=20251230` fixes two deserialization CVEs → pypdf returned the Canva CV in scrambled reading order with no quality signal (5 of 9 bullets under the wrong job), so there is no trigger for a fallback; pdfminer orders text by page position at the same speed.
+- CV text quality is checked in code before any LLM call (characters per page, bad-character ratio including `(cid:N)`, share of readable words); thresholds 100 / 5 % / 60 %, language-agnostic → scanned (`CV_SCANNED`) and garbled (`CV_UNREADABLE`) PDFs never reach extraction. Vision/OCR stays in the roadmap: 0 of 4 text-based CVs failed after the engine change.
+- Language levels taken from certificates are confirmed by the user, never assigned automatically, and entries are deduplicated per language → real CVs write "exam taken" or "course of CAE", which a certificate-to-CEFR table would overclaim.
 - Language, education, soft and condition requirements are resolved in code without the LLM → structured and comparable.
-- Requirement links are deduplicated across the run, chunked and cached per `(requirement_key, evidence_set_hash, version_hash)`; after an evidence change, a cached result is reused only if its level was `met` and every linked evidence item is unchanged and active → new evidence can upgrade a `partial`, removed evidence never leaves a stale `met`.
+- Atom links are deduplicated across the run, chunked and cached per `(atom_key, evidence_set_hash, version_hash)`; after an evidence change, a cached result is reused only if its level was `met` and every linked evidence item is unchanged and active → new evidence can upgrade a `partial`, removed evidence never leaves a stale `met`.
 - LLM cache versions are an automatic hash of prompt + examples + schema + model + model parameters → changing any of them invalidates the cache.
 - English as internal pivot language; quotes stay in the original language; drafts in the job's language → bilingual sources, consistent caching.
 - Search plan generated by the LLM, validated by code, replanned at most once, not cached → real Plan-and-Execute with one cheap call per search and fresh queries; the plan is stored in `search_runs` for audit.
@@ -252,6 +258,7 @@ alembic/                 # migrations
 - OpenAI only, through `ChatOpenAI` built in `src/llm/factory.py` → fewest dependencies; changing the model is an env var, changing the provider touches one file.
 - Responses API → GPT-6 models support function calling with reasoning only there.
 - Base model `gpt-6-luna` for every task, with per-task overrides in `LLM_TASKS` and a separate client model setting → Luna is built for extraction/classification at low cost; drafts or the ReAct client may need a larger model if an eval says so.
+- `llm.run` never sends `temperature` and uses reasoning effort `low` or `none` (never `minimal`) → `gpt-6-luna` rejects `temperature` and `minimal` with a 400; strict structured output, tool calling with reasoning and prompt caching (99% of a 3.2k-token prefix cached on the 2nd call) all work on the Responses API.
 - Judge = base model by default; a larger model (e.g. Sol) is a candidate, adopted only if a judge-agreement experiment on the dev split justifies it → no cost commitment before evidence.
 - No LiteLLM as a direct dependency; current Opik already excludes the compromised versions, and a uv constraint keeps them excluded as defense in depth → LiteLLM was compromised twice on PyPI in 2026.
 - Eval criteria are binary (pass/fail) rubrics; deterministic criteria reuse the same functions as the draft reviewer → consistent, actionable, no duplicated logic.

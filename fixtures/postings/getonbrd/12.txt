@@ -1,0 +1,49 @@
+JOB 12 | raw_index=114
+title: Back-end Software Engineer
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+What we’re looking for
+
+[description]
+For us, Senior isn’t a matter of years or of how many technologies you know. It’s how you work:
+- You understand the problem before you solve it. You ask what the business or user actually needs, and sometimes the right answer is not to build anything.
+- You choose the simplest solution that works.
+- To you, complexity is a cost.
+- You make trade-offs explicit and explain your reasoning.
+- You own outcomes, not tasks.
+- You surface risks early, say when a plan is no longer realistic, and see things through after release.
+- You build things others can maintain.
+- Your code is clear, tested and easy to evolve without you in the room.
+- You think about what can go wrong. Failing dependencies, bad data, security and performance are part of the design, not an afterthought.
+- You act like a consultant.
+- You adapt how you communicate to engineers, product and clients, and you bring recommendations, not only problems.
+- You make your team better. You give thoughtful reviews, share what you know and help others grow, without becoming a bottleneck.
+- You keep learning. You get productive in unfamiliar systems and know when to ask for help.
+- You use AI responsibly. It makes you faster, but you understand and validate everything before it ships.
+- 4+ years building backends with Python and Django (Django REST Framework a big plus)
+- Solid experience with PostgreSQL in production, including schema changes on live systems
+- Hands-on experience with background processing (Celery, RabbitMQ, Redis or similar)
+- You’ve built and maintained integrations with third-party APIs and know what happens when they fail
+- You care about testing, code quality and constructive code reviews
+- You’ve supported your own work in production: monitoring, debugging and incidents don’t scare you
+- You’re comfortable in a large codebase shared with many engineers
+- C1 English: you’ll work daily with a US-based team, in meetings and in writing
+
+[projects]
+At Zaelot, we are a progressive team-building company that specializes in developing scalable solutions for our enterprise clients. Our team consists of over 90 dedicated professionals across 9 different countries, fostering a culture of trust, innovation, and collaboration. We prioritize continuous learning and improvement, ensuring that our employees are equipped with the skills needed to thrive in a rapidly changing tech landscape. Joining us as a Senior QA Analyst means becoming part of a passionate group of analysts, designers, and engineers committed to delivering exceptional quality in our products.
+You’ll work on the core of that platform: a mature, large-scale Python/Django backend. Real people depend on it, so the job is more than writing code. You’ll solve real business problems, make sound technical decisions and own the outcome from the first conversation to a reliable release.
+
+[functions]
+- Build product features end to end on the backend, from the API to the database
+- Connect the platform with hotel suppliers, booking systems, payment providers and AI services, and keep those connections reliable when the other side isn’t
+- Design and run the background jobs that keep bookings, payments and data in sync
+- Evolve the database of a live product without interrupting the people who rely on it
+- Write short technical proposals before big changes, and review your teammates’ work
+- Take your turn on call, help resolve production issues, and leave things better than you found them
+
+[desirable]
+- Experience in the travel industry (hotels, airlines, cruises, booking systems)
+- Experience with payments or financial flows (Stripe, invoicing, payouts)
+- You’ve shipped AI-powered features to real users
+- Familiarity with Docker, Kubernetes or AWS

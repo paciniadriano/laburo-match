@@ -1,0 +1,513 @@
+{
+  "dataset": "matching",
+  "split": "dev",
+  "source": "spike 1.7: labels written before each set was run",
+  "profile_evidence": "data/samples/sample_evidence.json",
+  "postings": {
+    "01": "fixtures/postings/getonbrd/01.txt",
+    "04": "fixtures/postings/getonbrd/04.txt",
+    "09": "fixtures/postings/getonbrd/09.txt",
+    "11": "fixtures/postings/getonbrd/11.txt",
+    "14": "fixtures/postings/getonbrd/14.txt"
+  },
+  "excluded_from_thresholds": [
+    "p01-r04"
+  ],
+  "notes": [
+    "p04-r03 relabelled missing -> met (partial accepted) after seeing the v4 results; recorded as such"
+  ],
+  "items": [
+    {
+      "key": "p01-r01",
+      "job": "01",
+      "type": "education",
+      "required": "required",
+      "text": "University degree in Computer Science, Computer Engineering or a related field",
+      "education_rank": "bachelor",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p01-r02",
+      "job": "01",
+      "type": "language",
+      "required": "required",
+      "text": "Spanish (level not stated, B2 assumed)",
+      "cefr": "B2",
+      "language": "spanish",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p01-r03",
+      "job": "01",
+      "type": "experience",
+      "required": "required",
+      "text": "Minimum 4 years of proven experience as a software developer",
+      "min_years": 4,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ]
+      }
+    },
+    {
+      "key": "p01-r04",
+      "job": "01",
+      "type": "skill",
+      "required": "required",
+      "text": "Advanced proficiency in Node.js, JavaScript and React",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "strong": [
+          "E9",
+          "E17",
+          "E5"
+        ],
+        "doubt": "RULE CONFLICT: 'Advanced' cannot be assessed from the CV and Node.js is only a backend-for-frontend (2.7y); the links are right but the rules give `met` (they cannot see the qualifier)"
+      }
+    },
+    {
+      "key": "p01-r05",
+      "job": "01",
+      "type": "skill",
+      "required": "required",
+      "text": "Experience with both relational and NoSQL databases",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "related": [
+          "E10"
+        ]
+      }
+    },
+    {
+      "key": "p01-r06",
+      "job": "01",
+      "type": "skill",
+      "required": "required",
+      "text": "Use of data structures and algorithms to solve complex problems",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p01-r07",
+      "job": "01",
+      "type": "soft",
+      "required": "required",
+      "text": "Excellent communication skills to share knowledge and guide the team",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    },
+    {
+      "key": "p04-r01",
+      "job": "04",
+      "type": "experience",
+      "required": "required",
+      "text": "5+ years of professional software engineering experience",
+      "min_years": 5,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ]
+      }
+    },
+    {
+      "key": "p04-r02",
+      "job": "04",
+      "type": "skill",
+      "required": "required",
+      "text": "Strong knowledge of SQL",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E10"
+        ]
+      }
+    },
+    {
+      "key": "p04-r03",
+      "job": "04",
+      "type": "skill",
+      "required": "required",
+      "text": "Third-party API integrations",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E13"
+        ],
+        "doubt": "POST-RESULT RELABEL (v4 run): was `missing` by the mechanical effect of the related definition. Consuming GraphQL APIs is a defensible `met`; the CV does not say the APIs were third-party",
+        "also_ok": [
+          "partial"
+        ]
+      }
+    },
+    {
+      "key": "p04-r04",
+      "job": "04",
+      "type": "language",
+      "required": "required",
+      "text": "English, advanced level",
+      "cefr": "C1",
+      "language": "english",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p04-r05",
+      "job": "04",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "WebRTC, SIP, telecommunications, networking, AI systems or ISP software",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p04-r06",
+      "job": "04",
+      "type": "condition",
+      "required": "required",
+      "text": "At least five working hours of overlap with Pacific Time",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    },
+    {
+      "key": "p09-r01",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Professional TypeScript experience",
+      "min_years": 2,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E6"
+        ]
+      }
+    },
+    {
+      "key": "p09-r02",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Strong React 18 and Next.js experience, including App Router, API routes and server/client component boundaries",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E5",
+          "E7"
+        ],
+        "doubt": "React and Next.js are there; App Router, React 18 and server/client boundaries are not written in the CV"
+      }
+    },
+    {
+      "key": "p09-r03",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Working knowledge of Postgres and Supabase, including SQL, migrations, Row-Level Security, Auth and Storage",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "related": [
+          "E10"
+        ]
+      }
+    },
+    {
+      "key": "p09-r04",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Experience deploying and debugging applications on Vercel",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing",
+        "related": [
+          "E14"
+        ],
+        "doubt": "Deploys on AWS S3/CloudFront, not on Vercel: related platform, same activity"
+      }
+    },
+    {
+      "key": "p09-r05",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Writes and maintains unit and component tests",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E11"
+        ]
+      }
+    },
+    {
+      "key": "p09-r06",
+      "job": "09",
+      "type": "skill",
+      "required": "required",
+      "text": "Productive with AI coding tools such as Claude Code or Cursor",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p09-r07",
+      "job": "09",
+      "type": "language",
+      "required": "required",
+      "text": "English, advanced level",
+      "cefr": "C1",
+      "language": "english",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p09-r08",
+      "job": "09",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Playwright or similar end-to-end testing",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E12"
+        ]
+      }
+    },
+    {
+      "key": "p11-r01",
+      "job": "11",
+      "type": "skill",
+      "required": "required",
+      "text": "Contentful content modeling and space architecture",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p11-r02",
+      "job": "11",
+      "type": "skill",
+      "required": "required",
+      "text": "Content migration planning and execution",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing",
+        "doubt": "She led a code migration (CRA to Next.js); a model may link it as 'related' to content migration",
+        "also_ok": [
+          "partial"
+        ]
+      }
+    },
+    {
+      "key": "p11-r03",
+      "job": "11",
+      "type": "experience",
+      "required": "required",
+      "text": "Leading technical decisions and working directly with clients",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E19",
+          "E3"
+        ],
+        "doubt": "Led technical decisions (E19) and worked for clients as a freelancer (E3); no title of lead"
+      }
+    },
+    {
+      "key": "p11-r04",
+      "job": "11",
+      "type": "language",
+      "required": "required",
+      "text": "English, advanced level",
+      "cefr": "C1",
+      "language": "english",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p11-r05",
+      "job": "11",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "JavaScript or TypeScript for writing migration scripts",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E6",
+          "E17"
+        ]
+      }
+    },
+    {
+      "key": "p11-r06",
+      "job": "11",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Familiarity with Contentful GraphQL and Content Delivery APIs",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing",
+        "related": [
+          "E13"
+        ]
+      }
+    },
+    {
+      "key": "p14-r01",
+      "job": "14",
+      "type": "experience",
+      "required": "required",
+      "text": "At least 7 years of software development experience",
+      "min_years": 7,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ]
+      }
+    },
+    {
+      "key": "p14-r02",
+      "job": "14",
+      "type": "experience",
+      "required": "required",
+      "text": "Proven ability to lead technology teams or complex projects",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E19"
+        ],
+        "doubt": "Led a complex migration project and mentored 3 juniors, but never held a team-lead role"
+      }
+    },
+    {
+      "key": "p14-r03",
+      "job": "14",
+      "type": "skill",
+      "required": "required",
+      "text": "Solid knowledge of Python and AWS, with experience in distributed architectures",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "related": [
+          "E14",
+          "E23"
+        ]
+      }
+    },
+    {
+      "key": "p14-r04",
+      "job": "14",
+      "type": "skill",
+      "required": "required",
+      "text": "Experience developing and consuming APIs, working with microservices and event-driven patterns",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "related": [
+          "E9",
+          "E13"
+        ]
+      }
+    },
+    {
+      "key": "p14-r05",
+      "job": "14",
+      "type": "skill",
+      "required": "required",
+      "text": "Experience with CI/CD and continuous delivery practices",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "strong": [
+          "E27"
+        ],
+        "doubt": "RULE CONFLICT: only a vague 'familiar with CI/CD' (mention). §11.4 gives `met` for a mention with no years asked"
+      }
+    },
+    {
+      "key": "p14-r06",
+      "job": "14",
+      "type": "skill",
+      "required": "required",
+      "text": "Practical knowledge of React and TypeScript",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E5",
+          "E6"
+        ]
+      }
+    },
+    {
+      "key": "p14-r07",
+      "job": "14",
+      "type": "skill",
+      "required": "required",
+      "text": "Experience designing scalable and secure systems",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p14-r08",
+      "job": "14",
+      "type": "soft",
+      "required": "required",
+      "text": "Mentoring ability, effective communication and a collaborative attitude",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    }
+  ]
+}

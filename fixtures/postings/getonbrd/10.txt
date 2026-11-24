@@ -1,0 +1,45 @@
+JOB 10 | raw_index=97
+title: Technical Lead (Back-end Hubspot Integrations & Migrations)
+aggregator fields: remote_modality=fully_remote remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+What you bring
+
+[description]
+We expect you to bring strong backend engineering skills and proven leadership experience in delivery. You’ll work directly with our team on HubSpot API-driven solutions and take responsibility for end-to-end outcomes—from technical design through tested releases.
+- Years of backend development using Node.js, Python, PHP, or similar technologies.
+- Hands-on HubSpot experience with the API, integrations, or migration projects.
+- Leadership: experience leading developers and managing projects end to end (planning, execution, quality, and delivery).
+- Communication: fluent in English, with the ability to explain technical status in plain language.
+- Collaboration & time zone fit: Daily overlap with US Eastern business hours.
+- Quality mindset: you take testing seriously and ensure releases are safe, documented, and approved.
+We also value practical ownership and calm execution: you keep teams aligned, make progress visible, and handle technical trade-offs with clarity.
+
+[projects]
+In this role, we’re building and leading delivery for clients who need end-to-end HubSpot work: designing integration flows, migrating existing CRM data into HubSpot, and implementing custom backend functionality that connects HubSpot to their internal tools and external services. As the Technical Lead, we’ll rely on you to set the technical direction, ensure solid engineering practices, and coordinate a small development team so that migrations and integrations land on time, meet quality standards, and are communicated clearly to stakeholders.
+
+[functions]
+We’re looking for a HubSpot Technical Lead who can both lead and build. You’ll guide a small team of developers delivering HubSpot integrations, migrations, and custom builds while also working hands-on on backend services.
+- Lead a small team of developers working on HubSpot integrations, migrations, and custom builds.
+- Plan delivery: define work for each project, assign tasks, and confirm hours weekly.
+- Own scheduling and delivery momentum, keeping work on track and surfacing risks early.
+- Guarantee quality: run QA and ensure nothing goes live until it’s tested and signed off.
+- Write and review backend code, APIs, and data migration logic yourself.
+- Act as the technical point of contact for clients, translating progress into clear, plain-language updates.
+- Coordinate technical decisions across the team to keep implementations consistent and maintainable.
+
+[desirable]
+- Experience with data migration strategies for CRMs (validation, reconciliation, rollback planning, and post-migration checks).
+- Working knowledge of API design, authentication patterns, rate limits, and webhook/event-driven integrations.
+- Familiarity with CI/CD workflows, automated testing, and code review processes in a production environment.
+- Experience partnering with client stakeholders to translate requirements into engineering deliverables.
+
+[benefits]
+- Fully remote. Work from anywhere, with a team spread across several countries.
+- Paid time off. Company holidays and year-end closure.
+- Employee Assistance Program. Confidential financial and mental health support.
+- Real leadership. You lead the development team and own delivery from start to finish, instead of being one developer among many.
+- HubSpot Elite Solutions Partner. You work on enterprise HubSpot projects with complex integrations, migrations and custom builds.
+- International clients in North America, the UK and Europe, and Australia and Asia-Pacific.
+- Continuous learning support. Access to Udemy, plus financial grants for further education where relevant to your role.
+- Room to grow. A lean team where strong delivery is noticed and rewarded.

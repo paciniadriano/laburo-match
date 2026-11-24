@@ -82,6 +82,7 @@ Status: v1 design, before implementation. Decisions and their reasons live in `C
 | Claude Desktop | Local: `npx mcp-remote http://localhost:8000/mcp` (Node on Windows) or the `fastmcp-remote` bridge; remote: custom connector with the Azure URL | Skill uploaded as zip, or prompts from the "+" menu |
 
 - Windows hosts reach the server running in WSL2 or Docker through `localhost` (checked in spike 1.3).
+- Claude Desktop installed from the Microsoft Store keeps its config in `%LOCALAPPDATA%\Claude-Data\<package>\claude_desktop_config.json`, not in `%APPDATA%\Claude` (checked in spike 1.3); quit it from the tray before editing. Other people should use the remote custom connector (public HTTPS URL), not the local JSON route.
 - Links: the server never fetches posting URLs. If the user shares a link, the host reads the page with its own web tools (when it has them) and passes the text to `analyze_posting`; for blocked sites (`config/data/known_sites.py`: LinkedIn, Bumeran, ZonaJobs, Computrabajo, Indeed) the host asks the user to paste the text.
 
 ---
@@ -155,7 +156,8 @@ All calls go through `llm.run(task, variable_input, ...)`. The registry declares
 | `profile_build` | CV text | Evidence list + inferred fields (incl. language levels with source) | Once per CV |
 | `search_plan` | Profile summary, decisions summary, past run stats | `SearchPlan` (queries per source, excluded terms, notes) | Validated by code; ≤ 1 replan; not cached (stored in the run) |
 | `job_extraction` | One job | `JobFacts` (below) | Cached per job; 2 few-shots |
-| `requirement_linking` | Chunk of unique pending requirements + enumerated evidence | Per requirement: list of `{evidence_id, relation}` with relation ∈ `same` / `equivalent` / `related`; empty list if none | **No level**; cached per evidence set; one-line few-shots |
+| `requirement_split` | One job's requirements | Per requirement: `combinator` ∈ `all` / `any` and `atoms[]` (one thing each; qualifiers, purposes and years dropped; "A or B" → `any`) | Cached per job; one-line invented examples |
+| `requirement_linking` | Chunk of unique pending **atoms** + enumerated evidence (names and quotes only: no dates, years or strength) | Per atom: list of `{evidence_id, relation}` with relation ∈ `direct` / `related`; empty list if none | **No level**; cached per evidence set; one-line invented examples |
 | `profile_update_parse` | User's change in natural language | Structured profile diff | Preview only (stored in `profile_changes`); applied on confirmation |
 | `job_qa` | Question + job text | Status + answer + verbatim quote(s) | Only when extracted facts cannot answer |
 | `draft_write` | Job facts, linked evidence, guidelines, user style | Cover letter + CV bullets + screening answers | |
@@ -169,7 +171,7 @@ All calls go through `llm.run(task, variable_input, ...)`. The registry declares
 - `restrictions[]`: each with `type` (country/region allowed, work authorization, citizenship, clearance, payroll, timezone/hours, contract type, modality, office location, office days), normalized value, `evidence_kind` ∈ `explicit` / `inferred`, quote, section.
 - `contradictions[]`: pairs of conflicting statements with both quotes.
 - `office_locations[]`: each `{city, region, country_code}` normalized from the text; empty if none, several when the posting names several offices.
-- `requirements[]`: each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote.
+- `requirements[]`: each with `type` (skill, experience, language, education, credential, soft, condition), `required` ∈ `required` / `nice_to_have` / `unspecified`, `min_years`, normalized text, language + CEFR level when type is language, quote, plus `combinator` and `atoms[]` filled by the `requirement_split` task.
 - `flags`: agency signals, laundry-list signals.
 
 Rules: Responses API (function calling with reasoning) **[verify]**; strict structured outputs (all fields required, nullable where optional) **[verify]**; the client ReAct loop uses `LLM_CLIENT_MODEL` through the same factory.
@@ -186,7 +188,7 @@ Required for `is_complete`: **country, work authorizations, accepted modalities,
 | Hard constraints | country; citizenships (ISO list); work authorizations (countries/regions, e.g. `AR`, `EU`); security clearance (bool); visa sponsorship needed; accepted modalities (`remote`, `hybrid`, `onsite`); home location (geonameid, name, region, country, lat, lon, `source` = `exact` / `nearest_town`); `max_commute_km`; `extra_accepted_cities`; relocation countries; max office days per week; timezone (derived, editable); working-hours window; accepted contract types (`employee_local`, `contractor`, `eor`) with preference order; accepted payment currencies | Eligibility (filter) |
 | Soft preferences | target roles, seniority, preferred stack, avoided stack, company types, min salary (amount, currency, period), full/part time, notice period | Ranking, drafts |
 | Exclusions | companies, keywords, agencies flag, max job age | Prefilter |
-| Evidence | items with id + label (E1…), kind (experience/skill/project/education/certification/language/other), normalized name, years (computed from dates), dates, quote, strength (`detailed` / `mention`), source (`cv` / `user`), content hash, active flag; language items carry language, CEFR level and level source (`certificate` / `self_assessed` / `user_confirmed`) | Matching, drafts |
+| Evidence | items with id + label (E1…), kind (experience/skill/project/education/certification/language/other), normalized name, years (computed from dates), dates, quote, strength (`detailed` = used in a job bullet, dated by the jobs that use it / `mention` = only listed / `weak` = the CV itself qualifies it as basic or vague: "basic", "coursework", "familiar with"), source (`cv` / `user`), content hash, active flag; language items carry language, CEFR level and level source (`certificate` / `self_assessed` / `user_confirmed`) | Matching, drafts |
 | Writing style | tone (`formal`/`neutral`/`casual`), length (`short`/`standard`), phrases to avoid, signature, notes (≤ 500 chars) | Drafts |
 | Meta | `schema_version`, `profile_version`, `is_complete` | |
 
@@ -215,7 +217,7 @@ UUID primary keys exposed to the LLM; every private table has `user_id NOT NULL`
 | `geo_places` | geonameid, name, names TEXT[] (normalized name + alternate names), country_code, admin1_code, admin1_name, lat, lon, population | Shared reference data from the pinned GeoNames snapshot; GIN index on `names`, index on `country_code` |
 | `search_runs` | id, user_id, kind (`search`/`single`), plan JSONB, status, created_at, expires_at, funnel counters (in, after_prefilter, over_cap, extracted, extraction cache hits, linking cache hits, llm calls, tokens, cached tokens, cost) | `single` runs: `analyze_posting` and re-screens of one job |
 | `run_jobs` | run_id, job_id, user_id, position (run-scoped display number), status (`pending`/`processing`/`done`/`failed`), attempts, claimed_at, last_error, prefilter_reason, eligibility, eligibility_reason, eligibility_quotes, recruiter_questions JSONB, profile_questions JSONB, distance_km, fit_band, gaps JSONB, flags JSONB, screening_hash, screened_at | PK (run_id, job_id); composite FK (run_id, user_id) → `search_runs` keeps `user_id` consistent; index (user_id, job_id, screened_at); claimed with `FOR UPDATE SKIP LOCKED` |
-| `requirement_links` | user_id, requirement_key, evidence_set_hash, version_hash, links JSONB (`evidence_id`, `relation`, `evidence_content_hash`), level, created_at | Linking cache (§11.4, §14) |
+| `atom_links` | user_id, atom_key, evidence_set_hash, version_hash, links JSONB (`evidence_id`, `relation`, `evidence_content_hash`), level, created_at | Linking cache (§11.4, §14) |
 | `decisions` | user_id, job_id (canonical), status (`saved`/`discarded`/`applied`/`interviewing`/`rejected`/`offer`), reason, reason_tags, eligibility_wrong, updated_at | One row per (user, job); idempotent upsert |
 | `drafts` | id, user_id, job_id (canonical), version, status (`running`/`done`/`failed`), lease_until, attempt, content JSONB, reviews JSONB, created_at, updated_at | One row per (user, job): the row is the lease. Each generation increments `version` and runs on `thread_id = {draft_id}:{version}`; when it ends, the result is stored in `content` and the LangGraph thread is deleted |
 | `usage_events` | user_id, kind (`tool_call`/`llm`/`serpapi`), task, units, cost_usd, cached_tokens, created_at | Quotas, SerpApi monthly cap, ceilings, cost display |
@@ -285,7 +287,7 @@ Idempotent and safe under concurrency. Processes up to `SCREEN_MAX_JOBS_PER_CALL
 - **Work authorization, citizenship, clearance**: payroll and citizenship phrases are mapped to requirements — "W2 only", "US SSN" → US work authorization; "US citizens only" → US citizenship; "security clearance" → US citizenship + clearance — and compared with the profile.
 - **Timezone / hours**: phrases ("US hours", "EST overlap", "core hours 9–1 ET") → UTC windows (table) compared with the user's working window; unknown window → profile question; DST borderline → `doubtful`.
 - **Contract type and payment currency**: compared with accepted types/currencies (unknown → no effect on the verdict; shown as a badge).
-- **Modality**: remote → location/authorization checks. Hybrid/on-site → each office in `office_locations` is resolved (LLM-normalized city/region/country → `geo_places`) and the job is accepted if any office is within `max_commute_km` of the user's home location, in `extra_accepted_cities`, or in a relocation country where the user can work; office days ≤ the user's max (unknown max → profile question). Unresolvable or ambiguous offices → `doubtful`. Distances from a `nearest_town` home location are marked approximate.
+- **Modality**: remote → location/authorization checks. Hybrid/on-site → each office in `office_locations` is resolved (LLM-normalized city/region/country → `geo_places`) and the job is accepted if any office is within `max_commute_km` of the user's home location, in `extra_accepted_cities`, or in a relocation country where the user can work; office days ≤ the user's max (unknown max → profile question). An office whose **country** is known (the posting or the source's structured country) and is neither the user's country nor a relocation country where they can work → `not_eligible`, even when the city is unknown; with a known city the distance rule above applies. Unknown country, or an ambiguous or unresolvable city inside an acceptable country → `doubtful`. Distances from a `nearest_town` home location are marked approximate.
 - Outputs always say: "Eligibility is an estimate based on the posting text, not legal advice; confirm with the employer."
 
 ### 11.4 Matching
@@ -295,28 +297,37 @@ The LLM **links**; code **decides**.
 | Step | Type | What happens |
 |---|---|---|
 | Code-only types | Code | `language`: compare CEFR levels per language (equal or higher → `met`; lower → `partial` with gap size; absent → `missing`; self-assessed noted). `education`: ordinal scale; "or equivalent experience" counts as met with sufficient years. `soft` → `not_assessable` (hidden by default, never scored). `condition` → shown separately, never scored |
-| Key | Code | `requirement_key` = normalized requirement text + type + min_years |
-| Cache | Code | Exact lookup by `(user, requirement_key, evidence_set_hash, version_hash)`. On a miss, the latest row for `(user, requirement_key, version_hash)` is reused only if its stored level was `met` and every linked evidence item is unchanged (same content hash) and still active; everything else is re-linked |
-| Linking | LLM | Remaining requirements, **deduplicated across the run**, chunked, in parallel: per requirement, the related evidence IDs with relation `same` / `equivalent` / `related` (or none). The LLM never decides levels or compares years |
+| Split | LLM (job level) | Each requirement of a job becomes `{combinator, atoms[]}` once, cached with the job; the same for every user. Linking only ever sees atoms |
+| Key | Code | `atom_key` = normalized atom text + min_years (the requirement's); `requirement_key` = normalized requirement text + type + min_years identifies the requirement inside a job |
+| Cache | Code | Exact lookup by `(user, atom_key, evidence_set_hash, version_hash)`. On a miss, the latest row for `(user, atom_key, version_hash)` is reused only if its stored level was `met` and every linked evidence item is unchanged (same content hash) and still active; everything else is re-linked |
+| Linking | LLM | Remaining atoms, **deduplicated across the run**, chunked, in parallel: per atom, the evidence IDs with relation `direct` (the evidence is that thing under any name) or `related` (similar but different; only an argument hint), or none. The LLM never decides levels, compares years or judges whether a compound requirement is covered |
 | Validation | Code | Evidence IDs must exist; unknown IDs are dropped and flagged |
-| Level | Code | Rules below |
+| Level | Code | Per atom, then per requirement: rules below |
 | Store | Code | Cache row with links, level and the content hash of each linked evidence item |
 
-**Level rules** (code). Years are the union of the date intervals of the linked `same`/`equivalent` detailed evidence, so overlapping experiences are not counted twice.
+**Level rules** (code). Years are the union of the date intervals of the `direct` detailed evidence linked to the atom, so overlapping experiences are not counted twice.
 
-| Links | Condition | Level |
+| Links of the atom | Condition | Level |
 |---|---|---|
-| `same`/`equivalent` with detailed evidence | Years ≥ `min_years`, or no years requested | `met` |
-| `same`/`equivalent` with detailed evidence | Years < `min_years` | `partial` with `gap_size` (`small` ≤ 50% short, else `large`) and an argument hint |
-| `same`/`equivalent`, mention-only evidence | Requirement asks for years | `partial` ("mentioned without detail") |
-| `same`/`equivalent`, mention-only evidence | No years requested | `met` |
-| Only `related` | — | `partial` with an argument hint |
+| `direct`, detailed evidence | Years ≥ `min_years`, or no years requested | `met` |
+| `direct`, detailed evidence | Years < `min_years` | `partial` with `gap_size` (`small` ≤ 50% short, else `large`) and an argument hint |
+| `direct`, mention-only evidence | Requirement asks for years | `partial` ("mentioned without detail") |
+| `direct`, mention-only evidence | No years requested | `met` |
+| `direct`, only `weak` evidence | — | `partial` ("weak mention"), never `met` |
+| Only `related` | — | `missing`; the related evidence is shown as the argument hint ("you have X; argue it for Y") |
 | None | — | `missing` |
+
+**Combining atoms** (code, per requirement): `all` → `met` only if every atom is `met`; `missing` if no atom has any coverage; otherwise `partial`. `any` → the best atom wins.
 
 - **Fit band**: required requirements weigh more; any `missing` required requirement caps the band at Medium; `unspecified` weighs in between.
 - **Seniority fit** (code): job seniority words + required years vs user seniority and years → under / fit / over.
 - Each card: one-line pro/con, badges (payment currency, contract type, overlap, distance for hybrid/on-site, age, flags: agency, possible ghost job, reposted, laundry-list), best apply route (company/ATS link → `apply_email` → aggregator link).
 - **Profile corrections**: new or edited evidence → new `evidence_set_hash` → only affected requirements re-linked (one batched call) → `update_profile` returns the fit delta for the latest search run ("job 2: Medium → High"). The computation fills the linking cache, so the later lazy re-screen of each job (staleness rule) costs no LLM calls.
+
+**To validate and tune in phase 5** (open from spike 1.7; measure on the larger eval set with dev/test split, then decide):
+- **Requirement qualifiers** ("advanced", "strong", "solid"): `requirement_split` also stores the qualifier per requirement; the level still comes only from the evidence, and the card shows the qualifier next to the evidence ("the posting asks for advanced Node.js; your CV shows 2.7 years detailed: confirm it or prepare to argue it"). Whether required + "advanced/expert" should lower the level to `partial` is decided with data, not now.
+- **Implied relations** (`SQL` ← `PostgreSQL`, judged `related` in every run of spike 1.7): add one-line invented examples to `requirement_linking` ("SQL" ← "MySQL": `direct`), never a general "A implies B" rule (it would turn Next.js into Node.js backend experience). Re-validate on postings not used for tuning.
+- Fix `LINKING_CHUNK_SIZE` with the experiment {1, 15, all} (spike 1.7 used 15 only), and measure the stability of `requirement_split` across calls.
 
 ### 11.5 `ask_posting(job_id, question)`
 1. If the question maps to an extracted field (salary, modality, office, stack, contract, timezone, location, requirements, apply email), answer from stored facts with their stored quotes (0 LLM calls).
@@ -424,7 +435,7 @@ Both prompts are built from shared fragments in `src/prompts/fragments.py`; `get
 | Cache | Key | Invalidation |
 |---|---|---|
 | Job extraction | job_id + version_hash + content_hash | Prompt/examples/schema/model/params change, or job content changes |
-| Requirement links | user + requirement_key + evidence_set_hash + version_hash | Evidence change → new evidence_set_hash; a previous result is reused only if its level was `met` and all linked evidence is unchanged and active, the rest re-linked; model/prompt change → new version_hash |
+| Atom links | user + atom_key + evidence_set_hash + version_hash | Evidence change → new evidence_set_hash; a previous result is reused only if its level was `met` and all linked evidence is unchanged and active, the rest re-linked; model/prompt change → new version_hash |
 | Provider prompt caching | Stable prefix per task (+ `prompt_cache_key`) | Automatic (≥ 1,024 tokens on OpenAI) **[verify]** |
 | Eval LLM cache | task + version_hash + model + messages + params | Eval runner only; `--no-cache` for design experiments |
 
@@ -515,7 +526,7 @@ Fakes: `FakeLLM` (scripted per task + schema, fails on unscripted calls, records
 
 - **CI** (every PR): ruff, pyright, gitleaks, pip-audit, unit/contract/integration/e2e tests with a Postgres service (same major as Azure), on Python 3.14 (from `.python-version`). No secrets.
 - **CD** (push to `main`, after CI): build image → push to GHCR (tag = commit SHA) → deploy to Azure Container Apps with `azure/container-apps-deploy-action` and OIDC → at container start, under one advisory lock: migrations, checkpointer setup, GeoNames load → `/health` smoke test.
-- **Azure**: Container Apps (scale to zero; HTTPS ingress; secrets as Container Apps secrets; `stateless_http=True`); managed Postgres (Azure Flexible Server if credits allow, else Neon direct endpoint) with TLS and firewall; budget alert. Document in `docs/azure-deployment.md`.
+- **Azure**: Container Apps (scale to zero; HTTPS ingress; secrets as Container Apps secrets; `stateless_http=True`; cold start measured at 23–26 s in spike 1.8, so a request that wakes the app can stack ~25 s on a tool call: decide in phase 8 between `min-replicas 1` during demos and evaluation windows, or a smaller image); managed Postgres (Azure Flexible Server if credits allow, else Neon direct endpoint) with TLS and firewall; budget alert. Document in `docs/azure-deployment.md`.
 
 ---
 
@@ -530,7 +541,7 @@ Each phase starts by writing `specs/phase-N-<name>.md` in plan mode (goal, tasks
 | 2. Vertical slice | Structure, settings, `LLM_TASKS`, core tables, Get on Board only, seeded profile, `search_jobs` → `screen_batch` (basic, with claims) → shortlist in the client, FakeLLM tests, test DB fixtures, CI, eligibility eval harness (dev/test) | End-to-end flow works and is tested | 15 |
 | 3. Profile | `/upload`, `build_profile`, `update_profile` two-step with `profile_changes`, `setup_profile`, CEFR mapping, writing style, known vs unknown fields, `is_complete` | Onboarding works end to end | 9 |
 | 4. Search & eligibility | SerpApi (with monthly cap), cross-portal dedupe + canonical resolution, profile-aware prefilters (role families, cap ordering), location/timezone/payroll tables, eligibility definitions and precedence, profile questions, planner + replan, freshness, agency/ghost flags. **Last, decoupled block**: hybrid/on-site (GeoNames snapshot in `geo_places`, home location confirmation, `office_locations`, distance) | Full search with audited discards; eligibility eval on dev split | 14 |
-| 5. Matching | Linking + level rules, code-only types, deduped chunked linking, caches with evidence_set_hash and version hash (`met`-only reuse), bands, seniority, gaps aggregation, targeted rematch, staleness and lazy re-screen, `explain_match`, `ask_posting` statuses, `analyze_posting` (pasted text, private jobs); `review_jobs`, instructions, `get_workflow_instructions`, skill | Review flow complete in client and Claude Code; matching eval on dev split | 12 |
+| 5. Matching | Linking + level rules (incl. the open points listed at the end of §11.4), code-only types, deduped chunked linking, caches with evidence_set_hash and version hash (`met`-only reuse), bands, seniority, gaps aggregation, targeted rematch, staleness and lazy re-screen, `explain_match`, `ask_posting` statuses, `analyze_posting` (pasted text, private jobs); `review_jobs`, instructions, `get_workflow_instructions`, skill | Review flow complete in client and Claude Code; matching eval on dev split | 12 |
 | 6. Decisions & drafts | `record_decision`, `list_jobs` (incl. `filtered` and `stale`), exclusions, LangGraph draft workflow + checkpointer + lease + resume + thread cleanup, `drafts`, guidelines, screening answers, safety net, gaps as arguments | Full flow including approved draft | 12 |
 | 7. Complete evals & observability | Complete datasets, binary rubrics, judge (+ judge-agreement experiment), eval cache, budget guard, experiments, test-split run, Opik complete, README figures | Eval report and figures | 10 |
 | 8. Production | Descope fail-closed, usage limits, Azure (Postgres, secrets, CD with OIDC, startup lock), `delete_my_data` (incl. pasted jobs and LangGraph threads), privacy, Host/Origin guard, Claude Desktop remote connector; optional SBOM/image scan | Live demo URL with auth | 10 |
@@ -560,7 +571,8 @@ Each phase starts by writing `specs/phase-N-<name>.md` in plan mode (goal, tasks
 - **Position**: run-scoped display number in a shortlist ("the 3"); tools never accept it.
 - **Card**: compact representation of a job in a shortlist.
 - **Evidence / evidence ID**: a labelled item (E1…) from the CV or the user that can support a requirement; the LLM refers to evidence only by ID.
-- **Link**: the LLM's statement that an evidence item relates to a requirement (`same` / `equivalent` / `related`); levels are computed by code.
+- **Link**: the LLM's statement that an evidence item relates to an atom of a requirement (`direct` / `related`); levels are computed by code.
+- **Atom**: one thing a requirement asks for (a technology, tool, practice or kind of experience); requirements are split into atoms once per job.
 - **Explicit / inferred restriction**: stated in the posting vs deduced from indirect signals.
 - **Profile question**: a question to the user when a restriction depends on a profile field they have not answered yet.
 - **Filtered / discarded**: discarded automatically by prefilters or eligibility / discarded by the user.

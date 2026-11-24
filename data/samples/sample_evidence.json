@@ -1,0 +1,355 @@
+{
+  "profile": "Martina Sosa (fictional), data/samples/sample_cv.pdf",
+  "as_of": "2026-11-22",
+  "education_rank": "bachelor",
+  "evidence": [
+    {
+      "id": "E1",
+      "kind": "experience",
+      "name": "Senior Frontend Engineer at Nimbus Logistics",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ],
+      "note": "Mar 2022 - present; customer portal, shared component library used by 4 teams"
+    },
+    {
+      "id": "E2",
+      "kind": "experience",
+      "name": "Frontend Developer at Pampa Fintech",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ],
+      "note": "Jun 2019 - Feb 2022; onboarding and payments flows"
+    },
+    {
+      "id": "E3",
+      "kind": "experience",
+      "name": "Freelance Web Developer",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2018-01-01",
+          "2021-01-01"
+        ]
+      ],
+      "note": "Jan 2018 - Dec 2020; websites for small businesses"
+    },
+    {
+      "id": "E4",
+      "kind": "experience",
+      "name": "Junior Developer at Estudio Delta",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2016-03-01",
+          "2019-06-01"
+        ]
+      ],
+      "note": "Mar 2016 - May 2019; internal tools, bug fixes"
+    },
+    {
+      "id": "E5",
+      "kind": "skill",
+      "name": "React",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ],
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ],
+      "note": "component library, portal, onboarding and payments flows"
+    },
+    {
+      "id": "E6",
+      "kind": "skill",
+      "name": "TypeScript",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ],
+      "note": "used with React in the component library"
+    },
+    {
+      "id": "E7",
+      "kind": "skill",
+      "name": "Next.js",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ],
+      "note": "led the migration from Create React App to Next.js, -40% initial load"
+    },
+    {
+      "id": "E8",
+      "kind": "skill",
+      "name": "Redux",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ]
+    },
+    {
+      "id": "E9",
+      "kind": "skill",
+      "name": "Node.js (Express)",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ],
+      "note": "backend-for-frontend with PostgreSQL"
+    },
+    {
+      "id": "E10",
+      "kind": "skill",
+      "name": "PostgreSQL",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ],
+      "note": "database of the Node.js backend-for-frontend"
+    },
+    {
+      "id": "E11",
+      "kind": "skill",
+      "name": "Unit and component testing (Jest, React Testing Library)",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ],
+      "note": "raised unit test coverage"
+    },
+    {
+      "id": "E12",
+      "kind": "skill",
+      "name": "Playwright end-to-end testing",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ]
+    },
+    {
+      "id": "E13",
+      "kind": "skill",
+      "name": "GraphQL APIs with Apollo Client",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ],
+      "note": "consumed GraphQL APIs"
+    },
+    {
+      "id": "E14",
+      "kind": "skill",
+      "name": "AWS S3 and CloudFront",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2019-06-01",
+          "2022-03-01"
+        ]
+      ],
+      "note": "deployed static assets"
+    },
+    {
+      "id": "E15",
+      "kind": "skill",
+      "name": "Vue.js",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2018-01-01",
+          "2021-01-01"
+        ]
+      ],
+      "note": "two single-page apps"
+    },
+    {
+      "id": "E16",
+      "kind": "skill",
+      "name": "WordPress and PHP",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2018-01-01",
+          "2021-01-01"
+        ]
+      ]
+    },
+    {
+      "id": "E17",
+      "kind": "skill",
+      "name": "JavaScript, jQuery, HTML and CSS",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2016-03-01",
+          "2019-06-01"
+        ],
+        [
+          "2018-01-01",
+          "2021-01-01"
+        ]
+      ]
+    },
+    {
+      "id": "E18",
+      "kind": "skill",
+      "name": "ASP.NET MVC",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2016-03-01",
+          "2019-06-01"
+        ]
+      ],
+      "note": "bug fixes in an existing application"
+    },
+    {
+      "id": "E19",
+      "kind": "other",
+      "name": "Led the migration of the customer portal and made technical decisions",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ]
+    },
+    {
+      "id": "E20",
+      "kind": "other",
+      "name": "Mentored 3 junior developers and ran weekly code reviews",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2022-03-01",
+          "2026-11-22"
+        ]
+      ]
+    },
+    {
+      "id": "E21",
+      "kind": "skill",
+      "name": "Git",
+      "strength": "mention",
+      "note": "listed under Tools"
+    },
+    {
+      "id": "E22",
+      "kind": "skill",
+      "name": "Docker",
+      "strength": "weak",
+      "note": "written as 'Docker (basic)'"
+    },
+    {
+      "id": "E23",
+      "kind": "skill",
+      "name": "Python",
+      "strength": "weak",
+      "note": "written as 'Python (coursework)'"
+    },
+    {
+      "id": "E24",
+      "kind": "skill",
+      "name": "Figma",
+      "strength": "mention"
+    },
+    {
+      "id": "E25",
+      "kind": "skill",
+      "name": "Tailwind CSS",
+      "strength": "mention"
+    },
+    {
+      "id": "E26",
+      "kind": "skill",
+      "name": "Cloud platforms",
+      "strength": "weak",
+      "note": "vague: 'Experience with cloud platforms' in the summary"
+    },
+    {
+      "id": "E27",
+      "kind": "skill",
+      "name": "CI/CD",
+      "strength": "weak",
+      "note": "vague: 'familiar with CI/CD' in the summary"
+    },
+    {
+      "id": "E28",
+      "kind": "education",
+      "name": "Systems Engineering, Universidad Tecnologica Nacional",
+      "strength": "detailed",
+      "periods": [
+        [
+          "2011-03-01",
+          "2018-01-01"
+        ]
+      ],
+      "note": "bachelor"
+    },
+    {
+      "id": "E29",
+      "kind": "language",
+      "name": "Spanish",
+      "strength": "detailed",
+      "cefr": "native",
+      "level_source": "native"
+    },
+    {
+      "id": "E30",
+      "kind": "language",
+      "name": "English",
+      "strength": "detailed",
+      "note": "Cambridge C1 Advanced, 2018",
+      "cefr": "C1",
+      "level_source": "certificate"
+    },
+    {
+      "id": "E31",
+      "kind": "language",
+      "name": "Portuguese",
+      "strength": "detailed",
+      "note": "written as 'intermediate'",
+      "cefr": "B1",
+      "level_source": "self_assessed"
+    }
+  ]
+}

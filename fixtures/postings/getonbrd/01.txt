@@ -1,0 +1,47 @@
+JOB 01 | raw_index=89
+title: Desarrollador Full-Stack (USA)
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=es modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+Requerimientos del cargo
+
+[description]
+- Título universitario en Ciencias de la Computación, Ingeniería en Computación o afines.
+- Debes vivir en cualquier estado de USA (excluyente)
+- Español
+- Mínimo 4 años de experiencia comprobada como desarrollador, con historial de proyectos exitosos y entrega de soluciones de calidad.
+- Dominio avanzado en desarrollo con Node.js, JavaScript y ReactJS, así como tecnologías relacionadas, asegurando actualización constante con herramientas modernas.
+- Profundo conocimiento de buenas prácticas de programación y diseño de software para crear soluciones eficientes, escalables y fáciles de mantener.
+- Experiencia en bases de datos tanto relacionales como NoSQL, con capacidad para optimizar el manejo y arquitectura de datos.
+- Sólidas habilidades para utilizar estructuras de datos y algoritmos en la resolución de problemas complejos y optimización de código.
+- Capacidad analítica para interpretar requerimientos técnicos y de negocio, proponiendo soluciones prácticas y fundamentadas que aporten valor real.
+- Precisión en la estimación y planificación de tiempos de desarrollo, facilitando la correcta ejecución de proyectos.
+- Experiencia trabajando en equipos multidisciplinarios y colaborativos, manteniendo un buen ambiente laboral y comunicación efectiva.
+- Conocimiento y aplicación de metodologías ágiles como Scrum o Kanban para promover la adaptabilidad y la entrega continua.
+- Excelentes habilidades comunicativas para compartir conocimiento, orientar al equipo y colaborar de forma clara y eficiente.
+- Compromiso con la satisfacción del cliente, enfocando las acciones en entregar soluciones que superen expectativas.
+- Actitud proactiva orientada a la mejora continua e innovación tecnológica para optimizar procesos y productos.
+- Disponibilidad y flexibilidad para viajar cuando el proyecto lo requiera, mostrando compromiso y adaptabilidad a las necesidades comerciales.
+
+[projects]
+Mediastream es una empresa líder con más de 19 años de experiencia en tecnología de streaming, dedicada a ofrecer soluciones integrales a grandes empresas y broadcasters de todo el mundo. Nos especializamos en la administración, distribución, producción audiovisual y experiencia del usuario final, desarrollando herramientas propias que permiten gestionar, transmitir y analizar el contenido audiovisual. Nuestro valor diferencial reside en el acompañamiento continuo y soporte 24/7, que brinda a nuestros clientes soluciones tecnológicas adaptadas a sus necesidades y una interacción sencilla y eficaz con sus audiencias.
+
+[functions]
+- Realizar análisis y modelado detallado de soluciones técnicas, asegurando una comprensión profunda de los requisitos y objetivos del proyecto.
+- Participar activamente en la recopilación de requisitos, aportando experiencia para definir soluciones técnicas alineadas a las necesidades específicas de cada cliente.
+- Estimar tiempos de desarrollo con precisión y colaborar en la planificación efectiva para cumplir con los plazos establecidos.
+- Desarrollar software de alta calidad utilizando tecnologías modernas como Node.js, JavaScript y ReactJS, aplicando las mejores prácticas para garantizar eficiencia, mantenibilidad y robustez.
+- Mantener y mejorar el software existente mediante correcciones y optimizaciones, trabajando en conjunto con el equipo técnico.
+- Realizar pruebas exhaustivas para validar el rendimiento y calidad de las soluciones antes de su entrega al equipo de control de calidad.
+- Seguir metodologías, herramientas y estándares definidos por la empresa para asegurar coherencia y eficiencia en el desarrollo.
+- Colaborar en la formación y mentoría del equipo de desarrollo, compartiendo conocimientos y promoviendo el crecimiento profesional colectivo.
+- Participar en revisiones de código para garantizar calidad, promover buenas prácticas y fomentar la mejora continua.
+- Mantener un enfoque centrado en el cliente, desarrollando soluciones que satisfagan y superen sus expectativas, con alta calidad y excelente servicio.
+- Detectar y proponer oportunidades de mejora en procesos y productos para optimizar resultados y superar deficiencias existentes.
+- Garantizar alineación con la estrategia y cultura organizacional, colaborando para alcanzar los objetivos comunes de la empresa y el equipo.
+
+[desirable]
+Contar con experiencia adicional en tecnologías complementarias relacionadas con multimedia o infraestructura de streaming será valorado positivamente. También se considerará una ventaja poseer conocimientos en análisis avanzado de datos de consumo audiovisual, habilidades en liderazgo técnico y gestión de equipos, así como familiaridad con entornos de trabajo internacionales y proyectos de alta escalabilidad. Experiencia previa en la definición de arquitectura y escalabilidad en aplicaciones streaming aportará un diferencial significativo. La capacidad para mantenerse actualizado en tendencias tecnológicas y proponer innovación constante es altamente valorada.
+
+[benefits]
+En Mediastream ofrecemos un entorno laboral dinámico y colaborativo que impulsa tanto la innovación como el crecimiento profesional continuo. Fomentamos una cultura inclusiva basada en el apoyo mutuo y el desarrollo personal y profesional constante. Proporcionamos amplias oportunidades de capacitación en tecnologías de vanguardia y se trabaja junto a un equipo altamente calificado para enfrentar desafíos relevantes dentro de la industria del streaming y distribución de contenido audiovisual.

@@ -1,0 +1,39 @@
+JOB 04 | raw_index=217
+title: Senior Full-Stack Engineer
+aggregator fields: remote_modality=remote_local remote_zone=None countries=['Remote'] lang=en modality={'data': {'id': 1, 'type': 'modality'}}
+
+[description_headline]
+What we’re looking for:
+
+[description]
+- 5+ years of professional software engineering experience
+- Strong experience building and operating production web applications Comfortable working across frontend, backend, APIs, databases, and cloud infrastructure
+- Strong knowledge of SQL and third-party API integrations
+- Able to independently investigate complex production problems
+- Excellent written and spoken English
+- High ownership, strong judgment, and clear communication
+- At least five working hours of overlap with Pacific Time
+We are looking for an engineer who wants meaningful ownership at an early-stage company, not someone who only wants to complete assigned tickets.
+
+[projects]
+Bavardio is an AI-native operating platform for internet service providers and field-service businesses. Our product brings customer service, network operations, field service, billing, communications, and automation into one system.
+You will work directly with the founder and take ownership of production features from design through deployment.
+
+[functions]
+- Build and ship full-stack product features
+- Develop backend APIs and third-party integrations
+- Build responsive, polished frontend experiences
+- Debug production issues across distributed and real-time systems
+- Work on communications, networking, billing, AI, and workflow automation
+- Speak directly with customers when needed to understand and solve problems
+- Improve system reliability, performance, monitoring, and developer tooling
+
+[desirable]
+Experience with WebRTC, SIP, telecommunications, networking, AI systems, or ISP software is helpful but not required.
+
+[benefits]
+- Full-time, long-term position
+- Remote within Latin America
+- Compensation: $4,000–$6,000 USD per month, depending on experience
+- Paid in USD
+- Initial paid trial period, with the intention of building a long-term working relationship

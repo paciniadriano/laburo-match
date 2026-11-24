@@ -1,0 +1,212 @@
+{
+  "dataset": "eligibility",
+  "split": "dev",
+  "source": "spike 1.5: hand labels written before any extraction run",
+  "reference_profile": "Argentine citizen, resident in Argentina, no US work authorization",
+  "items": [
+    {
+      "job": "01",
+      "fixture": "fixtures/postings/getonbrd/01.txt",
+      "verdict": "not_eligible",
+      "hidden_by_aggregator": true,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Debes vivir en cualquier estado de USA (excluyente)"
+          ],
+          "compatible": false
+        }
+      ]
+    },
+    {
+      "job": "02",
+      "fixture": "fixtures/postings/getonbrd/02.txt",
+      "verdict": "not_eligible",
+      "hidden_by_aggregator": true,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Residencia actual en Colombia o Venezuela"
+          ],
+          "compatible": false
+        }
+      ]
+    },
+    {
+      "job": "04",
+      "fixture": "fixtures/postings/getonbrd/04.txt",
+      "verdict": "eligible",
+      "hidden_by_aggregator": true,
+      "doubt": "timezone",
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Remote within Latin America"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "At least five working hours of overlap with Pacific Time"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "05",
+      "fixture": "fixtures/postings/getonbrd/05.txt",
+      "verdict": "eligible",
+      "hidden_by_aggregator": true,
+      "doubt": "timezone",
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Based in Latin America"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "at least 6 hours of overlap with US Pacific time"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "07",
+      "fixture": "fixtures/postings/getonbrd/07.txt",
+      "verdict": "doubtful",
+      "hidden_by_aggregator": true,
+      "doubt": "visa",
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "This is a remote role based in LATAM with required travel"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "visa",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "with a valid B1/B2 visa or ESTA eligibility already in place"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "08",
+      "fixture": "fixtures/postings/getonbrd/08.txt",
+      "verdict": "doubtful",
+      "hidden_by_aggregator": false,
+      "doubt": "1099",
+      "restrictions": [
+        {
+          "kind": "payroll",
+          "evidence_kind": "inferred",
+          "quotes": [
+            "1099 Contractor position"
+          ],
+          "compatible": "unknown"
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "some overlap with U.S. Eastern Time"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "10",
+      "fixture": "fixtures/postings/getonbrd/10.txt",
+      "verdict": "eligible",
+      "hidden_by_aggregator": false,
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Fully remote. Work from anywhere"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Daily overlap with US Eastern business hours"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "11",
+      "fixture": "fixtures/postings/getonbrd/11.txt",
+      "verdict": "doubtful",
+      "hidden_by_aggregator": false,
+      "doubt": "remote_only"
+    },
+    {
+      "job": "13",
+      "fixture": "fixtures/postings/getonbrd/13.txt",
+      "verdict": "eligible",
+      "hidden_by_aggregator": true,
+      "doubt": "timezone",
+      "restrictions": [
+        {
+          "kind": "location",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "100% remoto, desde cualquier país de Latinoamérica"
+          ],
+          "compatible": true
+        },
+        {
+          "kind": "timezone",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Disponibilidad completa en horario de Ciudad de México, de 9:00 a 18:00"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    },
+    {
+      "job": "14",
+      "fixture": "fixtures/postings/getonbrd/14.txt",
+      "verdict": "not_eligible",
+      "hidden_by_aggregator": false,
+      "restrictions": [
+        {
+          "kind": "modality",
+          "evidence_kind": "explicit",
+          "quotes": [
+            "Trabajamos en un entorno híbrido que confía en tu autonomía"
+          ],
+          "compatible": "unknown"
+        }
+      ]
+    }
+  ]
+}

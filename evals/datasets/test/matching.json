@@ -1,0 +1,320 @@
+{
+  "dataset": "matching",
+  "split": "test",
+  "source": "spike 1.7: labels written before each set was run",
+  "profile_evidence": "data/samples/sample_evidence.json",
+  "postings": {
+    "05": "fixtures/postings/getonbrd/05.txt",
+    "12": "fixtures/postings/getonbrd/12.txt"
+  },
+  "excluded_from_thresholds": [],
+  "notes": [
+    "held out: never used while designing or tuning the linking"
+  ],
+  "items": [
+    {
+      "key": "p05-r01",
+      "job": "05",
+      "type": "experience",
+      "required": "required",
+      "text": "5+ years of full-stack experience",
+      "min_years": 5,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "doubt": "Which jobs are 'full-stack'? Pampa (React + Node + PostgreSQL) clearly; freelance and Delta (PHP / ASP.NET + JS) arguably; Nimbus is frontend. Pampa + freelance + Delta alone give 5.9y"
+      }
+    },
+    {
+      "key": "p05-r02",
+      "job": "05",
+      "type": "skill",
+      "required": "required",
+      "text": "Strong in Go, or deep TypeScript experience and proven ability to pick up Go fast",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E6"
+        ],
+        "doubt": "Accepts deep TypeScript (4.7y, detailed) instead of Go, but 'proven ability to pick up Go fast' is not verifiable",
+        "also_ok": [
+          "partial"
+        ]
+      }
+    },
+    {
+      "key": "p05-r03",
+      "job": "05",
+      "type": "skill",
+      "required": "required",
+      "text": "Solid React and Next.js",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E5",
+          "E7"
+        ]
+      }
+    },
+    {
+      "key": "p05-r04",
+      "job": "05",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "React Native experience",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p05-r05",
+      "job": "05",
+      "type": "skill",
+      "required": "required",
+      "text": "Comfortable with webhook-driven, telephony and event-based systems, debugging async flows across service boundaries",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p05-r06",
+      "job": "05",
+      "type": "soft",
+      "required": "required",
+      "text": "Able to read and navigate a large, unfamiliar codebase independently",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    },
+    {
+      "key": "p05-r07",
+      "job": "05",
+      "type": "skill",
+      "required": "required",
+      "text": "Strong SQL and comfort operating PostgreSQL in production",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E10"
+        ],
+        "doubt": "PostgreSQL / SQL at Pampa Fintech (live product); 'operating in production' is not written in the CV"
+      }
+    },
+    {
+      "key": "p05-r08",
+      "job": "05",
+      "type": "language",
+      "required": "required",
+      "text": "English, advanced level",
+      "cefr": "C1",
+      "language": "english",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p05-r09",
+      "job": "05",
+      "type": "condition",
+      "required": "required",
+      "text": "Based in Latin America with at least 6 hours of overlap with US Pacific time",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    },
+    {
+      "key": "p05-r10",
+      "job": "05",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Telnyx or Twilio programmable voice and messaging experience",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p05-r11",
+      "job": "05",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Experience building LLM-powered features",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p12-r01",
+      "job": "12",
+      "type": "experience",
+      "required": "required",
+      "text": "4+ years building backends with Python and Django",
+      "min_years": 4,
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "doubt": "Python is 'coursework' (weak) and Django is absent. User decision before the run: `partial` (conservative; the review stop asks about it)"
+      }
+    },
+    {
+      "key": "p12-r02",
+      "job": "12",
+      "type": "skill",
+      "required": "required",
+      "text": "Solid experience with PostgreSQL in production, including schema changes on live systems",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "strong": [
+          "E10"
+        ]
+      }
+    },
+    {
+      "key": "p12-r03",
+      "job": "12",
+      "type": "skill",
+      "required": "required",
+      "text": "Hands-on experience with background processing (Celery, RabbitMQ, Redis or similar)",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p12-r04",
+      "job": "12",
+      "type": "skill",
+      "required": "required",
+      "text": "Built and maintained integrations with third-party APIs and knows what happens when they fail",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "partial",
+        "strong": [
+          "E13"
+        ],
+        "doubt": "Consumed GraphQL APIs (accepted as integration, see p04-r03); 'knows what happens when they fail' not shown"
+      }
+    },
+    {
+      "key": "p12-r05",
+      "job": "12",
+      "type": "skill",
+      "required": "required",
+      "text": "Cares about testing, code quality and constructive code reviews",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E11",
+          "E20"
+        ],
+        "doubt": "Unit and component testing (E11) and weekly code reviews (E20); 'code quality' is generic"
+      }
+    },
+    {
+      "key": "p12-r06",
+      "job": "12",
+      "type": "skill",
+      "required": "required",
+      "text": "Has supported own work in production: monitoring, debugging and incidents",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p12-r07",
+      "job": "12",
+      "type": "soft",
+      "required": "required",
+      "text": "Comfortable in a large codebase shared with many engineers",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": null
+      }
+    },
+    {
+      "key": "p12-r08",
+      "job": "12",
+      "type": "language",
+      "required": "required",
+      "text": "English, advanced level",
+      "cefr": "C1",
+      "language": "english",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met"
+      }
+    },
+    {
+      "key": "p12-r09",
+      "job": "12",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Experience in the travel industry (hotels, airlines, cruises, booking systems)",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p12-r10",
+      "job": "12",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Experience with payments or financial flows (Stripe, invoicing, payouts)",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E2"
+        ],
+        "doubt": "Pampa Fintech: 'onboarding and payments flows' (E2 note); no Stripe or invoicing mentioned",
+        "also_ok": [
+          "partial"
+        ]
+      }
+    },
+    {
+      "key": "p12-r11",
+      "job": "12",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Has shipped AI-powered features to real users",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "missing"
+      }
+    },
+    {
+      "key": "p12-r12",
+      "job": "12",
+      "type": "skill",
+      "required": "nice_to_have",
+      "text": "Familiarity with Docker, Kubernetes or AWS",
+      "equivalent_experience_ok": false,
+      "label": {
+        "level": "met",
+        "strong": [
+          "E14"
+        ]
+      }
+    }
+  ]
+}
