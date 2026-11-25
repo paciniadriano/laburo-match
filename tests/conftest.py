@@ -6,11 +6,13 @@ from collections.abc import AsyncIterator, Iterator
 from pathlib import Path
 
 import pytest
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import NullPool
 
 from src.app.profile.seed import seed_sample_profile
 from src.config.settings import get_settings
+from src.db.base import Base
 from src.db.migrate import upgrade_to_head
 from src.db.session import make_engine
 from src.llm import use_backend
@@ -74,3 +76,18 @@ async def user_id(session: AsyncSession) -> uuid.UUID:
     """The seeded `local` user: a complete fictional profile (AR, remote, frontend roles)."""
     sample = json.loads(SAMPLE_EVIDENCE.read_text())
     return (await seed_sample_profile(session, sample, max_job_age_days=30)).user_id
+
+
+@pytest.fixture
+async def committed_sessions(
+    engine: AsyncEngine, migrated_database: None
+) -> AsyncIterator[async_sessionmaker[AsyncSession]]:
+    """For tests that need several connections seeing each other's committed data.
+
+    Everything really commits here, so every table is emptied afterwards. The `_test` guard in
+    `test_database_url` is what makes that safe to do.
+    """
+    yield async_sessionmaker(bind=engine, expire_on_commit=False)
+    tables = ", ".join(f'"{table.name}"' for table in Base.metadata.sorted_tables)
+    async with engine.begin() as connection:
+        await connection.execute(text(f"TRUNCATE {tables} RESTART IDENTITY CASCADE"))
