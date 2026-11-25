@@ -70,7 +70,7 @@
 
 ## 2.8 `screen_batch` (basic, with claims)
 - [ ] Claims: up to `SCREEN_MAX_JOBS_PER_CALL` with `FOR UPDATE SKIP LOCKED`; stale `processing` rows reset using `:now`; claims released in `finally` when the call is cancelled
-- [ ] Extraction with cache (`job_extractions` by job + version_hash + content_hash). Text is sanitized and capped at ~30k chars. The first call runs alone, the rest in parallel with `LLM_CONCURRENCY`, one DB session per task.
+- [x] Extraction with cache (`job_extractions` by job + version_hash + content_hash). Text is sanitized and capped at ~30k chars. The first call runs alone, the rest in parallel with `LLM_CONCURRENCY`, one DB session per task.
 - [ ] Eligibility, then `done` with `screening_hash`. A failure is retried once; the second failure marks the job `failed`.
 - [ ] Output: intermediate calls return progress only. The final call returns the shortlist (≤ 10 cards: eligibility, reason, quotes, disclaimer, apply link), discard counts and the `failed` count.
 - [ ] Tests (committed fixture):
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.8a done (claim_jobs with stale recovery and MAX_SCREEN_ATTEMPTS, release_claims, committed DB fixture). Next: 2.8b extraction with cache; the `finally` that releases claims on cancel lands with the tool in 2.8c.
+Stopped at: 2.8b done (extract_job_facts with cache + chars_read, extract_jobs: first alone, rest parallel, one session per task). Next: 2.8c eligibility, failures with retry, response, and the `finally` that releases claims.
