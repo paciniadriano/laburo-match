@@ -99,3 +99,23 @@ async def test_the_text_sent_to_the_model_is_capped(session: AsyncSession):
     job = await _store_job(session, body="x" * (JOB_TEXT_MAX_CHARS * 2))
 
     assert len(posting_text(job)) == JOB_TEXT_MAX_CHARS
+
+
+async def test_a_changed_size_cap_re_extracts_only_the_postings_it_cut(
+    session: AsyncSession, fake_llm: FakeLLM, monkeypatch
+):
+    short = await _store_job(session, body="[description]\nShort posting")
+    (long_candidate,) = await upsert_shared_jobs(
+        session, [make_source_job("long", body="x" * 500)], NOW
+    )
+    long = await session.get_one(Job, long_candidate.job_id)
+    monkeypatch.setattr("src.app.jobs.extraction.JOB_TEXT_MAX_CHARS", 300)
+    fake_llm.script("job_extraction", make_facts(), make_facts())
+    await extract_job_facts(session, short)
+    await extract_job_facts(session, long)  # cut to 300 characters
+
+    monkeypatch.setattr("src.app.jobs.extraction.JOB_TEXT_MAX_CHARS", 1000)
+    fake_llm.script("job_extraction", make_facts())
+
+    assert (await extract_job_facts(session, short)).from_cache  # it fitted either way
+    assert not (await extract_job_facts(session, long)).from_cache  # it can now be read whole

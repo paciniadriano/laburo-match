@@ -77,4 +77,7 @@ class JobExtraction(Base):
     content_hash: Mapped[str] = mapped_column(primary_key=True)
     status: Mapped[str]
     facts: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    # How much of the posting the model read (the text is capped). Valid only while the text we
+    # would send today has this same length: a changed cap re-extracts what it cut, nothing else.
+    chars_read: Mapped[int] = mapped_column(default=0, server_default="0")
     created_at: Mapped[CreatedAt]
