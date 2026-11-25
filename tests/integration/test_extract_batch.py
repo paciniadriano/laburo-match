@@ -91,6 +91,17 @@ async def test_a_failing_job_does_not_stop_the_others(committed_sessions: Sessio
     assert sum(outcome.extracted is not None for outcome in outcomes) == 3
 
 
+async def test_a_failure_log_never_contains_the_error_message(committed_sessions: Sessions, caplog):
+    job_ids = await _store_jobs(committed_sessions, 2)
+
+    with use_backend(ProbeLLM(fail_for="Role 1")), caplog.at_level("WARNING"):
+        await extract_jobs(committed_sessions, job_ids, concurrency=2)
+
+    logged = " ".join(f"{record.getMessage()} {record.__dict__}" for record in caplog.records)
+    assert "TimeoutError" in logged
+    assert "provider timed out" not in logged  # the message is where posting text could leak
+
+
 async def test_cached_jobs_cost_no_llm_calls(committed_sessions: Sessions):
     job_ids = await _store_jobs(committed_sessions, 5)
     with use_backend(ProbeLLM()):

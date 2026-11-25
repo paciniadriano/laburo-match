@@ -39,8 +39,11 @@ async def _extract_one(
             await session.commit()
         return ExtractionOutcome(job_id, extracted)
     except Exception as error:  # one bad job must not stop the others; the caller decides
-        logger.warning("extraction failed", extra={"job_id": str(job_id), "error": repr(error)})
-        return ExtractionOutcome(job_id, None, error=type(error).__name__)
+        # The class only, in the log and in the outcome: a message can quote the posting text,
+        # which is third-party content that may hold contact data.
+        error_class = type(error).__name__
+        logger.warning("extraction failed", extra={"job_id": str(job_id), "error": error_class})
+        return ExtractionOutcome(job_id, None, error=error_class)
 
 
 async def extract_jobs(
