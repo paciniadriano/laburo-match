@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.8b done (extract_job_facts with cache + chars_read, extract_jobs: first alone, rest parallel, one session per task). Next: 2.8c eligibility, failures with retry, response, and the `finally` that releases claims.
+Stopped at: 2.8c part 1 done (screening_hash, save_verdict, record_failure, screen_jobs). Next: 2.8c part 2: ScreenProgress/shortlist models, the `screen_batch` tool with the `finally` that releases claims, then tick the 2.8 boxes.
