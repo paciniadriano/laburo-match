@@ -69,11 +69,11 @@
 - [x] Free preview on the 15 hand-labelled spike postings (spike extractions, no LLM): 13/15 verdicts agree, **0 valid jobs `not_eligible`**. The 2 differences are the hybrid jobs (14 and 15), which phase 4 resolves with office data. "Work from anywhere" counts as a compatible location when nothing else excludes the user's country (user decision)
 
 ## 2.8 `screen_batch` (basic, with claims)
-- [ ] Claims: up to `SCREEN_MAX_JOBS_PER_CALL` with `FOR UPDATE SKIP LOCKED`; stale `processing` rows reset using `:now`; claims released in `finally` when the call is cancelled
+- [x] Claims: up to `SCREEN_MAX_JOBS_PER_CALL` with `FOR UPDATE SKIP LOCKED`; stale `processing` rows reset using `:now`; claims released in `finally` when the call is cancelled
 - [x] Extraction with cache (`job_extractions` by job + version_hash + content_hash). Text is sanitized and capped at ~30k chars. The first call runs alone, the rest in parallel with `LLM_CONCURRENCY`, one DB session per task.
-- [ ] Eligibility, then `done` with `screening_hash`. A failure is retried once; the second failure marks the job `failed`.
-- [ ] Output: intermediate calls return progress only. The final call returns the shortlist (≤ 10 cards: eligibility, reason, quotes, disclaimer, apply link), discard counts and the `failed` count.
-- [ ] Tests (committed fixture):
+- [x] Eligibility, then `done` with `screening_hash`. A failure is retried once; the second failure marks the job `failed`.
+- [x] Output: intermediate calls return progress only. The final call returns the shortlist (≤ 10 cards: eligibility, reason, quotes, disclaimer, apply link), discard counts and the `failed` count.
+- [x] Tests (committed fixture):
   - two concurrent calls never process the same job
   - a stale claim is recovered
   - cancellation releases its claims
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.8c part 1 done (screening_hash, save_verdict, record_failure, screen_jobs). Next: 2.8c part 2: ScreenProgress/shortlist models, the `screen_batch` tool with the `finally` that releases claims, then tick the 2.8 boxes.
+Stopped at: 2.8 done (screen_batch tool: claims, cached extraction, eligibility, retry, progress/shortlist, shielded release on cancel). Next: 2.9 MCP server (create_mcp_server, routers, health/ready, contract + e2e tests).

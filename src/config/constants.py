@@ -24,3 +24,10 @@ SEARCH_FETCH_LIMIT = 500
 
 # A job is claimed at most this many times: the first try plus one retry (see `screen_batch`).
 MAX_SCREEN_ATTEMPTS = 2
+
+# How each source is named to the user. Get on Board's terms require showing it as the source.
+SOURCE_LABELS = {
+    "getonbrd": "Get on Board",
+    "google_jobs": "Google Jobs",
+    "pasted": "Pasted by you",
+}

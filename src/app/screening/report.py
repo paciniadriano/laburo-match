@@ -1,0 +1,125 @@
+"""Turn the state of a run into what `screen_batch` returns: progress, or the final shortlist."""
+
+from typing import Any
+from uuid import UUID
+
+from sqlalchemy import Select, case, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from src.app.eligibility.result import DISCLAIMER
+from src.config.constants import SHORTLIST_SIZE, SOURCE_LABELS
+from src.db.models import Job, RunJob
+from src.models.screening import JobCard, ScreenBatchResult
+
+_HINT_AGAIN = "Call screen_batch again with the same run_id until remaining is 0."
+_HINT_DONE = (
+    "Present the shortlist with its quotes and the disclaimer, ask the profile questions once, "
+    "and tell the user how many jobs could not be processed, if any. Use the job_id of each card."
+)
+
+
+async def _counts(session: AsyncSession, query: Select[Any, int], group_by: Any) -> dict[Any, int]:
+    """Rows of (value, count) as a dict. `dict(result)` would not work: a result has `keys()`."""
+    rows = await session.execute(query.group_by(group_by))
+    return {value: count for value, count in rows.all()}
+
+
+def _unique(items: list[str]) -> list[str]:
+    return list(dict.fromkeys(items))
+
+
+async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatchResult:
+    # Rows a prefilter already discarded are `done` too, but nobody screened them.
+    screening_rows = RunJob.prefilter_reason == ""
+    by_status = await _counts(
+        session,
+        select(RunJob.status, func.count()).where(RunJob.run_id == run_id, screening_rows),
+        RunJob.status,
+    )
+    processed = by_status.get("done", 0)
+    failed = by_status.get("failed", 0)
+    remaining = by_status.get("pending", 0) + by_status.get("processing", 0)
+    if remaining:
+        return ScreenBatchResult(
+            status="in_progress",
+            processed=processed,
+            failed=failed,
+            remaining=remaining,
+            next_step_hint=_HINT_AGAIN,
+        )
+
+    totals = await _counts(
+        session,
+        select(RunJob.eligibility, func.count()).where(
+            RunJob.run_id == run_id, RunJob.status == "done", screening_rows
+        ),
+        RunJob.eligibility,
+    )
+    return ScreenBatchResult(
+        status="done",
+        processed=processed,
+        failed=failed,
+        remaining=0,
+        next_step_hint=_HINT_DONE,
+        shortlist=await _shortlist(session, run_id),
+        eligible_total=totals.get("eligible", 0),
+        doubtful_total=totals.get("doubtful", 0),
+        discarded=await _discarded(session, run_id, totals.get("not_eligible", 0)),
+        profile_questions=await _profile_questions(session, run_id),
+        disclaimer=DISCLAIMER,
+    )
+
+
+async def _shortlist(session: AsyncSession, run_id: UUID) -> list[JobCard]:
+    """Eligible before doubtful, then the newest posting, then the order the search found them."""
+    eligible_first = case((RunJob.eligibility == "eligible", 0), else_=1)
+    rows = await session.execute(
+        select(RunJob, Job)
+        .join(Job, Job.id == RunJob.job_id)
+        .where(
+            RunJob.run_id == run_id,
+            RunJob.status == "done",
+            RunJob.eligibility.in_(("eligible", "doubtful")),
+        )
+        .order_by(eligible_first, Job.posted_at.desc().nulls_last(), RunJob.position)
+        .limit(SHORTLIST_SIZE)
+    )
+    return [
+        JobCard(
+            job_id=str(job.id),
+            title=job.title,
+            company=job.company,
+            source=SOURCE_LABELS.get(job.source, job.source),
+            eligibility="eligible" if run_job.eligibility == "eligible" else "doubtful",
+            reason=run_job.eligibility_reason,
+            quotes=run_job.eligibility_quotes,
+            recruiter_questions=run_job.recruiter_questions,
+            warnings=run_job.flags,
+            apply_url=job.apply_url or job.url,
+            posted_at=job.posted_at,
+        )
+        for run_job, job in rows.all()
+    ]
+
+
+async def _discarded(session: AsyncSession, run_id: UUID, not_eligible: int) -> dict[str, int]:
+    """Prefilter discards by reason, plus the jobs screening found not eligible."""
+    counts = await _counts(
+        session,
+        select(RunJob.prefilter_reason, func.count()).where(
+            RunJob.run_id == run_id, RunJob.prefilter_reason != ""
+        ),
+        RunJob.prefilter_reason,
+    )
+    if not_eligible:
+        counts["not_eligible"] = not_eligible
+    return counts
+
+
+async def _profile_questions(session: AsyncSession, run_id: UUID) -> list[str]:
+    rows = await session.scalars(
+        select(RunJob.profile_questions)
+        .where(RunJob.run_id == run_id, RunJob.status == "done")
+        .order_by(RunJob.position)
+    )
+    return _unique([question for questions in rows for question in questions])

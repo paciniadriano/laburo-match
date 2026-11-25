@@ -8,8 +8,9 @@ other call pass over them instead of waiting. Nothing is kept in memory between 
 from datetime import datetime, timedelta
 from uuid import UUID
 
+import anyio
 from sqlalchemy import select, update
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from src.config.constants import MAX_SCREEN_ATTEMPTS
 from src.db.models import RunJob
@@ -81,3 +82,20 @@ async def release_claims(session: AsyncSession, run_id: UUID, job_ids: list[UUID
         )
         .values(status="pending", claimed_at=None, attempts=RunJob.attempts - 1)
     )
+
+
+async def release_after_cancel(
+    sessions: async_sessionmaker[AsyncSession], run_id: UUID, job_ids: list[UUID]
+) -> None:
+    """`release_claims` in its own session, protected from the cancellation that called for it.
+
+    A host timeout cancels the whole scope the tool runs in, and in that state every `await`
+    raises again at once, so an ordinary `finally` would be cancelled before it released
+    anything. The shield lets this one short cleanup finish.
+    """
+    if not job_ids:
+        return
+    with anyio.CancelScope(shield=True):
+        async with sessions() as session:
+            await release_claims(session, run_id, job_ids)
+            await session.commit()

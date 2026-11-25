@@ -132,7 +132,7 @@ alembic/                 # migrations
 - **No server-side state in memory between requests.** Runs, drafts, pending changes and leases live in Postgres.
 - All time through `core.clock.now()`, also in SQL: pass `:now` as a parameter, never the database `now()`. All HTTP through the shared client. One DB session per concurrent task (never share a session inside `asyncio.gather`).
 - Writes that depend on a version use optimistic concurrency (`UPDATE … WHERE version = :expected`).
-- Long-running tools (`screen_batch`, `draft_application`) release their claims or expire their lease in a `finally` when the call is cancelled.
+- Long-running tools (`screen_batch`, `draft_application`) release their claims or expire their lease in a `finally` when the call is cancelled, inside an `anyio.CancelScope(shield=True)` → FastMCP cancels with anyio scopes, where every `await` in a cancelled scope raises again, so an unshielded cleanup never runs; a test cancels through a scope, because `Task.cancel()` would pass without the shield.
 - `user_id` always comes from the auth context (`get_current_user_id()`, `"local"` without auth), never from a tool argument.
 - In LangGraph, everything non-deterministic (LLM calls, clock reads) lives inside `@task`.
 - No generic repository classes, no DI framework, no Redis, no queues.

@@ -11,11 +11,9 @@ from src.app.screening.screen import ScreenStats, screen_jobs
 from src.app.screening.screening_hash import screening_hash
 from src.db.models import Job, Profile, RunJob
 from src.llm import use_backend
-from src.llm.backend import BackendResponse, Usage
-from src.llm.messages import Message
-from src.llm.tasks import LLMTask
 from src.models.profile import Constraints
-from tests.factories import make_facts, make_restriction, queue_run
+from tests.factories import queue_run
+from tests.fakes.latam_llm import LATAM_BODY, LatamLLM
 
 NOW = datetime(2026, 11, 24, 12, 0, tzinfo=UTC)
 STALE_SECONDS = 300
@@ -23,29 +21,10 @@ STALE_SECONDS = 300
 Sessions = async_sessionmaker[AsyncSession]
 
 
-# The model's quote must really appear in the posting, or the verification discards it.
-LATAM_BODY = {"body": "[description]\nRemote within Latin America. Build user interfaces."}
-
-
-class TitleLLM:
-    """Answers "open to Latin America" for every posting, except the titles told to fail."""
-
-    def __init__(self, failing_titles: tuple[str, ...] = ()) -> None:
-        self.failing_titles = failing_titles
-
-    async def complete(
-        self, *, task: LLMTask, model: str, messages: list[Message]
-    ) -> BackendResponse:
-        if any(title in messages[-1][1] for title in self.failing_titles):
-            raise TimeoutError("provider timed out")
-        facts = make_facts(restrictions=[make_restriction()])  # "Remote within Latin America"
-        return BackendResponse(parsed=facts, usage=Usage(input_tokens=10, output_tokens=2))
-
-
 @pytest.fixture(autouse=True)
 def _model() -> Iterator[None]:
     """Every test here talks to a model that opens the job to Latin America."""
-    with use_backend(TitleLLM()):
+    with use_backend(LatamLLM()):
         yield
 
 
@@ -95,7 +74,7 @@ async def test_a_failing_job_goes_back_to_pending_once_and_then_ends_failed(
 ):
     user_id, run_id = await queue_run(committed_sessions, 3, lambda n: LATAM_BODY)
 
-    with use_backend(TitleLLM(failing_titles=("Role 1",))):
+    with use_backend(LatamLLM(failing_titles=("Role 1",))):
         _, first = await _claim_and_screen(committed_sessions, user_id, run_id)
         after_first = await _rows(committed_sessions, run_id)
         _, second = await _claim_and_screen(committed_sessions, user_id, run_id)
