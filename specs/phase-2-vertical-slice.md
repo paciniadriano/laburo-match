@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.8a done (claim_jobs, release_claims, committed DB fixture). Next: 2.8b extraction with cache; the `finally` that releases claims on cancel lands with the tool in 2.8c.
+Stopped at: 2.8a done (claim_jobs with stale recovery and MAX_SCREEN_ATTEMPTS, release_claims, committed DB fixture). Next: 2.8b extraction with cache; the `finally` that releases claims on cancel lands with the tool in 2.8c.
