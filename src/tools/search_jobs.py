@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.jobs.store import upsert_shared_jobs
 from src.app.search.fetch import fetch_all
+from src.app.search.hint import search_next_step
 from src.app.search.plan import build_plan
 from src.app.search.runs import create_run, job_ids_already_seen
 from src.app.search.selection import select_for_screening
@@ -69,9 +70,5 @@ async def search_jobs(
         **funnel,
         plan_summary=plan.summary(),
         warnings=fetched.warnings,
-        next_step_hint=(
-            "Call screen_batch with this run_id until nothing remains."
-            if selection.to_screen
-            else "No new jobs since the last search."
-        ),
+        next_step_hint=search_next_step(len(selection.to_screen), len(selection.left_for_later)),
     )

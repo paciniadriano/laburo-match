@@ -109,6 +109,8 @@ async def test_jobs_over_the_cap_are_left_for_the_next_search(session: AsyncSess
         second = await search_jobs(session, [source], SETTINGS, user_id, max_new=10)
 
     assert (first.to_screen, first.over_cap) == (2, 3)
+    assert "3 more new jobs" in first.next_step_hint
+    assert "more new jobs" not in second.next_step_hint
     # The three that did not fit were never given a row, so they are still new.
     assert (second.already_seen, second.to_screen, second.over_cap) == (2, 3, 0)
     assert await session.scalar(select(func.count()).select_from(RunJob)) == 5  # each job once
