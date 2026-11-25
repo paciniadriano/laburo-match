@@ -114,6 +114,20 @@ async def test_a_stale_claim_is_taken_again_but_a_fresh_one_is_not(committed_ses
     assert {row.attempts for row in rows.values()} == {2}  # the lost claim counted
 
 
+async def test_a_job_whose_claims_keep_getting_lost_ends_failed(committed_sessions: Sessions):
+    user_id, run_id = await _queue(committed_sessions, 1)
+    for lost in range(2):  # two claims, each abandoned by a server that died
+        at = NOW + timedelta(seconds=(STALE_SECONDS + 1) * lost)
+        assert len(await _claim(committed_sessions, user_id, run_id, 1, now=at)) == 1
+
+    third = NOW + timedelta(seconds=(STALE_SECONDS + 1) * 2)
+    assert await _claim(committed_sessions, user_id, run_id, 1, now=third) == []
+
+    (row,) = (await _rows(committed_sessions, run_id)).values()
+    assert (row.status, row.attempts) == ("failed", 2)
+    assert "interrupted" in row.last_error
+
+
 async def test_done_and_failed_jobs_are_never_claimed(committed_sessions: Sessions):
     user_id, run_id = await _queue(committed_sessions, 3)
     rows = await _rows(committed_sessions, run_id)

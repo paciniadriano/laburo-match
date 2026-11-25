@@ -21,3 +21,6 @@ HTTP_CONNECT_TIMEOUT_SECONDS = 5
 RUN_TTL_HOURS = 24
 # Jobs asked from a source per search; a whole category is ~300, ranked before the cap applies.
 SEARCH_FETCH_LIMIT = 500
+
+# A job is claimed at most this many times: the first try plus one retry (see `screen_batch`).
+MAX_SCREEN_ATTEMPTS = 2

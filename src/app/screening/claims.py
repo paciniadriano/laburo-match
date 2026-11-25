@@ -11,6 +11,7 @@ from uuid import UUID
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.config.constants import MAX_SCREEN_ATTEMPTS
 from src.db.models import RunJob
 
 
@@ -26,10 +27,22 @@ async def claim_jobs(
 
     Jobs `processing` since before `now - stale_after_seconds` count as abandoned (the server
     that claimed them died) and are taken again. Each claim counts as an attempt, so a job that
-    keeps crashing its worker cannot be retried forever. The caller commits: until then the
-    picked rows stay locked, which is what keeps other calls away from them.
+    keeps crashing its worker cannot be retried forever: an abandoned claim that already used
+    its attempts ends `failed` instead. The caller commits: until then the picked rows stay
+    locked, which is what keeps other calls away from them.
     """
     stale_before = now - timedelta(seconds=stale_after_seconds)
+    await session.execute(
+        update(RunJob)
+        .where(
+            RunJob.run_id == run_id,
+            RunJob.user_id == user_id,
+            RunJob.status == "processing",
+            RunJob.claimed_at < stale_before,
+            RunJob.attempts >= MAX_SCREEN_ATTEMPTS,
+        )
+        .values(status="failed", last_error="Screening was interrupted twice (worker lost).")
+    )
     picked = (
         select(RunJob.job_id)
         .where(
