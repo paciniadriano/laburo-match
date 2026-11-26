@@ -83,7 +83,7 @@
 ## 2.9 MCP server
 - [ ] `server.py` `create_mcp_server()`: lifespan (engine, httpx), `strict_input_validation`, `mask_error_details`, `host_origin_protection`, `stateless_http` from settings
 - [x] `routers/tools.py`: `search_jobs(max_new: int = 30)` and `screen_batch(run_id: str)` with annotations and docstrings. Domain errors map to `ToolError` codes: `PROFILE_REQUIRED`, `RUN_NOT_FOUND`, `RUN_EXPIRED`.
-- [ ] `/health` and `/ready` routes
+- [x] `/health` and `/ready` routes
 - [x] Contract tests (in-memory client): names, annotations, input schemas without `anyOf`, error shape
 - [x] E2E with fakes: search → screen (several calls) → shortlist; one source down
 
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.9 partly done (create_mcp_server with lifespan, routers/tools with annotations, error mapping, contract + e2e tests). Next: /health and /ready, then the HTTP app with stateless_http and host_origin_protection (allowed hosts) and tick the server bullet.
+Stopped at: 2.9 mostly done (create_mcp_server, routers/tools, error mapping, /health and /ready, contract + e2e tests). Next: the HTTP app with stateless_http and host_origin_protection (allowed hosts) from settings, an entrypoint, then tick the server bullet.
