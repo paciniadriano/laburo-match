@@ -19,7 +19,7 @@ from src.core import clock
 from src.models.screening import ScreenBatchResult
 
 
-async def screen_batch(
+async def screen_batch_tool(
     sessions: async_sessionmaker[AsyncSession], settings: Settings, user_id: UUID, run_id: str
 ) -> ScreenBatchResult:
     now = clock.now()

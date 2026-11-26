@@ -9,7 +9,7 @@ from src.config.settings import Settings
 from src.core import clock
 from src.core.errors import ProfileRequiredError
 from src.db.models import Job, Profile, RunJob, SearchRun, User
-from src.tools.search_jobs import search_jobs
+from src.tools.search_jobs import search_jobs_tool
 from tests.factories import make_source_job
 from tests.fakes.fake_source import ExplodingSource, FakeSource
 
@@ -40,7 +40,7 @@ async def test_a_search_stores_the_jobs_and_queues_the_best_titles_first(
     )
 
     with clock.freeze(NOW):
-        summary = await search_jobs(session, [source], SETTINGS, user_id)
+        summary = await search_jobs_tool(session, [source], SETTINGS, user_id)
 
     assert (summary.fetched, summary.to_screen, summary.over_cap) == (3, 3, 0)
     assert summary.by_source == {"getonbrd": 3}
@@ -56,7 +56,7 @@ async def test_the_plan_and_funnel_are_stored_in_the_run_for_audit(
     session: AsyncSession, user_id: UUID
 ):
     with clock.freeze(NOW):
-        summary = await search_jobs(
+        summary = await search_jobs_tool(
             session, [FakeSource([make_source_job("a")])], SETTINGS, user_id
         )
 
@@ -72,8 +72,8 @@ async def test_a_second_search_skips_what_the_user_already_has(
 ):
     source = FakeSource([make_source_job("a"), make_source_job("b")])
     with clock.freeze(NOW):
-        await search_jobs(session, [source], SETTINGS, user_id)
-        second = await search_jobs(session, [source], SETTINGS, user_id)
+        await search_jobs_tool(session, [source], SETTINGS, user_id)
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id)
 
     assert (second.fetched, second.already_seen, second.to_screen) == (2, 2, 0)
     assert "No new jobs" in second.next_step_hint
@@ -90,7 +90,7 @@ async def test_old_jobs_are_discarded_but_recorded_with_their_reason(
     )
 
     with clock.freeze(NOW):
-        summary = await search_jobs(session, [source], SETTINGS, user_id)
+        summary = await search_jobs_tool(session, [source], SETTINGS, user_id)
 
     assert summary.discarded == {"too_old": 1}
     assert summary.to_screen == 1
@@ -105,8 +105,8 @@ async def test_jobs_over_the_cap_are_left_for_the_next_search(session: AsyncSess
     source = FakeSource(jobs)
 
     with clock.freeze(NOW):
-        first = await search_jobs(session, [source], SETTINGS, user_id, max_new=2)
-        second = await search_jobs(session, [source], SETTINGS, user_id, max_new=10)
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=2)
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=10)
 
     assert (first.to_screen, first.over_cap) == (2, 3)
     assert "3 more new jobs" in first.next_step_hint
@@ -121,7 +121,7 @@ async def test_the_server_cap_limits_what_the_caller_asks_for(session: AsyncSess
     capped = SETTINGS.model_copy(update={"max_new_jobs_per_search": 2})
 
     with clock.freeze(NOW):
-        summary = await search_jobs(session, [source], capped, user_id, max_new=1000)
+        summary = await search_jobs_tool(session, [source], capped, user_id, max_new=1000)
 
     assert summary.to_screen == 2
 
@@ -130,7 +130,7 @@ async def test_a_job_seen_again_is_updated_in_place_and_keeps_its_identity(
     session: AsyncSession, user_id: UUID
 ):
     with clock.freeze(NOW):
-        await search_jobs(
+        await search_jobs_tool(
             session, [FakeSource([make_source_job("a", body="old text")])], SETTINGS, user_id
         )
     before = (await session.execute(select(Job))).scalar_one()
@@ -138,7 +138,7 @@ async def test_a_job_seen_again_is_updated_in_place_and_keeps_its_identity(
 
     later = NOW + timedelta(days=1)
     with clock.freeze(later):
-        await search_jobs(
+        await search_jobs_tool(
             session, [FakeSource([make_source_job("a", body="new text")])], SETTINGS, user_id
         )
 
@@ -155,7 +155,7 @@ async def test_the_same_job_twice_in_one_batch_is_stored_once(session: AsyncSess
     source = FakeSource([make_source_job("dup"), make_source_job("dup")])
 
     with clock.freeze(NOW):
-        summary = await search_jobs(session, [source], SETTINGS, user_id)
+        summary = await search_jobs_tool(session, [source], SETTINGS, user_id)
 
     assert summary.fetched == 1
 
@@ -166,7 +166,7 @@ async def test_a_source_warning_reaches_the_summary_and_a_crashing_source_does_n
     good = FakeSource([make_source_job("a")], warnings=["Get on Board did not answer in time."])
 
     with clock.freeze(NOW):
-        summary = await search_jobs(session, [good, ExplodingSource()], SETTINGS, user_id)
+        summary = await search_jobs_tool(session, [good, ExplodingSource()], SETTINGS, user_id)
 
     assert summary.to_screen == 1
     assert summary.warnings == [
@@ -181,7 +181,7 @@ async def test_an_incomplete_profile_is_refused(session: AsyncSession, user_id: 
     await session.flush()
 
     with pytest.raises(ProfileRequiredError):
-        await search_jobs(session, [FakeSource([])], SETTINGS, user_id)
+        await search_jobs_tool(session, [FakeSource([])], SETTINGS, user_id)
 
 
 async def test_a_user_without_a_profile_is_refused(session: AsyncSession):
@@ -190,7 +190,7 @@ async def test_a_user_without_a_profile_is_refused(session: AsyncSession):
     await session.flush()
 
     with pytest.raises(ProfileRequiredError):
-        await search_jobs(session, [FakeSource([])], SETTINGS, nobody.id)
+        await search_jobs_tool(session, [FakeSource([])], SETTINGS, nobody.id)
 
 
 async def test_each_user_has_their_own_new_jobs(session: AsyncSession, user_id: UUID):
@@ -206,8 +206,8 @@ async def test_each_user_has_their_own_new_jobs(session: AsyncSession, user_id: 
     source = FakeSource([make_source_job("a"), make_source_job("b")])
 
     with clock.freeze(NOW):
-        mine = await search_jobs(session, [source], SETTINGS, user_id)
-        theirs = await search_jobs(session, [source], SETTINGS, other.id)
+        mine = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        theirs = await search_jobs_tool(session, [source], SETTINGS, other.id)
 
     # The jobs table is shared, but what each person has already seen is not.
     assert (mine.to_screen, theirs.to_screen, theirs.already_seen) == (2, 2, 0)

@@ -14,7 +14,7 @@ from src.core.errors import RunExpiredError, RunNotFoundError
 from src.db.models import RunJob, SearchRun
 from src.llm import use_backend
 from src.models.screening import ScreenBatchResult
-from src.tools.screen_batch import screen_batch
+from src.tools.screen_batch import screen_batch_tool
 from tests.factories import queue_run
 from tests.fakes.latam_llm import LATAM_BODY, LatamLLM
 
@@ -28,7 +28,7 @@ Sessions = async_sessionmaker[AsyncSession]
 
 async def _call(sessions: Sessions, user_id: UUID, run_id: UUID) -> ScreenBatchResult:
     with clock.freeze(NOW):
-        return await screen_batch(sessions, SETTINGS, user_id, str(run_id))
+        return await screen_batch_tool(sessions, SETTINGS, user_id, str(run_id))
 
 
 async def _rows(sessions: Sessions, run_id: UUID) -> list[RunJob]:
@@ -71,7 +71,7 @@ async def test_the_shortlist_puts_eligible_first_and_is_capped(committed_session
     settings = SETTINGS.model_copy(update={"screen_max_jobs_per_call": 15})
 
     with use_backend(LatamLLM()), clock.freeze(NOW):
-        result = await screen_batch(committed_sessions, settings, user_id, str(run_id))
+        result = await screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
 
     assert result.status == "done"
     assert (result.eligible_total, result.doubtful_total) == (6, 6)
@@ -109,7 +109,10 @@ async def test_two_simultaneous_calls_never_process_the_same_job(committed_sessi
 
     with use_backend(model), clock.freeze(NOW):
         await asyncio.gather(
-            *(screen_batch(committed_sessions, settings, user_id, str(run_id)) for _ in range(2))
+            *(
+                screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
+                for _ in range(2)
+            )
         )
 
     assert model.calls == 6  # a job screened twice would show up as an extra model call
@@ -168,8 +171,8 @@ async def test_a_job_failing_twice_ends_failed_and_the_run_still_finishes(
     settings = SETTINGS.model_copy(update={"screen_max_jobs_per_call": 10})
 
     with use_backend(LatamLLM(failing_titles=("Role 1",))), clock.freeze(NOW):
-        first = await screen_batch(committed_sessions, settings, user_id, str(run_id))
-        last = await screen_batch(committed_sessions, settings, user_id, str(run_id))
+        first = await screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
+        last = await screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
 
     assert (first.status, first.processed, first.remaining) == ("in_progress", 2, 1)  # one retry
     assert (last.status, last.processed, last.failed, last.remaining) == ("done", 2, 1, 0)
@@ -196,11 +199,11 @@ async def test_another_users_run_and_garbage_ids_are_not_found(committed_session
         await _call(committed_sessions, stranger, run_id)
     with pytest.raises(RunNotFoundError):
         with clock.freeze(NOW):
-            await screen_batch(committed_sessions, SETTINGS, stranger, "3")  # a position
+            await screen_batch_tool(committed_sessions, SETTINGS, stranger, "3")  # a position
 
 
 async def test_an_expired_run_is_refused(committed_sessions: Sessions):
     user_id, run_id = await queue_run(committed_sessions, 1)
 
     with pytest.raises(RunExpiredError), clock.freeze(NOW + timedelta(hours=25)):
-        await screen_batch(committed_sessions, SETTINGS, user_id, str(run_id))
+        await screen_batch_tool(committed_sessions, SETTINGS, user_id, str(run_id))

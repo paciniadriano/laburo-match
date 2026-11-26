@@ -82,10 +82,10 @@
 
 ## 2.9 MCP server
 - [ ] `server.py` `create_mcp_server()`: lifespan (engine, httpx), `strict_input_validation`, `mask_error_details`, `host_origin_protection`, `stateless_http` from settings
-- [ ] `routers/tools.py`: `search_jobs(max_new: int = 30)` and `screen_batch(run_id: str)` with annotations and docstrings. Domain errors map to `ToolError` codes: `PROFILE_REQUIRED`, `RUN_NOT_FOUND`, `RUN_EXPIRED`.
+- [x] `routers/tools.py`: `search_jobs(max_new: int = 30)` and `screen_batch(run_id: str)` with annotations and docstrings. Domain errors map to `ToolError` codes: `PROFILE_REQUIRED`, `RUN_NOT_FOUND`, `RUN_EXPIRED`.
 - [ ] `/health` and `/ready` routes
-- [ ] Contract tests (in-memory client): names, annotations, input schemas without `anyOf`, error shape
-- [ ] E2E with fakes: search → screen (several calls) → shortlist; one source down
+- [x] Contract tests (in-memory client): names, annotations, input schemas without `anyOf`, error shape
+- [x] E2E with fakes: search → screen (several calls) → shortlist; one source down
 
 ## 2.10 Docker
 - [ ] `Dockerfile`: `python:3.14-slim` pinned by digest, uv, `uv sync --frozen --no-dev`, non-root user; entrypoint runs startup (migrations under the lock), then the server on `0.0.0.0:8000`
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.8 done (screen_batch tool: claims, cached extraction, eligibility, retry, progress/shortlist, shielded release on cancel). Next: 2.9 MCP server (create_mcp_server, routers, health/ready, contract + e2e tests).
+Stopped at: 2.9 partly done (create_mcp_server with lifespan, routers/tools with annotations, error mapping, contract + e2e tests). Next: /health and /ready, then the HTTP app with stateless_http and host_origin_protection (allowed hosts) and tick the server bullet.

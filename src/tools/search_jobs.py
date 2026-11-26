@@ -24,7 +24,7 @@ from src.models.search import SearchSummary
 from src.sources.base import JobSource, SourceQuery
 
 
-async def search_jobs(
+async def search_jobs_tool(
     session: AsyncSession,
     sources: list[JobSource],
     settings: Settings,

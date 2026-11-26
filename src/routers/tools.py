@@ -1,0 +1,69 @@
+"""The MCP contract of the tools: names, descriptions, parameters and hints. No logic here.
+
+Descriptions are written for the host's model, so they say *when* to call the tool and *what
+to do next*. Annotations are hints to the host, never security: every guard is in server code.
+"""
+
+from collections.abc import Awaitable, Callable
+from typing import Any
+
+from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
+
+from src.models.screening import ScreenBatchResult
+from src.models.search import SearchSummary
+from src.routers.context import app_state, current_user_id, user_session
+from src.routers.error_mapping import maps_domain_errors
+from src.tools.screen_batch import screen_batch_tool
+from src.tools.search_jobs import search_jobs_tool
+
+
+def register_mcp_tools(mcp: FastMCP) -> None:
+    def tool(**options: Any) -> Callable[[Callable[..., Awaitable[Any]]], Any]:
+        """`mcp.tool` plus the error translation, so no tool can be registered without it."""
+
+        def register(function: Callable[..., Awaitable[Any]]) -> Any:
+            return mcp.tool(**options)(maps_domain_errors(function))
+
+        return register
+
+    @tool(
+        name="search_jobs",
+        annotations=ToolAnnotations(
+            readOnlyHint=False,  # creates a search run
+            destructiveHint=False,
+            idempotentHint=False,  # a second call may find new jobs and makes a new run
+            openWorldHint=True,  # asks external job sources
+        ),
+    )
+    async def search_jobs(ctx: Context, max_new: int = 30) -> SearchSummary:
+        """Find new jobs for the user's profile and queue them for analysis.
+
+        Fast: it only collects and filters postings; it does not say whether the user can
+        apply. Requires a complete profile. Afterwards call screen_batch with the returned
+        run_id until nothing remains. `max_new` is how many new jobs to queue (the server
+        applies its own ceiling).
+        """
+        state = app_state(ctx)
+        async with user_session(state) as (session, user_id):
+            return await search_jobs_tool(session, state.sources, state.settings, user_id, max_new)
+
+    @tool(
+        name="screen_batch",
+        annotations=ToolAnnotations(
+            readOnlyHint=False,  # records verdicts
+            destructiveHint=False,
+            idempotentHint=True,  # repeating a call never redoes finished work
+            openWorldHint=False,
+        ),
+    )
+    async def screen_batch(ctx: Context, run_id: str) -> ScreenBatchResult:
+        """Analyze the next jobs of a search run: can the user apply from where they live?
+
+        Takes the run_id returned by search_jobs. While `remaining` is above 0 it returns only
+        progress: call it again with the same run_id. The call that finishes returns the
+        shortlist. Eligibility is an estimate from the posting text, never legal advice.
+        """
+        state = app_state(ctx)
+        user_id = await current_user_id(state)
+        return await screen_batch_tool(state.sessions, state.settings, user_id, run_id)

@@ -89,7 +89,7 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 ```
 src/
   server.py              # create_mcp_server(): FastMCP app, lifespan (DB pools, httpx), auth, middleware
-  routers/               # MCP contract only: tools.py, resources.py, prompts.py, ui.py (custom HTTP routes)
+  routers/               # MCP contract only: tools.py, resources.py, prompts.py, ui.py (custom HTTP routes); context.py (AppState, user session), error_mapping.py
   tools/                 # one file per tool, written as the ordered steps of that tool (see Code conventions)
   resources/             # one file per MCP resource (phase 5)
   app/                   # business logic by domain, with its own SQL: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
@@ -259,6 +259,7 @@ alembic/                 # migrations
 
 ### MCP interface
 - 12 tools, 2 prompts, 4 resources (see `specs/system.md`).
+- Domain errors become `ToolError("[CODE] message")` through a decorator applied by `register_mcp_tools`, not through middleware; the `tools/` functions end in `_tool` so the router's function can carry the public name → FastMCP masks every exception inside the tool call (`mask_error_details=True`), before any middleware runs, so a middleware only ever sees the generic message.
 - Workflow recipe lives in one Python function used by the MCP prompts, the `get_workflow_instructions` tool and the server `instructions`; the skill calls the tool → single source of truth.
 - Project skill `.claude/skills/laburo-match/SKILL.md` is the entry point ("find me jobs") → course lesson: abilities in MCP, procedures in skills, existing binaries via CLI.
 - Anything the model must read also exists as a tool, not only as a resource → resources are host-controlled and unevenly supported.
