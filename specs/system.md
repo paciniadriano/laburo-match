@@ -131,6 +131,7 @@ Settings via pydantic-settings; secrets as `SecretStr`. The real `.env` is outsi
 | `OPIK_API_KEY`, `OPIK_PROJECT`, `OPIK_WORKSPACE` | Observability (optional) | empty |
 | `OBS_CAPTURE_PII` | Capture profile/draft content in traces | `false` |
 | `DEMO_MODE` | Sources replay fixtures (no SerpApi key needed) | `false` (set `true` in the local `.env` until phase 4) |
+| `SERVER_HOST`, `SERVER_PORT` | Bind address and port of the HTTP server (the container sets `0.0.0.0`) | `127.0.0.1`, 8000 |
 | `UPLOAD_SIGNING_SECRET` | HMAC for signed upload links and user hashes | — |
 | `PUBLIC_BASE_URL` | Base URL for upload links | `http://localhost:8000` |
 | `DESCOPE_*` | Auth (remote only) | empty |

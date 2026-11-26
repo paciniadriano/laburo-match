@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     # --- Environment ---
     app_env: Literal["local", "production"] = "local"
 
+    # --- HTTP server ---
+    server_host: str = "127.0.0.1"  # the container sets 0.0.0.0; compose publishes loopback only
+    server_port: int = Field(default=8000, ge=1, le=65535)
+
     # --- Database ---
     database_url: str = _LOCAL_DB
     test_database_url: str = _LOCAL_TEST_DB

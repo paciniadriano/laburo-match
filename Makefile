@@ -1,5 +1,5 @@
 # Daily commands. Targets are added as the pieces they run are built.
-.PHONY: setup db psql migrate seed test test-fast lint format
+.PHONY: setup db psql dev migrate seed test test-fast lint format
 
 setup:  ## Install dependencies exactly as locked and enable the git hooks
 	uv sync --frozen
@@ -10,6 +10,9 @@ db:  ## Start only Postgres (databases `laburo` and `laburo_test`)
 
 psql:  ## Open a SQL prompt on the dev database (type \q to leave)
 	docker compose exec db psql -U laburo -d laburo
+
+dev:  ## Run the MCP server locally over HTTP on localhost:8000 (needs `make db` and `make migrate`)
+	uv run python -m src.main
 
 migrate:  ## Apply migrations to the dev database (same routine as container start)
 	uv run python -m src.db.startup

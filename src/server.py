@@ -3,6 +3,8 @@
 import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from typing import Any
+from urllib.parse import urlsplit
 
 from fastmcp import FastMCP
 from sqlalchemy import text
@@ -73,3 +75,22 @@ def create_mcp_server(
     register_mcp_tools(mcp)
     register_health_routes(mcp, database_is_reachable)
     return mcp
+
+
+def http_options(settings: Settings) -> dict[str, Any]:
+    """Options for `run()`/`http_app()` that depend on the mode.
+
+    The Host/Origin guard is always on: a browser page must not reach a server bound to
+    loopback through DNS rebinding. Allowed hosts are the local ones plus the public host of
+    `PUBLIC_BASE_URL`. Production is stateless: no session lives in memory, so any replica can
+    answer any request.
+    """
+    allowed = {f"localhost:{settings.server_port}", f"127.0.0.1:{settings.server_port}"}
+    public = urlsplit(settings.public_base_url)
+    if public.netloc:
+        allowed.add(public.netloc)
+    return {
+        "host_origin_protection": True,
+        "allowed_hosts": sorted(allowed),
+        "stateless_http": settings.app_env == "production",
+    }
