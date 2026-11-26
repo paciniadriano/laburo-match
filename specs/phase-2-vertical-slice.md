@@ -88,8 +88,8 @@
 - [x] E2E with fakes: search → screen (several calls) → shortlist; one source down
 
 ## 2.10 Docker
-- [ ] `Dockerfile`: `python:3.14-slim` pinned by digest, uv, `uv sync --frozen --no-dev`, non-root user; entrypoint runs startup (migrations under the lock), then the server on `0.0.0.0:8000`
-- [ ] `app` service in compose: `127.0.0.1:8000:8000`, waits for a healthy db, env file mounted read-only; `make up` / `make down`
+- [x] `Dockerfile`: `python:3.14-slim` pinned by digest, uv, `uv sync --frozen --no-dev`, non-root user; entrypoint runs startup (migrations under the lock), then the server on `0.0.0.0:8000`
+- [x] `app` service in compose: `127.0.0.1:8000:8000`, waits for a healthy db, real `.env` injected with `env_file` (a bind mount keeps the host's 0600 mode, which the container user cannot read); `make up` / `make down`
 - [ ] Verified: `make up` from scratch, `/health` OK, tools visible and callable from Claude Code (Windows → WSL `localhost`)
 
 ## 2.11 Minimal terminal client
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.9 done (HTTP app via `python -m src.main` / `make dev`, Host/Origin guard checked with curl: fake Host → 421, fake Origin → 403). Next: 2.10 Docker.
+Stopped at: 2.10 Dockerfile and compose `app` service done and verified from the host (health, ready, Host guard, tools list, search_jobs through the container). Next: connect Claude Code (`.mcp.json`) and tick the last 2.10 bullet, then 2.11.
