@@ -141,6 +141,7 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] "1099 contractor" becomes a badge with a W-8BEN note (user decision, after checking tax guides)
 - [x] Dev labels 08 and 11 relabelled `eligible` (both fully remote; user decision, noted in the dataset)
 - [x] Offline check from the eval cache (no provider allowed): dev 10/10, 0 valid jobs `not_eligible`, 9 cache hits, 0 calls
+- [x] `make eval` run by the user after 2.19 (2026-11-28, `gpt-6-luna`, version `5f51ace8d0e3`): **10/10, gate PASS, $0.00** (9 cache hits; job 14 discarded by the prefilter with no LLM call); eligible 6/6, doubtful 1/1, not_eligible 3/3
 - [x] Audit of the deterministic discards on live data (2026-11-28, 289 jobs; the prefilter would remove 147 `office_abroad` and 34 `residence_abroad`, and open 62 as fully remote): a random sample of 12 + 12 + 4 checked against each job page's own remote work policy, **28/28 agree**, no page names Argentina or Latin America as open. Zero errors in 24 discards still allows a rate up to about 12 % (rule of three), so the audit is repeated when a rule changes
 - [x] `DEMO_MODE` verified: it only switches Get on Board between recording and live API (no SerpApi path exists); a live fetch parsed 289 jobs with no warnings and residence declared for 123 of 130 remote ones
 - [x] The user re-recorded (289 jobs, residence declared for 123 of 130 remote) and ran the demo live (`DEMO_MODE=false`): 53 to screen, all judged in one round, first answer in 19 s; 37 eligible, 0 doubtful, 16 not eligible; left out 137 too old, 85 office abroad, 14 remote only for other countries
@@ -177,4 +178,4 @@ A verdict is marked `stale` only when the profile changes (`screening_hash`). A 
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.19 done (389 tests). Left: `make eval`, the Claude Code check of partial rounds; phase close and PR wait for the user.
+Stopped at: 2.19 done, dev eval 10/10 at $0. Left: the Claude Code check of partial rounds; phase close and PR wait for the user.
