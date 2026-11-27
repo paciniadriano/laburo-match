@@ -98,7 +98,7 @@
 - [ ] Demo with the real LLM: `make up && make seed && make client`, then "find me jobs" → shortlist
 
 ## 2.12 CI
-- [ ] `.github/workflows/ci.yml`: actions pinned by SHA, Postgres service pinned by digest (same major), uv on `.python-version`; ruff, pyright, gitleaks, pip-audit, `make test`; no secrets
+- [x] `.github/workflows/ci.yml`: actions pinned by SHA, Postgres service pinned by digest (same major), uv on `.python-version`; ruff, pyright, gitleaks, pip-audit, `make test`; no secrets
 
 ## 2.13 Eligibility eval harness
 - [ ] `evals/run_eval.py --dataset eligibility --split dev|test --budget 0.50 [--no-cache]`, with an eval-only LLM cache and a budget guard (price table in `core/usage.py`, checked against current OpenAI prices)
@@ -124,4 +124,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.12 workflow written and checked with actionlint, not yet run on GitHub (box stays unticked until it is green on the branch). Also done: filelock CVEs fixed in uv.lock. Left in 2.11: the demo with the real LLM. Next: push the branch to see CI run, then 2.13 eval harness.
+Stopped at: 2.12 done: CI green on the draft PR #2 (secret scan 12 s; lint, audit and 301 tests 1 m 3 s). Left in 2.11: the demo with the real LLM. Next: 2.13 eval harness.
