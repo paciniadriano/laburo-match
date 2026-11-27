@@ -24,7 +24,13 @@ def format_card(position: int, card: JobCard) -> str:
 
 
 def format_shortlist(result: ScreenBatchResult) -> str:
-    header = f"Shortlist: {result.eligible_total} eligible, {result.doubtful_total} doubtful"
+    total = result.eligible_total + result.doubtful_total
+    counts = f"{result.eligible_total} eligible, {result.doubtful_total} doubtful"
+    # Say it when cards are left out: the totals would read as "these are all of them".
+    if len(result.shortlist) < total:
+        header = f"Shortlist: showing {len(result.shortlist)} of {total} ({counts})"
+    else:
+        header = f"Shortlist: {counts}"
     cards = [format_card(n, card) for n, card in enumerate(result.shortlist, start=1)]
     footer = [result.disclaimer] if result.disclaimer else []
     return "\n\n".join([header, *cards, *footer])

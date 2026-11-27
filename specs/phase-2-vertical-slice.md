@@ -95,7 +95,7 @@
 ## 2.11 Minimal terminal client
 - [x] `client/`: FastMCP client (HTTP; in-memory in tests), MCP tools → LangChain tools, ReAct loop with `LLM_CLIENT_MODEL` through `llm/factory.py`, server `instructions` injected, shortlist printed
 - [x] Smoke test: the client starts, lists tools and runs one scripted turn with FakeLLM
-- [ ] Demo with the real LLM: `make up && make seed && make client`, then "find me jobs" → shortlist
+- [x] Demo with the real LLM: `make up && make seed && make client`, then "find me jobs" → shortlist (30 jobs, 2 screen calls, 10 cards printed with Get on Board links, summary in the user's language; 15 of the 30 jobs were hybrid and `doubtful`, see 2.13)
 
 ## 2.12 CI
 - [x] `.github/workflows/ci.yml`: actions pinned by SHA, Postgres service pinned by digest (same major), uv on `.python-version`; ruff, pyright, gitleaks, pip-audit, `make test`; no secrets
@@ -124,4 +124,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.12 done: CI green on the draft PR #2 (secret scan 12 s; lint, audit and 301 tests 1 m 3 s). Left in 2.11: the demo with the real LLM. Next: 2.13 eval harness.
+Stopped at: 2.11 done (real-LLM demo run by the user). Open question for 2.13: the profile accepts only remote, yet 15 of 30 jobs are hybrid and `doubtful` (6 of the 10 cards); the hybrid rule never reads `accepted_modalities`. Next: 2.13 eval harness.

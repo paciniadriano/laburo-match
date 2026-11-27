@@ -1,0 +1,43 @@
+"""What the terminal prints for a shortlist."""
+
+from client.display import format_shortlist
+from src.models.screening import JobCard, ScreenBatchResult
+
+
+def _card(n: int) -> JobCard:
+    return JobCard(
+        job_id=str(n),
+        title=f"Role {n}",
+        company="Acme",
+        source="Get on Board",
+        eligibility="doubtful",
+        reason="The posting says nothing about where you can work from.",
+        quotes=[],
+        recruiter_questions=[],
+        warnings=[],
+        apply_url=f"https://example.com/{n}",
+        posted_at=None,
+    )
+
+
+def _result(shown: int, eligible: int, doubtful: int) -> ScreenBatchResult:
+    return ScreenBatchResult(
+        status="done",
+        processed=eligible + doubtful,
+        failed=0,
+        remaining=0,
+        next_step_hint="",
+        shortlist=[_card(n) for n in range(shown)],
+        eligible_total=eligible,
+        doubtful_total=doubtful,
+    )
+
+
+def test_the_header_says_when_cards_are_left_out():
+    text = format_shortlist(_result(shown=10, eligible=1, doubtful=29))
+    assert text.startswith("Shortlist: showing 10 of 30 (1 eligible, 29 doubtful)")
+
+
+def test_the_header_is_plain_when_every_card_is_shown():
+    text = format_shortlist(_result(shown=3, eligible=0, doubtful=3))
+    assert text.startswith("Shortlist: 0 eligible, 3 doubtful")
