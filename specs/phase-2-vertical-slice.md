@@ -143,7 +143,8 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] Offline check from the eval cache (no provider allowed): dev 10/10, 0 valid jobs `not_eligible`, 9 cache hits, 0 calls
 - [x] Audit of the deterministic discards on live data (2026-11-28, 289 jobs; the prefilter would remove 147 `office_abroad` and 34 `residence_abroad`, and open 62 as fully remote): a random sample of 12 + 12 + 4 checked against each job page's own remote work policy, **28/28 agree**, no page names Argentina or Latin America as open. Zero errors in 24 discards still allows a rate up to about 12 % (rule of three), so the audit is repeated when a rule changes
 - [x] `DEMO_MODE` verified: it only switches Get on Board between recording and live API (no SerpApi path exists); a live fetch parsed 289 jobs with no warnings and residence declared for 123 of 130 remote ones
-- [ ] The user re-records (`make record-fixtures`, now with the residence countries) and runs the demo
+- [x] The user re-recorded (289 jobs, residence declared for 123 of 130 remote) and ran the demo live (`DEMO_MODE=false`): 53 to screen, all judged in one round, first answer in 19 s; 37 eligible, 0 doubtful, 16 not eligible; left out 137 too old, 85 office abroad, 14 remote only for other countries
+- [x] Found in that demo: Niuro's "Mexico only" postings that say "flexibility in work location globally" were discarded by the prefilter; "globally" joins the prose guard, so the contradiction reaches screening and ends doubtful
 - [ ] Check once in Claude Code that a `partial` round waits for the user instead of chaining rounds on its own
 
 ## 2.17 `list_jobs`, read-only (user decision A)
@@ -171,4 +172,4 @@ A verdict is marked `stale` only when the profile changes (`screening_hash`). A 
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.18 built and audited (396 tests; 28/28 sampled discards agree with the job pages). Left for the user: optional DEMO_MODE=false, `make record-fixtures`, `make up` + demo, `make eval`; a Claude Code check of partial rounds. Phase close and PR wait for the user.
+Stopped at: 2.18 done and demoed live. Left: `make eval`, the Claude Code check of partial rounds; phase close and PR wait for the user.
