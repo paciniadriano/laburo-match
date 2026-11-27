@@ -62,4 +62,4 @@ pythonVersion = "3.14"
 venvPath = "."
 venv = ".venv"
 # Add `client` and `evals` when those folders exist.
-include = ["src", "tests", "scripts"]
+include = ["src", "client", "tests", "scripts"]

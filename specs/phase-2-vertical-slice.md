@@ -93,8 +93,8 @@
 - [x] Verified: `make up` from scratch, `/health` OK, tools visible and callable from Claude Code. Real run through the container, 30 Get on Board jobs (demo fixture): 30 `done`, 0 errors, 30 LLM calls, 40,839 input / 6,079 output tokens; verdicts 1 eligible, 29 doubtful, 0 not_eligible
 
 ## 2.11 Minimal terminal client
-- [ ] `client/`: FastMCP client (HTTP; in-memory in tests), MCP tools → LangChain tools, ReAct loop with `LLM_CLIENT_MODEL` through `llm/factory.py`, server `instructions` injected, shortlist printed
-- [ ] Smoke test: the client starts, lists tools and runs one scripted turn with FakeLLM
+- [x] `client/`: FastMCP client (HTTP; in-memory in tests), MCP tools → LangChain tools, ReAct loop with `LLM_CLIENT_MODEL` through `llm/factory.py`, server `instructions` injected, shortlist printed
+- [x] Smoke test: the client starts, lists tools and runs one scripted turn with FakeLLM
 - [ ] Demo with the real LLM: `make up && make seed && make client`, then "find me jobs" → shortlist
 
 ## 2.12 CI
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.10 done. Note for 2.13: 29 of 30 verdicts are `doubtful`, mostly "the posting says nothing about where you can work from"; check against the labelled set whether that is right or too cautious. Next: 2.11 terminal client.
+Stopped at: 2.11 built and tested with fakes (client/, llm/factory.py, server instructions). Left: the demo with the real LLM (`make up && make seed && make client`, then "find me jobs"). Then 2.12 CI.

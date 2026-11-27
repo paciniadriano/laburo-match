@@ -8,9 +8,9 @@ from typing import Any
 
 from langchain_openai import ChatOpenAI
 
-from src.config.constants import LLM_MAX_RETRIES, LLM_REQUEST_TIMEOUT_SECONDS
 from src.config.settings import Settings
 from src.llm.backend import BackendResponse, Usage
+from src.llm.factory import build_chat_model
 from src.llm.messages import Message
 from src.llm.tasks import LLMTask
 
@@ -39,20 +39,12 @@ class OpenAIBackend:
         """One client per (model, task, effort, token cap), built lazily and reused."""
         key = (model, task.name, task.reasoning_effort, task.max_output_tokens)
         if key not in self._clients:
-            extra: dict[str, Any] = {}
-            if task.max_output_tokens is not None:
-                extra["max_tokens"] = task.max_output_tokens
-            self._clients[key] = ChatOpenAI(
+            self._clients[key] = build_chat_model(
+                self._settings,
                 model=model,
-                api_key=self._settings.openai_api_key,
-                use_responses_api=True,
-                reasoning={"effort": task.reasoning_effort},
-                timeout=LLM_REQUEST_TIMEOUT_SECONDS,
-                max_retries=LLM_MAX_RETRIES,
-                # Same key for every call of a task: requests sharing a prefix reach the same
-                # cache. It is only a routing hint, never user data.
-                model_kwargs={"prompt_cache_key": task.name},
-                **extra,
+                reasoning_effort=task.reasoning_effort,
+                cache_key=task.name,
+                max_output_tokens=task.max_output_tokens,
             )
         return self._clients[key]
 

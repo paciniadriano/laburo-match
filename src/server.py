@@ -13,6 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from src.config.settings import Settings
 from src.core.http import make_http_client
 from src.db.session import make_engine, make_session_factory
+from src.prompts.workflow import server_instructions
 from src.routers.context import AppState
 from src.routers.health import register_health_routes
 from src.routers.tools import register_mcp_tools
@@ -68,6 +69,7 @@ def create_mcp_server(
 
     mcp = FastMCP(
         "laburo-match",
+        instructions=server_instructions(),
         lifespan=lifespan,
         mask_error_details=True,
         strict_input_validation=True,
