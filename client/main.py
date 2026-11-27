@@ -14,10 +14,10 @@ from src.config.settings import Settings, get_settings
 from src.llm.factory import build_chat_model
 
 CLIENT_RULES = (
-    "You are the terminal assistant of laburo-match. After every screen_batch the program "
-    "prints the shortlist itself, with links and quotes: do not repeat the cards. Reply with two "
-    "or three sentences that sum up what was found and, if jobs remain unchecked, offer to "
-    "check more. Answer in the user's language."
+    "You are the terminal assistant of laburo-match. After every screen_batch and list_jobs "
+    "the program prints the results itself, with links and quotes: do not repeat them. Reply "
+    "with two or three sentences that sum up what was found and, if jobs remain unchecked, "
+    "offer to check more. Answer in the user's language."
 )
 
 

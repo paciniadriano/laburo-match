@@ -10,10 +10,12 @@ from typing import Any
 from fastmcp import Context, FastMCP
 from mcp.types import ToolAnnotations
 
+from src.models.listing import ListJobsResult, ListStatus
 from src.models.screening import ScreenBatchResult
 from src.models.search import SearchSummary
 from src.routers.context import app_state, current_user_id, user_session
 from src.routers.error_mapping import maps_domain_errors
+from src.tools.list_jobs import list_jobs_tool
 from src.tools.screen_batch import screen_batch_tool
 from src.tools.search_jobs import search_jobs_tool
 
@@ -69,3 +71,25 @@ def register_mcp_tools(mcp: FastMCP) -> None:
         state = app_state(ctx)
         user_id = await current_user_id(state)
         return await screen_batch_tool(state.sessions, state.settings, user_id, run_id)
+
+    @tool(
+        name="list_jobs",
+        annotations=ToolAnnotations(
+            readOnlyHint=True,  # reads verdicts, never changes them
+            destructiveHint=False,
+            idempotentHint=True,
+            openWorldHint=False,
+        ),
+    )
+    async def list_jobs(
+        ctx: Context, status: ListStatus = "all", limit: int = 20, offset: int = 0
+    ) -> ListJobsResult:
+        """List every job already judged for the user, beyond the 10 cards of a shortlist.
+
+        `status="all"` lists the jobs the user can look at (eligible first); `"filtered"` lists
+        what was left out automatically, each with the reason, so the user can check it. Pages
+        of `limit` jobs (at most 50): pass `offset` from the hint for the next one. Read-only.
+        """
+        state = app_state(ctx)
+        async with user_session(state) as (session, user_id):
+            return await list_jobs_tool(session, user_id, status, limit, offset)

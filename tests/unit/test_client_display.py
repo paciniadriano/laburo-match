@@ -51,3 +51,26 @@ def test_the_reasons_jobs_were_left_out_are_shown_in_words():
     text = format_shortlist(result)
 
     assert "Left out: 20 hybrid or on-site in another country, 2 not open to your country" in text
+
+
+def test_a_listing_prints_one_line_per_job_with_its_link_and_says_when_more_exist():
+    from client.display import format_listing
+    from src.models.listing import ListedJob, ListJobsResult
+
+    item = ListedJob(
+        job_id="1", title="Frontend Engineer", company="Acme", source="Get on Board",
+        verdict="doubtful", reason="The posting says nothing about where you can work from.",
+        apply_url="https://example.com/1", posted_at=None, days_since_update=0, closed=False,
+        stale=False,
+    )  # fmt: skip
+    result = ListJobsResult(
+        status="all", items=[item], total=12, offset=10, has_more=True, next_step_hint="",
+        disclaimer="",
+    )  # fmt: skip
+
+    text = format_listing(result)
+
+    assert text.startswith("Jobs (all): 11-11 of 12")
+    assert "11. [DOUBTFUL] Frontend Engineer - Acme" in text
+    assert "Apply (Get on Board): https://example.com/1" in text
+    assert text.endswith("Ask for more to see the next page.")

@@ -134,8 +134,10 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] Tests: the round stops at its budget and releases unfinished jobs uncounted; cached jobs all fit in one round with a slow model; first job alone, then at most N workers; safety limit; retry inside the round; cancellation still releases claims
 - [ ] Measured: first search on the full recording, wait in seconds, `screen_ms`, and jobs judged in the first round; tune `LLM_CONCURRENCY` from it
 
-## Known limitation of this slice
-- The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
+## 2.17 `list_jobs`, read-only (user decision A)
+- [x] `list_jobs(status: Literal["all","filtered"] = "all", limit: int = 20, offset: int = 0)`: the user's latest verdict per job across runs, eligible first; `filtered` shows prefilter and `not_eligible` discards with a readable reason; `stale` when the profile changed; pages of at most 50
+- [x] Contract, isolation between users, paging, stale marker and filtered-reason tests; the client prints listings itself
+- Replaces the earlier limitation (jobs beyond the 10 cards could not be opened until phase 6).
 
 ## Out of scope (later phases)
 - **Phase 3:** CV upload and profile tools.
@@ -153,4 +155,4 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.16 built (362 tests). Next: 2.17 list_jobs (read-only). The user's real .env needs: MAX_NEW_JOBS_PER_SEARCH=300, SCREEN_MAX_JOBS_PER_CALL=300, add SCREEN_ROUND_SECONDS=20 (or delete those lines to use the defaults).
+Stopped at: 2.17 done (369 tests). Left for the user: update the real .env, `make record-fixtures`, `make eval`, a timed demo; then Definition of Done and the PR to main.

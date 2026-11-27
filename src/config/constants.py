@@ -31,3 +31,14 @@ SOURCE_LABELS = {
     "google_jobs": "Google Jobs",
     "pasted": "Pasted by you",
 }
+
+# Why the search prefilter left a job out, in words for the host to pass on.
+PREFILTER_REASON_TEXT = {
+    "closed": "The posting is closed.",
+    "too_old": "Older than the maximum job age of your profile.",
+    "office_abroad": "Hybrid or on-site, and every office is in another country.",
+    "duplicate": "Another posting of the same opening was kept.",
+}
+
+# Pages of `list_jobs`: small enough for the host's context, large enough to browse.
+LIST_JOBS_MAX_LIMIT = 50

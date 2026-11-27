@@ -6,6 +6,7 @@ from typing import Any
 
 from fastmcp.client.client import CallToolResult
 
+from src.models.listing import ListJobsResult
 from src.models.screening import JobCard, ScreenBatchResult
 
 Printer = Callable[[str], None]
@@ -54,6 +55,19 @@ def format_shortlist(result: ScreenBatchResult) -> str:
     return "\n\n".join([header, *([discards] if discards else []), *cards, *more, *footer])
 
 
+def format_listing(result: ListJobsResult) -> str:
+    """One line per job, enough to choose; the cards with quotes are the shortlist's job."""
+    first, last = result.offset + 1, result.offset + len(result.items)
+    header = f"Jobs ({result.status}): {first}-{last} of {result.total}"
+    lines = [
+        f"{n:>3}. [{item.verdict.upper()}] {item.title} - {item.company}\n"
+        f"     {item.reason}\n     Apply ({item.source}): {item.apply_url}"
+        for n, item in enumerate(result.items, start=result.offset + 1)
+    ]
+    more = ["Ask for more to see the next page."] if result.has_more else []
+    return "\n".join([header, *lines, *more]) if result.items else f"No jobs ({result.status})."
+
+
 def show_tool_result(name: str, result: CallToolResult, out: Printer = print) -> None:
     """Print a line for each search and the shortlist after every screening round."""
     data: Any = result.structured_content
@@ -63,3 +77,5 @@ def show_tool_result(name: str, result: CallToolResult, out: Printer = print) ->
         out(f"  [search] {data['to_screen']} jobs to screen")
     elif name == "screen_batch":
         out(format_shortlist(ScreenBatchResult.model_validate(data)))
+    elif name == "list_jobs":
+        out(format_listing(ListJobsResult.model_validate(data)))

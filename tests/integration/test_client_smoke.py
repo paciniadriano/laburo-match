@@ -66,7 +66,11 @@ async def test_the_client_lists_tools_and_runs_one_scripted_turn(
     with use_backend(LatamLLM()):
         async with Client(server) as mcp:
             tools = to_model_tools(await mcp.list_tools())
-            assert {t["function"]["name"] for t in tools} == {"search_jobs", "screen_batch"}
+            assert {t["function"]["name"] for t in tools} == {
+                "search_jobs",
+                "screen_batch",
+                "list_jobs",
+            }
             assert mcp.initialize_result is not None
             assert mcp.initialize_result.instructions == server_instructions()
 
