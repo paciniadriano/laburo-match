@@ -1,6 +1,415 @@
 {
  "data": [
   {
+   "id": "fullstack-developer-tcit-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Full-Stack Developer",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<p>Ingeniería en Informática, Ingeniería Civil Informática, Ingeniería en Software o carrera afín.</p><p>Experiencia en desarrollo de software.</p><p>HTML, CSS, JavaScript.</p><p>Fundamentos de React y Node.js</p><p>Bases de datos SQL básicas.</p><p>Git y control de versiones</p><p>Conceptos de testing.</p><p>Metodologías ágiles.</p><p>Consumo de APIs.</p>",
+    "projects": "<div>En TCIT lideramos proyectos de desarrollo de software en modalidad cloud para clientes en diversos rubros, con foco en soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles y tecnologías de última generación, y solemos colaborar con socios en proyectos internacionales, incluyendo Canadá. Buscamos ampliar nuestro equipo con profesionales que compartan nuestra misión de transformar digitalmente a las organizaciones y generar impacto social. En TCIT, cada proyecto impulsa nuestra visión de crecimiento y excelencia tecnológica.</div>",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<p>Desarrollar y mantener funcionalidades de software de baja y mediana complejidad, contribuyendo al desarrollo de productos tecnológicos mediante la aplicación de buenas prácticas de programación y el aprendizaje continuo.</p><p>Desarrollar funcionalidades de software de acuerdo con los requerimientos definidos</p><p>Corregir errores e incidencias identificadas en las aplicaciones.</p><p>Realizar pruebas unitarias y validaciones básicas de código</p><p>Participar en revisiones de código y aplicar buenas prácticas de desarrollo.</p><p>Documentar funcionalidades y desarrollos realizados.</p><p>Participar activamente en ceremonias ágiles y actividades de equipo.</p><p>Mantener y actualizar aplicaciones existentes</p><p>Participar en actividades de aprendizaje y actualización tecnológica. </p>",
+    "benefits_headline": "Condiciones",
+    "benefits": "",
+    "desirable_headline": "Opcionales",
+    "desirable": "<p>Deseable experiencia en proyectos</p>",
+    "remote": false,
+    "remote_modality": "hybrid",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Programming",
+    "perks": [
+     "health_coverage",
+     "computer_provided",
+     "informal_dresscode",
+     "beverages_and_snacks"
+    ],
+    "min_salary": null,
+    "max_salary": null,
+    "published_at": 1793024551,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 519,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 2,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 11,
+       "type": "tag"
+      },
+      {
+       "id": 12,
+       "type": "tag"
+      },
+      {
+       "id": 1,
+       "type": "tag"
+      },
+      {
+       "id": 123,
+       "type": "tag"
+      },
+      {
+       "id": 58,
+       "type": "tag"
+      },
+      {
+       "id": 64,
+       "type": "tag"
+      },
+      {
+       "id": 53,
+       "type": "tag"
+      },
+      {
+       "id": 4330,
+       "type": "tag"
+      },
+      {
+       "id": 1694,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "tcit",
+      "type": "company",
+      "attributes": {
+       "name": "TCIT",
+       "description": "Líderes en desarrollo de software en modalidad cloud",
+       "long_description": "<p>Nuestro propósito en TCIT es transformar digitalmente a distintas organizaciones a través de soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles, utilizamos tecnologías de última generación y somos expertos en desarrollo de software en tecnologías Cloud. Además, nos encanta estar involucrados en proyectos que generen impacto social.</p><p>¡Una de nuestras misiones en TCIT es descubrir y potenciar a los mejores y más apasionados talentos!</p><p>A lo largo de nuestros más de 9 años de experiencia hemos desarrollado softwares para distintos rubros, desde un sistema de gestión agrícola, un sistema de remates en línea, un sistema de gestión de las causas para tribunales judiciales, un sistema para monitoreo de certificaciones para trabajadores mineros, un sistema de liquidaciones de sueldo y otras soluciones de gestión de empresas en ámbitos como transporte de carga y bodegaje, entre muchos otros.</p><p>Además, trabajamos en países como Canadá en ambiciosos proyectos con nuestros partners tecnológicos.</p><p>¡Súmate a la revolución digital TCIT!</p>",
+       "projects": "<div>En TCIT lideramos proyectos de desarrollo de software en modalidad cloud para clientes en diversos rubros, con foco en soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles y tecnologías de última generación, y solemos colaborar con socios en proyectos internacionales, incluyendo Canadá. Buscamos ampliar nuestro equipo con profesionales que compartan nuestra misión de transformar digitalmente a las organizaciones y generar impacto social. En TCIT, cada proyecto impulsa nuestra visión de crecimiento y excelencia tecnológica.</div>",
+       "benefits": "<p>- Modalidad de trabajo presencial en la comuna de Providencia.&nbsp;<br>- Horario de 44 horas semanales: L a J 8:00 - 18:00 V 8:00 - 17:00&nbsp;</p>",
+       "web": "http://www.tcit.cl",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": "",
+       "country": "CL",
+       "response_time_in_days": {
+        "min": 10,
+        "max": 20
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/2314/TCIT_isotipo-color.png"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/fullstack-developer-tcit-santiago"
+   }
+  },
+  {
+   "id": "senior-software-engineer-serverless-workflow-hyqoo-remote",
+   "type": "job",
+   "attributes": {
+    "title": "Senior Software Engineer – Serverless Workflow",
+    "description_headline": "Qualifications:",
+    "description": "<p>Bachelor’s degree in Computer Science, Engineering, or a related field. Advanced degrees are a plus. 6 to 8 years of professional experience in software development, with a strong focus on .NET technologies. Proven experience in building and managing serverless workflows and cloud-native applications.</p><p>Accountable use of AI-assisted tools</p><p>Hands-on experience with AWS services such as Lambda, API Gateway, DynamoDB, and related serverless tools. Proficiency in .NET 8/10 and developing RESTful services using WebAPI. Familiarity with Document Intelligence technologies and their integration into enterprise solutions. Strong problem-solving skills, attention to detail, and the ability to work effectively in a collaborative environment.</p>",
+    "projects": "<p>We are seeking a highly skilled Senior Software Engineer with 6 to 8+ years of experience to join our dynamic team. This role is pivotal in designing and implementing scalable, serverless workflows that drive innovation and efficiency within our organization. The successful candidate will leverage cutting-edge technologies to build robust backend solutions, significantly impacting our cloud infrastructure and document intelligence capabilities.</p>",
+    "functions_headline": "Roles and Responsibilities:",
+    "functions": "<p>Design, develop, and maintain scalable serverless workflows using best practices to optimize performance and cost-efficiency. Architect and implement backend services using .NET 8/10 and WebAPI frameworks. Collaborate with cross-functional teams to integrate Document Intelligence solutions that enhance data processing and automation. Develop and deploy cloud-native applications on AWS, ensuring high availability, security, and scalability. Lead code reviews, mentor junior engineers, and contribute to continuous improvement of development processes. Troubleshoot, debug, and optimize existing applications to improve reliability and performance. Stay updated with the latest industry trends and technologies to recommend and implement innovative solutions.</p>",
+    "benefits_headline": "",
+    "benefits": "",
+    "desirable_headline": "Qualifications:",
+    "desirable": "<p>Relevant certifications in AWS or .NET technologies are advantageous.</p>",
+    "remote": true,
+    "remote_modality": "remote_local",
+    "remote_zone": null,
+    "countries": [
+     "Remote"
+    ],
+    "lang": "en",
+    "category_name": "Programming",
+    "perks": [
+     "computer_provided"
+    ],
+    "min_salary": 3000,
+    "max_salary": 4500,
+    "published_at": 1793021808,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 96,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": [
+      {
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
+      },
+      {
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
+      },
+      {
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
+      },
+      {
+       "id": "brasil",
+       "type": "country",
+       "attributes": {
+        "name": "Brasil"
+       }
+      }
+     ]
+    },
+    "location_cities": {
+     "data": []
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 5,
+       "type": "tag"
+      },
+      {
+       "id": 733,
+       "type": "tag"
+      },
+      {
+       "id": 1259,
+       "type": "tag"
+      },
+      {
+       "id": 310,
+       "type": "tag"
+      },
+      {
+       "id": 54,
+       "type": "tag"
+      },
+      {
+       "id": 5459,
+       "type": "tag"
+      },
+      {
+       "id": 37462,
+       "type": "tag"
+      },
+      {
+       "id": 74514,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "hyqoo",
+      "type": "company",
+      "attributes": {
+       "name": "Hyqoo",
+       "description": "Hyqoo (Hi-Q) is a Talent Cloud Platform providing global, remote, vetted talent on demand across Data, Cloud, Cybersecurity, Software, and Product Engineering.",
+       "long_description": "<p>At Hyqoo, our mission is to reshape remote hiring with the power of Artificial Intelligence. Innovate remotely with Hyqoo AI's Talent Cloud Platform, designed to seamlessly connect you with high-quality, vetted professionals from around the globe. By leveraging our cutting-edge platform, you can ensure your team is always equipped with the best talent available, driving your projects to new heights and achieving unparalleled success.</p>",
+       "projects": null,
+       "benefits": "",
+       "web": "https://hyqoo.com/",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": null,
+       "country": "US",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20870/Hyqoo_Logo.png"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/senior-software-engineer-serverless-workflow-hyqoo-remote"
+   }
+  },
+  {
+   "id": "desarrollador-go-y-node-js-itsmart-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Desarrollador Go y Node.js",
+    "description_headline": "Requisitos",
+    "description": "<p>Contar con dominio práctico de Go y Node.js (ideal TypeScript; NestJS suma).</p><p>Experiencia construyendo microservicios y APIs REST en entornos productivos.</p><p>Uso de Swagger/OpenAPI para diseño y documentación de contratos de API.</p><p>Manejo de Git y prácticas de colaboración: branches, PRs y code review.</p><p>Integración con bases de datos: Postgres/MySQL, incluyendo modelado y queries básicos.</p><p>Uso de Redis para cache/colas/locks según necesidad.</p><p>Experiencia trabajando con Docker y Kubernetes.</p><p>Capacidad de diagnosticar y optimizar latencia/rendimiento y apoyar en troubleshooting en Linux/Unix-like.</p><p>Habilidades colaborativas y responsabilidad en el ciclo de vida del producto (comunicación clara, organización y enfoque en calidad mediante testing).</p>",
+    "projects": "En ITSMART trabajamos con un enfoque ágil para impulsar el éxito de organizaciones a través de productos de calidad. Buscamos apoyar el desarrollo y mantenimiento de microservicios y APIs REST en entornos productivos, integrando persistencia, mensajería y herramientas de documentación para asegurar contratos de API claros. El equipo colabora mediante buenas prácticas en Git (branches, PRs y code review) y utiliza herramientas de contenedores para conocer cómo operan los servicios en Docker y Kubernetes, contribuyendo a la estabilidad, rendimiento y troubleshooting en ambientes Linux/Unix-like.",
+    "functions_headline": "Responsabilidades",
+    "functions": "<p>Apoyar en el diseño de soluciones.</p><p>Desarrollar y mantener microservicios y APIs REST en Go y Node.js (ideal TypeScript; NestJS suma), asegurando documentación con Swagger/OpenAPI.</p><p>Integrar persistencia en Postgres/MySQL y utilizar Redis (cache, colas y/o locks según necesidad).</p><p>Implementar testing (unit/integration) con enfoque TDD y asegurar cobertura adecuada.</p><p>Incorporar mensajería con Kafka o RabbitMQ cuando aplique.</p><p>Conocer cómo operan los servicios en Docker y Kubernetes.</p><p>Diagnosticar y optimizar latencia y rendimiento, y apoyar en troubleshooting en ambientes Linux/Unix-like.</p>",
+    "benefits_headline": "Beneficios",
+    "benefits": "<figure class=\"lexxy-content__table-wrapper\"><table><tbody><tr><td></td><td><p>Seguro Complementario de Salud</p></td><td><p>Reembolso de gastos médicos asociados al copago no cubierto por ISAPRE o FONASA</p><p>Coberturas sujetas a la póliza vigente</p></td></tr><tr><td></td><td><p>Seguro Catastrófico</p></td><td><p>Cobertura para gastos asociados a enfermedades que excedan los límites del seguro complementario, según póliza vigente.</p></td></tr><tr><td></td><td><p>Seguro de Vida</p></td><td><p>Beneficio otorgado por la empresa sujeto a las condiciones de la póliza vigente.</p></td></tr><tr><td></td><td><p>Licencias Médicas</p></td><td><p>Apoyo conforme a la política interna vigente para licencias de corta duración y casos aplicables.</p></td></tr><tr><td></td><td><p>Permisos con</p><p>Goce de Sueldo</p></td><td><p>Otorgamiento de permisos legales por matrimonio, acuerdo de unión civil, fallecimiento u otras situaciones contempladas por la normativa vigente</p></td></tr></tbody></table></figure>",
+    "desirable_headline": "Deseable",
+    "desirable": "<p>Experiencia adicional en mensajería con Kafka o RabbitMQ.</p><p>Mayor profundidad en observabilidad y troubleshooting (identificación de cuellos de botella de rendimiento y latencia, y seguimiento de métricas/trazas).</p><p>Experiencia más sólida en TypeScript y frameworks como NestJS.</p><p>Contribución proactiva al diseño de soluciones y mejora continua de la calidad (TDD, cobertura de pruebas y revisión de arquitectura).</p>",
+    "remote": false,
+    "remote_modality": "hybrid",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Programming",
+    "perks": [
+     "flexible_hours",
+     "remote_partial",
+     "computer_provided"
+    ],
+    "min_salary": 1800,
+    "max_salary": 2200,
+    "published_at": 1792775284,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 46,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 3,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 100,
+       "type": "tag"
+      },
+      {
+       "id": 58,
+       "type": "tag"
+      },
+      {
+       "id": 156,
+       "type": "tag"
+      },
+      {
+       "id": 300,
+       "type": "tag"
+      },
+      {
+       "id": 51,
+       "type": "tag"
+      },
+      {
+       "id": 23,
+       "type": "tag"
+      },
+      {
+       "id": 141,
+       "type": "tag"
+      },
+      {
+       "id": 209,
+       "type": "tag"
+      },
+      {
+       "id": 76,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "itsmart",
+      "type": "company",
+      "attributes": {
+       "name": "ITSMART",
+       "description": "Somos líderes en tecnología en la región latinoamericana y USA. Destacamos por ser un socio flexible y ágil, ofreciendo productos de calidad que impulsan el éxito de cada organización.",
+       "long_description": "",
+       "projects": null,
+       "benefits": "<div>No se especificaron beneficios, horarios, ubicación física ni facilidades adicionales en la publicación.</div>",
+       "web": "https://itsmartglobal.com",
+       "twitter": null,
+       "github": null,
+       "facebook": null,
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/19692/ITSMART_logo_cuadrado_3092x3092.png"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/desarrollador-go-y-node-js-itsmart-santiago"
+   }
+  },
+  {
    "id": "senior-php-developer-laravel-aws-improving-remote",
    "type": "job",
    "attributes": {
@@ -41,20 +450,32 @@
     "location_tenants": {
      "data": [
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -276,8 +697,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 5,
-       "type": "location_tenant"
+       "id": "united_states",
+       "type": "country",
+       "attributes": {
+        "name": "Estados Unidos"
+       }
       }
      ]
     },
@@ -878,7 +1302,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 972,
+    "applications_count": 973,
     "location_regions": {
      "data": []
     },
@@ -1249,7 +1673,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 755,
+    "applications_count": 756,
     "location_regions": {
      "data": []
     },
@@ -1616,8 +2040,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -1870,8 +2297,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -3074,7 +3504,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 654,
+    "applications_count": 658,
     "location_regions": {
      "data": []
     },
@@ -3694,7 +4124,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 140,
+    "applications_count": 141,
     "location_regions": {
      "data": []
     },
@@ -3952,8 +4382,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 12,
-       "type": "location_tenant"
+       "id": "brasil",
+       "type": "country",
+       "attributes": {
+        "name": "Brasil"
+       }
       }
      ]
     },
@@ -4290,8 +4723,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4405,7 +4841,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 356,
+    "applications_count": 357,
     "location_regions": {
      "data": [
       {
@@ -4781,8 +5217,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 114,
-       "type": "location_tenant"
+       "id": "dominican_republic",
+       "type": "country",
+       "attributes": {
+        "name": "Dominican Republic"
+       }
       }
      ]
     },
@@ -5688,8 +6127,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -5763,376 +6205,6 @@
    },
    "links": {
     "public_url": "https://www.getonbrd.com/jobs/forward-deployed-engineer-niuro-remote-87ec"
-   }
-  },
-  {
-   "id": "arquitecto-de-software-lider-tecnico-java-senior-bc-tecnologia-santiago-d401",
-   "type": "job",
-   "attributes": {
-    "title": "Arquitecto de Software/ Líder Técnico Java Senior",
-    "description_headline": "Requisitos",
-    "description": "<div>Buscamos un/a profesional con experiencia sólida en arquitectura y modernización para desempeñarse en roles técnicos senior. En BC Tecnología valoramos el aprendizaje constante, el trabajo colaborativo y el enfoque orientado al cliente.</div><ul><li><strong>Experiencia:</strong> mínimo <strong>5 años</strong> en roles técnicos senior.</li><li><strong>Rol/Especialidad:</strong> experiencia comprobable como Arquitecto/a de Software, Arquitecto/a Empresarial o Líder Técnico.</li><li><strong>Modernización:</strong> experiencia en procesos de modernización tecnológica y reemplazo de plataformas legadas.</li><li><strong>Conocimientos técnicos:</strong> arquitectura cloud, híbrida y on-prem; diseño orientado al dominio; integraciones, APIs, mensajería y eventos; gestión de deuda técnica y obsolescencia; herramientas DevOps y automatización.</li></ul><div>También consideraremos positivamente la capacidad para evaluar impactos, priorizar alternativas, comunicar decisiones técnicas con claridad y colaborar efectivamente con equipos de desarrollo y arquitectura para sostener consistencia tecnológica a lo largo del proyecto.</div>",
-    "projects": "<div>En BC Tecnología buscamos un/a Arquitecto/a de Software Senior para integrarse a una iniciativa de modernización tecnológica y reemplazo de plataformas legadas. El foco del proyecto es levantar y analizar las plataformas MDW obsoletas de Banchile, identificar los servicios y aplicaciones candidatos a migración, y acompañar a los equipos de desarrollo en la evolución hacia nuevas tecnologías. Trabajaremos con un enfoque colaborativo y metodologías ágiles, asegurando coherencia entre soluciones actuales y nuevas iniciativas, considerando decisiones técnicas complejas, integración con ecosistemas existentes y alineación con el roadmap de modernización.</div>",
-    "functions_headline": "Responsabilidades Principales",
-    "functions": "<div>Como Arquitecto/a de Software Senior, seremos responsables de liderar técnicamente la modernización de plataformas legadas, asegurando una ruta clara de migración y toma de decisiones consistente.</div><ul><li>Realizar el levantamiento de las principales plataformas <strong>MDW</strong> obsoletas de Banchile, identificando servicios y aplicaciones candidatos a migrar.</li><li>Acompañar a los equipos de desarrollo en iniciativas de modernización.</li><li>Resolver decisiones técnicas complejas y remover cuellos de botella.</li><li>Proponer, junto con el área de Arquitectura, estrategias de renovación.</li><li>Evaluar decisiones técnicas relevantes para nuevos proyectos o evolutivos.</li><li>Asegurar coherencia entre soluciones existentes y nuevas iniciativas.</li><li>Evaluar propuestas técnicas de proveedores y su alineación con el roadmap de modernización.</li><li>Apoyar la estimación de esfuerzos y costos asociados a la mitigación de obsolescencia.</li></ul>",
-    "benefits_headline": "",
-    "benefits": "<div>En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante, con una cultura orientada al crecimiento profesional mediante la integración y el intercambio de conocimientos entre equipos.</div><div>Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.</div>",
-    "desirable_headline": "Conocimientos Técnicos",
-    "desirable": "<ul><li>Arquitectura e integración con ecosistemas empresariales: APIs, integraciones, mensajería y eventos.</li><li>Experiencia en gestión de deuda técnica y obsolescencia en iniciativas de evolución.</li><li>Uso de herramientas DevOps y automatización para apoyar despliegues y operación.</li><li>Conocimiento relevante para el stack: JBoss EAP/Fuse (con Switchyard y Apache Camel), Oracle PL/SQL, Spring Boot 2 y 3, RabbitMQ.</li></ul>",
-    "remote": false,
-    "remote_modality": "no_remote",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1790623722,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 16,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 587,
-       "type": "tag"
-      },
-      {
-       "id": 633,
-       "type": "tag"
-      },
-      {
-       "id": 1185,
-       "type": "tag"
-      },
-      {
-       "id": 1658,
-       "type": "tag"
-      },
-      {
-       "id": 15661,
-       "type": "tag"
-      },
-      {
-       "id": 27992,
-       "type": "tag"
-      },
-      {
-       "id": 36775,
-       "type": "tag"
-      },
-      {
-       "id": 6817,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "bctecnologia",
-      "type": "company",
-      "attributes": {
-       "name": "BC Tecnología",
-       "description": "Somos una consultora de TI con personal experto en diferentes áreas de tecnología.",
-       "long_description": "<p>Somos una consultora de Servicios IT. Administramos portafolio, desarrollamos proyectos, realizamos outsourcing y selección de profesionales.</p><p>Creamos equipos de trabajos ágiles para áreas de Infraestructura Tecnología, Desarrollo de Software y Unidades de Negocio, en clientes de servicios financieros, seguros, retail y gobierno.</p><p>Desde hace 6 años diseñamos soluciones acorde a las necesidades de nuestros clientes. Nuestras principales áreas de negocio son:</p><p>- Consultoría y diseño de soluciones.<br>- Formación de equipos de trabajo, outsourcing de personal.<br>- Desarrollo de proyectos.<br>- Servicios de soporte y administración IT </p><p>Tenemos un enfoque claro en el cliente, metodologías ágiles, cambio organizacional y desarrollo de productos. </p>",
-       "projects": "<div>En BC Tecnología gestionamos portafolios, desarrollamos proyectos y ofrecemos servicios de outsourcing y selección de profesionales para clientes de sectores como servicios financieros, seguros, retail y gobierno. Participarás en iniciativas estratégicas de transformación digital para LATAM Airlines, una organización líder en la industria aeronáutica, en un entorno que combina trabajo remoto con presencia ocasional en oficina. Serás parte de la Gerencia de Arquitectura, colaborando en la definición de la arquitectura empresarial y su evolución ante cambios tecnológicos y de negocio, asegurando alineación con la estrategia corporativa y con estándares de gobernanza.</div>",
-       "benefits": "<div>En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante. Nuestra cultura se orienta al crecimiento profesional a través de la integración y el intercambio de conocimientos entre equipos.</div><div>La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral.</div><div>Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.</div>",
-       "web": "http://www.bctecnologia.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 5,
-        "max": 19
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/9458/Copia_de_logo.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/arquitecto-de-software-lider-tecnico-java-senior-bc-tecnologia-santiago-d401"
-   }
-  },
-  {
-   "id": "backend-data-engineer-java-factor-it-lima",
-   "type": "job",
-   "attributes": {
-    "title": "Back-end Data Engineer (Java)",
-    "description_headline": "💻 Requisitos mandatorios",
-    "description": "<div>Estos conocimientos son indispensables para avanzar en el proceso:</div><ul><li>5+ años de experiencia como ingeniero/a de software o datos.</li><li>Experiencia sólida y comprobable como desarrollador/a Java Backend Senior.</li><li>Experiencia práctica trabajando con Apache Kafka en proyectos reales.</li><li>Experiencia construyendo productores, consumidores o integraciones sobre tópicos Kafka.</li><li>Experiencia desarrollando, diseñando o integrando APIs.</li><li>Experiencia en proyectos con procesamiento de datos en tiempo real (streaming).</li><li>Experiencia integrando diferentes sistemas mediante servicios, APIs y/o eventos.</li><li>Capacidad para trabajar en soluciones backend orientadas a procesamiento y sincronización de datos.</li></ul><div>Importante: No buscamos un perfil basado únicamente en Java + Python + Spark o en procesos batch. La experiencia práctica con Kafka + APIs + streaming es fundamental para este rol.</div><div>⭐ Deseable / Plus</div><div>Experiencia o conocimientos de SingleStore. Experiencia con Apache Flink u otras tecnologías de streaming y analítica en tiempo real. Experiencia trabajando con otras plataformas de procesamiento de datos en tiempo real. Experiencia previa en proyectos del sector bancario o financiero. Conocimientos de arquitecturas orientadas a eventos (event-driven architectures). Experiencia en proyectos de modernización o migración de sistemas hacia Cloud.</div><div>🧠 Habilidades</div><ul><li>Pensamiento analítico y orientación a la solución.</li><li>Capacidad para trabajar con sistemas distribuidos y procesamiento de datos.</li><li>Comunicación efectiva y trabajo colaborativo.</li><li>Autonomía y capacidad de aprendizaje.</li><li>Orientación a resultados.</li><li>Adaptabilidad a entornos tecnológicos en evolución.</li></ul><div>🎓 Formación</div><div>Profesional en Ingeniería de Sistemas, Ingeniería Informática, Ciencias de la Computación, Ingeniería de Software o carreras afines.</div><div>📌 Experiencia</div><div>5+ años de experiencia como ingeniero/a de software o datos, con experiencia senior en desarrollo backend con Java.</div>",
-    "projects": "<div>Buscamos un/a Backend Data Engineer (Java) con experiencia sólida en desarrollo backend y procesamiento de datos en tiempo real para participar en un proyecto de migración de un core bancario hacia la nube. El desafío combina Java, APIs, Apache Kafka y arquitecturas de streaming, construyendo las piezas técnicas que permiten mover y sincronizar información en tiempo real entre el core bancario y la nueva plataforma cloud.</div>",
-    "functions_headline": "🎯 Responsabilidades",
-    "functions": "<ul><li>Diseñar, desarrollar e implementar APIs backend que conecten el core bancario con la nueva arquitectura cloud.</li><li>Construir y mantener flujos de datos en tiempo real (streaming).</li><li>Desarrollar productores y consumidores utilizando Apache Kafka.</li><li>Diseñar integraciones mediante tópicos, eventos y servicios backend.</li><li>Contribuir a la sincronización de información entre sistemas sin depender exclusivamente de procesos batch.</li><li>Participar en la construcción y evolución de servicios backend basados en Java.</li><li>Trabajar con bases de datos y plataformas de datos de acuerdo con la arquitectura definida.</li><li>Participar en la implementación de soluciones orientadas a procesamiento y movimiento de datos en tiempo real.</li><li>Colaborar con arquitectos, desarrolladores y otros equipos técnicos para implementar las soluciones definidas.</li><li>Aplicar buenas prácticas de desarrollo, calidad de código, integración y mantenibilidad.</li></ul>",
-    "benefits_headline": "",
-    "benefits": "",
-    "desirable_headline": "⭐ Deseable / Plus",
-    "desirable": "<div>Experiencia o conocimientos de SingleStore. Experiencia con Apache Flink u otras tecnologías de streaming y analítica en tiempo real. Experiencia trabajando con otras plataformas de procesamiento de datos en tiempo real. Experiencia previa en proyectos del sector bancario o financiero. Conocimientos de arquitecturas orientadas a eventos (event-driven architectures). Experiencia en proyectos de modernización o migración de sistemas hacia Cloud.</div><div>🔎 Sobre SingleStore</div><div>La experiencia con SingleStore es un plus importante, pero no es un requisito excluyente.</div><div>Un perfil sólido en Java + Kafka + APIs + streaming puede avanzar aunque no haya trabajado previamente con SingleStore.</div>",
-    "remote": true,
-    "remote_modality": "remote_local",
-    "remote_zone": null,
-    "countries": [
-     "Remote"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1790616376,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 114,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": [
-      {
-       "id": 3,
-       "type": "location_tenant"
-      }
-     ]
-    },
-    "location_cities": {
-     "data": []
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 2,
-       "type": "tag"
-      },
-      {
-       "id": 307,
-       "type": "tag"
-      },
-      {
-       "id": 2972,
-       "type": "tag"
-      },
-      {
-       "id": 37095,
-       "type": "tag"
-      },
-      {
-       "id": 2924,
-       "type": "tag"
-      },
-      {
-       "id": 37282,
-       "type": "tag"
-      },
-      {
-       "id": 37673,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "factor-it-y-compania-sac",
-      "type": "company",
-      "attributes": {
-       "name": "Factor IT",
-       "description": "FactorIT, líder en tecnología con presencia en 8 países, ofrece soluciones en Data y Analytics, Transformación Digital e IA. Únete a un equipo innovador y desafiante que impulsa la transformación tecnológica en grandes empresas.",
-       "long_description": "<div>FactorIT es una empresa líder en el sector de tecnología y soluciones de datos, con presencia en 8 países de Latinoamérica y en plena expansión, lo que ofrece la posibilidad de trabajar en proyectos regionales y con un impacto real en múltiples industrias. Nuestra visión es ser el principal socio estratégico de nuestros clientes en su proceso de transformación digital, brindando soluciones innovadoras y personalizadas que integren inteligencia artificial, automatización y analítica avanzada.</div><div>Nos enfocamos en abordar los desafíos más complejos de nuestros clientes, proporcionando servicios de Data &amp; Analytics, Transformación &amp; Desarrollo Digital, Soporte y Continuidad, y Consultoría Estratégica. Nuestro equipo se destaca por su alto expertise técnico, la flexibilidad para adaptarse a las necesidades de cada cliente y una cultura basada en la conversación y entendimiento profundo de los requerimientos del negocio, lo que nos permite proponer soluciones que generan valor y optimizan procesos.</div><div>En FactorIT, promovemos una cultura de innovación, colaboración y aprendizaje continuo. Nos apasiona desafiar a nuestros clientes y a nosotros mismos, siempre buscando mejorar y estar a la vanguardia en tecnologías emergentes. Fomentamos un ambiente donde cada colaborador puede crecer profesionalmente, participar en proyectos desafiantes y aportar sus ideas para impulsar el éxito de la empresa y de nuestros clientes.</div><div>Creemos en la importancia de un equilibrio entre la vida personal y laboral, por lo que ofrecemos flexibilidad laboral y la posibilidad de trabajo remoto. Además, nuestra cultura promueve la inclusión, la diversidad y el trabajo en equipo, haciendo de FactorIT un lugar donde se valora la creatividad, la proactividad y el desarrollo de cada persona. Únete a nosotros y sé parte de un equipo que está transformando el futuro de la tecnología en la región.</div>",
-       "projects": "<p>FactorIT, líder en tecnología y soluciones de datos, te invita a formar parte de un equipo que impulsa la transformación digital para grandes empresas en la región. En este rol de PM, trabajarás en proyectos tradicionales y ágiles, asegurando el gobierno, la entrega y el control de alcance, costo, tiempo y calidad,. Liderarás la interacción de equipos interdisciplinarios, gestionarás riesgos a lo largo de todo el ciclo del proyecto y asegurarás la elaboración y ejecución de planes, tableros de control y actas de los comités, promoviendo la toma de decisiones oportunas para cambios en las variables críticas del proyecto. Participarás en proyectos estratégicos y locales con foco en la transformación tecnológica de la región y en el sector financiero, contribuyendo a la mejora continua de procesos y prácticas de gestión.<br><br><br><br><br></p>",
-       "benefits": "<div>Ofrecemos una modalidad de trabajo híbrida desde Santiago, Chile, brindando flexibilidad horaria para un balance saludable entre la vida profesional y personal adaptándose a las necesidades individuales.</div><div>FactorIT proporciona un ambiente colaborativo, dinámico y con tecnologías de última generación que facilitan el crecimiento profesional constante y la innovación tecnológica.</div><div>Nuestro paquete salarial es competitivo y acorde a la experiencia y perfil, complementado con una cultura inclusiva que valora la diversidad, creatividad y el trabajo en equipo.</div><div>Al unirte a FactorIT, participarás en proyectos desafiantes con impacto real en la transformación tecnológica de la región y en el sector financiero, dentro de una organización que promueve la innovación y el desarrollo profesional continuo.</div>",
-       "web": "http://www.factorit.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 8,
-        "max": 20
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/15558/Isotipo_a_color_GRANDE.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/backend-data-engineer-java-factor-it-lima"
-   }
-  },
-  {
-   "id": "backend-developer-senior-factor-it-santiago-d533",
-   "type": "job",
-   "attributes": {
-    "title": "Back-end Developer Senior",
-    "description_headline": "Lo que buscamos",
-    "description": "<div>Profesional en Ingeniería, Sistemas, Informática o carreras afines. 4 años de experiencia como Backend Developer Senior. Experiencia sólida en desarrollo de microservicios y APIs RESTful. Dominio en integración/orquestación de servicios SOAP/REST de terceros (biometría, proveedores de identidad). Manejo avanzado de Oracle DB: modelo de datos, SQL complejo y PL/SQL. Conocimientos en protocolos de autenticación moderna para APIs (SSO, OAuth2, SAML). Experiencia con gestores documentales (idealmente Oracle WCC). Experiencia desplegando con pipelines CI/CD y prácticas de código seguro. Java. Experiencia con metodologías ágiles (Scrum/Kanban).</div><div><strong>Habilidades blandas</strong></div><ul><li>Comunicación asertiva</li><li>orientación al cliente</li><li>visión y habilidad de negociación</li><li>trabajo en equipo</li><li>liderazgo</li><li>planificación y organización</li><li>innovación</li><li>pensamiento analítico</li><li>capacidad de aprendizaje</li></ul>",
-    "projects": "<p>Te unirás a un proyecto de transformación tecnológica para un cliente del sector financiero , donde tu misión principal será desarrollar integraciones y APIs entre una nueva plataforma SaaS de RRHH (HCM) y el ecosistema legacy basado en PeopleSoft/Oracle HCM. Diseñarás, construirás y expondrás servicios web (REST/SOAP) para sincronizar datos maestros de personal, estructura organizacional y procesos de nómina en tiempo real, además de liderar el reemplazo progresivo de integraciones basadas en archivos planos por APIs modernas.</p>",
-    "functions_headline": "¿Qué harás?",
-    "functions": "<p>Te unirás a un proyecto de transformación tecnológica para un cliente del sector financiero, donde tu misión principal será desarrollar integraciones y APIs entre una nueva plataforma SaaS de RRHH (HCM) y el ecosistema legacy basado en PeopleSoft/Oracle HCM. Diseñarás, construirás y expondrás servicios web (REST/SOAP) para sincronizar datos maestros de personal, estructura organizacional y procesos de nómina en tiempo real, además de liderar el reemplazo progresivo de integraciones basadas en archivos planos por APIs modernas.</p><div><strong>Principales responsabilidades</strong></div><ul><li>Desarrollar servicios web (APIs REST/SOAP) mediante PeopleSoft Integration Broker para sincronización bidireccional de datos.</li><li>Configurar conectores y protocolos de seguridad modernos (OAuth2, Bearer Tokens, SAML) para comunicación federada segura.</li><li>Realizar mapeo de datos entre Oracle DB (PeopleSoft) y las APIs RESTful de la nueva plataforma.</li><li>Identificar, auditar y desconectar procesos batch y ejecuciones SFTP/PGP hacia sistemas que serán reemplazados.</li><li>Integrar sistemas de identidad y finanzas (SailPoint, SAP HANNA/Concur) con la nueva solución.</li><li>Participar activamente en ceremonias ágiles (Sprint Planning, Dailies, Refinement, Demo, Retro).</li><li>Diseñar y ejecutar pruebas unitarias, de integración end-to-end (E2E) y de volumetría previas al Go-Live.</li><li>Redactar documentación técnica de arquitectura (diccionarios de integración, diagramas de secuencia, manuales de paso a producción).</li></ul>",
-    "benefits_headline": "Condiciones",
-    "benefits": "<ul><li>Ubicación: Santiago, Chile.</li><li>Modalidad: Híbrida.</li><li>Tipo de contrato: Plazo fijo.</li><li>Idioma: Español.</li></ul>",
-    "desirable_headline": "Deseable",
-    "desirable": "<ul><li>Experiencia integrando sistemas Core con plataformas SaaS de RRHH o financieras (SAP HANNA/Concur).</li><li>Experiencia migrando de arquitecturas basadas en archivos planos (SFTP/Extractos HCM) a arquitecturas basadas en servicios web.</li><li>Arquitecturas modernas (microservicios, event-driven).</li><li>Seguridad aplicada al desarrollo de software.</li><li>Integración con servicios cloud.</li><li>Revisión de código y liderazgo técnico.</li></ul>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1790365530,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 41,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 2,
-       "type": "tag"
-      },
-      {
-       "id": 156,
-       "type": "tag"
-      },
-      {
-       "id": 843,
-       "type": "tag"
-      },
-      {
-       "id": 5425,
-       "type": "tag"
-      },
-      {
-       "id": 482,
-       "type": "tag"
-      },
-      {
-       "id": 37770,
-       "type": "tag"
-      },
-      {
-       "id": 4912,
-       "type": "tag"
-      },
-      {
-       "id": 422,
-       "type": "tag"
-      },
-      {
-       "id": 54,
-       "type": "tag"
-      },
-      {
-       "id": 138,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "factor-it-y-compania-sac",
-      "type": "company",
-      "attributes": {
-       "name": "Factor IT",
-       "description": "FactorIT, líder en tecnología con presencia en 8 países, ofrece soluciones en Data y Analytics, Transformación Digital e IA. Únete a un equipo innovador y desafiante que impulsa la transformación tecnológica en grandes empresas.",
-       "long_description": "<div>FactorIT es una empresa líder en el sector de tecnología y soluciones de datos, con presencia en 8 países de Latinoamérica y en plena expansión, lo que ofrece la posibilidad de trabajar en proyectos regionales y con un impacto real en múltiples industrias. Nuestra visión es ser el principal socio estratégico de nuestros clientes en su proceso de transformación digital, brindando soluciones innovadoras y personalizadas que integren inteligencia artificial, automatización y analítica avanzada.</div><div>Nos enfocamos en abordar los desafíos más complejos de nuestros clientes, proporcionando servicios de Data &amp; Analytics, Transformación &amp; Desarrollo Digital, Soporte y Continuidad, y Consultoría Estratégica. Nuestro equipo se destaca por su alto expertise técnico, la flexibilidad para adaptarse a las necesidades de cada cliente y una cultura basada en la conversación y entendimiento profundo de los requerimientos del negocio, lo que nos permite proponer soluciones que generan valor y optimizan procesos.</div><div>En FactorIT, promovemos una cultura de innovación, colaboración y aprendizaje continuo. Nos apasiona desafiar a nuestros clientes y a nosotros mismos, siempre buscando mejorar y estar a la vanguardia en tecnologías emergentes. Fomentamos un ambiente donde cada colaborador puede crecer profesionalmente, participar en proyectos desafiantes y aportar sus ideas para impulsar el éxito de la empresa y de nuestros clientes.</div><div>Creemos en la importancia de un equilibrio entre la vida personal y laboral, por lo que ofrecemos flexibilidad laboral y la posibilidad de trabajo remoto. Además, nuestra cultura promueve la inclusión, la diversidad y el trabajo en equipo, haciendo de FactorIT un lugar donde se valora la creatividad, la proactividad y el desarrollo de cada persona. Únete a nosotros y sé parte de un equipo que está transformando el futuro de la tecnología en la región.</div>",
-       "projects": "<p>FactorIT, líder en tecnología y soluciones de datos, te invita a formar parte de un equipo que impulsa la transformación digital para grandes empresas en la región. En este rol de PM, trabajarás en proyectos tradicionales y ágiles, asegurando el gobierno, la entrega y el control de alcance, costo, tiempo y calidad,. Liderarás la interacción de equipos interdisciplinarios, gestionarás riesgos a lo largo de todo el ciclo del proyecto y asegurarás la elaboración y ejecución de planes, tableros de control y actas de los comités, promoviendo la toma de decisiones oportunas para cambios en las variables críticas del proyecto. Participarás en proyectos estratégicos y locales con foco en la transformación tecnológica de la región y en el sector financiero, contribuyendo a la mejora continua de procesos y prácticas de gestión.<br><br><br><br><br></p>",
-       "benefits": "<div>Ofrecemos una modalidad de trabajo híbrida desde Santiago, Chile, brindando flexibilidad horaria para un balance saludable entre la vida profesional y personal adaptándose a las necesidades individuales.</div><div>FactorIT proporciona un ambiente colaborativo, dinámico y con tecnologías de última generación que facilitan el crecimiento profesional constante y la innovación tecnológica.</div><div>Nuestro paquete salarial es competitivo y acorde a la experiencia y perfil, complementado con una cultura inclusiva que valora la diversidad, creatividad y el trabajo en equipo.</div><div>Al unirte a FactorIT, participarás en proyectos desafiantes con impacto real en la transformación tecnológica de la región y en el sector financiero, dentro de una organización que promueve la innovación y el desarrollo profesional continuo.</div>",
-       "web": "http://www.factorit.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 8,
-        "max": 20
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/15558/Isotipo_a_color_GRANDE.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/backend-developer-senior-factor-it-santiago-d533"
    }
   }
  ],

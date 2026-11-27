@@ -1,6 +1,398 @@
 {
  "data": [
   {
+   "id": "desarrollador-net-framework-web-forms-latam-qulane-remote-1993",
+   "type": "job",
+   "attributes": {
+    "title": "Desarrollador .NET Web Forms + SQL Server (Part Time, LATAM)",
+    "description_headline": "Qualifications and requirements",
+    "description": "<div>• Dominio solido y demostrable de .NET Framework 4.x en proyectos reales <br>• SQL Server avanzado: SPs complejos, optimizacion y debugging<br>• Experiencia con JavaScript, jQuery, HTML y CSS <br>• Responsable, comprometido con los plazos y con atencion al detalle <br>• Buena comunicacion en espanol e internet estable </div>",
+    "projects": "<p>Buscamos un desarrollador part-time para unirse a nuestro equipo de desarrollo para mantenimiento y desarrollo de sistemas de facturacion. El sistema tiene cientos de usuarios activos, bases de datos grandes y logica de negocio compleja. Se requiere alguien que conozca profundamente el stack.</p><p>💰 <strong>$1,500 USD/mes, salario fijo mensual, no por hora, no subcontrato</strong></p><p>• Part-time: 20 horas/semana con flexibilidad de horario<br>• Pago mensual en USD <br>• Equipo proporcionado por la empresa<br>• Se requiere disponibilidad algunas horas en horario EST/Pacific para comunicación</p><p><strong>NO APLIQUES SI</strong><br>• No tienes experiencia real y reciente con .NET Framework 4.x y Web Forms<br>• No manejas SQL Server a nivel avanzado<br>• Eres agencia o equipo de trabajo<br>• Dependes de herramientas de IA para escribir código </p>",
+    "functions_headline": "Job functions",
+    "functions": "<p>• Desarrollo y mantenimiento de aplicaciones en .NET Framework <br>• Creación y optimización de stored procedures en SQL Server <br>• Desarrollo de interfaces con JavaScript/jQuery <br>• Corrección de bugs y mejoras en sistemas existentes <br>• Pruebas de código antes de entrega <br>• Comunicación con el equipo sobre avances y bloqueos </p><p><strong>Sobre el uso de IA:</strong> puedes consultarla para entender un concepto o resolver una duda, pero el código lo escribes tú y debes poder explicar cada línea de lo que entregas. No se acepta pegar lo que devuelve una herramienta. Buscamos desarrolladores .NET, no operadores de asistentes de IA. </p>",
+    "benefits_headline": "Conditions",
+    "benefits": "<div>• 100% remoto desde cualquier lugar <br>• Horario flexible <br>• Pago mensual en USD <br>• Posibilidad de crecimiento a más horas según desempeño <br>• Ambiente profesional sin micromanagement </div>",
+    "desirable_headline": "Desirable skills",
+    "desirable": "<div>• Entity Framework <br>• Experiencia en sistemas de facturación o sector salud <br>• Conocimiento de integraciones con APIs de pago <br>• Git/control de versiones </div>",
+    "remote": true,
+    "remote_modality": "fully_remote",
+    "remote_zone": null,
+    "countries": [
+     "Remote"
+    ],
+    "lang": "es",
+    "category_name": "Programming",
+    "perks": [
+     "remote_full",
+     "flexible_hours"
+    ],
+    "min_salary": null,
+    "max_salary": null,
+    "published_at": 1787852061,
+    "response_time_in_days": {
+     "min": 1,
+     "max": 1
+    },
+    "applications_count": 1151,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": []
+    },
+    "modality": {
+     "data": {
+      "id": 2,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 3,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 46544,
+       "type": "tag"
+      },
+      {
+       "id": 1,
+       "type": "tag"
+      },
+      {
+       "id": 5,
+       "type": "tag"
+      },
+      {
+       "id": 11,
+       "type": "tag"
+      },
+      {
+       "id": 12,
+       "type": "tag"
+      },
+      {
+       "id": 13,
+       "type": "tag"
+      },
+      {
+       "id": 650,
+       "type": "tag"
+      },
+      {
+       "id": 837,
+       "type": "tag"
+      },
+      {
+       "id": 3386,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "qulane",
+      "type": "company",
+      "attributes": {
+       "name": "Qulane",
+       "description": "Qulane Creative Solutions es una empresa de desarrollo de software en Canadá especializada en sistemas médicos y facturación para el sector salud.",
+       "long_description": "",
+       "projects": "<p>Buscamos un desarrollador part-time para unirse a nuestro equipo de desarrollo para mantenimiento y desarrollo de sistemas de facturacion. El sistema tiene cientos de usuarios activos, bases de datos grandes y logica de negocio compleja. Se requiere alguien que conozca profundamente el stack.<br><br><br></p><p>💰 <strong>$1,500 USD/mes, salario fijo mensual, no por hora, no subcontrato<br><br></strong><br></p><p>• Part-time: 20 horas/semana con flexibilidad de horario<br>• Pago mensual en USD <br>• Equipo proporcionado por la empresa<br>• Se requiere disponibilidad algunas horas en horario EST/Pacific para comunicación<br>• Contrato de servicios profesionales<br><br><strong>NO APLIQUES SI</strong><br>• No tienes experiencia real y reciente con .NET Framework 4.x y Web Forms<br>• No manejas SQL Server a nivel avanzado<br>• Buscas trabajo full-time<br>• Eres agencia o equipo de trabajo<br><br><br></p>",
+       "benefits": "<p>• 100% remoto desde cualquier lugar&nbsp;<br>• Horario flexible&nbsp;<br>• Pago mensual en USD&nbsp;<br>• Posibilidad de crecimiento a más horas según desempeño&nbsp;<br>• Ambiente profesional sin micromanagement&nbsp;</p>",
+       "web": "http://qulane.com",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": null,
+       "country": "CA",
+       "response_time_in_days": {
+        "min": 1,
+        "max": 1
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/18421/qulogo(2).jpg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/desarrollador-net-framework-web-forms-latam-qulane-remote-1993"
+   }
+  },
+  {
+   "id": "ingeniero-a-de-software-c-c-atentus-cordoba-buenos-aires-mendoza-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Ingeniero/a de Software C/C++",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<p>Experiencia sólida y dominio avanzado de C y C++, incluyendo gestión de memoria, punteros y multithreading.<br>Experiencia desarrollando y automatizando procesos con Python.<br>Experiencia comprobable creando suites de pruebas automatizadas utilizando Selenium WebDriver.<br>Experiencia trabajando con arquitecturas ARM y x64 (x86_64) a nivel de sistema operativo y/o hardware.<br>Dominio de entornos Linux, incluyendo línea de comandos y Bash scripting.<br>Conocimientos y experiencia en procesos de cross-compilation.</p>",
+    "projects": "<p>Buscamos un/a Ingeniero/a de Software con sólida experiencia en programación de sistemas con C/C++ y orientación práctica hacia la automatización de pruebas con Python y Selenium.</p><p>El desafío combina desarrollo de software de bajo nivel, trabajo con arquitecturas ARM y x64, automatización de testing y validación de interfaces asociadas a estos sistemas.</p><p>Buscamos una persona con un perfil técnico, autónomo y resolutivo, capaz de desenvolverse tanto en el desarrollo y optimización de código como en la implementación de procesos automatizados que aseguren su calidad.</p>",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<p>Desarrollo y optimización: desarrollar, depurar y mantener código en C y C++, optimizado para arquitecturas ARM —como Raspberry Pi, microcontroladores o procesadores móviles— y x64 —sistemas de escritorio o servidores—.<br>Automatización de pruebas: diseñar, desarrollar y ejecutar scripts utilizando Python para validar el funcionamiento del backend y de los distintos componentes lógicos del sistema.<br>Testing de interfaces: crear y mantener pruebas automatizadas con Selenium WebDriver y Python para interfaces web, paneles de administración local y portales embebidos en dispositivos.<br>Cross-compilation: configurar y administrar toolchains y entornos de compilación cruzada para desarrollar y probar código desde plataformas x64 hacia arquitecturas ARM.<br>Integración continua: incorporar las pruebas automatizadas desarrolladas en Python y Selenium dentro de pipelines de CI/CD, asegurando la calidad y estabilidad del código C/C++ en cada actualización.<br>Colaborar en la identificación, análisis y resolución de problemas técnicos vinculados al software, hardware y entornos de ejecución.</p>",
+    "benefits_headline": "Beneficios",
+    "benefits": "<div>👨🏻‍🏫Capacitaciones y desarrollo constantes.</div><div>🧡Tiempo libre y equilibrio, podrás disfrutar de 5 días libres al año, adicionales a tus vacaciones legales, 1 día libre durante el mes de tu cumpleaños, 1 día libre por cambio de casa y mucho más!</div><div>🧑🏻‍⚕️Seguro complementario 100% gratuito para ti una vez que pases a contrato indefinido.</div><p>🧘🏻‍♀️Suscripción gratuita a la app Puramente, enfocado en llevar tu bienestar a otro nivel.</p><p>Entre otros beneficios a mencionar durante el proceso.</p>",
+    "desirable_headline": "Opcionales",
+    "desirable": "<p>Conocimientos de protocolos de comunicación de hardware como SPI, I2C y UART.<br>Experiencia trabajando con RTOS o en desarrollo de drivers para Kernel de Linux.<br>Experiencia con herramientas de CI/CD como Jenkins, GitLab CI o GitHub Actions.<br>Experiencia configurando pipelines para despliegues y pruebas sobre dispositivos físicos o emuladores como QEMU.<br>Familiaridad con herramientas de análisis estático y dinámico para C/C++, como Valgrind, SonarQube u otras similares.</p>",
+    "remote": false,
+    "remote_modality": "hybrid",
+    "remote_zone": null,
+    "countries": [
+     "Chile",
+     "Argentina"
+    ],
+    "lang": "es",
+    "category_name": "Programming",
+    "perks": [
+     "wellness",
+     "remote_partial",
+     "health_coverage",
+     "dental_insurance",
+     "computer_provided",
+     "fitness_subsidies",
+     "informal_dresscode",
+     "vacation_over_legal",
+     "beverages_and_snacks",
+     "vacation_on_birthday"
+    ],
+    "min_salary": 1500,
+    "max_salary": 2500,
+    "published_at": 1787835807,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 41,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 42,
+       "type": "location_city"
+      },
+      {
+       "id": 69,
+       "type": "location_city"
+      },
+      {
+       "id": 73,
+       "type": "location_city"
+      },
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 16,
+       "type": "tag"
+      },
+      {
+       "id": 17,
+       "type": "tag"
+      },
+      {
+       "id": 18,
+       "type": "tag"
+      },
+      {
+       "id": 206,
+       "type": "tag"
+      },
+      {
+       "id": 76,
+       "type": "tag"
+      },
+      {
+       "id": 422,
+       "type": "tag"
+      },
+      {
+       "id": 37574,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "atentus",
+      "type": "company",
+      "attributes": {
+       "name": "ATENTUS",
+       "description": "Desde 2001, Atentus se ha posicionado como líder tecnológico en el monitoreo de la experiencia digital. Nuestra misión es clara: anticipar las fricciones y evitar oportunidades perdidas para tu negocio. ",
+       "long_description": "<p>Desde 2001, Atentus se ha posicionado como líder tecnológico en el monitoreo de la experiencia digital. Nuestra misión es clara: anticipar las fricciones y evitar oportunidades perdidas para tu negocio. A través de una metodología única y probada, transformamos tu monitoreo:</p><p>Nuestros usuarios automatizados simulan el recorrido de un cliente incógnito 24/7, detectando la más mínima lentitud o error en tus plataformas (web, mobile, IVRs). Con esta observabilidad 360° a nivel global (operaciones en Argentina, Chile, Colombia, Ecuador, México, Perú y Uruguay), te damos la visibilidad para prevenir caídas, optimizar cada interacción y asegurar la continuidad operacional de tus servicios digitales.</p>",
+       "projects": "<p><strong>Atentus</strong> es líder en soluciones de transformación digital, especializado en observabilidad, procesos automatizados y monitoreo de la experiencia del usuario. Facilitamos una transición a la era digital al ofrecer estrategias personalizadas que mejoran la visibilidad en todas las plataformas digitales. Nuestro compromiso con la excelencia se refleja en nuestro enfoque holístico, donde no solo automatizamos procesos para ahorrar costos y tiempo, sino que también priorizamos la experiencia del usuario, asegurando información en tiempo real sobre la calidad de los canales digitales.</p>",
+       "benefits": "<p>👨🏻‍🏫Capacitaciones y desarrollo constantes.</p><p>🧡Tiempo libre y equilibrio, podrás disfrutar de 5 días libres al año, adicionales a tus vacaciones legales, 1 día libre durante el mes de tu cumpleaños, 1 día libre por cambio de casa y mucho más!</p><p>🧑🏻‍⚕️Seguro complementario 100% gratuito para ti una vez que pases a contrato indefinido.</p><p>🧘🏻‍♀️Suscripción gratuita a la app Puramente, enfocado en llevar tu bienestar a otro nivel.</p>",
+       "web": "http://www.atentus.com",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": "",
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/6412/logo_atentus-azul.png"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/ingeniero-a-de-software-c-c-atentus-cordoba-buenos-aires-mendoza-santiago"
+   }
+  },
+  {
+   "id": "full-stack-engineer-senior-prontopaga-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Full-Stack Engineer (Senior)",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<p>Conocimientos Técnicos Clave</p><p>Frontend</p><p>• React avanzado.</p><p>• TypeScript.</p><p>• Manejo de estado (Redux, Context API u otros).</p><p>• Testing (Jest, Testing Library u otros).</p><p>• Diseño de arquitectura de componentes.</p><p>• Performance y optimización.</p><p>Backend / Cloud</p><p>• Arquitecturas serverless en AWS.</p><p>• Diseño de APIs REST.</p><p>• Modelamiento de datos en DynamoDB.</p><p>• Manejo de eventos y orquestación.</p><p>• Observabilidad (logs, métricas, tracing).</p><p>DevOps</p><p>• CI/CD.</p><p>• Infraestructura como código.</p><p>• Git (estrategias de branching).</p><p>• Contenedores (deseable).</p><p>Seguridad</p><p>• OWASP Top 10.</p><p>• Gestión de secretos.</p><p>• Principio de mínimo privilegio.</p><p>• Autenticación y autorización (JWT, OAuth2, etc.).</p><p>Desarrollo Asistido por Inteligencia Artificial</p><p>Manejo de herramientas de inteligencia artificial generativa orientadas al desarrollo de software (como Claude Code), aplicadas como soporte para la planificación, estructuración y construcción de soluciones. Comprensión técnica plena del código y las soluciones generadas, sin recurrir a prácticas de generación de código sin supervisión ni entendimiento ('vibe coding'). </p>",
+    "projects": "<p>Profesional de alto nivel responsable de diseñar, desarrollar y evolucionar soluciones full stack complejas, participando activamente en decisiones de arquitectura, escalabilidad, seguridad y eficiencia operativa. Lidera técnicamente iniciativas críticas, promoviendo buenas prácticas de desarrollo, automatización, observabilidad y calidad de software. Diseña arquitecturas basadas en eventos, optimiza servicios cloud y contribuye a la evolución tecnológica de la organización mediante la evaluación e incorporación de nuevas tecnologías. Actúa como referente técnico para otros desarrolladores, apoyando revisiones de código y resolución de desafíos complejos. </p>",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<h3><h3><strong>Desarrollo Frontend</strong></h3></h3><ul><li>Desarrollar interfaces en React y TypeScript.</li><li>Construir componentes reutilizables y escalables.</li><li>Integrar aplicaciones con APIs REST.</li><li>Garantizar rendimiento, accesibilidad y experiencia de usuario.</li><li>Implementar pruebas unitarias e integración.</li></ul><h3><h3><strong>Desarrollo Backend Serverless</strong></h3></h3><ul><li>Desarrollar servicios backend sobre AWS Serverless.</li><li>Implementar lógica de negocio escalable y desacoplada.</li><li>Diseñar e integrar APIs REST.</li><li>Gestionar eventos y procesos asincrónicos.</li></ul><h3><h3><strong>Integración y Calidad</strong></h3></h3><ul><li>Participar en revisiones de código y mejora continua.</li><li>Aplicar estándares y buenas prácticas de desarrollo.</li><li>Implementar pruebas automatizadas.</li><li>Apoyar la resolución de incidentes y optimización de aplicaciones.</li></ul><h3><h3><strong>DevOps &amp; CI/CD</strong></h3></h3><ul><li>Colaborar en procesos de integración y despliegue continuo.</li><li>Automatizar despliegues y gestión de versiones.</li><li>Aplicar buenas prácticas de control de código fuente.</li></ul><h3><h3><strong>Seguridad</strong></h3></h3><ul><li>Incorporar principios de desarrollo seguro.</li><li>Gestionar autenticación, autorización y protección de datos.</li><li>Implementar controles y validaciones de seguridad.</li><li>Cumplir estándares de seguridad del sector fintech.</li></ul><h3><h3><strong>Desarrollo Asistido por Inteligencia Artificial</strong></h3></h3><ul><li>Utilizar herramientas de IA como apoyo al desarrollo de software.</li><li>Validar y comprender las soluciones generadas por IA.</li><li>Mantener autonomía operativa ante incidencias y resolución de problemas.</li><li>Asegurar la calidad y responsabilidad de los entregables desarrollados.</li></ul>",
+    "benefits_headline": "Condiciones",
+    "benefits": "<ul><li>Cumpleaños</li><li>Capacitación y Desarrollo</li><li>Seguro Complementario</li></ul>",
+    "desirable_headline": "Opcionales",
+    "desirable": "<p><strong>Formación</strong></p><p>• Título profesional en Ingeniería Civil en Computación, Ingeniería en Informática o carrera afín.</p><p>• Deseable diplomados o certificaciones en Cloud, Arquitectura o Seguridad.</p><p><strong>Experiencia</strong></p><p>• Mínimo 3 años de experiencia en desarrollo de software.</p><p>• Experiencia comprobable liderando técnicamente equipos o proyectos.</p><p>• Experiencia sólida en desarrollo frontend con React y TypeScript.</p><p>• Experiencia en desarrollo backend utilizando servicios serverless en AWS.</p><p>• Experiencia en implementación de CI/CD y automatización.</p>",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "en",
+    "category_name": "Programming",
+    "perks": [],
+    "min_salary": 2700,
+    "max_salary": 3700,
+    "published_at": 1787791931,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 84,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 123,
+       "type": "tag"
+      },
+      {
+       "id": 259,
+       "type": "tag"
+      },
+      {
+       "id": 39641,
+       "type": "tag"
+      },
+      {
+       "id": 310,
+       "type": "tag"
+      },
+      {
+       "id": 422,
+       "type": "tag"
+      },
+      {
+       "id": 54,
+       "type": "tag"
+      },
+      {
+       "id": 1694,
+       "type": "tag"
+      },
+      {
+       "id": 966,
+       "type": "tag"
+      },
+      {
+       "id": 106,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "pronto-paga-latam",
+      "type": "company",
+      "attributes": {
+       "name": "ProntoPaga",
+       "description": "Somos una plataforma regional especializada en la rápida recaudación y dispersión de pagos para comercios. Nos destacamos porque tenemos los pagos más rápidos del mercado y proporcionamos soluciones locales de pago que garantizan un servicio rápido",
+       "long_description": "<p>Acompañamos a nuestros clientes en sus negocios en todo Latinoamérica y les brindamos una solución integral de pagos, mediante equipos de trabajo local que conocen y entienden las necesidades de cada mercado. </p><p>Nos asociamos con métodos de pago como agregadores para ofrecer a nuestros clientes la más amplia cartera, con una promesa de ser competitivos en precio y distinguirnos con nuestros innovadores servicios y soluciones a la medida de cada cliente.</p>",
+       "projects": null,
+       "benefits": "<ul><li>Cumpleaños</li><li>Capacitación y Desarrollo</li><li>Seguro Complementario</li></ul>",
+       "web": "https://www2.prontopaga.com/",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20313/prontopaga_logo.jpeg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/full-stack-engineer-senior-prontopaga-santiago"
+   }
+  },
+  {
    "id": "full-stack-engineer-semi-senior-prontopaga-santiago",
    "type": "job",
    "attributes": {
@@ -167,8 +559,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -639,8 +1034,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -757,8 +1155,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -979,8 +1380,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -1342,7 +1746,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 1940,
+    "applications_count": 1943,
     "location_regions": {
      "data": []
     },
@@ -1993,8 +2397,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -2644,8 +3051,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -2887,7 +3297,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 478,
+    "applications_count": 479,
     "location_regions": {
      "data": []
     },
@@ -3256,8 +3666,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -3516,8 +3929,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -3625,7 +4041,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 703,
+    "applications_count": 704,
     "location_regions": {
      "data": []
     },
@@ -4010,8 +4426,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4140,8 +4559,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4261,7 +4683,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 407,
+    "applications_count": 408,
     "location_regions": {
      "data": []
     },
@@ -5397,8 +5819,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -5874,385 +6299,6 @@
    },
    "links": {
     "public_url": "https://www.getonbrd.com/jobs/desarrollador-a-full-stack-jr-bc-tecnologia-remote"
-   }
-  },
-  {
-   "id": "front-end-developer-react-next-js-bc-tecnologia-bogota",
-   "type": "job",
-   "attributes": {
-    "title": "Front-end Developer (React/Next.JS)",
-    "description_headline": "Requisitos",
-    "description": "<p>Requisitos del rol:</p><ul><li>Al menos <strong>3 años</strong> de experiencia en desarrollo <strong>Front-End</strong>.</li><li>Experiencia sólida en <strong>React</strong>, <strong>Next.js</strong> y <strong>SEO técnico</strong>.</li></ul><p>Además, valoramos que tengamos:</p><ul><li>Orientación al detalle técnico, especialmente en performance y métricas.</li><li>Capacidad para traducir necesidades de SEO, Marketing y Producto en mejoras concretas en el front-end.</li><li>Buenas prácticas de desarrollo y criterio para implementar SSR/ISR de forma efectiva.</li><li>Colaboración y comunicación clara con equipos multidisciplinarios.</li><li>Responsabilidad por la trazabilidad y el correcto funcionamiento de la medición digital.</li></ul>",
-    "projects": "<p>En BC Tecnología creamos equipos de trabajo ágiles para distintas áreas de negocio e Infraestructura Tecnología y Desarrollo de Software. Participarás en iniciativas con clientes de servicios financieros, seguros, retail y gobierno, donde diseñamos soluciones a la medida y enfocadas en el rendimiento. En este rol te integrarás a un equipo que trabaja de forma colaborativa para construir y optimizar experiencias web de alto rendimiento, cuidando la base técnica necesaria para SEO (técnico) y performance, y asegurando una medición consistente para el análisis de campañas.</p>",
-    "functions_headline": "Responsabilidades clave",
-    "functions": "<p>Buscamos Front-End Developer con foco en SEO técnico y performance, para diseñar y optimizar experiencias web de alto rendimiento utilizando React y Next.js.</p><ul><li>Desarrollar front-end con <strong>React / Next.js</strong> considerando <strong>SSR / ISR</strong>.</li><li>Optimizar <strong>SEO técnico</strong> y <strong>Core Web Vitals</strong>.</li><li>Implementar y mantener <strong>medición digital</strong> (por ejemplo, <strong>GTM</strong>, <strong>GA4</strong>, <strong>Ads</strong>, <strong>Meta</strong>, etc.).</li><li>Optimizar <strong>performance</strong> y asegurar <strong>trazabilidad</strong> de campañas.</li><li>Trabajar de manera colaborativa con equipos de <strong>SEO</strong>, <strong>Marketing</strong> y <strong>Producto</strong> para alinear objetivos y resultados.</li></ul>",
-    "benefits_headline": "Beneficios",
-    "benefits": "<p>En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante. Nuestra cultura se orienta al crecimiento profesional a través de la integración y el intercambio de conocimientos entre equipos.</p><p>Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.</p>",
-    "desirable_headline": "Deseable",
-    "desirable": "<p>Sería un plus si contamos con experiencia adicional en:</p><ul><li>Profundizar en <strong>optimización de rendimiento</strong> (estrategias de carga, optimización de recursos, mejoras de métricas como CWV).</li><li>Experiencia en integración y gobierno de <strong>tagging</strong> para medición (GTM/GA4) y control de calidad de eventos.</li><li>Trabajo previo en contextos de <strong>SEO</strong> y crecimiento orgánico, entendiendo impacto en indexación y experiencia.</li><li>Conocimientos de analítica y uso de datos para iterar en mejoras de campañas y sitios.</li></ul>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Colombia"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1778614772,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 330,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 183,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 3,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 123,
-       "type": "tag"
-      },
-      {
-       "id": 762,
-       "type": "tag"
-      },
-      {
-       "id": 649,
-       "type": "tag"
-      },
-      {
-       "id": 85578,
-       "type": "tag"
-      },
-      {
-       "id": 732,
-       "type": "tag"
-      },
-      {
-       "id": 1656,
-       "type": "tag"
-      },
-      {
-       "id": 1828,
-       "type": "tag"
-      },
-      {
-       "id": 1594,
-       "type": "tag"
-      },
-      {
-       "id": 86566,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "bctecnologia",
-      "type": "company",
-      "attributes": {
-       "name": "BC Tecnología",
-       "description": "Somos una consultora de TI con personal experto en diferentes áreas de tecnología.",
-       "long_description": "<p>Somos una consultora de Servicios IT. Administramos portafolio, desarrollamos proyectos, realizamos outsourcing y selección de profesionales.</p><p>Creamos equipos de trabajos ágiles para áreas de Infraestructura Tecnología, Desarrollo de Software y Unidades de Negocio, en clientes de servicios financieros, seguros, retail y gobierno.</p><p>Desde hace 6 años diseñamos soluciones acorde a las necesidades de nuestros clientes. Nuestras principales áreas de negocio son:</p><p>- Consultoría y diseño de soluciones.<br>- Formación de equipos de trabajo, outsourcing de personal.<br>- Desarrollo de proyectos.<br>- Servicios de soporte y administración IT </p><p>Tenemos un enfoque claro en el cliente, metodologías ágiles, cambio organizacional y desarrollo de productos. </p>",
-       "projects": "<div>En BC Tecnología gestionamos portafolios, desarrollamos proyectos y ofrecemos servicios de outsourcing y selección de profesionales para clientes de sectores como servicios financieros, seguros, retail y gobierno. Participarás en iniciativas estratégicas de transformación digital para LATAM Airlines, una organización líder en la industria aeronáutica, en un entorno que combina trabajo remoto con presencia ocasional en oficina. Serás parte de la Gerencia de Arquitectura, colaborando en la definición de la arquitectura empresarial y su evolución ante cambios tecnológicos y de negocio, asegurando alineación con la estrategia corporativa y con estándares de gobernanza.</div>",
-       "benefits": "<div>En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante. Nuestra cultura se orienta al crecimiento profesional a través de la integración y el intercambio de conocimientos entre equipos.</div><div>La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral.</div><div>Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.</div>",
-       "web": "http://www.bctecnologia.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 5,
-        "max": 19
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/9458/Copia_de_logo.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/front-end-developer-react-next-js-bc-tecnologia-bogota"
-   }
-  },
-  {
-   "id": "desarrolladores-de-sw-sonda-santiago",
-   "type": "job",
-   "attributes": {
-    "title": "Desarrolladores de SW",
-    "description_headline": "Ideal si cuentas con:",
-    "description": "<ul><li>Título de Ing. Informática, Sistemas, o carrera afín.</li><li>Experiencia de al menos 3 años en el cargo de Desarrollador.</li><li>Conocimientos en lenguajes/tecnologías como .NET, Oracle, Visual Basic, SQL</li><li>Capacidad de trabajo en equipo y orientación a resultados.</li><li>Disponibilidad para trabajar en Santiago Centro en modelo híbrido 3x2 (Excluyente)</li></ul>",
-    "projects": "<p>¿Por qué ser parte de SONDA? Porque al igual que tú, amamos lo que hacemos, tenemos pasión por la innovación y estamos convencidos de que a través del conocimiento y de la tecnología no solo vamos a transformar los negocios de nuestros clientes, sino también el futuro.</p><p>En SONDA vivirás una experiencia de trabajo con diversas oportunidades de desarrollo personal y profesional. Un excelente lugar para aprender y contribuir a mejorar la calidad de vida de las personas por medio de la tecnología. Buscamos Desarrolladores de SW que quieran aprender y transformar su carrera.</p>",
-    "functions_headline": "En esta función tendrás que:",
-    "functions": "<ul><li>Diseñar, desarrollar y mantener aplicaciones de software.</li><li>Colaborar con equipos multidisciplinarios en proyectos tecnológicos.</li><li>Analizar requerimientos y proponer soluciones eficientes.</li><li>Asegurar la calidad del código mediante buenas prácticas y testing.</li></ul>",
-    "benefits_headline": "¿Qué puedes esperar de nosotros?",
-    "benefits": "<p>¿Qué ofrecemos? SONDA Academy, una plataforma educativa de aprendizaje constante que busca potenciar al máximo tu desarrollo profesional. Trabajo híbrido, en SONDA sabemos que la flexibilidad es importante para tu bienestar es por eso que contamos con jornadas presenciales y de teletrabajo. SONDA Wellness, un programa que busca apoyarte en el balance de tu vida personal y profesional, que promoviendo una serie de iniciativas enfocadas en tu salud física, mental y social. ¡Y mucho más!</p><p>+ Diversidad +Inclusión = Innovación y colaboración</p><p>En SONDA estamos comprometidos con la diversidad. Fomentamos un ambiente inclusivo que garantice que los talentos puedan trabajar en un entorno positivo que los invite a desarrollar su carrera profesional en igualdad de oportunidades. </p>",
-    "desirable_headline": "Conocimientos adicionales valorados",
-    "desirable": "<p>Conocimientos en desarrollo de tecnologías en general</p>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "es",
-    "category_name": "Programming",
-    "perks": [
-     "wellness",
-     "accessible",
-     "health_coverage",
-     "computer_repairs",
-     "dental_insurance",
-     "commuting_stipend",
-     "computer_provided",
-     "education_stipend"
-    ],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1778275176,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 125,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 3,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 5,
-       "type": "tag"
-      },
-      {
-       "id": 74,
-       "type": "tag"
-      },
-      {
-       "id": 715,
-       "type": "tag"
-      },
-      {
-       "id": 64,
-       "type": "tag"
-      },
-      {
-       "id": 1369,
-       "type": "tag"
-      },
-      {
-       "id": 1694,
-       "type": "tag"
-      },
-      {
-       "id": 3662,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "sonda-sa",
-      "type": "company",
-      "attributes": {
-       "name": "SONDA",
-       "description": "Empresa líder en transformación digital de la región",
-       "long_description": "<p>Desde nuestros inicios, creemos en el rol y la responsabilidad que tenemos para aportar a través de la tecnología al desarrollo de las sociedades donde operamos.</p><p>En SONDA sentirás el apoyo de nuestros equipos de trabajo en un <strong>ambiente de respeto, equidad y compañerismo,</strong> otorgándote todas las herramientas para que crezcas de acuerdo a tus intereses y habilidades.</p><p><strong>Nuestro propósito</strong> es contribuir a mejorar la calidad de vida de las personas, innovando y agregando valor, por medio de soluciones tecnológicas que desarrollen y transformen el negocio y quehacer de nuestros clientes.</p><p>Forma parte de la empresa<strong> líder en transformación digital</strong> de la región. </p>",
-       "projects": "<div>En SONDA somos una empresa líder en transformación digital de la región. Nuestro objetivo es mejorar la calidad de vida de las personas mediante soluciones tecnológicas que transformen el negocio de nuestros clientes. Buscamos un/a Consultor/a de DevOps para unirse a nuestro equipo, aportando experiencia y liderazgo técnico en proyectos que involucren integraciones, despliegues y operaciones en entornos cloud y on-premise. Trabajarás en un entorno colaborativo y diverso, con oportunidades de crecimiento profesional mediante herramientas como SONDA Academy y programas de bienestar como SONDA Wellness. El proyecto implica colaborar estrechamente con equipos de desarrollo, arquitectura, seguridad y operación para escalar plataformas, optimizar pipelines y asegurar alta disponibilidad y control de costos en entornos híbridos.</div>",
-       "benefits": "<div>En SONDA promovemos la flexibilidad laboral para favorecer el equilibrio entre la vida personal y profesional.</div><div>Ofrecemos un ambiente colaborativo, diverso e innovador, que fomenta el trabajo en equipo y el respeto entre colegas.</div><div>Contamos con SONDA Academy, una plataforma educativa que impulsa el desarrollo y la evolución constante de tus habilidades profesionales de acuerdo a tus intereses.</div><div>El trabajo es híbrido, combinando jornadas presenciales y teletrabajo para adaptarnos a tus necesidades.</div><div>Además, SONDA Wellness es un programa dedicado a apoyar la salud física, mental y social de nuestros colaboradores mediante diversas iniciativas.</div><div>Promovemos un ambiente inclusivo y equitativo, asegurando igualdad de oportunidades para el desarrollo profesional y personal de todas las personas.</div>",
-       "web": "http://sonda.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 15,
-        "max": 29
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/13470/SONDA-azul_y_blanco.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/desarrolladores-de-sw-sonda-santiago"
-   }
-  },
-  {
-   "id": "desarrollador-a-full-stack-bc-tecnologia-santiago-d266",
-   "type": "job",
-   "attributes": {
-    "title": "Desarrollador/a Full-Stack",
-    "description_headline": "Requisitos técnicos",
-    "description": "<div><strong>Excluyentes</strong></div><ul><li>Experiencia en desarrollo con JavaScript y/o TypeScript.</li><li>Conocimiento en frameworks frontend modernos (React u otros).</li><li>Experiencia en desarrollo backend con Node.js, Laravel, Go, Java u otros.</li><li>Manejo de integración con APIs REST y/o GraphQL.</li><li>Experiencia trabajando con PostgreSQL.</li><li>Experiencia en desarrollo de aplicaciones web y/o mobile.</li><li>Uso de sistemas de control de versiones (Git).</li></ul>",
-    "projects": "<div>Buscamos un/a Desarrollador/a Full Stack para integrarse a un equipo de desarrollo, participando en el diseño, construcción y evolución de soluciones digitales de alto impacto.</div><div>El rol requiere experiencia en desarrollo frontend, backend y mobile, con foco en la creación de interfaces reutilizables, integración con servicios y desarrollo de soluciones escalables. La persona trabajará en conjunto con equipos multidisciplinarios, contribuyendo a la entrega de productos de alta calidad y orientados a una excelente experiencia de usuario.</div>",
-    "functions_headline": "Principales responsabilidades",
-    "functions": "<ul><li>Desarrollar y mantener aplicaciones web y mobile, tanto en frontend como backend.</li><li>Construir componentes reutilizables, escalables y mantenibles.</li><li>Integrar aplicaciones con APIs REST y/o GraphQL y servicios externos.</li><li>Participar en el diseño y desarrollo de servicios backend y lógica de negocio.</li><li>Desarrollar soluciones utilizando Laravel y bases de datos PostgreSQL.</li><li>Colaborar con equipos de UX/UI para implementar interfaces modernas y responsivas.</li><li>Asegurar la calidad del código mediante pruebas y buenas prácticas de desarrollo.</li><li>Participar en ceremonias ágiles (planning, refinement, retrospectivas).</li><li>Realizar revisiones de código y contribuir a la mejora continua del equipo.</li><li>Documentar soluciones técnicas y procesos de desarrollo.</li><li>Proponer mejoras en arquitectura, performance y escalabilidad.</li></ul>",
-    "benefits_headline": "",
-    "benefits": "",
-    "desirable_headline": "Deseables",
-    "desirable": "<ul><li>Experiencia con frameworks como Next.js u otros SSR.</li><li>Conocimientos en testing unitario y automatizado.</li><li>Experiencia en entornos cloud (AWS, GCP o Azure).</li><li>Conocimiento en arquitecturas desacopladas o microservicios.</li><li>Experiencia en CI/CD y contenedores (Docker).</li><li>Experiencia en desarrollo mobile con React Native, Flutter u otras tecnologías.</li></ul>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1778170738,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 256,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 3,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 1,
-       "type": "tag"
-      },
-      {
-       "id": 259,
-       "type": "tag"
-      },
-      {
-       "id": 123,
-       "type": "tag"
-      },
-      {
-       "id": 58,
-       "type": "tag"
-      },
-      {
-       "id": 102,
-       "type": "tag"
-      },
-      {
-       "id": 51,
-       "type": "tag"
-      },
-      {
-       "id": 54,
-       "type": "tag"
-      },
-      {
-       "id": 157,
-       "type": "tag"
-      },
-      {
-       "id": 53,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "bctecnologia",
-      "type": "company",
-      "attributes": {
-       "name": "BC Tecnología",
-       "description": "Somos una consultora de TI con personal experto en diferentes áreas de tecnología.",
-       "long_description": "<p>Somos una consultora de Servicios IT. Administramos portafolio, desarrollamos proyectos, realizamos outsourcing y selección de profesionales.</p><p>Creamos equipos de trabajos ágiles para áreas de Infraestructura Tecnología, Desarrollo de Software y Unidades de Negocio, en clientes de servicios financieros, seguros, retail y gobierno.</p><p>Desde hace 6 años diseñamos soluciones acorde a las necesidades de nuestros clientes. Nuestras principales áreas de negocio son:</p><p>- Consultoría y diseño de soluciones.<br>- Formación de equipos de trabajo, outsourcing de personal.<br>- Desarrollo de proyectos.<br>- Servicios de soporte y administración IT </p><p>Tenemos un enfoque claro en el cliente, metodologías ágiles, cambio organizacional y desarrollo de productos. </p>",
-       "projects": "<div>En BC Tecnología gestionamos portafolios, desarrollamos proyectos y ofrecemos servicios de outsourcing y selección de profesionales para clientes de sectores como servicios financieros, seguros, retail y gobierno. Participarás en iniciativas estratégicas de transformación digital para LATAM Airlines, una organización líder en la industria aeronáutica, en un entorno que combina trabajo remoto con presencia ocasional en oficina. Serás parte de la Gerencia de Arquitectura, colaborando en la definición de la arquitectura empresarial y su evolución ante cambios tecnológicos y de negocio, asegurando alineación con la estrategia corporativa y con estándares de gobernanza.</div>",
-       "benefits": "<div>En BC Tecnología promovemos un ambiente de trabajo colaborativo que valora el compromiso y el aprendizaje constante. Nuestra cultura se orienta al crecimiento profesional a través de la integración y el intercambio de conocimientos entre equipos.</div><div>La modalidad híbrida que ofrecemos, ubicada en Las Condes, permite combinar la flexibilidad del trabajo remoto con la colaboración presencial, facilitando un mejor equilibrio y dinamismo laboral.</div><div>Participarás en proyectos innovadores con clientes de alto nivel y sectores diversos, en un entorno que fomenta la inclusión, el respeto y el desarrollo técnico y profesional.</div>",
-       "web": "http://www.bctecnologia.com",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 5,
-        "max": 19
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/9458/Copia_de_logo.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/desarrollador-a-full-stack-bc-tecnologia-santiago-d266"
    }
   }
  ],

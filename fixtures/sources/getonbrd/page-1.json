@@ -37,15 +37,18 @@
      "min": null,
      "max": null
     },
-    "applications_count": 186,
+    "applications_count": 187,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -273,7 +276,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 31,
+    "applications_count": 32,
     "location_regions": {
      "data": []
     },
@@ -399,51 +402,81 @@
      "min": null,
      "max": null
     },
-    "applications_count": 14,
+    "applications_count": 15,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 31,
-       "type": "location_tenant"
+       "id": "panama",
+       "type": "country",
+       "attributes": {
+        "name": "Panama"
+       }
       },
       {
-       "id": 24,
-       "type": "location_tenant"
+       "id": "costa_rica",
+       "type": "country",
+       "attributes": {
+        "name": "Costa Rica"
+       }
       },
       {
-       "id": 20,
-       "type": "location_tenant"
+       "id": "uruguay",
+       "type": "country",
+       "attributes": {
+        "name": "Uruguay"
+       }
       },
       {
-       "id": 27,
-       "type": "location_tenant"
+       "id": "ecuador",
+       "type": "country",
+       "attributes": {
+        "name": "Ecuador"
+       }
       },
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 12,
-       "type": "location_tenant"
+       "id": "brasil",
+       "type": "country",
+       "attributes": {
+        "name": "Brasil"
+       }
       }
      ]
     },
@@ -553,15 +586,18 @@
      "min": null,
      "max": null
     },
-    "applications_count": 47,
+    "applications_count": 48,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -681,19 +717,25 @@
      "min": null,
      "max": null
     },
-    "applications_count": 120,
+    "applications_count": 125,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 20,
-       "type": "location_tenant"
+       "id": "uruguay",
+       "type": "country",
+       "attributes": {
+        "name": "Uruguay"
+       }
       }
      ]
     },
@@ -818,7 +860,7 @@
      "min": 13,
      "max": 25
     },
-    "applications_count": 61,
+    "applications_count": 64,
     "location_regions": {
      "data": []
     },
@@ -943,7 +985,7 @@
      "min": 1,
      "max": 7
     },
-    "applications_count": 165,
+    "applications_count": 168,
     "location_regions": {
      "data": [
       {
@@ -955,24 +997,39 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 27,
-       "type": "location_tenant"
+       "id": "ecuador",
+       "type": "country",
+       "attributes": {
+        "name": "Ecuador"
+       }
       },
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -1464,7 +1521,7 @@
      "min": 1,
      "max": 1
     },
-    "applications_count": 338,
+    "applications_count": 340,
     "location_regions": {
      "data": []
     },
@@ -2106,7 +2163,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 571,
+    "applications_count": 578,
     "location_regions": {
      "data": []
     },
@@ -2360,8 +2417,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 27,
-       "type": "location_tenant"
+       "id": "ecuador",
+       "type": "country",
+       "attributes": {
+        "name": "Ecuador"
+       }
       }
      ]
     },
@@ -2700,8 +2760,8 @@
        "angellist": "",
        "country": "CL",
        "response_time_in_days": {
-        "min": 3,
-        "max": 17
+        "min": 2,
+        "max": 16
        },
        "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/15670/Logo_sobre_fondo(2).png"
       }
@@ -2746,7 +2806,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 164,
+    "applications_count": 166,
     "location_regions": {
      "data": []
     },
@@ -2995,8 +3055,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -3121,31 +3184,46 @@
      "min": 4,
      "max": 8
     },
-    "applications_count": 440,
+    "applications_count": 441,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 12,
-       "type": "location_tenant"
+       "id": "brasil",
+       "type": "country",
+       "attributes": {
+        "name": "Brasil"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       },
       {
-       "id": 29,
-       "type": "location_tenant"
+       "id": "el_salvador",
+       "type": "country",
+       "attributes": {
+        "name": "El Salvador"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       }
      ]
     },
@@ -3466,6 +3544,364 @@
    }
   },
   {
+   "id": "desarrollador-fullstack-java-angular-2-cl-imagemaker-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Desarrollador Full-Stack Java / Angular 2+ Cl",
+    "description_headline": null,
+    "description": "<p>Imprescindibles (Must-have):</p><ul><li>Desarrollar y mantener aplicaciones empresariales utilizando Java 7, Java 8 o versiones posteriores junto con el framework Spring Boot.</li><li>Construir interfaces de usuario funcionales mediante Angular, Java Web Flow, JavaScript y jQuery.</li><li>Gestionar la persistencia y consulta de datos relacionales empleando SQL, Hibernate, JPA y JDBC.</li><li>Desplegar y administrar aplicaciones en servidores WebLogic 12c y contenedores POD en AWS (Amazon Web Services).</li><li>Ejecutar análisis de causa raíz y gestionar incidentes técnicos en entornos productivos de alta disponibilidad.</li><li>Controlar versiones de código y gestionar ciclos de entrega utilizando Maven, JIRA, Bitbucket y SVN.</li><li>Explicar hallazgos técnicos, diagnósticos de incidentes y soluciones de arquitectura a interlocutores técnicos y funcionales del cliente.</li></ul><p>Deseables (Nice-to-have):</p><ul><li>Optimizar procedimientos almacenados y consultas complejas mediante programación en PL/SQL sobre bases de datos Oracle.</li><li>Mantener y desarrollar módulos heredados utilizando PowerBuilder.</li><li>Construir e implementar interfaces web rápidas mediante la herramienta Scriptcase.</li></ul><div><br></div>",
+    "projects": "<p>Buscamos incorporar dos Ingenieros de Software Full Stack Java/ Angular para reforzar las células de desarrollo e implementación de uno de nuestros clientes del sector financiero y previsional. El puesto existe para asegurar la continuidad operativa, el mantenimiento evolutivo y el despliegue de nuevas funcionalidades sobre plataformas críticas de negocio.</p><p>Te integrarás a un equipo técnico enfocado en resolver incidencias productivas mediante análisis de causa raíz y modernizar servicios sobre arquitecturas empresariales y nube.</p>",
+    "functions_headline": null,
+    "functions": "<p>Operativas y de Desarrollo:</p><ul><li>Serás responsable de desarrollar e implementar nuevas funcionalidades tanto en el backend con Java/Spring Boot como en el frontend con Angular.</li><li>Serás responsable de mantener la estabilidad de los aplicativos desplegados en WebLogic 12c y entornos AWS.</li><li>Serás responsable de optimizar consultas y modelos de persistencia mediante JPA, Hibernate y SQL para asegurar tiempos de respuesta eficientes.</li></ul><p>Resolución y Continuidad:</p><ul><li>Serás responsable de diagnosticar y resolver incidentes productivos mediante análisis de causa raíz para evitar recurrencias en los sistemas críticos del cliente.</li><li>Serás responsable de ejecutar pruebas técnicas y validaciones de código antes de cada paso a producción.</li></ul><p>Gobernanza y Control:</p><ul><li>Serás responsable de asegurar la trazabilidad del código y el cumplimiento de los flujos de entrega utilizando JIRA, Bitbucket y SVN.</li></ul><div><br></div>",
+    "benefits_headline": null,
+    "benefits": "<p>✨ Permiso sin goce de sueldo para cumplir tus sueños.</p><p><span>🎂 Día libre para tu cumpleaños</span></p><p>En el marco de nuestro compromiso con la inclusión, la siguiente vacante está abierta en el marco de la ley 21.015</p>",
+    "desirable_headline": null,
+    "desirable": "",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Programming",
+    "perks": [],
+    "min_salary": null,
+    "max_salary": null,
+    "published_at": 1795796967,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 0,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 3,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 2,
+       "type": "tag"
+      },
+      {
+       "id": 587,
+       "type": "tag"
+      },
+      {
+       "id": 104,
+       "type": "tag"
+      },
+      {
+       "id": 1,
+       "type": "tag"
+      },
+      {
+       "id": 64,
+       "type": "tag"
+      },
+      {
+       "id": 875,
+       "type": "tag"
+      },
+      {
+       "id": 37077,
+       "type": "tag"
+      },
+      {
+       "id": 2856,
+       "type": "tag"
+      },
+      {
+       "id": 887,
+       "type": "tag"
+      },
+      {
+       "id": 132,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "imagemaker-it",
+      "type": "company",
+      "attributes": {
+       "name": "Imagemaker",
+       "description": "Nos llamamos Makers. Somos un equipo de especialistas apasionados por la tecnología y reconocidos en la industria por nuestra dedicación, alta calidad técnica y un fuerte compromiso con nuestros clientes. ",
+       "long_description": "<div>Somos una consultora tecnológica global impulsada por la cultura \"Maker\". Creemos en construir soluciones disruptivas que desafían el statu quo. En Imagemaker no solo escribimos código: damos forma al futuro digital de las empresas líderes de Latinoamérica y el mundo.</div>",
+       "projects": "<p>¡Nos llamamos Makers!<br>Somos un equipo de especialistas apasionados por la tecnología y reconocidos en la industria por nuestra dedicación, alta calidad técnica y un fuerte compromiso con nuestros clientes.<br>Somos más que una consultora de Tecnología, queremos que cada profesional que ingrese pueda desarrollar sus talentos y realizar un plan de carrera junto a nosotros.</p>",
+       "benefits": "<div>En Imagemaker valoramos el conocimiento, la pasión y la perseverancia de nuestros makers. Por eso te brindamos una gran gama de beneficios para cuidar de ti:<br><br>😉&nbsp; <strong>Ser un Maker es genial<br></strong>&nbsp;Excelentes beneficios y muchas actividades para pasarlo bien.<br><br>🏖️ <strong>Don't worry, be happy<br></strong>3 días libres extra al año además de tus vacaciones.<br><br>🏥 <strong>Seguro Complementario<br></strong>100% gratis para todos nuestros Makers.<br><br>🤓 <strong>Maker Academy<br></strong>Programas de capacitación, clases de inglés y mucho más.<br><br>🎂 <strong>Celebraciones<br></strong>Día libre por tu cumpleaños y medio día por el de tus hijos.<br><br>💰<strong>Bonos<br></strong>Feriados nacionales, Navidad, Matrimonio/AC, Nacimiento, etc.<br><br>🌿<strong>Cultura Maker<br></strong>Horizontal, innovadora y llena de buena onda.</div>",
+       "web": "https://www.imagemaker.com",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": "",
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/7107/logo.jpg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/desarrollador-fullstack-java-angular-2-cl-imagemaker-santiago"
+   }
+  },
+  {
+   "id": "ingeniero-a-de-software-net-ps-grupo-hunting-santiago-2dea",
+   "type": "job",
+   "attributes": {
+    "title": "Ingeniero/a de Software .NET",
+    "description_headline": "Requisitos indispensables",
+    "description": "<p>Título profesional universitario en Ingeniería Informática, Ingeniería en Computación o carrera afín. Para esta posición se requiere formación universitaria; no se consideran títulos de nivel técnico. En caso de títulos extranjeros, contar con apostilla y validación institucional. Al menos 5 años de experiencia en desarrollo de software. Experiencia comprobable con C#, .NET Framework 4.8, .NET Core 3.1 y .NET 5 o superior. Conocimientos de JavaScript, HTML y CSS. Dominio de SQL Server y modelamiento de bases de datos. Experiencia en integraciones mediante servicios SOAP y REST. Disponibilidad para asistir presencialmente tres días a la semana a Providencia. Capacidad de análisis, autonomía, comunicación efectiva y trabajo en equipo, con orientación al cliente y al cumplimiento de plazos.</p>",
+    "projects": "<p>En PS Grupo Hunting buscamos un/a Ingeniero/a de Desarrollo de Software .NET para integrarse directamente al equipo <em>nuestro cliente del sector tecnológico en Santiago</em></p><h3>Objetivo del cargo</h3><p>Desarrollar, mantener y optimizar soluciones de software con tecnologías Microsoft .NET y SQL Server, participando en integraciones, automatización de procesos y mejora de sistemas existentes, con foco en la calidad técnica, escalabilidad y orientación al cliente.</p>",
+    "functions_headline": "Principales funciones",
+    "functions": "<p>Diseñar, desarrollar y mantener aplicaciones en C# y tecnologías .NET. Implementar funcionalidades y optimizar soluciones existentes. Desarrollar integraciones entre aplicaciones mediante servicios SOAP y REST. Elaborar consultas y trabajar en el modelamiento de bases de datos SQL Server. Analizar y resolver incidencias, adaptando las soluciones a los requerimientos del negocio. Colaborar en la planificación y estimación de desarrollos, comunicando oportunamente posibles desviaciones. Participar en reuniones de coordinación y seguimiento del equipo.</p>",
+    "benefits_headline": "Condiciones laborales",
+    "benefits": "<p>Renta líquida referencial: entre $1.800.000 y $2.000.000 mensuales. Contrato: preferentemente indefinido, con posibilidad de evaluar un contrato inicial a plazo fijo de 3 o 6 meses. Modalidad: híbrida. Ubicación: Providencia, en un sector cercano al metro.</p>",
+    "desirable_headline": "Conocimientos y experiencia deseables",
+    "desirable": "<p>Experiencia en servicios tecnológicos o consultoría, participando en distintos proyectos y con diversos clientes. Patrones de diseño, buenas prácticas de desarrollo, revisiones de código y pruebas unitarias. Metodologías ágiles, idealmente Scrum. Plataformas BPM o ECM. Desarrollo móvil con Xamarin o tecnologías similares.</p>",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "es",
+    "category_name": "Programming",
+    "perks": [],
+    "min_salary": 550,
+    "max_salary": 800,
+    "published_at": 1795795752,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 0,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 91,
+       "type": "tag"
+      },
+      {
+       "id": 5,
+       "type": "tag"
+      },
+      {
+       "id": 837,
+       "type": "tag"
+      },
+      {
+       "id": 843,
+       "type": "tag"
+      },
+      {
+       "id": 54,
+       "type": "tag"
+      },
+      {
+       "id": 1,
+       "type": "tag"
+      },
+      {
+       "id": 11,
+       "type": "tag"
+      },
+      {
+       "id": 12,
+       "type": "tag"
+      },
+      {
+       "id": 36922,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "ps-grupo-hunting",
+      "type": "company",
+      "attributes": {
+       "name": "PS GRUPO HUNTING",
+       "description": "PS GRUPO HUNTING se encuentra en búsqueda activa de profesionales TI para incorporar talentos de todos los senioritys en los equipos de nuestros clientes.",
+       "long_description": "",
+       "projects": "<div>Somos PS GRUPO HUNTING, una firma dedicada a identificar y colocar talentos TI en proyectos de alto impacto en instituciones y empresas de referencia. Buscamos un/una Especialista en Proyectos de Conectividad y Redes para liderar iniciativas de redes, videovigilancia y telefonía en entornos institucionales. El/la candidato/a se integrará a un equipo multidisciplinario y trabajará de forma cercana con proveedores y áreas técnicas para garantizar la continuidad, calidad y mejora continua de la infraestructura tecnológica. El rol implica coordinar proyectos desde la fase de diseño hasta su implementación, gestión de contratos y licitaciones, y reporte detallado de avances y resultados dentro de una organización dinámica y orientada a la excelencia tecnológica. Este puesto ofrece la oportunidad de desarrollarse en un entorno desafiante y de alto impacto institucional, con posibilidad de crecimiento y actualización profesional.</div>",
+       "benefits": "<p>Modalidad y condiciones<br><br>100% presencial en puntos de atención dentro de la Región Metropolitana.<br><br>Jornada de 40 horas semanales con turnos rotativos y 2 sábados al mes.<br><br>Sistema de comisiones sin tope.<br><br>Beneficios al pasar a contrato indefinido: seguro complementario, seguro de vida, día libre de cumpleaños, programas de becas y movilidad interna.<br><br><br><br></p>",
+       "web": "https://www.psgrupohunting.cl/",
+       "twitter": null,
+       "github": null,
+       "facebook": null,
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/13611/ps_grupo.jpg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/ingeniero-a-de-software-net-ps-grupo-hunting-santiago-2dea"
+   }
+  },
+  {
+   "id": "ingeniero-a-senior-de-automatizacion-ps-grupo-hunting-santiago-a158",
+   "type": "job",
+   "attributes": {
+    "title": "Ingeniero/a Senior de Automatización",
+    "description_headline": "Requisitos del cargo",
+    "description": "<ul><li>Formación en Ingeniería en Automatización y Control, Electricidad, Electrónica, Instrumentación, Procesos o carrera afín.</li><li>Experiencia comprobable en PTAS, PTAR, plantas de reúso o desalación (excluyente).</li><li>Conocimiento práctico del funcionamiento de procesos industriales, sus principales etapas, secuencias y lógica operacional.</li><li>Experiencia en automatización y control de procesos industriales.</li><li>Capacidad para interpretar documentación técnica y transmitir requerimientos de proceso a equipos de automatización.</li><li>Experiencia en proyectos industriales y/o elaboración de propuestas técnicas.</li><li>Autonomía técnica y capacidad de análisis acorde con un perfil Senior o Semi Senior avanzado.</li><li>Disponibilidad para viajar y permanecer temporalmente en Antofagasta (excluyente).</li></ul>",
+    "projects": "En PS Grupo Hunting nos encontramos en búsqueda de un/a Ingeniero/a Senior o Semi Senior avanzado en Automatización y Control de Procesos, para participar en un importante proyecto industrial relacionado con plantas de tratamiento de agua, reúso y desalación. Buscamos profesionales con sólida experiencia práctica en procesos industriales, capaces de comprender el funcionamiento integral de una planta, sus etapas, secuencias y lógica operacional, y transformar estas necesidades en soluciones y requerimientos de automatización y control. Es fundamental contar con experiencia directa y comprobable en al menos uno de los siguientes tipos de plantas: PTAS, PTAR, plantas de reúso de agua o desaladoras.",
+    "functions_headline": "Principales funciones",
+    "functions": "<ul><li>Analizar procesos industriales, identificando sus etapas, secuencias y lógica de funcionamiento.</li><li>Traducir necesidades operacionales en requerimientos técnicos para el desarrollo de soluciones de automatización y control.</li><li>Participar en la elaboración y revisión de propuestas técnicas para proyectos industriales.</li><li>Revisar P&amp;ID, memorias de proceso, filosofías de operación y matrices causa-efecto.</li><li>Apoyar la definición de secuencias de operación, interlocks, permisivos y estrategias de control.</li><li>Coordinarse con equipos de automatización, instrumentación, electricidad y otras especialidades.</li><li>Participar en etapas posteriores de ingeniería, integración, pruebas FAT/SAT, comisionamiento y puesta en marcha, según el desarrollo del proyecto.</li></ul>",
+    "benefits_headline": "Condiciones laborales",
+    "benefits": "<p>Ubicación inicial: Santiago, modalidad 100% presencial. Etapa posterior: viajes y posibles permanencias temporales en Antofagasta, según adjudicación y desarrollo del proyecto.</p><p>Contratación: directa por la empresa cliente, inicialmente asociada al proyecto.</p><p>Renta líquida referencial: $2.000.000 a $3.000.000 mensuales, conversable según experiencia y conocimientos.</p><p>Ingreso: lo antes posible.</p><p>Proyección: posibilidad de continuidad en futuros proyectos.</p>",
+    "desirable_headline": "Conocimientos deseables",
+    "desirable": "<ul><li>Experiencia con plataformas Schneider Electric, Rockwell Automation o similares.</li><li>Conocimientos de PLC/PAC, DCS y SCADA.</li><li>Diseño de arquitecturas de automatización y control.</li><li>Instrumentación, redes industriales y sistemas de alta disponibilidad.</li><li>Participación en pruebas FAT/SAT, comisionamiento y puesta en marcha.</li><li>Certificaciones o especializaciones relacionadas con automatización y control industrial.</li></ul><p>Importante: No buscamos perfiles enfocados exclusivamente en programación de PLC o SCADA. Se priorizará la experiencia real en procesos industriales y el conocimiento operacional de plantas. Las plataformas y certificaciones mencionadas son deseables, no excluyentes.</p>",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "es",
+    "category_name": "Programming",
+    "perks": [],
+    "min_salary": 800,
+    "max_salary": 1300,
+    "published_at": 1795794432,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 0,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 16046,
+       "type": "tag"
+      },
+      {
+       "id": 37436,
+       "type": "tag"
+      },
+      {
+       "id": 16361,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "ps-grupo-hunting",
+      "type": "company",
+      "attributes": {
+       "name": "PS GRUPO HUNTING",
+       "description": "PS GRUPO HUNTING se encuentra en búsqueda activa de profesionales TI para incorporar talentos de todos los senioritys en los equipos de nuestros clientes.",
+       "long_description": "",
+       "projects": "<div>Somos PS GRUPO HUNTING, una firma dedicada a identificar y colocar talentos TI en proyectos de alto impacto en instituciones y empresas de referencia. Buscamos un/una Especialista en Proyectos de Conectividad y Redes para liderar iniciativas de redes, videovigilancia y telefonía en entornos institucionales. El/la candidato/a se integrará a un equipo multidisciplinario y trabajará de forma cercana con proveedores y áreas técnicas para garantizar la continuidad, calidad y mejora continua de la infraestructura tecnológica. El rol implica coordinar proyectos desde la fase de diseño hasta su implementación, gestión de contratos y licitaciones, y reporte detallado de avances y resultados dentro de una organización dinámica y orientada a la excelencia tecnológica. Este puesto ofrece la oportunidad de desarrollarse en un entorno desafiante y de alto impacto institucional, con posibilidad de crecimiento y actualización profesional.</div>",
+       "benefits": "<p>Modalidad y condiciones<br><br>100% presencial en puntos de atención dentro de la Región Metropolitana.<br><br>Jornada de 40 horas semanales con turnos rotativos y 2 sábados al mes.<br><br>Sistema de comisiones sin tope.<br><br>Beneficios al pasar a contrato indefinido: seguro complementario, seguro de vida, día libre de cumpleaños, programas de becas y movilidad interna.<br><br><br><br></p>",
+       "web": "https://www.psgrupohunting.cl/",
+       "twitter": null,
+       "github": null,
+       "facebook": null,
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/13611/ps_grupo.jpg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/ingeniero-a-senior-de-automatizacion-ps-grupo-hunting-santiago-a158"
+   }
+  },
+  {
    "id": "senior-software-engineer-data-sources-checkr-santiago",
    "type": "job",
    "attributes": {
@@ -3495,7 +3931,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 0,
+    "applications_count": 1,
     "location_regions": {
      "data": []
     },
@@ -3625,7 +4061,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 6,
+    "applications_count": 7,
     "location_regions": {
      "data": []
     },
@@ -3881,7 +4317,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 3,
+    "applications_count": 4,
     "location_regions": {
      "data": []
     },
@@ -4007,7 +4443,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 4,
+    "applications_count": 5,
     "location_regions": {
      "data": []
     },
@@ -4131,7 +4567,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 13,
+    "applications_count": 15,
     "location_regions": {
      "data": []
     },
@@ -4496,7 +4932,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 311,
+    "applications_count": 317,
     "location_regions": {
      "data": []
     },
@@ -4626,8 +5062,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4753,8 +5192,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4873,15 +5315,18 @@
      "min": null,
      "max": null
     },
-    "applications_count": 86,
+    "applications_count": 87,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -5097,12 +5542,18 @@
     "location_tenants": {
      "data": [
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       }
      ]
     },
@@ -5360,7 +5811,7 @@
      "min": 11,
      "max": 15
     },
-    "applications_count": 264,
+    "applications_count": 267,
     "location_regions": {
      "data": []
     },
@@ -5492,12 +5943,18 @@
     "location_tenants": {
      "data": [
       {
-       "id": 21,
-       "type": "location_tenant"
+       "id": "venezuela",
+       "type": "country",
+       "attributes": {
+        "name": "Venezuela"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       }
      ]
     },
@@ -5615,7 +6072,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 148,
+    "applications_count": 149,
     "location_regions": {
      "data": []
     },
@@ -5949,389 +6406,6 @@
    },
    "links": {
     "public_url": "https://www.getonbrd.com/jobs/administrador-a-cloud-aws-bc-tecnologia-santiago"
-   }
-  },
-  {
-   "id": "software-engineer-frontend-capital-express-santiago",
-   "type": "job",
-   "attributes": {
-    "title": "Software Engineer Front-end",
-    "description_headline": "Requerimientos del cargo",
-    "description": "<ul><li>Experiencia sólida desarrollando aplicaciones web con <strong>React y TypeScript</strong>.</li><li>Dominio de HTML y CSS modernos.</li><li>Experiencia en la creación de componentes reutilizables y trabajo con <em>design systems</em>.</li><li>Manejo fluido de gestión de estado, <em>routing</em> y datos asíncronos.</li><li>Experiencia integrando APIs y desarrollando formularios con validación robusta.</li><li>Conocimientos en <em>testing</em> unitario y de componentes, con nociones de pruebas <em>end-to-end</em>.</li><li>Capacidad para trabajar con autonomía, participar en <em>code reviews</em> y comunicar tus decisiones técnicas con claridad.</li><li>2 a 3 años de experiencia laboral.</li></ul>",
-    "projects": "<p>En <strong>Capital Express</strong>, buscamos un/a Software Engineer Frontend para desarrollar aplicaciones web de alta calidad y mejorar la experiencia de los usuarios en nuestra plataforma de financiamiento.</p><p>Somos una fintech chilena especializada en factoring y financiamiento para pymes, cuyo equipo de ingeniería crea las herramientas digitales que sustentan nuestra operación.</p>",
-    "functions_headline": "Funciones del cargo",
-    "functions": "<p>Como parte de nuestro equipo, desarrollarás aplicaciones web utilizando <strong>React y TypeScript</strong>. Tendrás la autonomía necesaria para gestionar funcionalidades de principio a fin, colaborar en decisiones técnicas y asegurar que nuestras interfaces sean accesibles, consistentes y confiables.</p><ul><li>Desarrollar y mantener las aplicaciones web del producto.</li><li>Construir componentes reutilizables integrados a nuestro <em>design system</em>.</li><li>Implementar interfaces orientadas a datos, incluyendo formularios validados y tablas complejas.</li><li>Gestionar el estado de la aplicación e integrar APIs de backend y sistemas de autenticación.</li><li>Escribir pruebas automatizadas y documentar los componentes desarrollados.</li><li>Optimizar la accesibilidad, el diseño <em>responsive</em> y la performance.</li><li>Participar activamente en <em>code reviews</em>, refinamiento de tareas y estimaciones junto al equipo.</li><li>Investigar y resolver problemas de producción relacionados con tus entregas.</li></ul>",
-    "benefits_headline": "Condiciones",
-    "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros.. </p>",
-    "desirable_headline": "Opcionales",
-    "desirable": "<p><strong>Es deseable</strong> contar con experiencia en accesibilidad web, optimización de performance, protocolos OAuth2/OIDC, y visualización o exportación de datos.</p>",
-    "remote": false,
-    "remote_modality": "no_remote",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [
-     "flexible_hours",
-     "remote_partial",
-     "health_coverage",
-     "computer_provided",
-     "informal_dresscode",
-     "vacation_over_legal",
-     "beverages_and_snacks"
-    ],
-    "min_salary": 2000,
-    "max_salary": 2500,
-    "published_at": 1794510207,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 119,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 3,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 123,
-       "type": "tag"
-      },
-      {
-       "id": 259,
-       "type": "tag"
-      },
-      {
-       "id": 11,
-       "type": "tag"
-      },
-      {
-       "id": 12,
-       "type": "tag"
-      },
-      {
-       "id": 37059,
-       "type": "tag"
-      },
-      {
-       "id": 1658,
-       "type": "tag"
-      },
-      {
-       "id": 888,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "capital-express-cl-2344",
-      "type": "company",
-      "attributes": {
-       "name": "Capital Express",
-       "description": "Empresa de  Servicios Financieros con más de 15 años de experiencia en el rubro del factoring.",
-       "long_description": "",
-       "projects": null,
-       "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros..&nbsp;<br><br></p>",
-       "web": "http://www.capitalexpress.cl",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": null,
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 21,
-        "max": 35
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20401/capitalexpress_servicios_financieros_logo.jpeg"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/software-engineer-frontend-capital-express-santiago"
-   }
-  },
-  {
-   "id": "senior-software-engineer-backend-tech-lead-capital-express-santiago",
-   "type": "job",
-   "attributes": {
-    "title": "Senior Software Engineer Back-end / Tech Lead",
-    "description_headline": "Requerimientos del cargo",
-    "description": "<ul><li>Experiencia senior construyendo y operando sistemas backend en producción.</li><li>Dominio de <strong>Go y/o Node.js</strong>, con disposición para trabajar con ambos lenguajes.</li><li>Capacidad para diseñar servicios, APIs y sistemas integrados mediante eventos o colas.</li><li>Experiencia sólida con bases de datos relacionales y documentales.</li><li>Criterio de seguridad: autenticación, autorización, OAuth2/OIDC, JWT y buenas prácticas de OWASP.</li><li>Experiencia con testing automatizado, CI/CD, contenedores y observabilidad.</li><li>Experiencia comprobable en liderazgo técnico: mentoría, code review y diseño de arquitectura.</li><li>Habilidad para colaborar eficazmente tanto con perfiles técnicos como de negocio.</li><li>Experiencia en el uso de herramientas de IA para el desarrollo, con criterio para delegar tareas y verificar resultados.</li></ul>",
-    "projects": "<p>Diseñarás y desarrollarás servicios backend, liderando técnicamente al equipo junto al CTO. Es un rol <em>hands-on</em>: continuarás programando mientras ayudas a definir la arquitectura, los estándares y las mejores prácticas de ingeniería.</p><p>Trabajarás estrechamente con el Product Owner y el equipo técnico para transformar las necesidades del negocio en soluciones confiables, seguras y escalables.</p>",
-    "functions_headline": "Funciones del cargo",
-    "functions": "<ul><li>Diseñar, desarrollar y mantener servicios backend en <strong>Go y Node.js</strong>.</li><li>Crear APIs REST y contratos entre servicios documentados con OpenAPI.</li><li>Modelar datos en PostgreSQL y MongoDB, optimizando el rendimiento y gestionando migraciones.</li><li>Definir, junto al CTO, la arquitectura y las decisiones de stack tecnológico.</li><li>Establecer estándares de código, testing, seguridad y documentación.</li><li>Participar en code reviews, resolver bloqueos técnicos y mentorizar al equipo.</li><li>Colaborar con el Product Owner en el refinamiento, diseño y estimación de soluciones.</li><li>Documentar decisiones técnicas, gestionar la deuda técnica y asegurar la operatividad en producción.</li><li>Liderar el uso responsable de asistentes y agentes de IA, supervisando resultados y promoviendo buenas prácticas.</li></ul>",
-    "benefits_headline": "Condiciones",
-    "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros.. </p>",
-    "desirable_headline": "Opcionales",
-    "desirable": "<p><strong>Es deseable</strong> contar con conocimientos en AWS y experiencia previa en productos financieros o entornos regulados.</p>",
-    "remote": false,
-    "remote_modality": "no_remote",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [
-     "flexible_hours",
-     "remote_partial",
-     "health_coverage",
-     "computer_provided",
-     "informal_dresscode",
-     "vacation_over_legal",
-     "beverages_and_snacks"
-    ],
-    "min_salary": 2400,
-    "max_salary": 3500,
-    "published_at": 1794508914,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 43,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 100,
-       "type": "tag"
-      },
-      {
-       "id": 58,
-       "type": "tag"
-      },
-      {
-       "id": 51,
-       "type": "tag"
-      },
-      {
-       "id": 133,
-       "type": "tag"
-      },
-      {
-       "id": 422,
-       "type": "tag"
-      },
-      {
-       "id": 54,
-       "type": "tag"
-      },
-      {
-       "id": 37770,
-       "type": "tag"
-      },
-      {
-       "id": 37157,
-       "type": "tag"
-      },
-      {
-       "id": 1694,
-       "type": "tag"
-      },
-      {
-       "id": 36776,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "capital-express-cl-2344",
-      "type": "company",
-      "attributes": {
-       "name": "Capital Express",
-       "description": "Empresa de  Servicios Financieros con más de 15 años de experiencia en el rubro del factoring.",
-       "long_description": "",
-       "projects": null,
-       "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros..&nbsp;<br><br></p>",
-       "web": "http://www.capitalexpress.cl",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": null,
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 21,
-        "max": 35
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20401/capitalexpress_servicios_financieros_logo.jpeg"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/senior-software-engineer-backend-tech-lead-capital-express-santiago"
-   }
-  },
-  {
-   "id": "full-stack-developer-zipisa-remote",
-   "type": "job",
-   "attributes": {
-    "title": "Full-Stack Developer",
-    "description_headline": "What you bring",
-    "description": "<ul><li>4+ years building and running production web applications, across both back end and front end.</li><li>Strong Python: FastAPI or a similar framework, Pydantic, async code, and pytest.</li><li>Hands-on MongoDB: schema design, indexes, aggregation, and idempotent writes under retries and concurrency.</li><li>Strong React and TypeScript: routing, data fetching and caching, forms, and Tailwind or a component library.</li><li>Experience with third-party APIs and webhooks: OAuth, signature checks, retries, rate limits, and partial failures.</li><li>Stripe experience: subscriptions, Checkout, webhooks, and ideally usage-based billing.</li><li>Comfort deploying and debugging containers in the cloud (Cloud Run, Docker, Vercel), and reading traces and logs to find a root cause.</li><li>Good judgment with personal data and email: privacy rules, consent, and why one wrong send matters.</li><li>Clear written communication: plans on issues, PRs that explain what changed and why, and honest status.</li></ul><p>Your first 90 days<br>By day 90 you own one area of each product and can ship to either without help. 1. Days 1–30: Run Zipisa and WebHawk locally with their full test suites passing. Ship 3–5 small fixes to production in both. Learn the send guardrails, the task drains and the billing flows. 2. Days 31–60: Own a mid-sized feature end to end, such as a new CRM integration or a dashboard screen, from Linear plan to production. Help debug and fix production issues as they come up. 3. Days 61–90: Lead a cross-product piece of work, such as WebHawk visitor data inside Zipisa or metered billing. Leave a runbook or regression test behind for each incident you handle.</p>",
-    "projects": "<p>About the role<br>We're hiring a full stack developer to build and run two products that share one stack: Zipisa, an AI assistant that finds sellers and books appointments for real estate agents, and WebHawk, which identifies website visitors and turns them into leads. You'll ship across Python/FastAPI services, MongoDB, and React/TypeScript dashboards, and own features end to end, from the API through the email pipeline to the screen the customer sees. Both products send real email to real people and handle personal data and payments, so we care about safe defaults, tests, and observability as much as speed.</p><p>Zipisa- An AI inside sales agent (ISA). It sources seller-intent leads by ZIP code, emails homeowners, replies and follows up, and books appointments on the agent's calendar. WebHawk</p><p>Webhawk - Website visitor identification. A pixel on the customer's site resolves anonymous visitors into people, then delivers them to the customer's CRM and sends behavioral follow-up email. </p>",
-    "functions_headline": "What you'll do",
-    "functions": "<ul><li>Build features end to end. Take a Linear issue from plan to production: FastAPI routes, Mongo models and indexes, React screens, tests, and a clear PR.</li><li>Keep the email pipelines safe and deliverable. Work on Zipisa's mail queue and WebHawk's KumoMTA sending: idempotent jobs, send guardrails, warm-up ramps, unsubscribe handling, bounce and reply processing.</li><li>Ship and maintain integrations. Build and fix CRM and calendar connections (Follow Up Boss, kvCORE, HubSpot, Pipedrive, Salesforce, Calendly, Zapier, webhooks) and the data providers behind lead sourcing and validation.</li><li>Own billing flows. Implement Stripe subscriptions for Zipisa and metered, pay-per-use charging for WebHawk, with a usage ledger that is correct under retries.</li><li>Build the dashboards. Visitors, inbox, campaigns, domains, integrations and settings screens in React and TypeScript, wired to the API with loading, empty and error states handled.</li><li>Work on the AI layer. Wire LLM features (reply drafting, lead decisions, the in-app assistant) into the product, with evals that catch regressions before customers do.</li><li>Run what you ship. Deploy to Cloud Run and Vercel, watch Logfire traces, run scheduled task drains, debug production issues, and leave behind a regression test or runbook for every incident.</li><li>Protect personal data. Handle PII, consent signals and do-not-contact rules carefully, and keep secrets and raw payloads out of logs.</li></ul>",
-    "benefits_headline": "",
-    "benefits": "",
-    "desirable_headline": "Nice to have",
-    "desirable": "<ul><li>Email deliverability: SPF, DKIM, DMARC, mailbox warm-up, MTAs such as KumoMTA or Postfix, and reading bounce and complaint signals.</li><li>LLM product work: prompt design, tool-using agents, evals, and controlling cost per conversation.</li><li>Real estate tech: Follow Up Boss, kvCORE/BoldTrail, MLS data, or how agents and brokerages work leads.</li><li>Ad-tech or identity resolution: pixels, first-party data, consent signals such as GPC, and match rates.</li><li>TanStack Start or Next.js, server-side rendering, and technical or programmatic SEO.</li><li>Infrastructure: Cloudflare (Workers, R2, cron), Redis, queues, Terraform, or running a Linux box.</li><li>Experience as an early engineer at a startup, owning a product with little hand-holding.</li><li>Daily use of AI coding agents such as Claude Code, with the habit of reviewing their work skeptically.</li></ul>",
-    "remote": true,
-    "remote_modality": "fully_remote",
-    "remote_zone": null,
-    "countries": [
-     "Remote"
-    ],
-    "lang": "en",
-    "category_name": "Programming",
-    "perks": [
-     "remote_full"
-    ],
-    "min_salary": 2200,
-    "max_salary": 3500,
-    "published_at": 1794490311,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 560,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": []
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 18,
-       "type": "tag"
-      },
-      {
-       "id": 829,
-       "type": "tag"
-      },
-      {
-       "id": 133,
-       "type": "tag"
-      },
-      {
-       "id": 123,
-       "type": "tag"
-      },
-      {
-       "id": 259,
-       "type": "tag"
-      },
-      {
-       "id": 1023,
-       "type": "tag"
-      },
-      {
-       "id": 141,
-       "type": "tag"
-      },
-      {
-       "id": 38629,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "zipisa",
-      "type": "company",
-      "attributes": {
-       "name": "ZipISA",
-       "description": "We're hiring a full stack developer to build and run two products that share one stack: Zipisa, an AI assistant that finds sellers and books appointments for real estate agents, and WebHawk, which identifies website visitors and turns them into leads. ",
-       "long_description": "",
-       "projects": null,
-       "benefits": null,
-       "web": "https://zipisa.com",
-       "twitter": null,
-       "github": null,
-       "facebook": null,
-       "angellist": null,
-       "country": "US",
-       "response_time_in_days": {
-        "min": null,
-        "max": null
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/21148/ZipISA_logo.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/full-stack-developer-zipisa-remote"
    }
   }
  ],

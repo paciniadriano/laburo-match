@@ -1,6 +1,389 @@
 {
  "data": [
   {
+   "id": "software-engineer-frontend-capital-express-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Software Engineer Front-end",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<ul><li>Experiencia sólida desarrollando aplicaciones web con <strong>React y TypeScript</strong>.</li><li>Dominio de HTML y CSS modernos.</li><li>Experiencia en la creación de componentes reutilizables y trabajo con <em>design systems</em>.</li><li>Manejo fluido de gestión de estado, <em>routing</em> y datos asíncronos.</li><li>Experiencia integrando APIs y desarrollando formularios con validación robusta.</li><li>Conocimientos en <em>testing</em> unitario y de componentes, con nociones de pruebas <em>end-to-end</em>.</li><li>Capacidad para trabajar con autonomía, participar en <em>code reviews</em> y comunicar tus decisiones técnicas con claridad.</li><li>2 a 3 años de experiencia laboral.</li></ul>",
+    "projects": "<p>En <strong>Capital Express</strong>, buscamos un/a Software Engineer Frontend para desarrollar aplicaciones web de alta calidad y mejorar la experiencia de los usuarios en nuestra plataforma de financiamiento.</p><p>Somos una fintech chilena especializada en factoring y financiamiento para pymes, cuyo equipo de ingeniería crea las herramientas digitales que sustentan nuestra operación.</p>",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<p>Como parte de nuestro equipo, desarrollarás aplicaciones web utilizando <strong>React y TypeScript</strong>. Tendrás la autonomía necesaria para gestionar funcionalidades de principio a fin, colaborar en decisiones técnicas y asegurar que nuestras interfaces sean accesibles, consistentes y confiables.</p><ul><li>Desarrollar y mantener las aplicaciones web del producto.</li><li>Construir componentes reutilizables integrados a nuestro <em>design system</em>.</li><li>Implementar interfaces orientadas a datos, incluyendo formularios validados y tablas complejas.</li><li>Gestionar el estado de la aplicación e integrar APIs de backend y sistemas de autenticación.</li><li>Escribir pruebas automatizadas y documentar los componentes desarrollados.</li><li>Optimizar la accesibilidad, el diseño <em>responsive</em> y la performance.</li><li>Participar activamente en <em>code reviews</em>, refinamiento de tareas y estimaciones junto al equipo.</li><li>Investigar y resolver problemas de producción relacionados con tus entregas.</li></ul>",
+    "benefits_headline": "Condiciones",
+    "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros.. </p>",
+    "desirable_headline": "Opcionales",
+    "desirable": "<p><strong>Es deseable</strong> contar con experiencia en accesibilidad web, optimización de performance, protocolos OAuth2/OIDC, y visualización o exportación de datos.</p>",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Programming",
+    "perks": [
+     "flexible_hours",
+     "remote_partial",
+     "health_coverage",
+     "computer_provided",
+     "informal_dresscode",
+     "vacation_over_legal",
+     "beverages_and_snacks"
+    ],
+    "min_salary": 2000,
+    "max_salary": 2500,
+    "published_at": 1794510207,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 119,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 3,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 123,
+       "type": "tag"
+      },
+      {
+       "id": 259,
+       "type": "tag"
+      },
+      {
+       "id": 11,
+       "type": "tag"
+      },
+      {
+       "id": 12,
+       "type": "tag"
+      },
+      {
+       "id": 37059,
+       "type": "tag"
+      },
+      {
+       "id": 1658,
+       "type": "tag"
+      },
+      {
+       "id": 888,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "capital-express-cl-2344",
+      "type": "company",
+      "attributes": {
+       "name": "Capital Express",
+       "description": "Empresa de  Servicios Financieros con más de 15 años de experiencia en el rubro del factoring.",
+       "long_description": "",
+       "projects": null,
+       "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros..&nbsp;<br><br></p>",
+       "web": "http://www.capitalexpress.cl",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": 21,
+        "max": 35
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20401/capitalexpress_servicios_financieros_logo.jpeg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/software-engineer-frontend-capital-express-santiago"
+   }
+  },
+  {
+   "id": "senior-software-engineer-backend-tech-lead-capital-express-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Senior Software Engineer Back-end / Tech Lead",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<ul><li>Experiencia senior construyendo y operando sistemas backend en producción.</li><li>Dominio de <strong>Go y/o Node.js</strong>, con disposición para trabajar con ambos lenguajes.</li><li>Capacidad para diseñar servicios, APIs y sistemas integrados mediante eventos o colas.</li><li>Experiencia sólida con bases de datos relacionales y documentales.</li><li>Criterio de seguridad: autenticación, autorización, OAuth2/OIDC, JWT y buenas prácticas de OWASP.</li><li>Experiencia con testing automatizado, CI/CD, contenedores y observabilidad.</li><li>Experiencia comprobable en liderazgo técnico: mentoría, code review y diseño de arquitectura.</li><li>Habilidad para colaborar eficazmente tanto con perfiles técnicos como de negocio.</li><li>Experiencia en el uso de herramientas de IA para el desarrollo, con criterio para delegar tareas y verificar resultados.</li></ul>",
+    "projects": "<p>Diseñarás y desarrollarás servicios backend, liderando técnicamente al equipo junto al CTO. Es un rol <em>hands-on</em>: continuarás programando mientras ayudas a definir la arquitectura, los estándares y las mejores prácticas de ingeniería.</p><p>Trabajarás estrechamente con el Product Owner y el equipo técnico para transformar las necesidades del negocio en soluciones confiables, seguras y escalables.</p>",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<ul><li>Diseñar, desarrollar y mantener servicios backend en <strong>Go y Node.js</strong>.</li><li>Crear APIs REST y contratos entre servicios documentados con OpenAPI.</li><li>Modelar datos en PostgreSQL y MongoDB, optimizando el rendimiento y gestionando migraciones.</li><li>Definir, junto al CTO, la arquitectura y las decisiones de stack tecnológico.</li><li>Establecer estándares de código, testing, seguridad y documentación.</li><li>Participar en code reviews, resolver bloqueos técnicos y mentorizar al equipo.</li><li>Colaborar con el Product Owner en el refinamiento, diseño y estimación de soluciones.</li><li>Documentar decisiones técnicas, gestionar la deuda técnica y asegurar la operatividad en producción.</li><li>Liderar el uso responsable de asistentes y agentes de IA, supervisando resultados y promoviendo buenas prácticas.</li></ul>",
+    "benefits_headline": "Condiciones",
+    "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros.. </p>",
+    "desirable_headline": "Opcionales",
+    "desirable": "<p><strong>Es deseable</strong> contar con conocimientos en AWS y experiencia previa en productos financieros o entornos regulados.</p>",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Programming",
+    "perks": [
+     "flexible_hours",
+     "remote_partial",
+     "health_coverage",
+     "computer_provided",
+     "informal_dresscode",
+     "vacation_over_legal",
+     "beverages_and_snacks"
+    ],
+    "min_salary": 2400,
+    "max_salary": 3500,
+    "published_at": 1794508914,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 43,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 100,
+       "type": "tag"
+      },
+      {
+       "id": 58,
+       "type": "tag"
+      },
+      {
+       "id": 51,
+       "type": "tag"
+      },
+      {
+       "id": 133,
+       "type": "tag"
+      },
+      {
+       "id": 422,
+       "type": "tag"
+      },
+      {
+       "id": 54,
+       "type": "tag"
+      },
+      {
+       "id": 37770,
+       "type": "tag"
+      },
+      {
+       "id": 37157,
+       "type": "tag"
+      },
+      {
+       "id": 1694,
+       "type": "tag"
+      },
+      {
+       "id": 36776,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "capital-express-cl-2344",
+      "type": "company",
+      "attributes": {
+       "name": "Capital Express",
+       "description": "Empresa de  Servicios Financieros con más de 15 años de experiencia en el rubro del factoring.",
+       "long_description": "",
+       "projects": null,
+       "benefits": "<ul><li>Tarde Libre por tu cumpleaños</li><li>Seguro complementario</li><li>3 días de vacaciones adicionales</li><li>Fruta de la temporada</li></ul><p>Entre otros..&nbsp;<br><br></p>",
+       "web": "http://www.capitalexpress.cl",
+       "twitter": "",
+       "github": "",
+       "facebook": "",
+       "angellist": null,
+       "country": "CL",
+       "response_time_in_days": {
+        "min": 21,
+        "max": 35
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20401/capitalexpress_servicios_financieros_logo.jpeg"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/senior-software-engineer-backend-tech-lead-capital-express-santiago"
+   }
+  },
+  {
+   "id": "full-stack-developer-zipisa-remote",
+   "type": "job",
+   "attributes": {
+    "title": "Full-Stack Developer",
+    "description_headline": "What you bring",
+    "description": "<ul><li>4+ years building and running production web applications, across both back end and front end.</li><li>Strong Python: FastAPI or a similar framework, Pydantic, async code, and pytest.</li><li>Hands-on MongoDB: schema design, indexes, aggregation, and idempotent writes under retries and concurrency.</li><li>Strong React and TypeScript: routing, data fetching and caching, forms, and Tailwind or a component library.</li><li>Experience with third-party APIs and webhooks: OAuth, signature checks, retries, rate limits, and partial failures.</li><li>Stripe experience: subscriptions, Checkout, webhooks, and ideally usage-based billing.</li><li>Comfort deploying and debugging containers in the cloud (Cloud Run, Docker, Vercel), and reading traces and logs to find a root cause.</li><li>Good judgment with personal data and email: privacy rules, consent, and why one wrong send matters.</li><li>Clear written communication: plans on issues, PRs that explain what changed and why, and honest status.</li></ul><p>Your first 90 days<br>By day 90 you own one area of each product and can ship to either without help. 1. Days 1–30: Run Zipisa and WebHawk locally with their full test suites passing. Ship 3–5 small fixes to production in both. Learn the send guardrails, the task drains and the billing flows. 2. Days 31–60: Own a mid-sized feature end to end, such as a new CRM integration or a dashboard screen, from Linear plan to production. Help debug and fix production issues as they come up. 3. Days 61–90: Lead a cross-product piece of work, such as WebHawk visitor data inside Zipisa or metered billing. Leave a runbook or regression test behind for each incident you handle.</p>",
+    "projects": "<p>About the role<br>We're hiring a full stack developer to build and run two products that share one stack: Zipisa, an AI assistant that finds sellers and books appointments for real estate agents, and WebHawk, which identifies website visitors and turns them into leads. You'll ship across Python/FastAPI services, MongoDB, and React/TypeScript dashboards, and own features end to end, from the API through the email pipeline to the screen the customer sees. Both products send real email to real people and handle personal data and payments, so we care about safe defaults, tests, and observability as much as speed.</p><p>Zipisa- An AI inside sales agent (ISA). It sources seller-intent leads by ZIP code, emails homeowners, replies and follows up, and books appointments on the agent's calendar. WebHawk</p><p>Webhawk - Website visitor identification. A pixel on the customer's site resolves anonymous visitors into people, then delivers them to the customer's CRM and sends behavioral follow-up email. </p>",
+    "functions_headline": "What you'll do",
+    "functions": "<ul><li>Build features end to end. Take a Linear issue from plan to production: FastAPI routes, Mongo models and indexes, React screens, tests, and a clear PR.</li><li>Keep the email pipelines safe and deliverable. Work on Zipisa's mail queue and WebHawk's KumoMTA sending: idempotent jobs, send guardrails, warm-up ramps, unsubscribe handling, bounce and reply processing.</li><li>Ship and maintain integrations. Build and fix CRM and calendar connections (Follow Up Boss, kvCORE, HubSpot, Pipedrive, Salesforce, Calendly, Zapier, webhooks) and the data providers behind lead sourcing and validation.</li><li>Own billing flows. Implement Stripe subscriptions for Zipisa and metered, pay-per-use charging for WebHawk, with a usage ledger that is correct under retries.</li><li>Build the dashboards. Visitors, inbox, campaigns, domains, integrations and settings screens in React and TypeScript, wired to the API with loading, empty and error states handled.</li><li>Work on the AI layer. Wire LLM features (reply drafting, lead decisions, the in-app assistant) into the product, with evals that catch regressions before customers do.</li><li>Run what you ship. Deploy to Cloud Run and Vercel, watch Logfire traces, run scheduled task drains, debug production issues, and leave behind a regression test or runbook for every incident.</li><li>Protect personal data. Handle PII, consent signals and do-not-contact rules carefully, and keep secrets and raw payloads out of logs.</li></ul>",
+    "benefits_headline": "",
+    "benefits": "",
+    "desirable_headline": "Nice to have",
+    "desirable": "<ul><li>Email deliverability: SPF, DKIM, DMARC, mailbox warm-up, MTAs such as KumoMTA or Postfix, and reading bounce and complaint signals.</li><li>LLM product work: prompt design, tool-using agents, evals, and controlling cost per conversation.</li><li>Real estate tech: Follow Up Boss, kvCORE/BoldTrail, MLS data, or how agents and brokerages work leads.</li><li>Ad-tech or identity resolution: pixels, first-party data, consent signals such as GPC, and match rates.</li><li>TanStack Start or Next.js, server-side rendering, and technical or programmatic SEO.</li><li>Infrastructure: Cloudflare (Workers, R2, cron), Redis, queues, Terraform, or running a Linux box.</li><li>Experience as an early engineer at a startup, owning a product with little hand-holding.</li><li>Daily use of AI coding agents such as Claude Code, with the habit of reviewing their work skeptically.</li></ul>",
+    "remote": true,
+    "remote_modality": "fully_remote",
+    "remote_zone": null,
+    "countries": [
+     "Remote"
+    ],
+    "lang": "en",
+    "category_name": "Programming",
+    "perks": [
+     "remote_full"
+    ],
+    "min_salary": 2200,
+    "max_salary": 3500,
+    "published_at": 1794490311,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 562,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": []
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 18,
+       "type": "tag"
+      },
+      {
+       "id": 829,
+       "type": "tag"
+      },
+      {
+       "id": 133,
+       "type": "tag"
+      },
+      {
+       "id": 123,
+       "type": "tag"
+      },
+      {
+       "id": 259,
+       "type": "tag"
+      },
+      {
+       "id": 1023,
+       "type": "tag"
+      },
+      {
+       "id": 141,
+       "type": "tag"
+      },
+      {
+       "id": 38629,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "zipisa",
+      "type": "company",
+      "attributes": {
+       "name": "ZipISA",
+       "description": "We're hiring a full stack developer to build and run two products that share one stack: Zipisa, an AI assistant that finds sellers and books appointments for real estate agents, and WebHawk, which identifies website visitors and turns them into leads. ",
+       "long_description": "",
+       "projects": null,
+       "benefits": null,
+       "web": "https://zipisa.com",
+       "twitter": null,
+       "github": null,
+       "facebook": null,
+       "angellist": null,
+       "country": "US",
+       "response_time_in_days": {
+        "min": null,
+        "max": null
+       },
+       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/21148/ZipISA_logo.png"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/full-stack-developer-zipisa-remote"
+   }
+  },
+  {
    "id": "fullstack-developer-gcp-ingles-avanzado-tcit-remote",
    "type": "job",
    "attributes": {
@@ -676,8 +1059,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -811,8 +1197,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -1144,8 +1533,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -1257,20 +1649,32 @@
     "location_tenants": {
      "data": [
       {
-       "id": 24,
-       "type": "location_tenant"
+       "id": "costa_rica",
+       "type": "country",
+       "attributes": {
+        "name": "Costa Rica"
+       }
       },
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       }
      ]
     },
@@ -1643,7 +2047,7 @@
      "min": 1,
      "max": 4
     },
-    "applications_count": 375,
+    "applications_count": 376,
     "location_regions": {
      "data": []
     },
@@ -1771,8 +2175,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -2022,8 +2429,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       }
      ]
     },
@@ -2278,8 +2688,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -2393,7 +2806,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 115,
+    "applications_count": 116,
     "location_regions": {
      "data": [
       {
@@ -2409,8 +2822,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       }
      ]
     },
@@ -2519,20 +2935,32 @@
     "location_tenants": {
      "data": [
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -2659,8 +3087,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       }
      ]
     },
@@ -3545,8 +3976,11 @@
     "location_tenants": {
      "data": [
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       }
      ]
     },
@@ -3770,23 +4204,32 @@
      "min": null,
      "max": null
     },
-    "applications_count": 402,
+    "applications_count": 404,
     "location_regions": {
      "data": []
     },
     "location_tenants": {
      "data": [
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       }
      ]
     },
@@ -4182,7 +4625,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 157,
+    "applications_count": 158,
     "location_regions": {
      "data": []
     },
@@ -4445,20 +4888,32 @@
     "location_tenants": {
      "data": [
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -4562,7 +5017,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 369,
+    "applications_count": 370,
     "location_regions": {
      "data": []
     },
@@ -4816,7 +5271,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 118,
+    "applications_count": 120,
     "location_regions": {
      "data": []
     },
@@ -5202,24 +5657,39 @@
     "location_tenants": {
      "data": [
       {
-       "id": 27,
-       "type": "location_tenant"
+       "id": "ecuador",
+       "type": "country",
+       "attributes": {
+        "name": "Ecuador"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 7,
-       "type": "location_tenant"
+       "id": "mexico",
+       "type": "country",
+       "attributes": {
+        "name": "Mexico"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -5572,20 +6042,32 @@
     "location_tenants": {
      "data": [
       {
-       "id": 6,
-       "type": "location_tenant"
+       "id": "colombia",
+       "type": "country",
+       "attributes": {
+        "name": "Colombia"
+       }
       },
       {
-       "id": 3,
-       "type": "location_tenant"
+       "id": "peru",
+       "type": "country",
+       "attributes": {
+        "name": "Peru"
+       }
       },
       {
-       "id": 2,
-       "type": "location_tenant"
+       "id": "argentina",
+       "type": "country",
+       "attributes": {
+        "name": "Argentina"
+       }
       },
       {
-       "id": 1,
-       "type": "location_tenant"
+       "id": "chile",
+       "type": "country",
+       "attributes": {
+        "name": "Chile"
+       }
       }
      ]
     },
@@ -5830,7 +6312,7 @@
      "min": null,
      "max": null
     },
-    "applications_count": 1248,
+    "applications_count": 1251,
     "location_regions": {
      "data": []
     },
@@ -5915,403 +6397,6 @@
    },
    "links": {
     "public_url": "https://www.getonbrd.com/jobs/fullstack-engineer-senior-node-js-react-aws-continuum-remote"
-   }
-  },
-  {
-   "id": "fullstack-developer-tcit-santiago",
-   "type": "job",
-   "attributes": {
-    "title": "Full-Stack Developer",
-    "description_headline": "Requerimientos del cargo",
-    "description": "<p>Ingeniería en Informática, Ingeniería Civil Informática, Ingeniería en Software o carrera afín.</p><p>Experiencia en desarrollo de software.</p><p>HTML, CSS, JavaScript.</p><p>Fundamentos de React y Node.js</p><p>Bases de datos SQL básicas.</p><p>Git y control de versiones</p><p>Conceptos de testing.</p><p>Metodologías ágiles.</p><p>Consumo de APIs.</p>",
-    "projects": "<div>En TCIT lideramos proyectos de desarrollo de software en modalidad cloud para clientes en diversos rubros, con foco en soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles y tecnologías de última generación, y solemos colaborar con socios en proyectos internacionales, incluyendo Canadá. Buscamos ampliar nuestro equipo con profesionales que compartan nuestra misión de transformar digitalmente a las organizaciones y generar impacto social. En TCIT, cada proyecto impulsa nuestra visión de crecimiento y excelencia tecnológica.</div>",
-    "functions_headline": "Funciones del cargo",
-    "functions": "<p>Desarrollar y mantener funcionalidades de software de baja y mediana complejidad, contribuyendo al desarrollo de productos tecnológicos mediante la aplicación de buenas prácticas de programación y el aprendizaje continuo.</p><p>Desarrollar funcionalidades de software de acuerdo con los requerimientos definidos</p><p>Corregir errores e incidencias identificadas en las aplicaciones.</p><p>Realizar pruebas unitarias y validaciones básicas de código</p><p>Participar en revisiones de código y aplicar buenas prácticas de desarrollo.</p><p>Documentar funcionalidades y desarrollos realizados.</p><p>Participar activamente en ceremonias ágiles y actividades de equipo.</p><p>Mantener y actualizar aplicaciones existentes</p><p>Participar en actividades de aprendizaje y actualización tecnológica. </p>",
-    "benefits_headline": "Condiciones",
-    "benefits": "",
-    "desirable_headline": "Opcionales",
-    "desirable": "<p>Deseable experiencia en proyectos</p>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [
-     "health_coverage",
-     "computer_provided",
-     "informal_dresscode",
-     "beverages_and_snacks"
-    ],
-    "min_salary": null,
-    "max_salary": null,
-    "published_at": 1793024551,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 518,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 2,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 11,
-       "type": "tag"
-      },
-      {
-       "id": 12,
-       "type": "tag"
-      },
-      {
-       "id": 1,
-       "type": "tag"
-      },
-      {
-       "id": 123,
-       "type": "tag"
-      },
-      {
-       "id": 58,
-       "type": "tag"
-      },
-      {
-       "id": 64,
-       "type": "tag"
-      },
-      {
-       "id": 53,
-       "type": "tag"
-      },
-      {
-       "id": 4330,
-       "type": "tag"
-      },
-      {
-       "id": 1694,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "tcit",
-      "type": "company",
-      "attributes": {
-       "name": "TCIT",
-       "description": "Líderes en desarrollo de software en modalidad cloud",
-       "long_description": "<p>Nuestro propósito en TCIT es transformar digitalmente a distintas organizaciones a través de soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles, utilizamos tecnologías de última generación y somos expertos en desarrollo de software en tecnologías Cloud. Además, nos encanta estar involucrados en proyectos que generen impacto social.</p><p>¡Una de nuestras misiones en TCIT es descubrir y potenciar a los mejores y más apasionados talentos!</p><p>A lo largo de nuestros más de 9 años de experiencia hemos desarrollado softwares para distintos rubros, desde un sistema de gestión agrícola, un sistema de remates en línea, un sistema de gestión de las causas para tribunales judiciales, un sistema para monitoreo de certificaciones para trabajadores mineros, un sistema de liquidaciones de sueldo y otras soluciones de gestión de empresas en ámbitos como transporte de carga y bodegaje, entre muchos otros.</p><p>Además, trabajamos en países como Canadá en ambiciosos proyectos con nuestros partners tecnológicos.</p><p>¡Súmate a la revolución digital TCIT!</p>",
-       "projects": "<div>En TCIT lideramos proyectos de desarrollo de software en modalidad cloud para clientes en diversos rubros, con foco en soluciones de calidad, sostenibles e innovadoras. Trabajamos con metodologías ágiles y tecnologías de última generación, y solemos colaborar con socios en proyectos internacionales, incluyendo Canadá. Buscamos ampliar nuestro equipo con profesionales que compartan nuestra misión de transformar digitalmente a las organizaciones y generar impacto social. En TCIT, cada proyecto impulsa nuestra visión de crecimiento y excelencia tecnológica.</div>",
-       "benefits": "<p>- Modalidad de trabajo presencial en la comuna de Providencia.&nbsp;<br>- Horario de 44 horas semanales: L a J 8:00 - 18:00 V 8:00 - 17:00&nbsp;</p>",
-       "web": "http://www.tcit.cl",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": "",
-       "country": "CL",
-       "response_time_in_days": {
-        "min": 10,
-        "max": 20
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/2314/TCIT_isotipo-color.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/fullstack-developer-tcit-santiago"
-   }
-  },
-  {
-   "id": "senior-software-engineer-serverless-workflow-hyqoo-remote",
-   "type": "job",
-   "attributes": {
-    "title": "Senior Software Engineer – Serverless Workflow",
-    "description_headline": "Qualifications:",
-    "description": "<p>Bachelor’s degree in Computer Science, Engineering, or a related field. Advanced degrees are a plus. 6 to 8 years of professional experience in software development, with a strong focus on .NET technologies. Proven experience in building and managing serverless workflows and cloud-native applications.</p><p>Accountable use of AI-assisted tools</p><p>Hands-on experience with AWS services such as Lambda, API Gateway, DynamoDB, and related serverless tools. Proficiency in .NET 8/10 and developing RESTful services using WebAPI. Familiarity with Document Intelligence technologies and their integration into enterprise solutions. Strong problem-solving skills, attention to detail, and the ability to work effectively in a collaborative environment.</p>",
-    "projects": "<p>We are seeking a highly skilled Senior Software Engineer with 6 to 8+ years of experience to join our dynamic team. This role is pivotal in designing and implementing scalable, serverless workflows that drive innovation and efficiency within our organization. The successful candidate will leverage cutting-edge technologies to build robust backend solutions, significantly impacting our cloud infrastructure and document intelligence capabilities.</p>",
-    "functions_headline": "Roles and Responsibilities:",
-    "functions": "<p>Design, develop, and maintain scalable serverless workflows using best practices to optimize performance and cost-efficiency. Architect and implement backend services using .NET 8/10 and WebAPI frameworks. Collaborate with cross-functional teams to integrate Document Intelligence solutions that enhance data processing and automation. Develop and deploy cloud-native applications on AWS, ensuring high availability, security, and scalability. Lead code reviews, mentor junior engineers, and contribute to continuous improvement of development processes. Troubleshoot, debug, and optimize existing applications to improve reliability and performance. Stay updated with the latest industry trends and technologies to recommend and implement innovative solutions.</p>",
-    "benefits_headline": "",
-    "benefits": "",
-    "desirable_headline": "Qualifications:",
-    "desirable": "<p>Relevant certifications in AWS or .NET technologies are advantageous.</p>",
-    "remote": true,
-    "remote_modality": "remote_local",
-    "remote_zone": null,
-    "countries": [
-     "Remote"
-    ],
-    "lang": "en",
-    "category_name": "Programming",
-    "perks": [
-     "computer_provided"
-    ],
-    "min_salary": 3000,
-    "max_salary": 4500,
-    "published_at": 1793021808,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 96,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": [
-      {
-       "id": 2,
-       "type": "location_tenant"
-      },
-      {
-       "id": 6,
-       "type": "location_tenant"
-      },
-      {
-       "id": 7,
-       "type": "location_tenant"
-      },
-      {
-       "id": 12,
-       "type": "location_tenant"
-      }
-     ]
-    },
-    "location_cities": {
-     "data": []
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 4,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 5,
-       "type": "tag"
-      },
-      {
-       "id": 733,
-       "type": "tag"
-      },
-      {
-       "id": 1259,
-       "type": "tag"
-      },
-      {
-       "id": 310,
-       "type": "tag"
-      },
-      {
-       "id": 54,
-       "type": "tag"
-      },
-      {
-       "id": 5459,
-       "type": "tag"
-      },
-      {
-       "id": 37462,
-       "type": "tag"
-      },
-      {
-       "id": 74514,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "hyqoo",
-      "type": "company",
-      "attributes": {
-       "name": "Hyqoo",
-       "description": "Hyqoo (Hi-Q) is a Talent Cloud Platform providing global, remote, vetted talent on demand across Data, Cloud, Cybersecurity, Software, and Product Engineering.",
-       "long_description": "<p>At Hyqoo, our mission is to reshape remote hiring with the power of Artificial Intelligence. Innovate remotely with Hyqoo AI's Talent Cloud Platform, designed to seamlessly connect you with high-quality, vetted professionals from around the globe. By leveraging our cutting-edge platform, you can ensure your team is always equipped with the best talent available, driving your projects to new heights and achieving unparalleled success.</p>",
-       "projects": null,
-       "benefits": "",
-       "web": "https://hyqoo.com/",
-       "twitter": "",
-       "github": "",
-       "facebook": "",
-       "angellist": null,
-       "country": "US",
-       "response_time_in_days": {
-        "min": null,
-        "max": null
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/20870/Hyqoo_Logo.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/senior-software-engineer-serverless-workflow-hyqoo-remote"
-   }
-  },
-  {
-   "id": "desarrollador-go-y-node-js-itsmart-santiago",
-   "type": "job",
-   "attributes": {
-    "title": "Desarrollador Go y Node.js",
-    "description_headline": "Requisitos",
-    "description": "<p>Contar con dominio práctico de Go y Node.js (ideal TypeScript; NestJS suma).</p><p>Experiencia construyendo microservicios y APIs REST en entornos productivos.</p><p>Uso de Swagger/OpenAPI para diseño y documentación de contratos de API.</p><p>Manejo de Git y prácticas de colaboración: branches, PRs y code review.</p><p>Integración con bases de datos: Postgres/MySQL, incluyendo modelado y queries básicos.</p><p>Uso de Redis para cache/colas/locks según necesidad.</p><p>Experiencia trabajando con Docker y Kubernetes.</p><p>Capacidad de diagnosticar y optimizar latencia/rendimiento y apoyar en troubleshooting en Linux/Unix-like.</p><p>Habilidades colaborativas y responsabilidad en el ciclo de vida del producto (comunicación clara, organización y enfoque en calidad mediante testing).</p>",
-    "projects": "En ITSMART trabajamos con un enfoque ágil para impulsar el éxito de organizaciones a través de productos de calidad. Buscamos apoyar el desarrollo y mantenimiento de microservicios y APIs REST en entornos productivos, integrando persistencia, mensajería y herramientas de documentación para asegurar contratos de API claros. El equipo colabora mediante buenas prácticas en Git (branches, PRs y code review) y utiliza herramientas de contenedores para conocer cómo operan los servicios en Docker y Kubernetes, contribuyendo a la estabilidad, rendimiento y troubleshooting en ambientes Linux/Unix-like.",
-    "functions_headline": "Responsabilidades",
-    "functions": "<p>Apoyar en el diseño de soluciones.</p><p>Desarrollar y mantener microservicios y APIs REST en Go y Node.js (ideal TypeScript; NestJS suma), asegurando documentación con Swagger/OpenAPI.</p><p>Integrar persistencia en Postgres/MySQL y utilizar Redis (cache, colas y/o locks según necesidad).</p><p>Implementar testing (unit/integration) con enfoque TDD y asegurar cobertura adecuada.</p><p>Incorporar mensajería con Kafka o RabbitMQ cuando aplique.</p><p>Conocer cómo operan los servicios en Docker y Kubernetes.</p><p>Diagnosticar y optimizar latencia y rendimiento, y apoyar en troubleshooting en ambientes Linux/Unix-like.</p>",
-    "benefits_headline": "Beneficios",
-    "benefits": "<figure class=\"lexxy-content__table-wrapper\"><table><tbody><tr><td></td><td><p>Seguro Complementario de Salud</p></td><td><p>Reembolso de gastos médicos asociados al copago no cubierto por ISAPRE o FONASA</p><p>Coberturas sujetas a la póliza vigente</p></td></tr><tr><td></td><td><p>Seguro Catastrófico</p></td><td><p>Cobertura para gastos asociados a enfermedades que excedan los límites del seguro complementario, según póliza vigente.</p></td></tr><tr><td></td><td><p>Seguro de Vida</p></td><td><p>Beneficio otorgado por la empresa sujeto a las condiciones de la póliza vigente.</p></td></tr><tr><td></td><td><p>Licencias Médicas</p></td><td><p>Apoyo conforme a la política interna vigente para licencias de corta duración y casos aplicables.</p></td></tr><tr><td></td><td><p>Permisos con</p><p>Goce de Sueldo</p></td><td><p>Otorgamiento de permisos legales por matrimonio, acuerdo de unión civil, fallecimiento u otras situaciones contempladas por la normativa vigente</p></td></tr></tbody></table></figure>",
-    "desirable_headline": "Deseable",
-    "desirable": "<p>Experiencia adicional en mensajería con Kafka o RabbitMQ.</p><p>Mayor profundidad en observabilidad y troubleshooting (identificación de cuellos de botella de rendimiento y latencia, y seguimiento de métricas/trazas).</p><p>Experiencia más sólida en TypeScript y frameworks como NestJS.</p><p>Contribución proactiva al diseño de soluciones y mejora continua de la calidad (TDD, cobertura de pruebas y revisión de arquitectura).</p>",
-    "remote": false,
-    "remote_modality": "hybrid",
-    "remote_zone": null,
-    "countries": [
-     "Chile"
-    ],
-    "lang": "lang_not_specified",
-    "category_name": "Programming",
-    "perks": [
-     "flexible_hours",
-     "remote_partial",
-     "computer_provided"
-    ],
-    "min_salary": 1800,
-    "max_salary": 2200,
-    "published_at": 1792775284,
-    "response_time_in_days": {
-     "min": null,
-     "max": null
-    },
-    "applications_count": 46,
-    "location_regions": {
-     "data": []
-    },
-    "location_tenants": {
-     "data": []
-    },
-    "location_cities": {
-     "data": [
-      {
-       "id": 1,
-       "type": "location_city"
-      }
-     ]
-    },
-    "modality": {
-     "data": {
-      "id": 1,
-      "type": "modality"
-     }
-    },
-    "seniority": {
-     "data": {
-      "id": 3,
-      "type": "seniority"
-     }
-    },
-    "tags": {
-     "data": [
-      {
-       "id": 100,
-       "type": "tag"
-      },
-      {
-       "id": 58,
-       "type": "tag"
-      },
-      {
-       "id": 156,
-       "type": "tag"
-      },
-      {
-       "id": 300,
-       "type": "tag"
-      },
-      {
-       "id": 51,
-       "type": "tag"
-      },
-      {
-       "id": 23,
-       "type": "tag"
-      },
-      {
-       "id": 141,
-       "type": "tag"
-      },
-      {
-       "id": 209,
-       "type": "tag"
-      },
-      {
-       "id": 76,
-       "type": "tag"
-      }
-     ]
-    },
-    "company": {
-     "data": {
-      "id": "itsmart",
-      "type": "company",
-      "attributes": {
-       "name": "ITSMART",
-       "description": "Somos líderes en tecnología en la región latinoamericana y USA. Destacamos por ser un socio flexible y ágil, ofreciendo productos de calidad que impulsan el éxito de cada organización.",
-       "long_description": "",
-       "projects": null,
-       "benefits": "<div>No se especificaron beneficios, horarios, ubicación física ni facilidades adicionales en la publicación.</div>",
-       "web": "https://itsmartglobal.com",
-       "twitter": null,
-       "github": null,
-       "facebook": null,
-       "angellist": null,
-       "country": "CL",
-       "response_time_in_days": {
-        "min": null,
-        "max": null
-       },
-       "logo": "https://getonbrd-prod.s3.amazonaws.com/uploads/users/logo/19692/ITSMART_logo_cuadrado_3092x3092.png"
-      }
-     }
-    }
-   },
-   "links": {
-    "public_url": "https://www.getonbrd.com/jobs/desarrollador-go-y-node-js-itsmart-santiago"
    }
   }
  ],
