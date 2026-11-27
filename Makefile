@@ -1,5 +1,5 @@
 # Daily commands. Targets are added as the pieces they run are built.
-.PHONY: setup db psql up down dev client migrate seed test test-fast lint format
+.PHONY: setup db psql up down dev client eval eval-test migrate seed test test-fast lint format
 
 setup:  ## Install dependencies exactly as locked and enable the git hooks
 	uv sync --frozen
@@ -22,6 +22,12 @@ dev:  ## Run the MCP server locally over HTTP on localhost:8000 (needs `make db`
 
 client:  ## Terminal chat over the running server (needs `make up` or `make dev`, and `make seed`)
 	uv run python -m client.main
+
+eval:  ## Eligibility eval on the dev split (costs real money; $0.50 cap, see --budget)
+	uv run python -m evals.run_eval --dataset eligibility --split dev $(ARGS)
+
+eval-test:  ## Same on the held-out test split. Milestones only: never tune on it
+	uv run python -m evals.run_eval --dataset eligibility --split test $(ARGS)
 
 migrate:  ## Apply migrations to the dev database (same routine as container start)
 	uv run python -m src.db.startup
