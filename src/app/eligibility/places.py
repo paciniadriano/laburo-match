@@ -22,6 +22,9 @@ _FILLER = set(
     "residence residencia en de del la el los las from desde to live living vivir located "
     "ubicado".split()
 )
+# Spanish "any", ignored only next to a country it quantifies ("cualquier estado de USA"). Not a
+# filler everywhere: alone it means "anywhere" (WORLDWIDE_WORDS), which must keep working.
+_QUANTIFIERS = {"cualquier", "cualquiera"}
 # A place with one of these words is an exclusion ("not US"), which this table cannot read.
 _NEGATIONS = {"not", "except", "excluding", "excepto", "sin", "no", "outside", "fuera"}
 
@@ -74,7 +77,7 @@ def _resolve_one(place: str) -> tuple[frozenset[str], bool, bool, bool]:
         if re.search(pattern, text):
             countries |= members
             text = re.sub(pattern, " ", text)
-    leftover = set(text.split()) - _FILLER
+    leftover = set(text.split()) - _FILLER - (_QUANTIFIERS if countries else set())
     # Words we do not understand next to a known place may name another place: do not guess.
     return frozenset(countries), False, False, bool(leftover) or not countries
 

@@ -87,3 +87,18 @@ def test_the_data_is_consistent():
             assert owner == iso, f"{spelling!r} belongs to both {owner} and {iso}"
     for region, members in REGIONS.items():
         assert all(len(code) == 2 and code.isupper() for code in members), region
+
+
+def test_a_spanish_quantifier_next_to_a_known_country_is_understood():
+    resolved = resolve_places(["cualquier estado de USA"])
+
+    assert resolved.countries == {"US"}
+    assert resolved.unknown is False
+
+
+def test_the_same_quantifier_alone_still_means_anywhere():
+    assert resolve_places(["Cualquier pa\u00eds"]).worldwide is True
+
+
+def test_a_spanish_exclusion_is_still_unreadable_even_with_the_quantifier():
+    assert resolve_places(["cualquier pa\u00eds excepto Chile"]).unknown is True

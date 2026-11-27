@@ -103,7 +103,12 @@
 ## 2.13 Eligibility eval harness
 - [x] `evals/run_eval.py --dataset eligibility --split dev|test --budget 0.50 [--no-cache]`, with an eval-only LLM cache and a budget guard (price table in `core/usage.py`, checked against current OpenAI prices)
 - [x] Metrics: precision/recall per class, **valid jobs marked `not_eligible` (must be 0)**, cost
-- [ ] One run on **dev**, result recorded here; the test split waits for a milestone
+- [x] One run on **dev**, result recorded here; the test split waits for a milestone
+  - **2026-11-27, `gpt-6-luna`, version `5f51ace8d0e3`, posting text as the server serves it: 8/10, 0 valid jobs `not_eligible` (gate PASS), $0.0028.** `eligible` 4/4; `doubtful` 3/3 (precision 60%); `not_eligible` 1/3. Both misses go the cautious way (expected `not_eligible`, got `doubtful`), so no valid job was lost:
+    - job 14: hybrid. The server never shows the model the aggregator's `countries=['Chile']`; the office check is phase 4.
+    - job 01: the model wrote the place as "cualquier estado de USA" and the resolver did not know the Spanish "cualquier" (fixed next to a known country, with tests). Not yet re-measured: expected 9/10.
+  - A first run that fed the model the fixtures' aggregator metadata gave 10/10. It is void: the product never shows that metadata.
+  - Caveats: dev is the split the rules were tuned on, and n=10 (one item is 10 points). The held-out test split (5 items) is still unrun.
 
 ## Known limitation of this slice
 - The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
@@ -124,4 +129,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.13 harness built. A first dev run gave 10/10 but fed the model aggregator metadata the server never shows (job 14 became not_eligible from `countries=['Chile']`), so that result is void; the runner now uses the text as served. Left: rerun `make eval` and record the result here; then the remote-only modality question; then the PR to main.
+Stopped at: 2.13 done except re-measuring job 01 after the Spanish-quantifier fix (`make eval`, $0: extraction answers are cached). Next: the remote-only modality question (label the 15 hybrid jobs), then Definition of Done and the PR to main.
