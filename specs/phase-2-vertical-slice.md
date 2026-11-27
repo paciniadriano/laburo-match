@@ -101,8 +101,8 @@
 - [x] `.github/workflows/ci.yml`: actions pinned by SHA, Postgres service pinned by digest (same major), uv on `.python-version`; ruff, pyright, gitleaks, pip-audit, `make test`; no secrets
 
 ## 2.13 Eligibility eval harness
-- [ ] `evals/run_eval.py --dataset eligibility --split dev|test --budget 0.50 [--no-cache]`, with an eval-only LLM cache and a budget guard (price table in `core/usage.py`, checked against current OpenAI prices)
-- [ ] Metrics: precision/recall per class, **valid jobs marked `not_eligible` (must be 0)**, cost
+- [x] `evals/run_eval.py --dataset eligibility --split dev|test --budget 0.50 [--no-cache]`, with an eval-only LLM cache and a budget guard (price table in `core/usage.py`, checked against current OpenAI prices)
+- [x] Metrics: precision/recall per class, **valid jobs marked `not_eligible` (must be 0)**, cost
 - [ ] One run on **dev**, result recorded here; the test split waits for a milestone
 
 ## Known limitation of this slice
@@ -110,7 +110,7 @@
 
 ## Out of scope (later phases)
 - **Phase 3:** CV upload and profile tools.
-- **Phase 4:** SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
+- **Phase 4:** the planner must map target roles to Get on Board categories (phase 2 always searches `programming`, so AI roles never fetch AI jobs); SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
 - **Phase 5:** matching, and the other tools, prompts and resources.
 - **Phase 6:** decisions, drafts, LangGraph checkpointer.
 - **Phase 7:** full Opik.
@@ -124,4 +124,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.11 done (real-LLM demo run by the user). Open question for 2.13: the profile accepts only remote, yet 15 of 30 jobs are hybrid and `doubtful` (6 of the 10 cards); the hybrid rule never reads `accepted_modalities`. Next: 2.13 eval harness.
+Stopped at: 2.13 harness built and tested (318 tests): `make eval` / `make eval-test`, eval cache, budget guard, price table (gpt-6-luna $0.10 / $0.01 cached / $0.50 per 1M tokens, read 2026-11-27). Left: one real run on dev (`make eval`, about $0.003), record the result here; then decide the remote-only modality rule from the 15 hybrid jobs; then the PR to main.
