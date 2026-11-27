@@ -48,9 +48,10 @@ def format_shortlist(result: ScreenBatchResult) -> str:
         header = f"Shortlist: {counts}"
     cards = [format_card(n, card) for n, card in enumerate(result.shortlist, start=1)]
     discards = format_discards(result.discarded)
-    more = (
-        [f"{result.remaining} more jobs not checked yet: ask for more."] if result.remaining else []
-    )
+    if result.remaining:
+        more = [f"{result.remaining} more jobs not checked yet: ask for more."]
+    else:
+        more = ["Every job from this search is checked."]
     footer = [result.disclaimer] if result.disclaimer else []
     return "\n\n".join([header, *([discards] if discards else []), *cards, *more, *footer])
 

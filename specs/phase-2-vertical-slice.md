@@ -141,7 +141,7 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 
 ## Out of scope (later phases)
 - **Phase 3:** CV upload and profile tools.
-- **Phase 4:** the planner must map target roles to Get on Board categories (phase 2 always searches `programming`, so AI roles never fetch AI jobs); Google Jobs declares no modality, so the office-country rule must also run at screening for its jobs (see `system.md` §9 note); SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
+- **Phase 4:** the planner must map target roles to Get on Board categories (phase 2 always searches `programming`, so AI roles never fetch AI jobs); Google Jobs declares no modality, so the office-country rule must also run at screening for its jobs (see `system.md` §9 note); the 300 safety limit and `SEARCH_FETCH_LIMIT` apply to the merged pool, so paid SerpApi results must get their own room (queued first or a per-source share) and never land in `over_cap`, where the credits they cost would be wasted; SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
 - **Phase 5:** matching, and the other tools, prompts and resources.
 - **Phase 6:** decisions, drafts, LangGraph checkpointer.
 - **Phase 7:** full Opik.

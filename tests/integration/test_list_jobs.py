@@ -44,6 +44,7 @@ async def test_every_judged_job_can_be_listed_page_by_page(committed_sessions: S
     assert (first.total, len(first.items), first.has_more) == (5, 2, True)
     assert "offset=2" in first.next_step_hint
     assert (len(last.items), last.has_more) == (1, False)
+    assert "no more jobs" in last.next_step_hint
     assert all(item.verdict == "eligible" and item.apply_url for item in first.items)
     assert first.items[0].source == "Get on Board"  # attribution the source requires
     assert "not legal advice" in first.disclaimer

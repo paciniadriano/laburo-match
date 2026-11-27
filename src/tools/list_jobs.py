@@ -53,5 +53,6 @@ def _hint(status: ListStatus, has_more: bool, next_offset: int) -> str:
         if status == "filtered"
         else "Show these jobs with their reason and apply link. Use the job_id of each one."
     )
-    more = f" Call list_jobs with offset={next_offset} for the next page." if has_more else ""
-    return what + more
+    if has_more:
+        return f"{what} Call list_jobs with offset={next_offset} for the next page."
+    return f"{what} This is the last page: there are no more jobs in this list."

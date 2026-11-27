@@ -21,8 +21,10 @@ def _hint_partial(remaining: int) -> str:
 
 
 _HINT_DONE = (
-    "Present the shortlist with its quotes and the disclaimer, ask the profile questions once, "
-    "and tell the user how many jobs could not be processed, if any. Use the job_id of each card."
+    "Every job of this search is checked: there are no more to check. Present the shortlist "
+    "with its quotes and the disclaimer, ask the profile questions once, and tell the user how "
+    "many jobs could not be processed, if any. Use the job_id of each card. If the user asks "
+    "for more: list_jobs shows every judged job; new postings need a new search later."
 )
 
 

@@ -55,6 +55,7 @@ async def test_every_call_shows_the_best_jobs_so_far_and_the_last_one_says_it_is
     assert "3 jobs are not checked yet" in first.next_step_hint
     assert first.disclaimer  # an estimate, also when partial
     assert (last.status, last.processed, last.remaining, last.failed) == ("done", 5, 0, 0)
+    assert "no more to check" in last.next_step_hint  # the host can tell the user it is over
     assert len(last.shortlist) == 5 and last.eligible_total == 5
     assert "not legal advice" in last.disclaimer
     assert model.calls == 5  # each job was extracted once, whichever call screened it

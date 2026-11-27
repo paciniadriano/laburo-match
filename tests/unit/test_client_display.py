@@ -74,3 +74,7 @@ def test_a_listing_prints_one_line_per_job_with_its_link_and_says_when_more_exis
     assert "11. [DOUBTFUL] Frontend Engineer - Acme" in text
     assert "Apply (Get on Board): https://example.com/1" in text
     assert text.endswith("Ask for more to see the next page.")
+
+
+def test_the_list_says_when_every_job_of_the_search_is_checked():
+    assert "Every job from this search is checked." in format_shortlist(_result(3, 0, 3))
