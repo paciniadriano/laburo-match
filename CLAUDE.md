@@ -201,6 +201,7 @@ alembic/                 # migrations
 - Tone is never moralistic: describe the situation, give strategies → the tool works for the user.
 - Fit is shown as bands (High/Medium/Low), not percentages → percentages imply false precision.
 - Shortlist order: eligibility → fit band → job age → most useful first.
+- The shortlist shows at most 10 cards, with totals for the rest → tool results enter the host's context on every later turn, and one review stop must stay something a person can judge in one pass; the others stay in `run_jobs` for `list_jobs`.
 - Best apply route: company/ATS link → `apply_email` (only if stated verbatim) → aggregator link → the most direct route first.
 - Agency and ghost-job signals are warnings, never automatic discards → the user decides.
 

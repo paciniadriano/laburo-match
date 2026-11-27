@@ -105,6 +105,9 @@
 - [ ] Metrics: precision/recall per class, **valid jobs marked `not_eligible` (must be 0)**, cost
 - [ ] One run on **dev**, result recorded here; the test split waits for a milestone
 
+## Known limitation of this slice
+- The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
+
 ## Out of scope (later phases)
 - **Phase 3:** CV upload and profile tools.
 - **Phase 4:** SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
