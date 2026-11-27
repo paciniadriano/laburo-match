@@ -146,7 +146,7 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] `DEMO_MODE` verified: it only switches Get on Board between recording and live API (no SerpApi path exists); a live fetch parsed 289 jobs with no warnings and residence declared for 123 of 130 remote ones
 - [x] The user re-recorded (289 jobs, residence declared for 123 of 130 remote) and ran the demo live (`DEMO_MODE=false`): 53 to screen, all judged in one round, first answer in 19 s; 37 eligible, 0 doubtful, 16 not eligible; left out 137 too old, 85 office abroad, 14 remote only for other countries
 - [x] Found in that demo: Niuro's "Mexico only" postings say "flexibility in work location globally"; first made doubtful through the prose guard, then decided by the user in 2.19: the employer's policy wins
-- [ ] Check once in Claude Code that a `partial` round waits for the user instead of chaining rounds on its own
+- [x] Checked in Claude Code (2.1.332, headless `claude -p "buscame trabajos"` against a server copy forced to 5 jobs per round): `search_jobs` → one `screen_batch` (`partial`, 5 of 37 judged) → it showed the 5 cards and asked "Me faltan revisar 32. ¿Sigo con esos?" instead of chaining rounds; 27 s end to end
 
 ## 2.19 The employer's policy decides; useful cards first (user decisions after the live 2.18 demo)
 - [x] A declared residence or office only in other countries rules the job out whatever the text says (prefilter and screening); the prose guard (`mentions_area`, `OPEN_PLACE_PHRASES`) is removed
@@ -178,4 +178,4 @@ A verdict is marked `stale` only when the profile changes (`screening_hash`). A 
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.19 done, dev eval 10/10 at $0. Left: the Claude Code check of partial rounds; phase close and PR wait for the user.
+Stopped at: 2.19 done, dev eval 10/10 at $0, Claude Code waits after a partial round. Phase close and PR wait for the user.
