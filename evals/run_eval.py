@@ -40,6 +40,8 @@ def build_backend(
 def format_report(scores: Scores, run: RunReport, extra: dict[str, str]) -> str:
     lines = [f"{key}: {value}" for key, value in extra.items()]
     lines.append(f"items judged: {scores.total}  accuracy: {scores.accuracy:.0%}")
+    if run.prefiltered:
+        lines.append(f"discarded by the prefilter, no LLM call: {run.prefiltered}")
     lines.append("")
     lines.append(f"{'class':<14}{'precision':>10}{'recall':>9}{'support':>9}")
     for name in CLASSES:

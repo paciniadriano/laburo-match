@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from evals.eligibility_run import RunReport, posting_text_as_served, run_items
+from evals.eligibility_run import RunReport, parse_fixture, posting_text_as_served, run_items
 from evals.metrics.eligibility import Outcome, score
 from evals.run_eval import format_report
 from src import llm
@@ -155,3 +155,20 @@ def test_the_model_sees_the_title_and_body_but_not_the_aggregator_metadata():
 
 def test_a_posting_without_the_spike_header_is_used_as_it_is():
     assert posting_text_as_served("Remote within Latin America") == "Remote within Latin America"
+
+
+def test_the_source_fields_in_the_header_reach_the_prefilter_not_the_model():
+    posting = parse_fixture(SPIKE_FIXTURE)
+
+    assert posting is not None
+    assert (posting.modality, posting.location_text) == ("hybrid", "Chile")
+
+
+async def test_a_job_the_prefilter_discards_costs_no_llm_call(tmp_path: Path, fake_llm: FakeLLM):
+    item = _item(tmp_path, "14", SPIKE_FIXTURE, "not_eligible")
+
+    report = await run_items([item], concurrency=1)  # an LLM call would fail: nothing is scripted
+
+    assert [(o.job, o.predicted) for o in report.outcomes] == [("14", "not_eligible")]
+    assert report.prefiltered == ["14"]
+    assert fake_llm.calls == []

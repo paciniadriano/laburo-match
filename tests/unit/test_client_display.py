@@ -41,3 +41,13 @@ def test_the_header_says_when_cards_are_left_out():
 def test_the_header_is_plain_when_every_card_is_shown():
     text = format_shortlist(_result(shown=3, eligible=0, doubtful=3))
     assert text.startswith("Shortlist: 0 eligible, 3 doubtful")
+
+
+def test_the_reasons_jobs_were_left_out_are_shown_in_words():
+    result = _result(shown=1, eligible=1, doubtful=0).model_copy(
+        update={"discarded": {"office_abroad": 20, "too_old": 0, "not_eligible": 2}}
+    )
+
+    text = format_shortlist(result)
+
+    assert "Left out: 20 hybrid or on-site in another country, 2 not open to your country" in text

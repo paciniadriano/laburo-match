@@ -12,6 +12,19 @@ Printer = Callable[[str], None]
 
 _BADGE = {"eligible": "ELIGIBLE", "doubtful": "DOUBTFUL"}
 
+# Why jobs never reached the list, in words a person reads at a glance.
+_DISCARD_LABELS = {
+    "office_abroad": "hybrid or on-site in another country",
+    "not_eligible": "not open to your country",
+    "too_old": "too old",
+    "closed": "closed",
+}
+
+
+def format_discards(discarded: dict[str, int]) -> str:
+    parts = [f"{n} {_DISCARD_LABELS.get(reason, reason)}" for reason, n in discarded.items() if n]
+    return f"Left out: {', '.join(parts)}" if parts else ""
+
 
 def format_card(position: int, card: JobCard) -> str:
     lines = [f"{position:>2}. [{_BADGE[card.eligibility]}] {card.title} - {card.company}"]
@@ -32,8 +45,9 @@ def format_shortlist(result: ScreenBatchResult) -> str:
     else:
         header = f"Shortlist: {counts}"
     cards = [format_card(n, card) for n, card in enumerate(result.shortlist, start=1)]
+    discards = format_discards(result.discarded)
     footer = [result.disclaimer] if result.disclaimer else []
-    return "\n\n".join([header, *cards, *footer])
+    return "\n\n".join([header, *([discards] if discards else []), *cards, *footer])
 
 
 def show_tool_result(name: str, result: CallToolResult, out: Printer = print) -> None:

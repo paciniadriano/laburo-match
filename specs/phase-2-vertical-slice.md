@@ -110,6 +110,17 @@
   - A first run that fed the model the fixtures' aggregator metadata gave 10/10. It is void: the product never shows that metadata.
   - Caveats: dev is the split the rules were tuned on, and n=10 (one item is 10 points). The held-out test split (5 items) is still unrun.
 
+## 2.14 Office abroad (added after the 2.11 demo)
+Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of the 10 cards. The rule was already decided in `CLAUDE.md`; only its office/distance part needs phase 4.
+- [x] Get on Board's declared modality stored in `jobs.modality` (migration); `remote_local` → `remote`
+- [x] Prefilter `office_abroad` before the cap, no LLM: hybrid/on-site, every declared country known and not the user's, and the prose names no place that may include it (`core/places.mentions_area`)
+- [x] The places resolver moves to `core/` (search and eligibility both use it)
+- [x] The eval runs the same prefilter on the fixtures' source fields; the client shows what was left out and why
+- [x] Offline check (code only, no LLM) on dev: the prefilter removes job 14 only, labelled `not_eligible`
+- [ ] `make eval` on dev with the prefilter: expected 10/10, $0 (cached)
+- [ ] Demo: `make up`, empty the runs, `make client`: no hybrid/on-site abroad in the shortlist
+- Note: the `remote_local` choice was checked on dev job 04 and on test job 09, so the test split is no longer fully untouched for that rule.
+
 ## Known limitation of this slice
 - The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
 
@@ -129,4 +140,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.13 done (dev 9/10, gate PASS). Next: the remote-only modality question (label the hybrid jobs of the demo), then Definition of Done and the PR to main.
+Stopped at: 2.14 built (office_abroad prefilter, 355 tests). Left: the user runs `make eval` (expected 10/10, $0) and the demo; then Definition of Done and the PR to main.
