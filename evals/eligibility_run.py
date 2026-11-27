@@ -16,6 +16,7 @@ from uuid import uuid4
 
 from evals.metrics.eligibility import Outcome
 from src import llm
+from src.app.eligibility.declared import Declared
 from src.app.eligibility.rules import evaluate_eligibility
 from src.app.jobs.candidate import Candidate
 from src.app.jobs.verify import verify_facts
@@ -28,7 +29,7 @@ from src.llm.tasks import JOB_EXTRACTION
 from src.models.job_facts import JobFacts
 from src.models.profile import Constraints
 from src.sources.base import SourceModality
-from src.sources.getonbrd import normalize_modality
+from src.sources.getonbrd import declared_residence, normalize_modality
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATASETS = REPO_ROOT / "evals" / "datasets"
@@ -62,6 +63,7 @@ class FixturePosting:
     body: str
     modality: SourceModality  # what the source declared, as the adapter would store it
     location_text: str  # the source's countries, as the adapter would store them
+    residence: str  # who may apply to a remote job, as the adapter would store it
 
 
 def parse_fixture(fixture: str) -> FixturePosting | None:
@@ -84,11 +86,15 @@ def parse_fixture(fixture: str) -> FixturePosting | None:
     modality = re.search(r"remote_modality=(\S+)", meta)
     countries = re.search(r"countries=(\[.*?\])", meta)
     names = ast.literal_eval(countries.group(1)) if countries else []
+    declared_modality = modality.group(1) if modality else None
     return FixturePosting(
         title=title,
         body="\n".join(lines[body_start:]).strip(),
-        modality=normalize_modality(modality.group(1) if modality else None),
+        modality=normalize_modality(declared_modality),
         location_text=", ".join(names),
+        # The spike fixtures predate the expanded `location_tenants`, so a "locally remote" job
+        # has no list here, as an old recording would have none.
+        residence=declared_residence({"remote_modality": declared_modality}),
     )
 
 
@@ -105,9 +111,18 @@ def prefiltered_reason(posting: FixturePosting | None, constraints: Constraints)
     if posting is None:
         return None
     candidate = Candidate(
-        uuid4(), posting.title, None, None, posting.modality, posting.location_text, posting.body
-    )
+        uuid4(), posting.title, None, None, posting.modality, posting.location_text, posting.body,
+        "", posting.residence,
+    )  # fmt: skip
     return prefilter_reason(candidate, clock.now(), max_age_days=30, country=constraints.country)
+
+
+def _declared(posting: FixturePosting | None) -> Declared | None:
+    """The source fields as the screening step reads them from the `jobs` row."""
+    if posting is None or posting.modality == "unknown":
+        return None
+    offices = posting.location_text if posting.modality in ("hybrid", "onsite") else ""
+    return Declared("Get on Board", posting.modality, offices, posting.residence)
 
 
 async def classify(item: dict[str, Any], constraints: Constraints) -> tuple[Outcome, Usage]:
@@ -117,10 +132,11 @@ async def classify(item: dict[str, Any], constraints: Constraints) -> tuple[Outc
         message = f"Discarded by the search prefilter ({reason}), before any LLM call."
         return Outcome(item["job"], item["verdict"], "not_eligible", message), Usage()
     text = posting_text_as_served(fixture)[:JOB_TEXT_MAX_CHARS]
+    posting = parse_fixture(fixture)
     result = await llm.run(JOB_EXTRACTION.name, text)
     assert isinstance(result.output, JobFacts)
     facts = verify_facts(result.output, text).facts  # quotes the model made up are dropped
-    verdict = evaluate_eligibility(facts, constraints)
+    verdict = evaluate_eligibility(facts, constraints, _declared(posting))
     outcome = Outcome(item["job"], item["verdict"], verdict.verdict, verdict.reason)
     return outcome, result.usage
 

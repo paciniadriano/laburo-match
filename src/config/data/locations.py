@@ -89,4 +89,5 @@ AMBIGUOUS_TERMS = ("americas", "emea", "apac", "remote", "remoto")
 # Payroll phrases that only make sense for someone who can be paid through the US system.
 # Ordinary contract types ("contractor", "prestacion de servicios") say nothing about where
 # you may live, but these do. Phase 4 maps them to work-authorization requirements.
-US_PAYROLL_MARKERS = ("w2", "w 2", "1099", "ssn", "social security")
+# Payroll phrases that need US tax status. Not "1099": a contractor abroad signs a W-8BEN.
+US_PAYROLL_MARKERS = ("w2", "w 2", "ssn", "social security")

@@ -44,7 +44,7 @@ async def screen_one(
             await record_failure(session, run_id, job_id, outcome.error)
             await session.commit()
             return ScreenStats(errors=1)
-        verdict = evaluate_eligibility(extracted.facts, constraints)
+        verdict = evaluate_eligibility(extracted.facts, constraints, outcome.declared)
         await save_verdict(session, run_id, job_id, verdict, screening_hash(constraints), now)
         await session.commit()
     if extracted.from_cache:

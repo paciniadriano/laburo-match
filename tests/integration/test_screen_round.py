@@ -147,3 +147,21 @@ async def test_a_round_never_takes_more_jobs_than_its_safety_limit(committed_ses
     stats = await _round(committed_sessions, user_id, run_id, workers=4, max_jobs=3)
 
     assert stats.screened == 3
+
+
+async def test_what_the_source_declares_reaches_the_verdict(committed_sessions: Sessions):
+    """Job 0 is fully remote and its text is silent; job 1 is only for people in Chile; job 2
+    is only for Chile too, but its text says Latin America."""
+    declared = {
+        0: {"modality": "remote", "residence_text": "anywhere", "body": "[description]\nBuild."},
+        1: {"modality": "remote", "residence_text": "Chile", "body": "[description]\nBuild."},
+        2: {"modality": "remote", "residence_text": "Chile", **LATAM_BODY},
+    }
+    user_id, run_id = await queue_run(committed_sessions, 3, lambda n: declared[n])
+
+    await _round(committed_sessions, user_id, run_id)
+    rows = await _rows(committed_sessions, run_id)
+
+    assert rows["Role 0"].eligibility == "eligible"
+    assert rows["Role 1"].eligibility == "not_eligible"
+    assert rows["Role 2"].eligibility == "doubtful"  # the source and the text disagree

@@ -119,7 +119,7 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] Offline check (code only, no LLM) on dev: the prefilter removes job 14 only, labelled `not_eligible`
 - [ ] `make eval` on dev with the prefilter: expected 10/10, $0 (cached)
 - [ ] Demo: `make up`, empty the runs, `make client`: no hybrid/on-site abroad in the shortlist
-- Note: the `remote_local` choice was checked on dev job 04 and on test job 09, so the test split is no longer fully untouched for that rule.
+- Note: the `remote_local` choice was checked on dev job 04 and on test job 09, so the test split is no longer fully untouched for that rule. That choice was later found wrong and replaced in 2.18.
 
 ## 2.15 Search everything (user decision: a job seeker wants every job they can apply to)
 - [x] `MAX_NEW_JOBS_PER_SEARCH` becomes a safety limit (300); `search_jobs(max_new=300)` queues every job that passes the filters, most relevant first
@@ -133,6 +133,15 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] `SCREEN_MAX_JOBS_PER_CALL` becomes a safety limit (300); the run's funnel stores `screen_ms`; the client prints how long each answer took
 - [x] Tests: the round stops at its budget and releases unfinished jobs uncounted; cached jobs all fit in one round with a slow model; first job alone, then at most N workers; safety limit; retry inside the round; cancellation still releases claims
 - [ ] Measured: first search on the full recording, wait in seconds, `screen_ms`, and jobs judged in the first round; tune `LLM_CONCURRENCY` from it
+
+## 2.18 What Get on Board declares (found in the 2.17 demo: 26 remote jobs "said nothing about where")
+- [x] The API is asked for `location_tenants` names; `jobs.residence_text` (migration): `anywhere` for `fully_remote`, the countries for `remote_local`
+- [x] Prefilter `residence_abroad`: remote only for people in other countries (same prose guard as `office_abroad`)
+- [x] Eligibility weighs the declared policy as explicit evidence (`app/eligibility/declared.py`): fully remote → eligible unless the text asks for what no one abroad can meet; residence or office abroad → not eligible, or doubtful when the text says otherwise; the cards cite the source
+- [x] "1099 contractor" becomes a badge with a W-8BEN note (user decision, after checking tax guides)
+- [x] Dev labels 08 and 11 relabelled `eligible` (both fully remote; user decision, noted in the dataset)
+- [x] Offline check from the eval cache (no provider allowed): dev 10/10, 0 valid jobs `not_eligible`, 9 cache hits, 0 calls
+- [ ] The user re-records (`make record-fixtures`, now with the residence countries) and runs the demo
 
 ## 2.17 `list_jobs`, read-only (user decision A)
 - [x] `list_jobs(status: Literal["all","filtered"] = "all", limit: int = 20, offset: int = 0)`: the user's latest verdict per job across runs, eligible first; `filtered` shows prefilter and `not_eligible` discards with a readable reason; `stale` when the profile changed; pages of at most 50
@@ -155,4 +164,4 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.17 done (369 tests). Left for the user: update the real .env, `make record-fixtures`, `make eval`, a timed demo; then Definition of Done and the PR to main.
+Stopped at: 2.18 built (396 tests). Left for the user: JOB_MAX_AGE_DAYS=60 (+ `make seed`), optional LLM_CONCURRENCY=8, `make record-fixtures`, `make up` + demo, `make eval`; then Definition of Done and the PR to main.

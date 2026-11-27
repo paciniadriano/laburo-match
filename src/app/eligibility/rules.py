@@ -7,13 +7,15 @@ Definitions (CLAUDE.md, `specs/system.md` 11.3):
 - doubtful: everything else.
 
 The LLM only extracts; it never decides. Facts must already have gone through `verify_facts`.
-Phase 2 compares location only: other explicit restrictions make the job `doubtful` until
-phase 4 teaches the code to compare them.
+What the source declares in its own fields (`declared.py`) is explicit evidence too. Phase 2
+compares location only: other explicit restrictions make the job `doubtful` until phase 4
+teaches the code to compare them.
 """
 
 import re
 from dataclasses import dataclass, field
 
+from src.app.eligibility.declared import Declared, DeclaredSignal, read_declared
 from src.app.eligibility.result import EligibilityResult
 from src.config.data.locations import COUNTRIES, US_PAYROLL_MARKERS
 from src.core.places import resolve_places
@@ -40,6 +42,8 @@ class _Issue:
     quotes: list[str] = field(default_factory=list)
     recruiter_question: str = ""
     profile_question: str = ""
+    # "place": a place the code could not read. The source's own policy can settle that one.
+    kind: str = ""
 
 
 @dataclass
@@ -47,6 +51,7 @@ class _Findings:
     met: list[Restriction] = field(default_factory=list)
     anywhere: list[Restriction] = field(default_factory=list)  # the met ones that say "anywhere"
     unmet: list[Restriction] = field(default_factory=list)
+    declared_no: DeclaredSignal | None = None  # the source's own policy rules the user out
     issues: list[_Issue] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
@@ -106,6 +111,7 @@ def _judge_location(
                 f"The posting names a place that cannot be matched to your country ({where}).",
                 restriction.quotes,
                 recruiter_question=question,
+                kind="place",
             )
         )
     elif restriction.evidence_kind == "explicit" and restriction.kind not in contradicted:
@@ -117,6 +123,7 @@ def _judge_location(
                 f"{_country_name(country)}.",
                 restriction.quotes,
                 recruiter_question=question,
+                kind="place",
             )
         )
 
@@ -148,7 +155,12 @@ def _judge(
         return  # covered by `work_modality`
     elif restriction.kind == "payroll" and not _is_us_payroll(restriction):
         # An ordinary contract type says nothing about where you may live: a badge, not a verdict.
-        found.warnings.append(f'Contract type: "{quote}"' if quote else "Contract type mentioned.")
+        # A "1099 contractor" too: a contractor abroad signs a W-8BEN instead, so it rules no one
+        # out by itself.
+        note = " (abroad, contractors usually sign a W-8BEN instead)" if "1099" in quote else ""
+        found.warnings.append(
+            f'Contract type: "{quote}"{note}' if quote else "Contract type mentioned."
+        )
     elif restriction.kind == "location":
         _judge_location(restriction, constraints, contradicted, found)
     elif restriction.evidence_kind == "explicit":  # citizenship, authorization, visa, US payroll
@@ -170,11 +182,12 @@ def _not_eligible(found: _Findings, constraints: Constraints) -> EligibilityResu
         f"and your profile says {country}."
         for r in found.unmet
     ]
+    quotes = [quote for r in found.unmet for quote in r.quotes]
+    if found.declared_no is not None:
+        parts.append(f"{found.declared_no.reason}, and your profile says {country}.")
+        quotes.append(found.declared_no.quote)
     return EligibilityResult(
-        "not_eligible",
-        " ".join(parts),
-        quotes=[quote for r in found.unmet for quote in r.quotes],
-        warnings=found.warnings,
+        "not_eligible", " ".join(parts), quotes=quotes, warnings=found.warnings
     )
 
 
@@ -182,7 +195,49 @@ def _unique(items: list[str]) -> list[str]:
     return list(dict.fromkeys(item for item in items if item))
 
 
-def evaluate_eligibility(facts: JobFacts, constraints: Constraints) -> EligibilityResult:
+def _weigh_declared(signal: DeclaredSignal, found: _Findings, country: str) -> None:
+    """Fold the source's own policy into what the text said.
+
+    Open to the user: places the code could not read become notes ("Remote (New York - EST)"),
+    and a clear exclusion in the text becomes a contradiction. Closed: a text that says the job
+    is open to the user makes it a contradiction instead of a "no".
+    """
+    question = f"Is the role open to candidates living in {country}?"
+    if signal.open:
+        for restriction in found.unmet:
+            found.issues.append(
+                _Issue(
+                    f"{signal.reason}, but the posting limits it to "
+                    f"{', '.join(restriction.places)}.",
+                    [signal.quote, *restriction.quotes],
+                    recruiter_question=question,
+                )
+            )
+        found.unmet = []
+        for issue in [i for i in found.issues if i.kind == "place"]:
+            found.issues.remove(issue)
+            quote = issue.quotes[0] if issue.quotes else ""
+            found.warnings.append(
+                f'Place mentioned: "{quote}"' if quote else "A place is mentioned."
+            )
+        return
+    says_open = [r for r in found.met if r.kind == "location"]
+    if says_open:
+        found.issues.append(
+            _Issue(
+                f"{signal.reason}, but the posting says it is open to you.",
+                [signal.quote, *[q for r in says_open for q in r.quotes]],
+                recruiter_question=question,
+            )
+        )
+        found.met = [r for r in found.met if r.kind != "location"]
+    else:
+        found.declared_no = signal
+
+
+def evaluate_eligibility(
+    facts: JobFacts, constraints: Constraints, declared: Declared | None = None
+) -> EligibilityResult:
     if not facts.is_job_posting:
         return EligibilityResult("doubtful", "The text does not look like a job posting.")
 
@@ -191,13 +246,21 @@ def evaluate_eligibility(facts: JobFacts, constraints: Constraints) -> Eligibili
     for restriction in facts.restrictions:
         _judge(restriction, constraints, contradicted, found)
 
-    if found.unmet:  # a certain "no" outweighs any doubt elsewhere
+    signal = read_declared(declared, constraints.country) if declared else None
+    country = _country_name(constraints.country or "")
+    if signal is not None:
+        _weigh_declared(signal, found, country)
+
+    if found.unmet or found.declared_no:  # a certain "no" outweighs any doubt elsewhere
         return _not_eligible(found, constraints)
 
-    if facts.work_modality in ("hybrid", "onsite"):
+    modality = facts.work_modality
+    if declared is not None and declared.modality != "unknown":
+        modality = declared.modality  # the employer's own field beats a reading of the text
+    if modality in ("hybrid", "onsite"):
         found.issues.append(
             _Issue(
-                f"The job is {facts.work_modality.replace('onsite', 'on-site')}; "
+                f"The job is {modality.replace('onsite', 'on-site')}; "
                 "office location and distance are not checked yet."
             )
         )
@@ -212,7 +275,6 @@ def evaluate_eligibility(facts: JobFacts, constraints: Constraints) -> Eligibili
             warnings=found.warnings,
         )
 
-    country = _country_name(constraints.country or "")
     if found.met:
         first = found.met[0]
         audience = "candidates anywhere" if first in found.anywhere else country
@@ -220,7 +282,15 @@ def evaluate_eligibility(facts: JobFacts, constraints: Constraints) -> Eligibili
             "eligible",
             f'The posting is open to {audience} ("{_first_quote(first)}") and no '
             "restriction you do not meet was found.",
-            quotes=[q for r in found.met for q in r.quotes],
+            quotes=[q for r in found.met for q in r.quotes]
+            + ([signal.quote] if signal and signal.open else []),
+            warnings=found.warnings,
+        )
+    if signal is not None and signal.open:
+        return EligibilityResult(
+            "eligible",
+            f"{signal.reason}, and no restriction you do not meet was found.",
+            quotes=[signal.quote],
             warnings=found.warnings,
         )
     return EligibilityResult(

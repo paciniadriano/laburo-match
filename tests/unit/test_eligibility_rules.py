@@ -2,6 +2,7 @@
 
 import pytest
 
+from src.app.eligibility.declared import Declared
 from src.app.eligibility.result import DISCLAIMER
 from src.app.eligibility.rules import evaluate_eligibility
 from src.models.profile import Constraints
@@ -203,9 +204,7 @@ def test_an_ordinary_contract_type_is_a_badge_and_does_not_change_the_verdict():
     ]
 
 
-@pytest.mark.parametrize(
-    "phrase", ["W2 employees only", "Paid as a 1099 contractor", "Valid SSN required"]
-)
+@pytest.mark.parametrize("phrase", ["W2 employees only", "Valid SSN required"])
 def test_a_us_specific_payroll_phrase_keeps_the_job_doubtful(phrase: str):
     us_payroll = make_restriction(kind="payroll", quotes=[phrase], places=[])
 
@@ -213,6 +212,18 @@ def test_a_us_specific_payroll_phrase_keeps_the_job_doubtful(phrase: str):
 
     assert result.verdict == "doubtful"
     assert result.quotes == [phrase]
+
+
+def test_a_1099_contractor_is_a_badge_because_a_contractor_abroad_signs_a_w8ben():
+    contract = make_restriction(kind="payroll", quotes=["1099 Contractor position"], places=[])
+
+    result = verdict([LATAM, contract])
+
+    assert result.verdict == "eligible"
+    assert result.warnings == [
+        'Contract type: "1099 Contractor position" (abroad, contractors usually sign a W-8BEN '
+        "instead)"
+    ]
 
 
 def test_a_word_that_merely_contains_a_marker_is_not_us_payroll():
@@ -280,3 +291,96 @@ def test_a_location_with_no_places_and_no_worldwide_scope_says_nothing():
     vague = make_restriction(quotes=["Remote"], places=[], place_scope="not_applicable")
 
     assert verdict([vague]).verdict == "doubtful"
+
+
+# --- what the source declares (Get on Board's remote work policy) ----------------------------
+def declared(modality: str, offices: str = "", residence: str = "") -> Declared:
+    return Declared("Get on Board", modality, offices, residence)
+
+
+FULLY_REMOTE = declared("remote", residence="anywhere")
+ONLY_CHILE = declared("remote", residence="Chile")
+SEVERAL_INCLUDING_AR = declared("remote", residence="Chile, Argentina, Peru")
+NEW_YORK = make_restriction(
+    quotes=["Remote (New York - EST Time)"], places=["New York"], place_scope="countries"
+)
+
+
+def judged(restrictions, source: Declared, **facts):
+    return evaluate_eligibility(make_facts(restrictions=restrictions, **facts), AR, source)
+
+
+def test_fully_remote_with_a_silent_posting_is_eligible_and_cites_the_source():
+    result = judged([], FULLY_REMOTE)
+
+    assert result.verdict == "eligible"
+    assert result.quotes == [
+        "As listed on Get on Board: candidates can reside anywhere in the world"
+    ]
+
+
+def test_fully_remote_turns_a_place_it_cannot_read_into_a_note():
+    result = judged([NEW_YORK], FULLY_REMOTE)
+
+    assert result.verdict == "eligible"
+    assert 'Place mentioned: "Remote (New York - EST Time)"' in result.warnings
+
+
+def test_fully_remote_against_a_clear_exclusion_in_the_text_is_doubtful_never_a_no():
+    result = judged([US_ONLY], FULLY_REMOTE)
+
+    assert result.verdict == "doubtful"
+    assert "You must live in any US state" in result.quotes
+    assert any("anywhere in the world" in quote for quote in result.quotes)
+
+
+@pytest.mark.parametrize("kind", ["citizenship", "work_authorization", "visa"])
+def test_fully_remote_does_not_answer_what_no_one_abroad_can_meet(kind: str):
+    requirement = make_restriction(kind=kind, quotes=["US citizens only"], places=[])
+
+    assert judged([requirement], FULLY_REMOTE).verdict == "doubtful"
+
+
+def test_fully_remote_still_doubts_w2_payroll():
+    w2 = make_restriction(kind="payroll", quotes=["W2 employees only"], places=[])
+
+    assert judged([w2], FULLY_REMOTE).verdict == "doubtful"
+
+
+def test_remote_for_a_list_that_includes_the_users_country_is_eligible():
+    assert judged([], SEVERAL_INCLUDING_AR).verdict == "eligible"
+
+
+def test_remote_only_for_other_countries_is_not_eligible():
+    result = judged([], ONLY_CHILE)
+
+    assert result.verdict == "not_eligible"
+    assert result.quotes == ["As listed on Get on Board: candidates must reside in Chile"]
+    assert "Argentina" in result.reason
+
+
+def test_remote_only_for_other_countries_but_open_in_the_text_is_doubtful():
+    result = judged([LATAM], ONLY_CHILE)
+
+    assert result.verdict == "doubtful"
+    assert "Remote within Latin America" in result.quotes
+
+
+@pytest.mark.parametrize("modality", ["hybrid", "onsite"])
+def test_an_office_in_another_country_is_not_eligible(modality: str):
+    result = judged([], declared(modality, offices="Ecuador"))
+
+    assert result.verdict == "not_eligible"
+    assert "Ecuador" in result.reason
+
+
+def test_an_office_in_the_users_country_waits_for_the_distance_check():
+    result = judged([], declared("hybrid", offices="Argentina"))
+
+    assert result.verdict == "doubtful"
+    assert "distance" in result.reason
+
+
+def test_a_source_that_declares_nothing_changes_nothing():
+    assert judged([LATAM], declared("unknown")).verdict == "eligible"
+    assert judged([], declared("unknown")).verdict == "doubtful"
