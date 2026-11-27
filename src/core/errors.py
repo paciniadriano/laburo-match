@@ -47,3 +47,20 @@ class LLMOutputError(DomainError):
             f"The model could not produce a valid answer for task {task_name!r}. "
             "Try again; if it keeps failing, the item is reported as not processed."
         )
+
+
+class BudgetExceededError(DomainError):
+    error_code = "BUDGET_EXCEEDED"
+
+    def __init__(self, limit_usd: float) -> None:
+        super().__init__(f"The budget of ${limit_usd:.2f} is spent. Raise it with --budget.")
+
+
+class UnknownModelPriceError(DomainError):
+    error_code = "UNKNOWN_MODEL_PRICE"
+
+    def __init__(self, model: str) -> None:
+        super().__init__(
+            f"No price for model {model!r} in core/usage.py. Add it from the current OpenAI "
+            "pricing page: a budget cannot be enforced without a price."
+        )
