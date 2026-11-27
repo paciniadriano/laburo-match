@@ -90,7 +90,7 @@
 ## 2.10 Docker
 - [x] `Dockerfile`: `python:3.14-slim` pinned by digest, uv, `uv sync --frozen --no-dev`, non-root user; entrypoint runs startup (migrations under the lock), then the server on `0.0.0.0:8000`
 - [x] `app` service in compose: `127.0.0.1:8000:8000`, waits for a healthy db, real `.env` injected with `env_file` (a bind mount keeps the host's 0600 mode, which the container user cannot read); `make up` / `make down`
-- [ ] Verified: `make up` from scratch, `/health` OK, tools visible and callable from Claude Code (Windows → WSL `localhost`)
+- [x] Verified: `make up` from scratch, `/health` OK, tools visible and callable from Claude Code. Real run through the container, 30 Get on Board jobs (demo fixture): 30 `done`, 0 errors, 30 LLM calls, 40,839 input / 6,079 output tokens; verdicts 1 eligible, 29 doubtful, 0 not_eligible
 
 ## 2.11 Minimal terminal client
 - [ ] `client/`: FastMCP client (HTTP; in-memory in tests), MCP tools → LangChain tools, ReAct loop with `LLM_CLIENT_MODEL` through `llm/factory.py`, server `instructions` injected, shortlist printed
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.6 reopened and done: search_jobs carries over jobs an earlier run left unscreened (found in the 2.10 demo, where my own test search hid 30 pending jobs). Next: the last 2.10 bullet (screen the old run from Claude Code), then 2.11.
+Stopped at: 2.10 done. Note for 2.13: 29 of 30 verdicts are `doubtful`, mostly "the posting says nothing about where you can work from"; check against the labelled set whether that is right or too cautious. Next: 2.11 terminal client.
