@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from typing import Any
 from uuid import UUID, uuid4
 
-from sqlalchemy import select, text, update
+from sqlalchemy import ColumnElement, delete, select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.search.plan import SearchPlan
@@ -14,14 +14,67 @@ from src.core.errors import RunExpiredError, RunNotFoundError
 from src.db.models import RunJob, SearchRun
 
 
+def _unfinished(stale_before: datetime) -> ColumnElement[bool]:
+    """Rows still waiting for screening: `pending`, or `processing` by a call that died."""
+    return (RunJob.status == "pending") | (
+        (RunJob.status == "processing") & (RunJob.claimed_at < stale_before)
+    )
+
+
 async def job_ids_already_seen(
-    session: AsyncSession, user_id: UUID, job_ids: list[UUID]
+    session: AsyncSession, user_id: UUID, job_ids: list[UUID], stale_before: datetime
 ) -> set[UUID]:
-    """Jobs this user already has a row for. Jobs left over a previous cap have none."""
+    """Jobs this user is done with, or that a live call is working on right now.
+
+    A job an earlier run left unscreened (the host timed out, the user walked away) is not
+    seen: nobody judged it yet, so a new search takes it over. Jobs left over a previous cap
+    have no row at all.
+    """
     rows = await session.scalars(
-        select(RunJob.job_id).where(RunJob.user_id == user_id, RunJob.job_id.in_(job_ids))
+        select(RunJob.job_id).where(
+            RunJob.user_id == user_id,
+            RunJob.job_id.in_(job_ids),
+            ~_unfinished(stale_before),
+        )
     )
     return set(rows)
+
+
+async def job_ids_left_unfinished(
+    session: AsyncSession, user_id: UUID, job_ids: list[UUID], stale_before: datetime
+) -> set[UUID]:
+    """Jobs an earlier run of this user left waiting for screening."""
+    rows = await session.scalars(
+        select(RunJob.job_id).where(
+            RunJob.user_id == user_id,
+            RunJob.job_id.in_(job_ids),
+            _unfinished(stale_before),
+        )
+    )
+    return set(rows)
+
+
+async def take_over_unfinished(
+    session: AsyncSession,
+    user_id: UUID,
+    run_id: UUID,
+    job_ids: list[UUID],
+    stale_before: datetime,
+) -> None:
+    """Remove the waiting rows that the new run now carries.
+
+    A job must wait in one run only: left in the old one, a `screen_batch` on it would process
+    the same job twice. The condition is checked again in the DELETE, so a row a live call
+    claimed in the meantime stays where it is.
+    """
+    await session.execute(
+        delete(RunJob).where(
+            RunJob.user_id == user_id,
+            RunJob.run_id != run_id,
+            RunJob.job_id.in_(job_ids),
+            _unfinished(stale_before),
+        )
+    )
 
 
 async def create_run(

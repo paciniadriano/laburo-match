@@ -50,11 +50,11 @@
   2. Deterministic plan (roles × categories), stored in the run.
   3. Fetch from the source.
   4. Upsert `jobs` (`content_hash`, unique `(source, external_id)`).
-  5. Keep only jobs that are new for the user.
+  5. Keep only jobs the user has not judged: a job an earlier run left `pending` (or abandoned `processing`) moves to the new run and counts as `carried_over`.
   6. Prefilter: max age and closed only.
   7. Cap by recency; the rest count as `over_cap`.
   8. Create the `search_runs` row and `run_jobs` rows (`pending`, with positions).
-- [x] Tests (integration): full path; a second search does not re-add the user's jobs
+- [x] Tests (integration): full path; a second search does not re-add jobs the user already judged; unfinished jobs are carried over and wait in one run only
 - [x] The caller owns the transaction: `tools/search_jobs.py` never commits, so a search is saved whole or not at all (the router commits in 2.9)
 
 ## 2.7 Minimal eligibility (code)
@@ -121,4 +121,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.10 Dockerfile and compose `app` service done and verified from the host (health, ready, Host guard, tools list, search_jobs through the container). Next: connect Claude Code (`.mcp.json`) and tick the last 2.10 bullet, then 2.11.
+Stopped at: 2.6 reopened and done: search_jobs carries over jobs an earlier run left unscreened (found in the 2.10 demo, where my own test search hid 30 pending jobs). Next: the last 2.10 bullet (screen the old run from Claude Code), then 2.11.

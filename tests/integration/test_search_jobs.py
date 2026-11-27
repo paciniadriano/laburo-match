@@ -2,7 +2,7 @@ from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
 import pytest
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.config.settings import Settings
@@ -26,6 +26,15 @@ async def _rows(session: AsyncSession, run_id: str) -> list[RunJob]:
         select(RunJob).where(RunJob.run_id == UUID(run_id)).order_by(RunJob.position)
     )
     return list(result)
+
+
+async def _finish(session: AsyncSession, run_id: str) -> None:
+    """Pretend `screen_batch` judged every waiting job of the run."""
+    await session.execute(
+        update(RunJob)
+        .where(RunJob.run_id == UUID(run_id), RunJob.status == "pending")
+        .values(status="done")
+    )
 
 
 async def test_a_search_stores_the_jobs_and_queues_the_best_titles_first(
@@ -67,12 +76,13 @@ async def test_the_plan_and_funnel_are_stored_in_the_run_for_audit(
     assert run.expires_at == NOW + timedelta(hours=24)
 
 
-async def test_a_second_search_skips_what_the_user_already_has(
+async def test_a_second_search_skips_what_the_user_already_judged(
     session: AsyncSession, user_id: UUID
 ):
     source = FakeSource([make_source_job("a"), make_source_job("b")])
     with clock.freeze(NOW):
-        await search_jobs_tool(session, [source], SETTINGS, user_id)
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        await _finish(session, first.run_id)
         second = await search_jobs_tool(session, [source], SETTINGS, user_id)
 
     assert (second.fetched, second.already_seen, second.to_screen) == (2, 2, 0)
@@ -106,6 +116,7 @@ async def test_jobs_over_the_cap_are_left_for_the_next_search(session: AsyncSess
 
     with clock.freeze(NOW):
         first = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=2)
+        await _finish(session, first.run_id)
         second = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=10)
 
     assert (first.to_screen, first.over_cap) == (2, 3)
@@ -212,3 +223,79 @@ async def test_each_user_has_their_own_new_jobs(session: AsyncSession, user_id: 
     # The jobs table is shared, but what each person has already seen is not.
     assert (mine.to_screen, theirs.to_screen, theirs.already_seen) == (2, 2, 0)
     assert await session.scalar(select(func.count()).select_from(Job)) == 2
+
+
+async def _row_states(session: AsyncSession, run_id: str) -> list[str]:
+    return [row.status for row in await _rows(session, run_id)]
+
+
+async def test_jobs_an_unfinished_run_left_waiting_move_to_the_new_run(
+    session: AsyncSession, user_id: UUID
+):
+    source = FakeSource([make_source_job(f"job-{n}") for n in range(3)])
+
+    with clock.freeze(NOW):
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id)
+
+    assert (second.already_seen, second.carried_over, second.to_screen) == (0, 3, 3)
+    assert "left unscreened by an earlier search" in second.next_step_hint
+    # Each job waits in one run only, so no screen_batch can process it twice.
+    assert await _rows(session, first.run_id) == []
+    assert await _row_states(session, second.run_id) == ["pending"] * 3
+
+
+async def test_a_job_a_live_call_is_processing_is_left_alone(session: AsyncSession, user_id: UUID):
+    source = FakeSource([make_source_job("a"), make_source_job("b")])
+
+    with clock.freeze(NOW):
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        taken = (await _rows(session, first.run_id))[0]
+        taken.status, taken.claimed_at = "processing", NOW
+        await session.flush()
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id)
+
+    assert (second.already_seen, second.carried_over, second.to_screen) == (1, 1, 1)
+    assert await _row_states(session, first.run_id) == ["processing"]
+
+
+async def test_a_job_whose_call_died_is_carried_over(session: AsyncSession, user_id: UUID):
+    source = FakeSource([make_source_job("a")])
+
+    with clock.freeze(NOW):
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        row = (await _rows(session, first.run_id))[0]
+        row.status = "processing"
+        row.claimed_at = NOW - timedelta(seconds=SETTINGS.claim_stale_seconds + 1)
+        await session.flush()
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id)
+
+    assert (second.already_seen, second.carried_over, second.to_screen) == (0, 1, 1)
+
+
+async def test_a_job_that_failed_screening_is_not_taken_again(session: AsyncSession, user_id: UUID):
+    source = FakeSource([make_source_job("a")])
+
+    with clock.freeze(NOW):
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        (await _rows(session, first.run_id))[0].status = "failed"
+        await session.flush()
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id)
+
+    assert (second.already_seen, second.carried_over, second.to_screen) == (1, 0, 0)
+
+
+async def test_unfinished_jobs_over_the_cap_stay_where_they_are(
+    session: AsyncSession, user_id: UUID
+):
+    jobs = [make_source_job(f"job-{n}", posted_at=days_ago(n)) for n in range(1, 4)]
+    source = FakeSource(jobs)
+
+    with clock.freeze(NOW):
+        first = await search_jobs_tool(session, [source], SETTINGS, user_id)
+        second = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=1)
+
+    assert (second.carried_over, second.to_screen, second.over_cap) == (1, 1, 2)
+    # Only the job the new run took moved; the other two still wait in the first run.
+    assert len(await _rows(session, first.run_id)) == 2
+    assert len(await _rows(session, second.run_id)) == 1
