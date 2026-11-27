@@ -21,12 +21,16 @@ class JobCard(BaseModel):
 
 
 class ScreenBatchResult(BaseModel):
-    """While `remaining > 0` only the counters are filled; the call that finishes adds the rest."""
+    """Every call returns the best jobs judged so far; `partial` while some are not checked yet.
 
-    status: Literal["in_progress", "done"]
+    A call is one round of about `SCREEN_ROUND_SECONDS`, so the user sees results within the
+    wait they accept instead of after the whole run.
+    """
+
+    status: Literal["partial", "done"]
     processed: int  # jobs that got a verdict
     failed: int  # jobs that could not be processed after a retry
-    remaining: int  # jobs still waiting or being processed
+    remaining: int  # jobs not checked yet; another call checks the next ones
     next_step_hint: str
     shortlist: list[JobCard] = []
     eligible_total: int = 0

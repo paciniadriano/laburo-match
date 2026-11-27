@@ -136,7 +136,8 @@ Settings via pydantic-settings; secrets as `SecretStr`. The real `.env` is outsi
 | `PUBLIC_BASE_URL` | Base URL for upload links | `http://localhost:8000` |
 | `DESCOPE_*` | Auth (remote only) | empty |
 | `MAX_NEW_JOBS_PER_SEARCH` | Safety limit per search: a search queues every job that passes the filters, this only stops a runaway one | 300 |
-| `SCREEN_MAX_JOBS_PER_CALL` | Cap per `screen_batch` call (set from measured host timeouts) | 15 |
+| `SCREEN_ROUND_SECONDS` | How long one `screen_batch` round keeps taking jobs: the user waits ~30 s for the first results | 20 |
+| `SCREEN_MAX_JOBS_PER_CALL` | Safety limit on the jobs one round may take | 300 |
 | `CLAIM_STALE_SECONDS` | `processing` claims older than this are reset to `pending`; must exceed the longest `screen_batch` call | 300 (set from measurements) |
 | `DRAFT_LEASE_SECONDS` | Lease duration of a draft execution | 300 (set from measurements) |
 | `SLOW_TOOL_WARNING_SECONDS` | Log warning threshold (set from measurements) | 30 |
@@ -269,14 +270,14 @@ All adapters share one protocol, normalize to the same `Job` model (including th
 10. Return: `run_id`, counts per source, discard counts by reason, `over_cap`, a one-line plan summary ("Searched: … Excluded: …").
 
 ### 11.2 `screen_batch(run_id)`
-Idempotent and safe under concurrency. Processes up to `SCREEN_MAX_JOBS_PER_CALL` jobs per call; reports progress; returns `remaining`.
-1. **Claim** up to N `pending` jobs of the run with `SELECT … FOR UPDATE SKIP LOCKED`, set them to `processing`. A second concurrent call claims different jobs or none. `processing` rows older than `CLAIM_STALE_SECONDS` are reset to `pending` (crash recovery). If the call is cancelled (host timeout), its claims are released in a `finally`. Already `done` jobs are never reprocessed.
-2. **Extraction** (`job_extraction`): cache lookup; first call alone to warm the prompt cache, the rest in parallel with `LLM_CONCURRENCY`; malformed output → one retry with the validation error. Content is sanitized (HTML, scripts, zero-width/control chars) and capped (~30k chars).
+Idempotent and safe under concurrency. One call is one **round bounded by time** (`SCREEN_ROUND_SECONDS`): `LLM_CONCURRENCY` workers each take the next job by relevance, judge it and save it at once, until the time is up; jobs still in flight at the deadline go back to `pending` without counting an attempt (their extraction, if finished, is cached). Every round returns the best jobs judged so far and `remaining`.
+1. **Claim** the next `pending` job of the run (one per worker, in relevance order) with `SELECT … FOR UPDATE SKIP LOCKED`, set them to `processing`. A second concurrent call claims different jobs or none. `processing` rows older than `CLAIM_STALE_SECONDS` are reset to `pending` (crash recovery). If the call is cancelled (host timeout), its claims are released in a `finally`. Already `done` jobs are never reprocessed.
+2. **Extraction** (`job_extraction`): cache lookup; the round's first job runs alone to warm the prompt cache, then the workers run in parallel; malformed output → one retry with the validation error. Content is sanitized (HTML, scripts, zero-width/control chars) and capped (~30k chars).
 3. **Eligibility** (deterministic, §11.3).
 4. **Matching** for `eligible` and `doubtful` jobs (§11.4).
 5. **Scoring, flags, ordering**, **aggregated gaps** and **aggregated profile questions** across the run. Each row stores its `screening_hash`. Jobs move to `done`.
-6. **Failures**: a failing job increments `attempts`; it returns to `pending` once (retried on the next call); after 2 failures it is `failed` and reported as "could not process" with a short reason. One failure never fails the call.
-7. **Return**: while `remaining > 0`, only progress (processed, failed, remaining) + `next_step_hint` ("call again"). The call that finishes the run returns the shortlist (≤ 10 cards) + discarded counts by reason + doubtful items with questions for the recruiter + profile questions + `common_gaps` + `failed` count + `next_step_hint`.
+6. **Failures**: a failing job increments `attempts`; it returns to `pending` once (a worker of the same round retries it); after 2 failures it is `failed` and reported as "could not process" with a short reason. One failure never fails the call.
+7. **Return**: every round returns the shortlist of the best jobs judged so far (≤ 10 cards), status `partial` while `remaining > 0` (the hint tells the host to show the results and continue only if the user asks) or `done`, with + discarded counts by reason + doubtful items with questions for the recruiter + profile questions + `common_gaps` + `failed` count + `next_step_hint`.
 
 ### 11.3 Eligibility (code)
 
@@ -384,7 +385,7 @@ All parameters simple types with defaults; all results typed and compact with `n
 | `build_profile` | — | If no CV: signed upload link. Else: evidence summary, inferred fields, language levels to confirm, home location to confirm (hybrid/on-site), vague mentions (2–3), missing required fields | write, idempotent | `CV_UNREADABLE`, `CV_SCANNED` |
 | `update_profile` | `change: str = ""`, `apply: bool = False`, `change_id: str = ""` | Preview (`change_id`, diff, base version) or applied result + fit delta for the latest search run | write | `NO_PENDING_CHANGE` (unknown, superseded or expired change), `PROFILE_CHANGED` (stale preview) |
 | `search_jobs` | `max_new: int = 300` (capped by `MAX_NEW_JOBS_PER_SEARCH`; a search queues every job that passes the filters) | `run_id`, counts (incl. `already_seen`, `carried_over`), discard reasons, `over_cap`, plan summary | write, open-world | `PROFILE_REQUIRED`, per-source warnings (incl. SerpApi monthly cap reached) |
-| `screen_batch` | `run_id: str` | While `remaining > 0`: progress only. Final call: shortlist cards, doubtful + recruiter questions, profile questions, discards by reason, `common_gaps`, `failed` | write, idempotent | `RUN_NOT_FOUND`, `RUN_EXPIRED` |
+| `screen_batch` | `run_id: str` | One time-boxed round (~20 s). Every round: status `partial`/`done`, `remaining`, shortlist of the best judged so far, doubtful + recruiter questions, profile questions, discards by reason, `common_gaps`, `failed` | write, idempotent | `RUN_NOT_FOUND`, `RUN_EXPIRED` |
 | `analyze_posting` | `text: str`, `url: str = ""` | One card | write | `INVALID_INPUT`, `NOT_A_JOB_POSTING` |
 | `explain_match` | `job_id: str` | Full card: eligibility + quotes + disclaimer, requirements table with evidence, relation and "how to argue it", what the posting does not say, flags, best apply route, verdict | write (may re-screen a stale job) | `JOB_NOT_FOUND` |
 | `ask_posting` | `job_id: str`, `question: str` | Status (`answered`/`not_mentioned`/`ambiguous`/`contradictory`) + answer + quotes | read-only | `JOB_NOT_FOUND` |
@@ -560,7 +561,7 @@ Each phase starts by writing `specs/phase-N-<name>.md` in plan mode (goal, tasks
 - Python 3.14 wheels for every dependency (incl. psycopg 3 binary); LiteLLM version resolved in `uv.lock`; FastMCP 3.x latest patch still maintained, and its API for custom routes, auth providers, `stateless_http` (passed to `run()`/`http_app()`), progress, annotations, `strict_input_validation`, `host_origin_protection`.
 - `gpt-6-luna` and judge candidates (e.g. `gpt-6-sol`, `gpt-6.1-sol`): current names and prices; Responses API function calling with reasoning effort; temperature support; strict structured output constraints; `prompt_cache_key`; cache-write pricing.
 - `ChatOpenAI` with `use_responses_api=True`; Opik integration with LangChain/LangGraph; LangGraph Postgres checkpointer on psycopg 3: `setup()` under the advisory lock, resume with `invoke(None)`, thread deletion.
-- Host tool timeouts (Cursor, Claude Code, Claude Desktop, from Windows to WSL2/Docker) and real screening and draft latency → set `SCREEN_MAX_JOBS_PER_CALL` so a call stays under half the smallest timeout, `CLAIM_STALE_SECONDS`, `DRAFT_LEASE_SECONDS`, and whether drafts need bounded steps.
+- Host tool timeouts (Cursor, Claude Code, Claude Desktop, from Windows to WSL2/Docker) and real screening and draft latency → set `SCREEN_ROUND_SECONDS` so a call stays under half the smallest timeout (the funnel stores `screen_ms` per run), `CLAIM_STALE_SECONDS`, `DRAFT_LEASE_SECONDS`, and whether drafts need bounded steps.
 - FastMCP with `stateless_http=True`: progress notifications reach the client; `ctx.session_id` behaviour.
 - SerpApi Google Jobs response fields in Argentina (`via`, description length, apply links); free plan limits.
 - ~~Get on Board current API endpoints, fields and terms~~ (verified in phase 2, see §10).

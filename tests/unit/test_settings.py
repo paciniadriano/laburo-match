@@ -14,7 +14,8 @@ def test_sample_env_loads_and_applies_defaults_for_empty_values():
     assert settings.llm_base_model == "gpt-6-luna"
     assert settings.llm_client_model == ""  # empty in the sample -> default
     assert settings.demo_mode is True
-    assert settings.screen_max_jobs_per_call == 15
+    assert settings.screen_max_jobs_per_call == 300
+    assert settings.screen_round_seconds == 20
     assert settings.daily_cost_ceiling_usd is None
 
 

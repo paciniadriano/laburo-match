@@ -60,9 +60,11 @@ def register_mcp_tools(mcp: FastMCP) -> None:
     async def screen_batch(ctx: Context, run_id: str) -> ScreenBatchResult:
         """Analyze the next jobs of a search run: can the user apply from where they live?
 
-        Takes the run_id returned by search_jobs. While `remaining` is above 0 it returns only
-        progress: call it again with the same run_id. The call that finishes returns the
-        shortlist. Eligibility is an estimate from the posting text, never legal advice.
+        Takes the run_id returned by search_jobs. Each call works for about 20 seconds, most
+        relevant jobs first, and returns the best ones judged so far: show them right away. If
+        `remaining` is above 0, offer to check more and call again with the same run_id only
+        when the user wants it. Eligibility is an estimate from the posting text, never legal
+        advice.
         """
         state = app_state(ctx)
         user_id = await current_user_id(state)

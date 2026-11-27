@@ -127,6 +127,13 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] `make record-fixtures` records every page of the category (50 jobs per file, under the 1 MB hook); the demo replays all pages in order, a job on two pages kept once
 - [ ] The user runs `make record-fixtures` (free) and commits the new pages
 
+## 2.16 Time-boxed screening rounds (user decision: first results within ~30 s)
+- [x] `screen_batch` = one round of `SCREEN_ROUND_SECONDS` (20): a pool of `LLM_CONCURRENCY` workers, most relevant first, each verdict saved at once; at the deadline in-flight jobs go back to the queue without counting an attempt
+- [x] Every round returns the best jobs judged so far (`partial` / `done`); the host shows them and continues only if the user asks (server instructions, hints, client rules)
+- [x] `SCREEN_MAX_JOBS_PER_CALL` becomes a safety limit (300); the run's funnel stores `screen_ms`; the client prints how long each answer took
+- [x] Tests: the round stops at its budget and releases unfinished jobs uncounted; cached jobs all fit in one round with a slow model; first job alone, then at most N workers; safety limit; retry inside the round; cancellation still releases claims
+- [ ] Measured: first search on the full recording, wait in seconds, `screen_ms`, and jobs judged in the first round; tune `LLM_CONCURRENCY` from it
+
 ## Known limitation of this slice
 - The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
 
@@ -146,4 +153,4 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.15 built (361 tests). Next: 2.16 time-boxed screening rounds. The user's real .env still says MAX_NEW_JOBS_PER_SEARCH=30: list every .env change for the user at the end of 2.16.
+Stopped at: 2.16 built (362 tests). Next: 2.17 list_jobs (read-only). The user's real .env needs: MAX_NEW_JOBS_PER_SEARCH=300, SCREEN_MAX_JOBS_PER_CALL=300, add SCREEN_ROUND_SECONDS=20 (or delete those lines to use the defaults).

@@ -1,4 +1,4 @@
-"""Turn the state of a run into what `screen_batch` returns: progress, or the final shortlist."""
+"""Turn the state of a run into what `screen_batch` returns: the best jobs judged so far."""
 
 from typing import Any
 from uuid import UUID
@@ -11,7 +11,15 @@ from src.config.constants import SHORTLIST_SIZE, SOURCE_LABELS
 from src.db.models import Job, RunJob
 from src.models.screening import JobCard, ScreenBatchResult
 
-_HINT_AGAIN = "Call screen_batch again with the same run_id until remaining is 0."
+
+def _hint_partial(remaining: int) -> str:
+    return (
+        f"Show these results to the user now. {remaining} jobs are not checked yet: offer to "
+        "check more, and call screen_batch again with the same run_id only if the user wants "
+        "it. Use the job_id of each card."
+    )
+
+
 _HINT_DONE = (
     "Present the shortlist with its quotes and the disclaimer, ask the profile questions once, "
     "and tell the user how many jobs could not be processed, if any. Use the job_id of each card."
@@ -39,14 +47,6 @@ async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatc
     processed = by_status.get("done", 0)
     failed = by_status.get("failed", 0)
     remaining = by_status.get("pending", 0) + by_status.get("processing", 0)
-    if remaining:
-        return ScreenBatchResult(
-            status="in_progress",
-            processed=processed,
-            failed=failed,
-            remaining=remaining,
-            next_step_hint=_HINT_AGAIN,
-        )
 
     totals = await _counts(
         session,
@@ -56,11 +56,11 @@ async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatc
         RunJob.eligibility,
     )
     return ScreenBatchResult(
-        status="done",
+        status="partial" if remaining else "done",
         processed=processed,
         failed=failed,
-        remaining=0,
-        next_step_hint=_HINT_DONE,
+        remaining=remaining,
+        next_step_hint=_hint_partial(remaining) if remaining else _HINT_DONE,
         shortlist=await _shortlist(session, run_id),
         eligible_total=totals.get("eligible", 0),
         doubtful_total=totals.get("doubtful", 0),

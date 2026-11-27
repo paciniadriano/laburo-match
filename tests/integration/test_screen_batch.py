@@ -37,7 +37,7 @@ async def _rows(sessions: Sessions, run_id: UUID) -> list[RunJob]:
         return list(rows)
 
 
-async def test_intermediate_calls_report_progress_and_the_last_one_the_shortlist(
+async def test_every_call_shows_the_best_jobs_so_far_and_the_last_one_says_it_is_done(
     committed_sessions: Sessions,
 ):
     user_id, run_id = await queue_run(committed_sessions, 5, lambda n: LATAM_BODY)
@@ -48,10 +48,12 @@ async def test_intermediate_calls_report_progress_and_the_last_one_the_shortlist
         second = await _call(committed_sessions, user_id, run_id)
         last = await _call(committed_sessions, user_id, run_id)
 
-    assert (first.status, first.processed, first.remaining) == ("in_progress", 2, 3)
-    assert (second.status, second.processed, second.remaining) == ("in_progress", 4, 1)
-    assert first.shortlist == second.shortlist == []  # no partial lists
-    assert "again" in first.next_step_hint
+    # The safety limit of 2 jobs per round stands in for the time budget here.
+    assert (first.status, first.processed, first.remaining) == ("partial", 2, 3)
+    assert (second.status, second.processed, second.remaining) == ("partial", 4, 1)
+    assert (len(first.shortlist), len(second.shortlist)) == (2, 4)  # results every round
+    assert "3 jobs are not checked yet" in first.next_step_hint
+    assert first.disclaimer  # an estimate, also when partial
     assert (last.status, last.processed, last.remaining, last.failed) == ("done", 5, 0, 0)
     assert len(last.shortlist) == 5 and last.eligible_total == 5
     assert "not legal advice" in last.disclaimer
@@ -61,6 +63,7 @@ async def test_intermediate_calls_report_progress_and_the_last_one_the_shortlist
     assert run.status == "done"
     assert (run.funnel["screened"], run.funnel["llm_calls"]) == (5, 5)
     assert (run.funnel["input_tokens"], run.funnel["output_tokens"]) == (50, 10)
+    assert run.funnel["screen_ms"] >= 0  # measured, to tune the round and the concurrency
 
 
 async def test_the_shortlist_puts_eligible_first_and_is_capped(committed_sessions: Sessions):
@@ -134,7 +137,7 @@ async def test_a_cancelled_call_gives_its_claims_back(committed_sessions: Sessio
             await call
 
     rows = await _rows(committed_sessions, run_id)
-    assert claimed_while_running == 2
+    assert claimed_while_running == 1  # the first job runs alone, to warm the prompt cache
     assert {(row.status, row.attempts) for row in rows} == {("pending", 0)}
 
 
@@ -171,10 +174,9 @@ async def test_a_job_failing_twice_ends_failed_and_the_run_still_finishes(
     settings = SETTINGS.model_copy(update={"screen_max_jobs_per_call": 10})
 
     with use_backend(LatamLLM(failing_titles=("Role 1",))), clock.freeze(NOW):
-        first = await screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
         last = await screen_batch_tool(committed_sessions, settings, user_id, str(run_id))
 
-    assert (first.status, first.processed, first.remaining) == ("in_progress", 2, 1)  # one retry
+    # The retry happens inside the same round, so one call is enough to settle it.
     assert (last.status, last.processed, last.failed, last.remaining) == ("done", 2, 1, 0)
     assert len(last.shortlist) == 2
 

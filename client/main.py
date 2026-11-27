@@ -2,6 +2,7 @@
 
 import argparse
 import asyncio
+import time
 
 from fastmcp import Client
 from langchain_core.messages import BaseMessage, SystemMessage
@@ -13,10 +14,10 @@ from src.config.settings import Settings, get_settings
 from src.llm.factory import build_chat_model
 
 CLIENT_RULES = (
-    "You are the terminal assistant of laburo-match. After the final screen_batch the program "
+    "You are the terminal assistant of laburo-match. After every screen_batch the program "
     "prints the shortlist itself, with links and quotes: do not repeat the cards. Reply with two "
-    "or three sentences that sum up what was found and ask what to do next. "
-    "Answer in the user's language."
+    "or three sentences that sum up what was found and, if jobs remain unchecked, offer to "
+    "check more. Answer in the user's language."
 )
 
 
@@ -42,8 +43,11 @@ async def chat_loop(model: ChatModel, mcp: Client, system_prompt: str) -> None:
             break
         if not line:
             continue
+        started = time.monotonic()
         try:
-            print(await run_turn(model, mcp, history, line, show_tool_result))
+            answer = await run_turn(model, mcp, history, line, show_tool_result)
+            # The wait the user felt, end to end: the number the ~30 s target is about.
+            print(f"{answer}\n({time.monotonic() - started:.0f} s)")
         except Exception as error:  # keep the chat alive; never print a stack trace
             print(f"Something went wrong: {type(error).__name__}: {error}")
 

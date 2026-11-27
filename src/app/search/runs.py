@@ -141,7 +141,7 @@ async def load_run(session: AsyncSession, user_id: UUID, run_id: str, now: datet
 # Funnel counters that screening adds up across the calls of a run.
 _SCREENING_COUNTERS = (
     "screened", "screen_errors", "extraction_cache_hits", "llm_calls", "input_tokens",
-    "output_tokens",
+    "output_tokens", "screen_ms",
 )  # fmt: skip
 
 

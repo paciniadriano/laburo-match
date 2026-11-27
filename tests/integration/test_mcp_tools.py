@@ -42,7 +42,7 @@ def _client(engine: AsyncEngine, *sources: Any) -> Client:
     return Client(create_mcp_server(SETTINGS, engine=engine, sources=list(sources)))
 
 
-async def test_search_then_screen_in_several_calls_ends_with_the_shortlist(
+async def test_search_then_screen_in_rounds_shows_results_every_round(
     engine: AsyncEngine, committed_sessions: Sessions
 ):
     await _seed_user(committed_sessions)
@@ -58,12 +58,12 @@ async def test_search_then_screen_in_several_calls_ends_with_the_shortlist(
                 assert step.structured_content is not None
                 steps.append(step.structured_content)
 
-    assert [s["status"] for s in steps] == ["in_progress", "in_progress", "done"]
+    assert [s["status"] for s in steps] == ["partial", "partial", "done"]
     assert [s["remaining"] for s in steps] == [3, 1, 0]
     final = steps[-1]
     assert final["processed"] == 5 and len(final["shortlist"]) == 5
     assert "not legal advice" in final["disclaimer"]
-    assert all(step["shortlist"] == [] for step in steps[:-1])  # no partial lists
+    assert [len(s["shortlist"]) for s in steps] == [2, 4, 5]  # the best so far, every round
 
 
 async def test_a_source_that_is_down_becomes_a_warning_and_the_search_goes_on(

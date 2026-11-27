@@ -58,7 +58,9 @@ class Settings(BaseSettings):
 
     # --- Limits and tuning ---
     max_new_jobs_per_search: int = Field(default=300, gt=0)  # a safety limit, not a target
-    screen_max_jobs_per_call: int = Field(default=15, gt=0)
+    # A round of screen_batch stops taking jobs after this many seconds: the user waits ~30 s.
+    screen_round_seconds: float = Field(default=20, gt=0)
+    screen_max_jobs_per_call: int = Field(default=300, gt=0)  # a safety limit per round
     claim_stale_seconds: int = Field(default=300, gt=0)
     draft_lease_seconds: int = Field(default=300, gt=0)
     slow_tool_warning_seconds: int = Field(default=30, gt=0)

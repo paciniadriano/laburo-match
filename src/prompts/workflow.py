@@ -9,9 +9,10 @@ def server_instructions() -> str:
     return (
         "laburo-match finds remote jobs and estimates whether the user can apply from their "
         "country.\n"
-        "Typical order: search_jobs, then screen_batch with the returned run_id, repeated "
-        "while status is 'in_progress' (call again right away, no commentary).\n"
-        "Present the shortlist from the final screen_batch only, in the user's language.\n"
+        "Typical order: search_jobs, then screen_batch with the returned run_id. Each "
+        "screen_batch call takes about 20 seconds and returns the best jobs judged so far: "
+        "show them right away, in the user's language. If jobs remain, offer to check more and "
+        "call screen_batch again only when the user asks.\n"
         "Never show internal terms (runs, ids, versions) to the user. Pass job_id values "
         "exactly as returned.\n"
         "Eligibility is an estimate from the posting text, never legal advice: keep the "

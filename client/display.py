@@ -47,20 +47,19 @@ def format_shortlist(result: ScreenBatchResult) -> str:
         header = f"Shortlist: {counts}"
     cards = [format_card(n, card) for n, card in enumerate(result.shortlist, start=1)]
     discards = format_discards(result.discarded)
+    more = (
+        [f"{result.remaining} more jobs not checked yet: ask for more."] if result.remaining else []
+    )
     footer = [result.disclaimer] if result.disclaimer else []
-    return "\n\n".join([header, *([discards] if discards else []), *cards, *footer])
+    return "\n\n".join([header, *([discards] if discards else []), *cards, *more, *footer])
 
 
 def show_tool_result(name: str, result: CallToolResult, out: Printer = print) -> None:
-    """Print progress for each tool call and the full shortlist when screening finishes."""
+    """Print a line for each search and the shortlist after every screening round."""
     data: Any = result.structured_content
     if result.is_error or data is None:
         return
     if name == "search_jobs":
         out(f"  [search] {data['to_screen']} jobs to screen")
     elif name == "screen_batch":
-        screened = ScreenBatchResult.model_validate(data)
-        if screened.status == "in_progress":
-            out(f"  [screen] {screened.processed} done, {screened.remaining} remaining")
-        else:
-            out(format_shortlist(screened))
+        out(format_shortlist(ScreenBatchResult.model_validate(data)))

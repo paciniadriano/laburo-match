@@ -41,7 +41,7 @@ def _policy(history: list[BaseMessage]) -> AIMessage:
     data = _last_tool_data(history)
     if last.name == "search_jobs":
         return call("screen_batch", "c2", run_id=data["run_id"])
-    if data["status"] == "in_progress":
+    if data["status"] == "partial":  # this user wants every job checked
         return call("screen_batch", "c3", run_id=_run_id(history))
     return AIMessage(content="Found 3 jobs you can look at.")
 
@@ -83,4 +83,4 @@ async def test_the_client_lists_tools_and_runs_one_scripted_turn(
     shortlist = printed[-1]
     assert shortlist.startswith("Shortlist: 3 eligible")
     assert shortlist.count("Apply (") == 3  # every card carries its apply link
-    assert any("[screen]" in line for line in printed)  # progress was shown on the way
+    assert any("not checked yet" in line for line in printed)  # a partial list came first
