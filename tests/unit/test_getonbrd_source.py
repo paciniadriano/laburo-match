@@ -5,7 +5,13 @@ import pytest
 import respx
 
 from src.sources.base import SourceQuery
-from src.sources.getonbrd import BASE_URL, GetOnBoardSource, normalize_modality, parse_job
+from src.sources.getonbrd import (
+    BASE_URL,
+    GetOnBoardSource,
+    declared_residence,
+    normalize_modality,
+    parse_job,
+)
 from tests.factories import gob_item, gob_page
 
 JOBS_URL = f"{BASE_URL}/categories/programming/jobs"
@@ -85,7 +91,7 @@ async def test_pages_are_requested_one_at_a_time_until_the_last(
     first, second = (call.request.url.params for call in route.calls)
     assert (first["page"], second["page"]) == ("1", "2")
     assert first["per_page"] == "120"
-    assert first["expand"] == '["company"]'
+    assert first["expand"] == '["company","location_tenants"]'
 
 
 async def test_it_stops_asking_for_pages_once_it_has_enough_jobs(
@@ -234,3 +240,33 @@ def test_the_declared_modality_is_normalized(declared: object, expected: str):
 def test_a_parsed_job_carries_the_declared_modality():
     job = parse_job(gob_item(remote_modality="hybrid"))
     assert job is not None and job.modality == "hybrid"
+
+
+def _tenants(*names: str) -> dict[str, object]:
+    return {
+        "data": [{"id": n.lower(), "type": "country", "attributes": {"name": n}} for n in names]
+    }
+
+
+@pytest.mark.parametrize(
+    ("attributes", "expected"),
+    [
+        ({"remote_modality": "fully_remote"}, "anywhere"),  # "reside anywhere in the world"
+        (
+            {"remote_modality": "remote_local", "location_tenants": _tenants("Chile", "Argentina")},
+            "Chile, Argentina",  # "candidates must reside in Chile or Argentina"
+        ),
+        (  # an old recording without expanded names: not declared, never guessed
+            {"remote_modality": "remote_local", "location_tenants": {"data": [{"id": 1}]}},
+            "",
+        ),
+        ({"remote_modality": "hybrid", "location_tenants": _tenants("Chile")}, ""),
+    ],
+)
+def test_who_may_apply_is_read_from_the_declared_policy(attributes: dict, expected: str):
+    assert declared_residence(attributes) == expected
+
+
+def test_a_parsed_job_carries_who_may_apply():
+    job = parse_job(gob_item(remote_modality="remote_local", location_tenants=_tenants("Chile")))
+    assert job is not None and (job.modality, job.residence_text) == ("remote", "Chile")

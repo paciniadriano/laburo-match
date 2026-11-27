@@ -43,8 +43,9 @@ Sleep = Callable[[float], Awaitable[None]]
 
 
 def page_params(page: int, per_page: int = PER_PAGE) -> dict[str, str | int]:
-    """Query string of one jobs page; `expand` adds the company (its name) to each job."""
-    return {"per_page": per_page, "page": page, "expand": '["company"]'}
+    """Query string of one jobs page. `expand` adds the company's name and, for "locally remote"
+    jobs, the names of the countries the candidate must live in (`location_tenants`)."""
+    return {"per_page": per_page, "page": page, "expand": '["company","location_tenants"]'}
 
 
 def _dig(obj: Any, *keys: str) -> Any:
@@ -64,15 +65,31 @@ def build_body(attributes: dict[str, Any]) -> str:
     return "\n\n".join(blocks)
 
 
-# Get on Board's `remote_modality`, filled in by the employer. `remote_local` is read as plain
-# remote, never as "you must live in our country": two hand-labelled `eligible` postings are
-# `remote_local`. A value we do not know maps to "unknown".
+# Get on Board's `remote_modality`, filled in by the employer. Both remote kinds are remote work;
+# who may apply is a separate field (`declared_residence`). A value we do not know is "unknown".
 _MODALITIES: dict[str, SourceModality] = {
     "fully_remote": "remote",
     "remote_local": "remote",
     "hybrid": "hybrid",
     "no_remote": "onsite",
 }
+
+
+def declared_residence(attributes: dict[str, Any]) -> str:
+    """Who may apply to a remote job, as the employer declared it.
+
+    "Fully remote" pages say "Candidates can reside anywhere in the world"; "Locally remote
+    only" pages say "candidates must reside in" the countries listed in `location_tenants`.
+    "" when it is not declared, or when the names were not expanded.
+    """
+    modality = attributes.get("remote_modality")
+    if modality == "fully_remote":
+        return "anywhere"
+    if modality != "remote_local":
+        return ""
+    tenants = _dig(attributes, "location_tenants", "data")
+    names = [_dig(t, "attributes", "name") for t in tenants] if isinstance(tenants, list) else []
+    return ", ".join(name for name in names if isinstance(name, str) and name)
 
 
 def normalize_modality(value: object) -> SourceModality:
@@ -101,6 +118,7 @@ def parse_job(item: Any) -> SourceJob | None:
         language=str(attributes.get("lang") or ""),
         posted_at=datetime.fromtimestamp(published, UTC) if isinstance(published, int) else None,
         modality=normalize_modality(attributes.get("remote_modality")),
+        residence_text=declared_residence(attributes),
     )
 
 

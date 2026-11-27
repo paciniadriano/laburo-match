@@ -16,6 +16,7 @@ _BADGE = {"eligible": "ELIGIBLE", "doubtful": "DOUBTFUL"}
 # Why jobs never reached the list, in words a person reads at a glance.
 _DISCARD_LABELS = {
     "office_abroad": "hybrid or on-site in another country",
+    "residence_abroad": "remote only for other countries",
     "not_eligible": "not open to your country",
     "duplicate": "duplicate postings",
     "too_old": "too old",

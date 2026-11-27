@@ -24,6 +24,9 @@ class SourceJob:
     # Where the work happens, as the source declares it (not read from the text). "unknown"
     # when the source does not say: never a reason to discard.
     modality: SourceModality = "unknown"
+    # Who may apply to a remote job, as the source declares it: "anywhere", "Chile, Argentina",
+    # or "" when it does not say.
+    residence_text: str = ""
 
 
 @dataclass(frozen=True)

@@ -15,3 +15,4 @@ class Candidate:
     location_text: str = ""  # as the source declares it: "Chile", "Remote"...
     raw_text: str = ""  # the posting body, for the prefilter's look at the prose
     company: str = ""  # normalized ("acme inc"), "" when the source does not name it
+    residence_text: str = ""  # who may apply to a remote job: "anywhere", "Chile, Peru", ""

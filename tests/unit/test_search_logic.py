@@ -5,7 +5,7 @@ import pytest
 
 from src.app.jobs.candidate import Candidate
 from src.app.search.plan import build_plan
-from src.app.search.prefilter import office_abroad, prefilter_reason
+from src.app.search.prefilter import office_abroad, prefilter_reason, residence_abroad
 from src.app.search.relevance import rank, title_relevance
 from src.models.profile import Preferences
 
@@ -130,3 +130,32 @@ def test_any_doubt_keeps_the_job_for_screening(job: Candidate, why_it_stays: str
 
 def test_without_the_users_country_nothing_is_discarded_for_its_office():
     assert office_abroad(at_office("hybrid", "Chile"), None) is False
+
+
+# --- remote, but only for other countries ----------------------------------------------------
+def remote_for(residence: str, body: str = "Trabajo 100% remoto") -> Candidate:
+    return Candidate(
+        uuid4(), "Backend Developer", NOW, None, "remote", "Remote", body, "", residence
+    )
+
+
+def test_a_remote_job_only_for_people_in_other_countries_is_discarded():
+    assert prefilter_reason(remote_for("Chile"), NOW, 30, "AR") == "residence_abroad"
+    assert prefilter_reason(remote_for("Chile, Peru"), NOW, 30, "AR") == "residence_abroad"
+
+
+@pytest.mark.parametrize(
+    ("job", "why_it_stays"),
+    [
+        (remote_for("Chile, Argentina, Peru"), "the user's country is one of the listed ones"),
+        (remote_for("anywhere"), "fully remote: anyone may apply"),
+        (remote_for(""), "the source does not say who may apply"),
+        (remote_for("Narnia"), "a place the table cannot read is never guessed"),
+        (
+            remote_for("Chile", "Buscamos talento en toda Latinoamerica"),
+            "the text names a region that may include the user's country",
+        ),
+    ],
+)
+def test_a_remote_job_stays_when_there_is_any_doubt(job: Candidate, why_it_stays: str):
+    assert residence_abroad(job, "AR") is False, why_it_stays

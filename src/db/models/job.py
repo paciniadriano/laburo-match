@@ -50,9 +50,10 @@ class Job(Base):
     company_domain: Mapped[str] = mapped_column(default="")
     title: Mapped[str]
     location_text: Mapped[str] = mapped_column(default="")
-    modality: Mapped[str] = mapped_column(
-        default="unknown", server_default="unknown"
-    )  # as the source declares it
+    # Where the work happens, as the source declares it; "unknown" when it does not say.
+    modality: Mapped[str] = mapped_column(default="unknown", server_default="unknown")
+    # Who may apply to a remote job, as the source declares it: "anywhere", "Chile, Peru", "".
+    residence_text: Mapped[str] = mapped_column(default="", server_default="")
     raw_text: Mapped[str]
     content_hash: Mapped[str]
     language: Mapped[str] = mapped_column(default="")

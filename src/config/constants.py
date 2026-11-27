@@ -37,6 +37,7 @@ PREFILTER_REASON_TEXT = {
     "closed": "The posting is closed.",
     "too_old": "Older than the maximum job age of your profile.",
     "office_abroad": "Hybrid or on-site, and every office is in another country.",
+    "residence_abroad": "Remote, but only for people who live in other countries.",
     "duplicate": "Another posting of the same opening was kept.",
 }
 

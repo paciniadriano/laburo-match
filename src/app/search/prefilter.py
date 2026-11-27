@@ -6,23 +6,36 @@ from src.app.jobs.candidate import Candidate
 from src.core.places import mentions_area, resolve_places
 
 
-def office_abroad(candidate: Candidate, country: str | None) -> bool:
-    """Hybrid or on-site, with every office in a known country that is not the user's.
-
-    A border cannot be crossed every day, so the city does not matter. Modality and country
-    come from the source's own fields, not from reading the text. Any doubt keeps the job for
-    screening: an unknown user country, a place the table cannot read, a list that includes the
-    user's country, or prose that names a place that may include it ("offices across LATAM").
-    """
-    if country is None or candidate.modality not in ("hybrid", "onsite"):
-        return False
-    declared = [place.strip() for place in candidate.location_text.split(",") if place.strip()]
-    places = resolve_places(declared)
+def _declared_elsewhere(declared: str, candidate: Candidate, country: str) -> bool:
+    """Every place the source declares is a known country that is not the user's, and the prose
+    names no place that may include it. Any doubt keeps the job for screening: a place the table
+    cannot read, a list that includes the user's country, "anywhere", or prose such as "offices
+    across LATAM"."""
+    places = resolve_places([place.strip() for place in declared.split(",") if place.strip()])
     if not places.countries or places.unknown or places.ambiguous or places.worldwide:
         return False
     if country in places.countries:
         return False
     return not mentions_area(f"{candidate.title}\n{candidate.raw_text}", country)
+
+
+def office_abroad(candidate: Candidate, country: str | None) -> bool:
+    """Hybrid or on-site, with every office in a known country that is not the user's.
+
+    A border cannot be crossed every day, so the city does not matter. Modality and country
+    come from the source's own fields, not from reading the text.
+    """
+    if country is None or candidate.modality not in ("hybrid", "onsite"):
+        return False
+    return _declared_elsewhere(candidate.location_text, candidate, country)
+
+
+def residence_abroad(candidate: Candidate, country: str | None) -> bool:
+    """Remote, but the source says candidates must live in countries that are not the user's
+    (Get on Board's "Locally remote only: candidates must reside in Chile")."""
+    if country is None or candidate.modality != "remote":
+        return False
+    return _declared_elsewhere(candidate.residence_text, candidate, country)
 
 
 def prefilter_reason(
@@ -36,4 +49,6 @@ def prefilter_reason(
         return "too_old"
     if office_abroad(candidate, country):
         return "office_abroad"
+    if residence_abroad(candidate, country):
+        return "residence_abroad"
     return None
