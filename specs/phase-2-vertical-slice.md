@@ -124,4 +124,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.13 harness built and tested (318 tests): `make eval` / `make eval-test`, eval cache, budget guard, price table (gpt-6-luna $0.10 / $0.01 cached / $0.50 per 1M tokens, read 2026-11-27). Left: one real run on dev (`make eval`, about $0.003), record the result here; then decide the remote-only modality rule from the 15 hybrid jobs; then the PR to main.
+Stopped at: 2.13 harness built. A first dev run gave 10/10 but fed the model aggregator metadata the server never shows (job 14 became not_eligible from `countries=['Chile']`), so that result is void; the runner now uses the text as served. Left: rerun `make eval` and record the result here; then the remote-only modality question; then the PR to main.

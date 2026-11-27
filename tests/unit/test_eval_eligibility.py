@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from evals.eligibility_run import RunReport, run_items
+from evals.eligibility_run import RunReport, posting_text_as_served, run_items
 from evals.metrics.eligibility import Outcome, score
 from evals.run_eval import format_report
 from src import llm
@@ -130,3 +130,28 @@ def test_the_report_states_the_gate_and_lists_each_disagreement():
 
     assert "valid jobs marked not_eligible (must be 0): FAIL ['7']" in text
     assert "job 7: expected eligible, got not_eligible" in text
+
+
+# --- the text the model sees ------------------------------------------------------------------
+SPIKE_FIXTURE = (
+    "JOB 14 | raw_index=2\n"
+    "title: Technical Lead (Python)\n"
+    "aggregator fields: remote_modality=hybrid countries=['Chile'] lang=es\n"
+    "\n"
+    "[description_headline]\n"
+    "Trabajamos en un entorno h\u00edbrido.\n"
+)
+
+
+def test_the_model_sees_the_title_and_body_but_not_the_aggregator_metadata():
+    text = posting_text_as_served(SPIKE_FIXTURE)
+
+    assert (
+        text
+        == "Technical Lead (Python)\n[description_headline]\nTrabajamos en un entorno h\u00edbrido."
+    )
+    assert "Chile" not in text and "aggregator" not in text and "JOB 14" not in text
+
+
+def test_a_posting_without_the_spike_header_is_used_as_it_is():
+    assert posting_text_as_served("Remote within Latin America") == "Remote within Latin America"

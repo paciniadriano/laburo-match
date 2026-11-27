@@ -46,8 +46,28 @@ def load_dataset(dataset: str, split: str) -> dict[str, Any]:
     return json.loads((DATASETS / split / f"{dataset}.json").read_text())
 
 
+def posting_text_as_served(fixture: str) -> str:
+    """The text the server would show the model for this posting: `title`, newline, body.
+
+    The fixtures keep the spike's header (job number, `title:` and a line of aggregator
+    metadata such as `countries=['Chile']`). The live adapter never passes that metadata on, so
+    leaving it in would hand the model facts the product does not have and flatter the eval.
+    A file without that header is used as it is.
+    """
+    lines = fixture.splitlines()
+    title, body_start = "", 0
+    for index, line in enumerate(lines[:4]):
+        if line.startswith("title: "):
+            title = line.removeprefix("title: ")
+        elif line.startswith("aggregator fields:"):
+            body_start = index + 1
+    if not title or not body_start:
+        return fixture
+    return f"{title}\n" + "\n".join(lines[body_start:]).strip()
+
+
 async def classify(item: dict[str, Any], constraints: Constraints) -> tuple[Outcome, Usage]:
-    text = (REPO_ROOT / item["fixture"]).read_text()[:JOB_TEXT_MAX_CHARS]
+    text = posting_text_as_served((REPO_ROOT / item["fixture"]).read_text())[:JOB_TEXT_MAX_CHARS]
     result = await llm.run(JOB_EXTRACTION.name, text)
     assert isinstance(result.output, JobFacts)
     facts = verify_facts(result.output, text).facts  # quotes the model made up are dropped
