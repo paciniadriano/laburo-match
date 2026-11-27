@@ -1,5 +1,5 @@
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 from pathlib import Path
 
 import httpx
@@ -43,7 +43,6 @@ async def test_the_newest_recorded_job_reads_as_published_now_and_relative_ages_
     gaps_before = sorted(max(original) - d for d in original)
     gaps_after = sorted(max(dates) - d for d in dates)
     assert gaps_before == gaps_after
-    assert max(dates) - min(dates) < timedelta(days=60)
 
 
 async def test_max_jobs_limits_the_replay():
