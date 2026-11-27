@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.core.errors import ProfileRequiredError
 from src.db.models import Profile, User
-from src.models.profile import Constraints
+from src.models.profile import Constraints, Preferences
 
 
 async def load_constraints(session: AsyncSession, user_id: UUID) -> Constraints:
@@ -16,6 +16,14 @@ async def load_constraints(session: AsyncSession, user_id: UUID) -> Constraints:
     if profile is None or not profile.is_complete:
         raise ProfileRequiredError()
     return Constraints.model_validate(profile.constraints)
+
+
+async def load_target_roles(session: AsyncSession, user_id: UUID) -> tuple[str, ...]:
+    """The roles the user is looking for; () when the profile has none yet."""
+    profile = await session.get(Profile, user_id)
+    if profile is None:
+        return ()
+    return tuple(Preferences.model_validate(profile.preferences).target_roles or ())
 
 
 async def find_user_id(session: AsyncSession, subject: str) -> UUID:

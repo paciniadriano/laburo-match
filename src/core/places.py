@@ -6,12 +6,10 @@ declares), so it lives in `core/`.
 
 import re
 from dataclasses import dataclass, field
-from functools import lru_cache
 
 from src.config.data.locations import (
     AMBIGUOUS_TERMS,
     COUNTRIES,
-    OPEN_PLACE_PHRASES,
     REGION_NAMES,
     REGIONS,
     WORLDWIDE_WORDS,
@@ -98,27 +96,3 @@ def resolve_places(places: list[str]) -> PlaceResolution:
         ambiguous |= is_ambiguous
         unknown |= is_unknown
     return PlaceResolution(frozenset(countries), worldwide, ambiguous, unknown, list(places))
-
-
-@lru_cache
-def _area_pattern(country: str) -> re.Pattern[str]:
-    names = [n for n in COUNTRIES.get(country, ()) if fold(n) not in _EXACT_ONLY]
-    names += [
-        n
-        for region, spellings in REGION_NAMES.items()
-        if country in REGIONS[region]
-        for n in spellings
-    ]
-    names += list(OPEN_PLACE_PHRASES)
-    folded = sorted({fold(n) for n in names}, key=len, reverse=True)
-    return re.compile(r"(?<![a-z0-9])(" + "|".join(map(re.escape, folded)) + r")(?![a-z0-9])")
-
-
-def mentions_area(text: str, country: str) -> bool:
-    """Does free text name the country, a region that includes it, or "anywhere"?
-
-    A loose scan of prose, used only to keep a job for a closer look: a false "yes" costs one
-    LLM call, a false "no" could cost a valid job, so it errs towards "yes". Short names that are
-    also words ("us") are left out, or every English posting would match.
-    """
-    return bool(_area_pattern(country).search(fold(text)))

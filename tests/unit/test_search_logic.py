@@ -6,7 +6,8 @@ import pytest
 from src.app.jobs.candidate import Candidate
 from src.app.search.plan import build_plan
 from src.app.search.prefilter import office_abroad, prefilter_reason, residence_abroad
-from src.app.search.relevance import rank, title_relevance
+from src.app.search.relevance import rank
+from src.core.relevance import title_relevance
 from src.models.profile import Preferences
 
 NOW = datetime(2026, 11, 24, 12, 0, tzinfo=UTC)
@@ -114,14 +115,6 @@ def test_a_job_that_needs_an_office_in_another_country_is_discarded(modality: st
         (at_office("hybrid", "Remote"), "no country is named"),
         (at_office("hybrid", "Narnia"), "a place the table cannot read is never guessed"),
         (at_office("hybrid", ""), "no place at all"),
-        (
-            at_office("hybrid", "Chile", "Presencialidad en oficinas de LATAM"),
-            "the text names a region that may include the user's country",
-        ),
-        (
-            at_office("onsite", "Chile", "Puedes trabajar desde cualquier lugar"),
-            "the text contradicts the source",
-        ),
     ],
 )
 def test_any_doubt_keeps_the_job_for_screening(job: Candidate, why_it_stays: str):
@@ -151,15 +144,19 @@ def test_a_remote_job_only_for_people_in_other_countries_is_discarded():
         (remote_for("anywhere"), "fully remote: anyone may apply"),
         (remote_for(""), "the source does not say who may apply"),
         (remote_for("Narnia"), "a place the table cannot read is never guessed"),
-        (
-            remote_for("Chile", "Buscamos talento en toda Latinoamerica"),
-            "the text names a region that may include the user's country",
-        ),
-        (
-            remote_for("Mexico", "allowing flexibility in work location globally"),
-            "the text contradicts the source: screening judges it (found in the 2.18 demo)",
-        ),
     ],
 )
 def test_a_remote_job_stays_when_there_is_any_doubt(job: Candidate, why_it_stays: str):
     assert residence_abroad(job, "AR") is False, why_it_stays
+
+
+@pytest.mark.parametrize(
+    "job",
+    [
+        at_office("hybrid", "Chile", "Presencialidad en oficinas de LATAM"),
+        remote_for("Mexico", "allowing flexibility in work location globally"),  # Niuro
+    ],
+)
+def test_the_employers_policy_wins_over_what_the_prose_says(job: Candidate):
+    """User decision: a declared office or residence elsewhere is enough, whatever the text."""
+    assert prefilter_reason(job, NOW, 30, "AR") in {"office_abroad", "residence_abroad"}

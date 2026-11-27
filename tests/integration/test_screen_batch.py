@@ -4,7 +4,7 @@ from uuid import UUID, uuid4
 
 import anyio
 import pytest
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from src.app.screening.report import build_screen_result
@@ -210,3 +210,42 @@ async def test_an_expired_run_is_refused(committed_sessions: Sessions):
 
     with pytest.raises(RunExpiredError), clock.freeze(NOW + timedelta(hours=25)):
         await screen_batch_tool(committed_sessions, SETTINGS, user_id, str(run_id))
+
+
+async def _rename(sessions: Sessions, run_id: UUID, titles: dict[int, str]) -> None:
+    """Give the run's jobs real titles (by position): `queue_run` names them "Role n"."""
+    from src.db.models import Job
+
+    async with sessions() as session:
+        for position, title in titles.items():
+            job_id = await session.scalar(
+                select(RunJob.job_id).where(RunJob.run_id == run_id, RunJob.position == position)
+            )
+            await session.execute(update(Job).where(Job.id == job_id).values(title=title))
+        await session.commit()
+
+
+async def test_among_eligible_jobs_the_closest_title_comes_before_the_newest(
+    committed_sessions: Sessions,
+):
+    newest_first = lambda n: {**LATAM_BODY, "posted_at": NOW - timedelta(days=n)}  # noqa: E731
+    user_id, run_id = await queue_run(committed_sessions, 3, newest_first)
+    await _rename(
+        committed_sessions,
+        run_id,
+        {1: "Desarrollador Oracle", 2: "Lead VoIP Engineer", 3: "Full-Stack Developer"},
+    )
+    with use_backend(LatamLLM()):
+        await _call(committed_sessions, user_id, run_id)
+        await _call(committed_sessions, user_id, run_id)  # this file's rounds take 2 jobs
+
+    async with committed_sessions() as session:
+        result = await build_screen_result(session, run_id, ("Full-Stack Developer",))
+
+    # Full-Stack shares 3 words with the role; the other two share only "developer/engineer",
+    # so between them the newer one goes first.
+    assert [card.title for card in result.shortlist] == [
+        "Full-Stack Developer",
+        "Desarrollador Oracle",
+        "Lead VoIP Engineer",
+    ]

@@ -151,7 +151,7 @@ async def test_a_round_never_takes_more_jobs_than_its_safety_limit(committed_ses
 
 async def test_what_the_source_declares_reaches_the_verdict(committed_sessions: Sessions):
     """Job 0 is fully remote and its text is silent; job 1 is only for people in Chile; job 2
-    is only for Chile too, but its text says Latin America."""
+    is only for Chile too, though its text says Latin America: the employer's policy wins."""
     declared = {
         0: {"modality": "remote", "residence_text": "anywhere", "body": "[description]\nBuild."},
         1: {"modality": "remote", "residence_text": "Chile", "body": "[description]\nBuild."},
@@ -164,4 +164,4 @@ async def test_what_the_source_declares_reaches_the_verdict(committed_sessions: 
 
     assert rows["Role 0"].eligibility == "eligible"
     assert rows["Role 1"].eligibility == "not_eligible"
-    assert rows["Role 2"].eligibility == "doubtful"  # the source and the text disagree
+    assert rows["Role 2"].eligibility == "not_eligible"

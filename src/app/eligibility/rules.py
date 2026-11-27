@@ -199,8 +199,8 @@ def _weigh_declared(signal: DeclaredSignal, found: _Findings, country: str) -> N
     """Fold the source's own policy into what the text said.
 
     Open to the user: places the code could not read become notes ("Remote (New York - EST)"),
-    and a clear exclusion in the text becomes a contradiction. Closed: a text that says the job
-    is open to the user makes it a contradiction instead of a "no".
+    and a clear exclusion in the text becomes a contradiction. Closed: a "no", whatever the text
+    says (user decision).
     """
     question = f"Is the role open to candidates living in {country}?"
     if signal.open:
@@ -221,18 +221,8 @@ def _weigh_declared(signal: DeclaredSignal, found: _Findings, country: str) -> N
                 f'Place mentioned: "{quote}"' if quote else "A place is mentioned."
             )
         return
-    says_open = [r for r in found.met if r.kind == "location"]
-    if says_open:
-        found.issues.append(
-            _Issue(
-                f"{signal.reason}, but the posting says it is open to you.",
-                [signal.quote, *[q for r in says_open for q in r.quotes]],
-                recruiter_question=question,
-            )
-        )
-        found.met = [r for r in found.met if r.kind != "location"]
-    else:
-        found.declared_no = signal
+    # Closed: the employer's own policy rules the user out, whatever the text says.
+    found.declared_no = signal
 
 
 def evaluate_eligibility(

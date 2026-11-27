@@ -1,7 +1,7 @@
 import pytest
 
 from src.config.data.locations import COUNTRIES, REGIONS
-from src.core.places import mentions_area, resolve_places
+from src.core.places import resolve_places
 
 
 @pytest.mark.parametrize(
@@ -102,34 +102,3 @@ def test_the_same_quantifier_alone_still_means_anywhere():
 
 def test_a_spanish_exclusion_is_still_unreadable_even_with_the_quantifier():
     assert resolve_places(["cualquier pa\u00eds excepto Chile"]).unknown is True
-
-
-@pytest.mark.parametrize(
-    "text",
-    [
-        "Presencialidad hasta 2 d\u00edas por semana en oficinas de LATAM",
-        "We hire across Latin America",
-        "Trabajo 100% remoto desde Argentina",
-        "Puedes trabajar desde cualquier lugar",
-        "Open to the Americas",
-        "Niuro supports a 100% remote work model, allowing flexibility in work location globally",
-    ],
-)
-def test_prose_that_may_include_the_users_country_is_noticed(text: str):
-    assert mentions_area(text, "AR") is True
-
-
-@pytest.mark.parametrize(
-    "text",
-    [
-        "Modalidad h\u00edbrida, 3 d\u00edas en la oficina de Las Condes, Santiago",
-        "We are a global company with offices in Santiago",  # "global" alone says nothing
-    ],
-)
-def test_prose_that_names_only_other_places_is_not_a_match(text: str):
-    assert mentions_area(text, "AR") is False
-
-
-def test_a_short_name_that_is_also_a_word_does_not_count_as_the_country():
-    assert mentions_area("Join us in Chile", "US") is False  # "us" is a pronoun here
-    assert mentions_area("Remote from the USA", "US") is True

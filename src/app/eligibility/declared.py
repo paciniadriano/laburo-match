@@ -4,8 +4,8 @@ Get on Board pages carry a policy block the employer fills in: "Fully remote: ca
 reside anywhere in the world", "Locally remote only: candidates must reside in Chile", or a
 hybrid/on-site office country. It is explicit and structured, so it counts as an explicit
 signal, apart from the posting text: it can open a job that "says nothing about where", and it
-can rule one out. When it disagrees with a clear statement in the text, the job is doubtful,
-never discarded.
+rules one out whatever the text says (user decision: the employer's form beats a company blurb).
+When it opens a job and the text names a country that excludes the user, the job is doubtful.
 """
 
 from dataclasses import dataclass

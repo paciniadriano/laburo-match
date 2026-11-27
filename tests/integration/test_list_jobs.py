@@ -3,12 +3,12 @@
 from datetime import UTC, datetime
 from uuid import UUID
 
-from sqlalchemy import update
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from src.config.settings import Settings
 from src.core import clock
-from src.db.models import Profile, RunJob, User
+from src.db.models import Job, Profile, RunJob, User
 from src.llm import use_backend
 from src.tools.list_jobs import list_jobs_tool
 from src.tools.screen_batch import screen_batch_tool
@@ -103,3 +103,21 @@ async def test_another_users_jobs_are_never_listed(committed_sessions: Sessions)
     listed = await _list(committed_sessions, friend.id)
 
     assert (listed.total, listed.items) == (0, [])
+
+
+async def test_the_list_puts_titles_closest_to_the_profile_roles_first(
+    committed_sessions: Sessions,
+):
+    user_id, run_id = await _screened_run(committed_sessions, 2)
+    async with committed_sessions() as session:
+        rows = (await session.scalars(select(RunJob).where(RunJob.run_id == run_id))).all()
+        titles = {1: "Desarrollador Oracle", 2: "Frontend Engineer"}  # the profile wants Frontend
+        for row in rows:
+            await session.execute(
+                update(Job).where(Job.id == row.job_id).values(title=titles[row.position])
+            )
+        await session.commit()
+
+    listed = await _list(committed_sessions, user_id)
+
+    assert [item.title for item in listed.items] == ["Frontend Engineer", "Desarrollador Oracle"]

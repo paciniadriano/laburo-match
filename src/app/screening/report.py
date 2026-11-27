@@ -3,11 +3,12 @@
 from typing import Any
 from uuid import UUID
 
-from sqlalchemy import Select, case, func, select
+from sqlalchemy import Select, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.eligibility.result import DISCLAIMER
 from src.config.constants import SHORTLIST_SIZE, SOURCE_LABELS
+from src.core.relevance import title_relevance
 from src.db.models import Job, RunJob
 from src.models.screening import JobCard, ScreenBatchResult
 
@@ -38,7 +39,10 @@ def _unique(items: list[str]) -> list[str]:
     return list(dict.fromkeys(items))
 
 
-async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatchResult:
+async def build_screen_result(
+    session: AsyncSession, run_id: UUID, target_roles: tuple[str, ...] = ()
+) -> ScreenBatchResult:
+    """`target_roles` are the roles the search looked for: closer titles go first."""
     # Rows a prefilter already discarded are `done` too, but nobody screened them.
     screening_rows = RunJob.prefilter_reason == ""
     by_status = await _counts(
@@ -63,7 +67,7 @@ async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatc
         failed=failed,
         remaining=remaining,
         next_step_hint=_hint_partial(remaining) if remaining else _HINT_DONE,
-        shortlist=await _shortlist(session, run_id),
+        shortlist=await _shortlist(session, run_id, target_roles),
         eligible_total=totals.get("eligible", 0),
         doubtful_total=totals.get("doubtful", 0),
         discarded=await _discarded(session, run_id, totals.get("not_eligible", 0)),
@@ -72,9 +76,11 @@ async def build_screen_result(session: AsyncSession, run_id: UUID) -> ScreenBatc
     )
 
 
-async def _shortlist(session: AsyncSession, run_id: UUID) -> list[JobCard]:
-    """Eligible before doubtful, then the newest posting, then the order the search found them."""
-    eligible_first = case((RunJob.eligibility == "eligible", 0), else_=1)
+async def _shortlist(
+    session: AsyncSession, run_id: UUID, target_roles: tuple[str, ...]
+) -> list[JobCard]:
+    """Eligible before doubtful, then the title closest to the roles searched (a stand-in for
+    the fit band until matching exists, phase 5), then the newest posting."""
     rows = await session.execute(
         select(RunJob, Job)
         .join(Job, Job.id == RunJob.job_id)
@@ -83,9 +89,18 @@ async def _shortlist(session: AsyncSession, run_id: UUID) -> list[JobCard]:
             RunJob.status == "done",
             RunJob.eligibility.in_(("eligible", "doubtful")),
         )
-        .order_by(eligible_first, Job.posted_at.desc().nulls_last(), RunJob.position)
-        .limit(SHORTLIST_SIZE)
     )
+
+    def most_useful_first(pair: tuple[RunJob, Job]) -> tuple[int, int, float, int]:
+        run_job, job = pair
+        return (
+            0 if run_job.eligibility == "eligible" else 1,
+            -title_relevance(job.title, target_roles),
+            -(job.posted_at.timestamp() if job.posted_at else 0.0),
+            run_job.position,
+        )
+
+    best = sorted(((run_job, job) for run_job, job in rows.all()), key=most_useful_first)
     return [
         JobCard(
             job_id=str(job.id),
@@ -100,7 +115,7 @@ async def _shortlist(session: AsyncSession, run_id: UUID) -> list[JobCard]:
             apply_url=job.apply_url or job.url,
             posted_at=job.posted_at,
         )
-        for run_job, job in rows.all()
+        for run_job, job in best[:SHORTLIST_SIZE]
     ]
 
 

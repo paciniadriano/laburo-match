@@ -3,20 +3,21 @@
 from datetime import datetime, timedelta
 
 from src.app.jobs.candidate import Candidate
-from src.core.places import mentions_area, resolve_places
+from src.core.places import resolve_places
 
 
-def _declared_elsewhere(declared: str, candidate: Candidate, country: str) -> bool:
-    """Every place the source declares is a known country that is not the user's, and the prose
-    names no place that may include it. Any doubt keeps the job for screening: a place the table
-    cannot read, a list that includes the user's country, "anywhere", or prose such as "offices
-    across LATAM"."""
+def _declared_elsewhere(declared: str, country: str) -> bool:
+    """Every place the source declares is a known country that is not the user's.
+
+    The employer's own policy decides, whatever the prose says (user decision: a "Mexico only"
+    policy rules out a user in Argentina even if a company blurb says "work globally"). Doubt
+    about the declaration itself keeps the job: a place the table cannot read, a list that
+    includes the user's country, or "anywhere".
+    """
     places = resolve_places([place.strip() for place in declared.split(",") if place.strip()])
     if not places.countries or places.unknown or places.ambiguous or places.worldwide:
         return False
-    if country in places.countries:
-        return False
-    return not mentions_area(f"{candidate.title}\n{candidate.raw_text}", country)
+    return country not in places.countries
 
 
 def office_abroad(candidate: Candidate, country: str | None) -> bool:
@@ -27,7 +28,7 @@ def office_abroad(candidate: Candidate, country: str | None) -> bool:
     """
     if country is None or candidate.modality not in ("hybrid", "onsite"):
         return False
-    return _declared_elsewhere(candidate.location_text, candidate, country)
+    return _declared_elsewhere(candidate.location_text, country)
 
 
 def residence_abroad(candidate: Candidate, country: str | None) -> bool:
@@ -35,7 +36,7 @@ def residence_abroad(candidate: Candidate, country: str | None) -> bool:
     (Get on Board's "Locally remote only: candidates must reside in Chile")."""
     if country is None or candidate.modality != "remote":
         return False
-    return _declared_elsewhere(candidate.residence_text, candidate, country)
+    return _declared_elsewhere(candidate.residence_text, country)
 
 
 def prefilter_reason(

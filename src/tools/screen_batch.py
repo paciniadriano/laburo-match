@@ -46,7 +46,8 @@ async def screen_batch_tool(
     # 3. Record what this call did and report the best jobs judged so far.
     async with sessions() as session:
         await add_screening_counters(session, run.id, _funnel_counters(stats, elapsed_ms))
-        result = await build_screen_result(session, run.id)
+        target_roles = tuple(run.plan.get("target_roles") or ())  # what this search looked for
+        result = await build_screen_result(session, run.id, target_roles)
         if result.status == "done":
             await mark_run_done(session, run.id)
         await session.commit()

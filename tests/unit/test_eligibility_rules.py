@@ -359,11 +359,11 @@ def test_remote_only_for_other_countries_is_not_eligible():
     assert "Argentina" in result.reason
 
 
-def test_remote_only_for_other_countries_but_open_in_the_text_is_doubtful():
-    result = judged([LATAM], ONLY_CHILE)
+def test_remote_only_for_other_countries_is_not_eligible_whatever_the_text_says():
+    result = judged([LATAM], ONLY_CHILE)  # user decision: the employer's policy wins
 
-    assert result.verdict == "doubtful"
-    assert "Remote within Latin America" in result.quotes
+    assert result.verdict == "not_eligible"
+    assert "As listed on Get on Board: candidates must reside in Chile" in result.quotes
 
 
 @pytest.mark.parametrize("modality", ["hybrid", "onsite"])

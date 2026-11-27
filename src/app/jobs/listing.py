@@ -7,10 +7,11 @@ seen in several searches appears once, with its latest judgement.
 from datetime import datetime
 from uuid import UUID
 
-from sqlalchemy import case, func, or_, select
+from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.config.constants import PREFILTER_REASON_TEXT, SOURCE_LABELS
+from src.core.relevance import title_relevance
 from src.db.models import Job, RunJob
 from src.models.listing import ListedJob, ListStatus
 
@@ -23,8 +24,13 @@ async def list_judged_jobs(
     offset: int,
     current_hash: str,
     now: datetime,
+    target_roles: tuple[str, ...] = (),
 ) -> tuple[list[ListedJob], int]:
-    """One page of jobs in `status` and the total; eligible first, then the newest posting."""
+    """One page of jobs in `status` and the total.
+
+    `all`: eligible first, then the title closest to `target_roles`, then the newest posting.
+    `filtered`: the newest first.
+    """
     latest = (
         select(RunJob)
         .where(RunJob.user_id == user_id, RunJob.status == "done")
@@ -36,8 +42,6 @@ async def list_judged_jobs(
     left_out = or_(row.prefilter_reason != "", row.eligibility == "not_eligible")
     in_status = left_out if status == "filtered" else ~left_out
 
-    total = await session.scalar(select(func.count()).select_from(latest).where(in_status)) or 0
-    eligible_first = case((row.eligibility == "eligible", 0), else_=1)
     rows = await session.execute(
         select(
             Job,
@@ -49,15 +53,26 @@ async def list_judged_jobs(
         )  # fmt: skip
         .join(Job, Job.id == row.job_id)
         .where(in_status)
-        .order_by(eligible_first, Job.posted_at.desc().nulls_last(), Job.title, Job.id)
-        .limit(limit)
-        .offset(offset)
     )
+    # Ordered in Python: title relevance is not something SQL can compute. A user has at most a
+    # few hundred judged jobs, so reading them all to sort one page is cheap.
+    ordered = sorted(rows.all(), key=lambda r: _order(r[0], r[2], status, target_roles))
+    page = ordered[offset : offset + limit]
     items = [
         _listed(job, prefilter, verdict, reason, judged_hash, screened_at, now, current_hash)
-        for job, prefilter, verdict, reason, judged_hash, screened_at in rows.all()
+        for job, prefilter, verdict, reason, judged_hash, screened_at in page
     ]
-    return items, total
+    return items, len(ordered)
+
+
+def _order(
+    job: Job, eligibility: str | None, status: ListStatus, target_roles: tuple[str, ...]
+) -> tuple[int, int, float, str, str]:
+    newest = -(job.posted_at.timestamp() if job.posted_at else 0.0)
+    if status == "filtered":
+        return (0, 0, newest, job.title, str(job.id))
+    relevance = -title_relevance(job.title, target_roles)
+    return (0 if eligibility == "eligible" else 1, relevance, newest, job.title, str(job.id))
 
 
 def _listed(

@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.eligibility.result import DISCLAIMER
 from src.app.jobs.listing import list_judged_jobs
-from src.app.profile.store import load_constraints
+from src.app.profile.store import load_constraints, load_target_roles
 from src.app.screening.screening_hash import screening_hash
 from src.config.constants import LIST_JOBS_MAX_LIMIT
 from src.core import clock
@@ -24,14 +24,15 @@ async def list_jobs_tool(
     limit: int = 20,
     offset: int = 0,
 ) -> ListJobsResult:
-    # 1. The current profile tells which verdicts are stale.
+    # 1. The current profile tells which verdicts are stale and which titles go first.
     current_hash = screening_hash(await load_constraints(session, user_id))
+    target_roles = await load_target_roles(session, user_id)
 
     # 2. Read one page, within the size the host's context can take.
     limit = max(1, min(limit, LIST_JOBS_MAX_LIMIT))
     offset = max(0, offset)
     items, total = await list_judged_jobs(
-        session, user_id, status, limit, offset, current_hash, clock.now()
+        session, user_id, status, limit, offset, current_hash, clock.now(), target_roles
     )
 
     # 3. Say whether there is more, and what the host should do with it.

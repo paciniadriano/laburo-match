@@ -74,15 +74,6 @@ WORLDWIDE_WORDS = (
     "mundo", "mundial", "cualquier", "lugar", "parte",
 )  # fmt: skip
 
-# Phrases that, anywhere in a posting's prose, may open it to people in any country. Only used
-# to *keep* a job the prefilter would discard, so a phrase here can cost an LLM call, never a
-# valid job. "global" alone is left out ("a global company" says nothing), but "globally" is in:
-# "flexibility in work location globally" (Niuro) contradicts a "Mexico only" policy.
-OPEN_PLACE_PHRASES = (
-    "anywhere", "worldwide", "globally", "from any country", "any country", "americas",
-    "cualquier lugar", "cualquier parte", "cualquier pais", "todo el mundo", "desde cualquier",
-)  # fmt: skip
-
 # Terms that name no definite set of countries. "Americas" may or may not include a given
 # country, and "remote" says nothing about where. They can only mean `doubtful`.
 AMBIGUOUS_TERMS = ("americas", "emea", "apac", "remote", "remoto")
