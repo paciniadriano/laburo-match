@@ -155,6 +155,10 @@ def test_a_remote_job_only_for_people_in_other_countries_is_discarded():
             remote_for("Chile", "Buscamos talento en toda Latinoamerica"),
             "the text names a region that may include the user's country",
         ),
+        (
+            remote_for("Mexico", "allowing flexibility in work location globally"),
+            "the text contradicts the source: screening judges it (found in the 2.18 demo)",
+        ),
     ],
 )
 def test_a_remote_job_stays_when_there_is_any_doubt(job: Candidate, why_it_stays: str):

@@ -76,9 +76,10 @@ WORLDWIDE_WORDS = (
 
 # Phrases that, anywhere in a posting's prose, may open it to people in any country. Only used
 # to *keep* a job the prefilter would discard, so a phrase here can cost an LLM call, never a
-# valid job. Single words like "global" are left out: "a global company" says nothing.
+# valid job. "global" alone is left out ("a global company" says nothing), but "globally" is in:
+# "flexibility in work location globally" (Niuro) contradicts a "Mexico only" policy.
 OPEN_PLACE_PHRASES = (
-    "anywhere", "worldwide", "from any country", "any country", "americas",
+    "anywhere", "worldwide", "globally", "from any country", "any country", "americas",
     "cualquier lugar", "cualquier parte", "cualquier pais", "todo el mundo", "desde cualquier",
 )  # fmt: skip
 

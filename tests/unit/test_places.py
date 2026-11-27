@@ -112,6 +112,7 @@ def test_a_spanish_exclusion_is_still_unreadable_even_with_the_quantifier():
         "Trabajo 100% remoto desde Argentina",
         "Puedes trabajar desde cualquier lugar",
         "Open to the Americas",
+        "Niuro supports a 100% remote work model, allowing flexibility in work location globally",
     ],
 )
 def test_prose_that_may_include_the_users_country_is_noticed(text: str):
