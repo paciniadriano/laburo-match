@@ -5,7 +5,7 @@
 
 Capstone project for the Agentic AI Engineering course (MCP server track). The full system specification lives in `specs/system.md`; read it when you need details. This file holds the rules, conventions and decisions that apply to every session. Testing rules live in `.claude/rules/testing.md` and load when working on tests, evals or fixtures.
 
-**Current phase: 2 — Vertical slice**
+**Current phase: 3 — Profile**
 
 ---
 

@@ -10,7 +10,7 @@
 **Order:** 2.1 → 2.13. Each task ends with its test passing and a small commit.
 
 ## Prerequisites
-- [ ] OpenAI key in the real `.env`. Tasks up to 2.10 run on fakes; the key is needed from 2.11 (client demo) and 2.13 (eval).
+- [x] OpenAI key in the real `.env`. Tasks up to 2.10 run on fakes; the key is needed from 2.11 (client demo) and 2.13 (eval).
 
 ## 2.1 Skeleton and tooling
 - [x] `src/` layout from `CLAUDE.md` (only the folders this phase uses) and a `Makefile`. It starts with `setup`, `db`, `test`, `test-fast`, `lint`, `format`; the other targets (`dev`, `up`, `down`, `migrate`, `seed`, `client`, `eval`) arrive with the pieces they run.
@@ -117,22 +117,22 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] The places resolver moves to `core/` (search and eligibility both use it)
 - [x] The eval runs the same prefilter on the fixtures' source fields; the client shows what was left out and why
 - [x] Offline check (code only, no LLM) on dev: the prefilter removes job 14 only, labelled `not_eligible`
-- [ ] `make eval` on dev with the prefilter: expected 10/10, $0 (cached)
-- [ ] Demo: `make up`, empty the runs, `make client`: no hybrid/on-site abroad in the shortlist
+- [x] `make eval` on dev with the prefilter: 10/10, $0 (cached), see 2.18
+- [x] Demo: `make up`, empty the runs, `make client`: no hybrid/on-site abroad in the shortlist (live demo in 2.18)
 - Note: the `remote_local` choice was checked on dev job 04 and on test job 09, so the test split is no longer fully untouched for that rule. That choice was later found wrong and replaced in 2.18.
 
 ## 2.15 Search everything (user decision: a job seeker wants every job they can apply to)
 - [x] `MAX_NEW_JOBS_PER_SEARCH` becomes a safety limit (300); `search_jobs(max_new=300)` queues every job that passes the filters, most relevant first
 - [x] Prefilter `duplicate`: same employer, title and place inside one search keeps the newest; no employer name, no merge
 - [x] `make record-fixtures` records every page of the category (50 jobs per file, under the 1 MB hook); the demo replays all pages in order, a job on two pages kept once
-- [ ] The user runs `make record-fixtures` (free) and commits the new pages
+- [x] The user runs `make record-fixtures` (free); the new pages are committed (286, then 289 jobs with residence countries)
 
 ## 2.16 Time-boxed screening rounds (user decision: first results within ~30 s)
 - [x] `screen_batch` = one round of `SCREEN_ROUND_SECONDS` (20): a pool of `LLM_CONCURRENCY` workers, most relevant first, each verdict saved at once; at the deadline in-flight jobs go back to the queue without counting an attempt
 - [x] Every round returns the best jobs judged so far (`partial` / `done`); the host shows them and continues only if the user asks (server instructions, hints, client rules)
 - [x] `SCREEN_MAX_JOBS_PER_CALL` becomes a safety limit (300); the run's funnel stores `screen_ms`; the client prints how long each answer took
 - [x] Tests: the round stops at its budget and releases unfinished jobs uncounted; cached jobs all fit in one round with a slow model; first job alone, then at most N workers; safety limit; retry inside the round; cancellation still releases claims
-- [ ] Measured: first search on the full recording, wait in seconds, `screen_ms`, and jobs judged in the first round; tune `LLM_CONCURRENCY` from it
+- [x] Measured: with `LLM_CONCURRENCY=4` the first answer took 28 s and the first round judged 24 jobs (31 LLM calls, about 4 s each); raised to 8, the live 2.18 demo judged all 53 in one round and answered in 19 s
 
 ## 2.18 What Get on Board declares (found in the 2.17 demo: 26 remote jobs "said nothing about where")
 - [x] The API is asked for `location_tenants` names; `jobs.residence_text` (migration): `anywhere` for `fully_remote`, the countries for `remote_local`
@@ -171,11 +171,11 @@ A verdict is marked `stale` only when the profile changes (`screening_hash`). A 
 - **Phase 8:** auth, limits, Azure CD; a global limit on simultaneous LLM calls across users (each `screen_batch` round runs `LLM_CONCURRENCY` workers, so several users at once multiply them and hit the provider's rate limit).
 
 ## Definition of done
-- [ ] `make test` green (unit, integration, contract, e2e, client smoke) on `laburo_test`; `make lint` clean
-- [ ] CI green on the PR
-- [ ] `make up` → `make seed` → `search_jobs` → `screen_batch` → shortlist, working from the terminal client **and** from Claude Code (output shown)
-- [ ] Eligibility eval on dev: 0 valid jobs `not_eligible`; result recorded here
-- [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
-- [ ] PR to `main`; **Current phase** → 3
+- [x] `make test` green (unit, integration, contract, e2e, client smoke) on `laburo_test`; `make lint` clean (2026-11-28: 389 passed; ruff, format and pyright clean)
+- [x] CI green on the PR (#2: secret scan, lint, dependency audit and tests)
+- [x] `make up` → `make seed` → `search_jobs` → `screen_batch` → shortlist, working from the terminal client **and** from Claude Code (output shown: terminal demos in 2.11, 2.17, 2.18; Claude Code in 2.10 and the partial-round check in 2.18)
+- [x] Eligibility eval on dev: 0 valid jobs `not_eligible`; result recorded here (10/10 after 2.19)
+- [x] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
+- [x] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.19 done, dev eval 10/10 at $0, Claude Code waits after a partial round. Phase close and PR wait for the user.
+Stopped at: phase 2 closed (2026-11-28). Next: phase 3 (profile), starting with its spec in plan mode.
