@@ -35,3 +35,7 @@ Thumbs.db
 
 # --- Local spike notebook (experiments and results; never committed) ---
 spikes/
+
+# --- Eval output: cached model answers and per-run results (reproducible, may be large) ---
+.cache/
+evals/results/

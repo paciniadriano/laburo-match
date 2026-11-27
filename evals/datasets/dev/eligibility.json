@@ -114,7 +114,7 @@
     {
       "job": "08",
       "fixture": "fixtures/postings/getonbrd/08.txt",
-      "verdict": "doubtful",
+      "verdict": "eligible",
       "hidden_by_aggregator": false,
       "doubt": "1099",
       "restrictions": [
@@ -134,7 +134,8 @@
           ],
           "compatible": "unknown"
         }
-      ]
+      ],
+      "relabelled": "2026-11-28: fully remote; a 1099 contractor abroad signs a W-8BEN, so 1099 is a badge (user decision)"
     },
     {
       "job": "10",
@@ -163,9 +164,10 @@
     {
       "job": "11",
       "fixture": "fixtures/postings/getonbrd/11.txt",
-      "verdict": "doubtful",
+      "verdict": "eligible",
       "hidden_by_aggregator": false,
-      "doubt": "remote_only"
+      "doubt": "remote_only",
+      "relabelled": "2026-11-28: Get on Board's policy says candidates can reside anywhere in the world (user decision)"
     },
     {
       "job": "13",

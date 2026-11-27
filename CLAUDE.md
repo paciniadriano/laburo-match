@@ -5,7 +5,7 @@
 
 Capstone project for the Agentic AI Engineering course (MCP server track). The full system specification lives in `specs/system.md`; read it when you need details. This file holds the rules, conventions and decisions that apply to every session. Testing rules live in `.claude/rules/testing.md` and load when working on tests, evals or fixtures.
 
-**Current phase: 2 — Vertical slice**
+**Current phase: 3 — Profile**
 
 ---
 
@@ -60,7 +60,7 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 - `.gitattributes` forces LF line endings.
 - **No secrets in the project folder.** The real `.env` lives outside the repo (e.g. `~/.config/laburo-match/.env`) and is found through `ENV_FILE_PATH`. The repo only contains `.env.sample` with fake values (course requirement).
 - Windows hosts (Claude Desktop, possibly Cursor) reach the server through `localhost`. In the container the server binds `0.0.0.0` and compose publishes `127.0.0.1:8000:8000`; `make dev` binds `127.0.0.1`.
-- `DEMO_MODE=true` in the local `.env` until phase 4, to protect the SerpApi quota.
+- `DEMO_MODE` only switches Get on Board between its recording and the live API while no SerpApi adapter exists, and live Get on Board is free, so the local `.env` may run with `DEMO_MODE=false`. Before the SerpApi adapter lands, demo mode must be split per source, or turning it off would spend SerpApi searches.
 
 ---
 
@@ -89,14 +89,15 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 ```
 src/
   server.py              # create_mcp_server(): FastMCP app, lifespan (DB pools, httpx), auth, middleware
-  routers/               # MCP contract only: tools.py, resources.py, prompts.py, ui.py (custom HTTP routes)
-  tools/                 # one file per tool: orchestration + DB reads/writes
-  app/                   # business logic: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
+  routers/               # MCP contract only: tools.py, resources.py, prompts.py, ui.py (custom HTTP routes); context.py (AppState, user session), error_mapping.py
+  tools/                 # one file per tool, written as the ordered steps of that tool (see Code conventions)
+  resources/             # one file per MCP resource (phase 5)
+  app/                   # business logic by domain, with its own SQL: profile/, search/, jobs/, eligibility/, matching/, qa/, drafting/, geo/
   sources/               # source adapters (google_jobs, getonbrd)
-  llm/                   # tasks.py (LLM_TASKS registry), factory.py, fake.py, eval cache
-  models/                # Pydantic domain models and tool I/O schemas
-  db/                    # SQLAlchemy models, session, query helpers
-  prompts/               # MCP prompt texts + shared fragments + LLM prompt templates + few-shot examples + application_guidelines.md
+  llm/                   # tasks.py (LLM_TASKS registry), runner.py (llm.run), messages.py, versioning.py, openai_backend.py, prompts/ (one file per LLM task), eval cache
+  models/                # Pydantic contracts: LLM outputs, profile blocks, tool I/O schemas
+  db/                    # database infrastructure only: base, session, models/ (the tables), migrations, startup
+  prompts/               # host-facing only: MCP prompt texts, shared workflow fragments, application_guidelines.md (LLM task prompts live in llm/prompts/)
   config/                # settings.py (pydantic-settings), constants.py, data/{locations,levels,known_sites,role_families}.py
   core/                  # errors.py, logging.py, observability.py, usage.py (costs/limits), clock.py, security.py
   ui/upload.html         # CV upload page (plain HTML + vanilla JS)
@@ -119,6 +120,8 @@ alembic/                 # migrations
 - All code, comments, docs and commit messages in **English**. Server messages (errors, hints, disclaimers) are in English too; the host translates them.
 - **Readable over clever.** Small functions, explicit names, docstrings that explain the *why* of the current design (never the history of how we got there).
 - Three layers: `routers/` (MCP contract and docstrings for the LLM) → `tools/` (orchestration) → `app/` (logic and API clients). Routers never contain logic.
+- **A `tools/` file reads as the ordered steps of the tool** (validate → call named functions → shape the result). Any step longer than a few lines becomes a function in `app/<domain>/`, named for what it does, so the tool stays short and each piece is testable alone.
+- **SQL lives with its domain** (`app/jobs/store.py`, `app/search/runs.py`), never in `tools/` or `routers/`. `db/` holds no queries. `models/` are Pydantic contracts; `db/models/` are the tables. Helpers used by several domains go in `core/`, never imported sideways from another domain.
 - **Tool parameters use simple types**: `str`, `int`, `bool`, `list[str]`, `Literal[...]`, with defaults instead of `None`. No `Optional`, no unions. A contract test enforces it on input schemas.
 - Tools exchange **IDs** (`run_id`, `job_id`), not large text. Results are typed Pydantic models, compact, with a short `next_step_hint`.
 - Errors: domain exceptions mapped to `ToolError` with a stable `error_code` and an actionable message. Never return stack traces (`mask_error_details=True`).
@@ -129,7 +132,7 @@ alembic/                 # migrations
 - **No server-side state in memory between requests.** Runs, drafts, pending changes and leases live in Postgres.
 - All time through `core.clock.now()`, also in SQL: pass `:now` as a parameter, never the database `now()`. All HTTP through the shared client. One DB session per concurrent task (never share a session inside `asyncio.gather`).
 - Writes that depend on a version use optimistic concurrency (`UPDATE … WHERE version = :expected`).
-- Long-running tools (`screen_batch`, `draft_application`) release their claims or expire their lease in a `finally` when the call is cancelled.
+- Long-running tools (`screen_batch`, `draft_application`) release their claims or expire their lease in a `finally` when the call is cancelled, inside an `anyio.CancelScope(shield=True)` → FastMCP cancels with anyio scopes, where every `await` in a cancelled scope raises again, so an unshielded cleanup never runs; a test cancels through a scope, because `Task.cancel()` would pass without the shield.
 - `user_id` always comes from the auth context (`get_current_user_id()`, `"local"` without auth), never from a tool argument.
 - In LangGraph, everything non-deterministic (LLM calls, clock reads) lives inside `@task`.
 - No generic repository classes, no DI framework, no Redis, no queues.
@@ -178,14 +181,22 @@ alembic/                 # migrations
 - Core value = eligibility from the user's location, not job aggregation → aggregation already exists in several MCP servers; eligibility for candidates outside the hiring country does not.
 - v1 targets tech roles (sources, planner, fixtures, evals); the architecture stays domain-agnostic → clear metrics and coherent examples without blocking other domains later.
 - Country, citizenships, work authorizations and modalities come from the profile; nothing is hardcoded → works for any country.
-- Remote, hybrid and on-site supported; hybrid/on-site require an office within the max commute distance from the user's confirmed home location, an extra accepted city, or a relocation country where the user can work → covers local markets too. It is the last, decoupled block of phase 4 → it can be postponed without touching the rest.
+- Remote, hybrid and on-site supported; hybrid/on-site require an office within the max commute distance from the user's confirmed home location or in an extra accepted city → covers local markets too. No relocation countries → user decision: out of scope. It is the last, decoupled block of phase 4 → it can be postponed without touching the rest.
 - Office locations are normalized by the LLM (city, region, ISO country; a list when the posting names several offices) and resolved with a pinned GeoNames `cities500` snapshot; distance is computed in code; unresolvable locations → `doubtful` → global coverage without hand-made zone tables.
-- Hybrid/on-site whose office country is known and differs from the user's country (and is not a relocation country) is `not_eligible` even if the city is unknown; unknown country or unresolvable city in an acceptable country is `doubtful` → a border cannot be crossed daily, so waiting for a city adds nothing.
+- Hybrid/on-site whose office country is known and differs from the user's country is discarded even if the city is unknown; unknown country or unresolvable city in an acceptable country is `doubtful` → a border cannot be crossed daily, so waiting for a city adds nothing.
+- When the source declares modality and country (Get on Board's `remote_modality` and `countries`), the search prefilter discards those jobs as `office_abroad` (and remote jobs only for other countries as `residence_abroad`), before the cap and with no LLM call, whatever the prose says (user decision: the employer's own policy beats a company blurb such as "work globally") → the cap fills with possible jobs; in the demo data 20 of 30 jobs were hybrid in Chile, the model found the office city in only 7 of the 15 it called hybrid, and on the 15 hand-labelled postings the rule removes exactly the two labelled `not_eligible`.
+- A search queues every job that passes the filters, most relevant first; `MAX_NEW_JOBS_PER_SEARCH` (300) is only a safety limit → a job seeker wants everything they can apply to; an extraction costs about $0.00024, is paid once per job and is shared by every user, so the count is not what limits the wait.
+- Postings of the same opening inside one search (same employer, title and place) keep only the newest (`duplicate`); without an employer name nothing is merged → one opening is one decision; cross-portal and cross-run dedupe stay in phase 4.
+- `list_jobs` arrives in phase 2, read-only, with `all` and `filtered` only; the decision statuses join in phase 6 → user decision: once a search queues every possible job, more than the 10 shortlist cards must be reachable, and statuses that cannot have rows yet would only confuse the host.
+- Get on Board's remote work policy is explicit evidence, apart from the posting text: `fully_remote` ("candidates can reside anywhere in the world") makes a job `eligible` unless the text asks for something no one abroad can meet (citizenship, US work authorization or visa, clearance, W2, SSN) or names a country that excludes the user (then `doubtful` with both quotes); `remote_local` ("candidates must reside in" the expanded `location_tenants`) opens the job when the list includes the user's country and rules it out otherwise, whatever the text says (`residence_abroad` in the prefilter; user decision after the Niuro postings: "Mexico only" on the form, "work location globally" in the blurb) → user decision after reading the job pages; an earlier reading of `remote_local` as plain remote was wrong. Cards cite it as "As listed on Get on Board: …", never as posting text.
 - The user's home location is resolved once in setup and confirmed; if it is not in the dataset, the user names the nearest town → ambiguity (many "San Martín") and misses are handled once, not per job.
+- A restriction whose quotes the code cannot verify is downgraded to `inferred`, never deleted → it can only make the job `doubtful`: a fake quote must not discard a good job, and removing a real restriction must not promise an `eligible` one.
 - Eligibility verdicts have formal definitions: `not_eligible` needs an explicit, uncontradicted restriction the profile does not meet; `eligible` needs all explicit restrictions met plus an explicit compatible location signal; everything else is `doubtful` → testable and never overconfident.
 - Inferred restrictions (e.g. US-only benefits) can only make a job `doubtful`; contradictory explicit statements → `doubtful` with both quotes and a question for the recruiter → never discard on guesses.
 - Unknown profile fields (`None` = never asked, different from a confirmed empty value) can only produce `doubtful`; the questions are aggregated at the review stop → never discard on missing data, never ask job by job.
 - Payroll, citizenship and clearance phrases ("W2 only", "US SSN", "US citizens only", "security clearance") map to required authorizations/citizenships and are compared with the profile → nothing is absolute; it depends on who the user is.
+- An explicit "work from anywhere" is a compatible location signal only if nothing else in the posting excludes the user's country; regions such as "Americas" or unknown places stay `doubtful` → the other restrictions of the posting are still judged, so a posting open to everyone cannot hide a restriction that rules the user out.
+- An ordinary contract type (contractor, employee) is shown as a badge and never changes a verdict; only US-specific payroll phrases (W2, SSN) matter, as work-authorization requirements; "1099 contractor" is a badge with a note → contract type says nothing about where a person may live; checked on the spike postings, where a plain "contractor" had wrongly kept three valid jobs `doubtful`; a contractor abroad signs a W-8BEN instead of receiving a 1099 (tax guides, user decision).
 - Rules may only discard when the profile is incompatible; positive verdicts need extraction + deterministic comparison → cheap filters never remove valid jobs.
 - The title prefilter discards only through an explicit blocklist of other role families, and only when the title shares no keyword with the target roles or stack; above the cap, jobs are ordered by title relevance and recency and the rest are `over_cap`, not discarded → noise does not eat the cap and synonyms ("UI Developer") are never lost.
 - Eligibility is presented as an estimate, never as legal advice → the employer has the final word.
@@ -194,13 +205,15 @@ alembic/                 # migrations
 - Drafts may frame and emphasize freely but never state false verifiable facts (years, titles, employers, authorizations, salary) → false facts are checked in interviews and cost the user the job.
 - Tone is never moralistic: describe the situation, give strategies → the tool works for the user.
 - Fit is shown as bands (High/Medium/Low), not percentages → percentages imply false precision.
-- Shortlist order: eligibility → fit band → job age → most useful first.
+- Shortlist order: eligibility → fit band → job age → most useful first. Until matching gives a fit band (phase 5), the title's relevance to the target roles stands in for it, in the shortlist and in `list_jobs` → user decision: Oracle, VoIP and SAP titles were topping a frontend list.
+- The shortlist shows at most 10 cards, with totals for the rest → tool results enter the host's context on every later turn, and one review stop must stay something a person can judge in one pass; the others stay in `run_jobs` for `list_jobs`.
 - Best apply route: company/ATS link → `apply_email` (only if stated verbatim) → aggregator link → the most direct route first.
 - Agency and ghost-job signals are warnings, never automatic discards → the user decides.
 
 ### Sources
 - Google Jobs via SerpApi + Get on Board; any other posting is pasted into `analyze_posting` → legal, public, no scraping.
 - The server never fetches posting URLs; hosts with web tools may read a page and pass its text, except blocked sites, where the user pastes it → no SSRF surface, no crawler or headless browser; hosts already have web access.
+- Get on Board jobs always carry the source name and a link to their `public_url`, and that link is their apply route; our analysis is shown apart and labelled as an estimate; one page at a time, backing off on 429 → its terms require attribution and sending applicants to its page, keep job data as returned and allow 20 requests per 5 s per IP.
 - Remotive is not used → its terms (≤ 4 requests/day, no use to collect sign-ups) do not fit a multi-user server.
 - SerpApi has a hard monthly cap in code (200 of the 250 free searches); replans and fixture recording count against it → the quota is never exceeded by accident.
 - No per-user source settings: location and language come from the profile, categories from the planner, max age from the exclusions → no extra table and no tool to edit it.
@@ -211,7 +224,8 @@ alembic/                 # migrations
 - `search_jobs` (fast) + `screen_batch` (extract, eligibility, matching) instead of one tool per step → fewer agent turns, protected against host timeouts.
 - `screen_batch` is idempotent and safe under concurrency: jobs are claimed with `SELECT … FOR UPDATE SKIP LOCKED`, have per-job status and attempts, stale `processing` rows are reset, failures are retried once → partial failures never break a run.
 - Design for a 60 s host timeout: one tool call must finish in about 30 s; progress notifications are not relied on to extend it → measured: Inspector cuts at 60 s even with progress, Claude Code waited > 90 s; Claude Desktop (via `mcp-remote`) completed a 70 s call, Cursor not yet measured; on Azure a cold start adds 23–26 s to the first request after idle.
-- `screen_batch` processes a capped number of jobs per call, derived from measured host timeouts, and returns `remaining`; intermediate calls return progress only and the call that finishes returns the full shortlist → long work never exceeds host limits, fewer tokens, no partial lists shown.
+- `screen_batch` is one round bounded by time (`SCREEN_ROUND_SECONDS`, 20 s): a pool of `LLM_CONCURRENCY` workers takes the next job by relevance as soon as one is free, saves each verdict at once, and at the deadline gives the jobs in flight back to the queue without counting an attempt; every round returns the best jobs judged so far and `remaining`, and the host continues only if the user asks → user decision: the first results must arrive within ~30 s, so time, not a job count, is the limit; cached jobs take milliseconds and a round covers them all; a pool never waits for the slowest job of a batch; a failed job is retried once inside the same round.
+- Extraction cache also stores `chars_read` (length of the capped text the model saw) → a changed size cap re-extracts only the postings it cut or can now read whole, and never invalidates the ones that fitted either way.
 - Job-level facts are extracted once and cached; user-level comparison is code → one LLM call per job regardless of how many users see it.
 - Extraction marks each restriction as explicit, inferred or contradictory, with quotes → eligibility precedence rules need it.
 - Extraction: one job per LLM call, in parallel with a concurrency limit; batch size is a setting decided by an experiment → isolation and quality; tokens cost the same either way.
@@ -247,9 +261,11 @@ alembic/                 # migrations
 - Deterministic tables are Python modules (`config/data/`), not YAML → typed, testable, no loader.
 - One usage/cost module for per-user quotas, global ceiling, SerpApi monthly cap, eval budget and cost display → one mechanism, five uses.
 - Migrations, checkpointer setup and the GeoNames load run at container start under one advisory lock → works locally and with multiple replicas.
+- Alembic runs on a synchronous engine (same psycopg 3 driver) while the app is async → startup scripts and test fixtures call it where an event loop may already be running, and `asyncio.run` inside it would fail.
 
 ### MCP interface
 - 12 tools, 2 prompts, 4 resources (see `specs/system.md`).
+- Domain errors become `ToolError("[CODE] message")` through a decorator applied by `register_mcp_tools`, not through middleware; the `tools/` functions end in `_tool` so the router's function can carry the public name → FastMCP masks every exception inside the tool call (`mask_error_details=True`), before any middleware runs, so a middleware only ever sees the generic message.
 - Workflow recipe lives in one Python function used by the MCP prompts, the `get_workflow_instructions` tool and the server `instructions`; the skill calls the tool → single source of truth.
 - Project skill `.claude/skills/laburo-match/SKILL.md` is the entry point ("find me jobs") → course lesson: abilities in MCP, procedures in skills, existing binaries via CLI.
 - Anything the model must read also exists as a tool, not only as a resource → resources are host-controlled and unevenly supported.
@@ -266,6 +282,7 @@ alembic/                 # migrations
 ### Quality and operations
 - Evaluation starts in phase 1 (idea validation) and grows every phase; datasets split into dev (tuning) and held-out test (milestones only) → no inflated results from tuning on the test set.
 - Spikes have numeric go/no-go thresholds and a plan B, written before running them → results cannot move the goalposts.
+- Every test gets a strict `FakeLLM` through an autouse fixture, and `llm.run` retries an invalid answer exactly once → no test can reach a real provider by accident, and a failing model cannot loop and burn money.
 - Tests use FakeLLM + respx fixtures; one fixture set shared by tests, evals and demo mode → $0 CI, deterministic results.
 - Tests run on a separate `laburo_test` database and abort on any other name → the real profile in the dev database is never touched.
 - Fixtures from real postings are scrubbed of contact data (script + test) → no third-party PII in a public repo.
