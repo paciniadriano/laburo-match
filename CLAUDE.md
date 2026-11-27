@@ -60,7 +60,7 @@ Capstone project for the Agentic AI Engineering course (MCP server track). The f
 - `.gitattributes` forces LF line endings.
 - **No secrets in the project folder.** The real `.env` lives outside the repo (e.g. `~/.config/laburo-match/.env`) and is found through `ENV_FILE_PATH`. The repo only contains `.env.sample` with fake values (course requirement).
 - Windows hosts (Claude Desktop, possibly Cursor) reach the server through `localhost`. In the container the server binds `0.0.0.0` and compose publishes `127.0.0.1:8000:8000`; `make dev` binds `127.0.0.1`.
-- `DEMO_MODE=true` in the local `.env` until phase 4, to protect the SerpApi quota.
+- `DEMO_MODE` only switches Get on Board between its recording and the live API while no SerpApi adapter exists, and live Get on Board is free, so the local `.env` may run with `DEMO_MODE=false`. Before the SerpApi adapter lands, demo mode must be split per source, or turning it off would spend SerpApi searches.
 
 ---
 

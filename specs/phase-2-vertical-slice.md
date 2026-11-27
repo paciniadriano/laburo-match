@@ -141,20 +141,27 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [x] "1099 contractor" becomes a badge with a W-8BEN note (user decision, after checking tax guides)
 - [x] Dev labels 08 and 11 relabelled `eligible` (both fully remote; user decision, noted in the dataset)
 - [x] Offline check from the eval cache (no provider allowed): dev 10/10, 0 valid jobs `not_eligible`, 9 cache hits, 0 calls
+- [x] Audit of the deterministic discards on live data (2026-11-28, 289 jobs; the prefilter would remove 147 `office_abroad` and 34 `residence_abroad`, and open 62 as fully remote): a random sample of 12 + 12 + 4 checked against each job page's own remote work policy, **28/28 agree**, no page names Argentina or Latin America as open. Zero errors in 24 discards still allows a rate up to about 12 % (rule of three), so the audit is repeated when a rule changes
+- [x] `DEMO_MODE` verified: it only switches Get on Board between recording and live API (no SerpApi path exists); a live fetch parsed 289 jobs with no warnings and residence declared for 123 of 130 remote ones
 - [ ] The user re-records (`make record-fixtures`, now with the residence countries) and runs the demo
+- [ ] Check once in Claude Code that a `partial` round waits for the user instead of chaining rounds on its own
 
 ## 2.17 `list_jobs`, read-only (user decision A)
 - [x] `list_jobs(status: Literal["all","filtered"] = "all", limit: int = 20, offset: int = 0)`: the user's latest verdict per job across runs, eligible first; `filtered` shows prefilter and `not_eligible` discards with a readable reason; `stale` when the profile changed; pages of at most 50
 - [x] Contract, isolation between users, paging, stale marker and filtered-reason tests; the client prints listings itself
 - Replaces the earlier limitation (jobs beyond the 10 cards could not be opened until phase 6).
 
+## Known limitation: verdicts do not notice rule changes
+A verdict is marked `stale` only when the profile changes (`screening_hash`). A change of rules, or of what the source declares about a job, leaves old verdicts as they were, and judged jobs count as already seen in later searches. Accepted while the rules are being stabilized (user decision): after a rule change, reset with `TRUNCATE run_jobs, search_runs CASCADE` (extractions stay cached, so re-screening costs almost nothing). **Must be fixed before data that cannot be thrown away exists**: saved decisions (phase 6) or other users; the fix is a rules version plus the declared fields inside the verdict fingerprint.
+
 ## Out of scope (later phases)
 - **Phase 3:** CV upload and profile tools.
+- **Phase 4, before the second source** (from the Get on Board coupling review): `SourceQuery.categories` and the plan's fixed `programming` / `getonbrd` / "Searched Get on Board" become a per-source query; `location_text` is read as office countries by the prefilter and screening, so an explicit `office_countries` field replaces that reading; the `"anywhere"` value of `residence_text` becomes a typed field; the eligibility eval stores neutral declared fields per item instead of parsing the spike fixture header; split `DEMO_MODE` per source.
 - **Phase 4:** the planner must map target roles to Get on Board categories (phase 2 always searches `programming`, so AI roles never fetch AI jobs); Google Jobs declares no modality, so the office-country rule must also run at screening for its jobs (see `system.md` §9 note); the 300 safety limit and `SEARCH_FETCH_LIMIT` apply to the merged pool, so paid SerpApi results must get their own room (queued first or a per-source share) and never land in `over_cap`, where the credits they cost would be wasted; SerpApi, cross-portal dedupe, LLM planner and replan, role-family prefilter, timezone/payroll/citizenship tables, hybrid/GeoNames.
 - **Phase 5:** matching, and the other tools, prompts and resources.
 - **Phase 6:** decisions, drafts, LangGraph checkpointer.
 - **Phase 7:** full Opik.
-- **Phase 8:** auth, limits, Azure CD.
+- **Phase 8:** auth, limits, Azure CD; a global limit on simultaneous LLM calls across users (each `screen_batch` round runs `LLM_CONCURRENCY` workers, so several users at once multiply them and hit the provider's rate limit).
 
 ## Definition of done
 - [ ] `make test` green (unit, integration, contract, e2e, client smoke) on `laburo_test`; `make lint` clean
@@ -164,4 +171,4 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.18 built (396 tests). Left for the user: JOB_MAX_AGE_DAYS=60 (+ `make seed`), optional LLM_CONCURRENCY=8, `make record-fixtures`, `make up` + demo, `make eval`; then Definition of Done and the PR to main.
+Stopped at: 2.18 built and audited (396 tests; 28/28 sampled discards agree with the job pages). Left for the user: optional DEMO_MODE=false, `make record-fixtures`, `make up` + demo, `make eval`; a Claude Code check of partial rounds. Phase close and PR wait for the user.
