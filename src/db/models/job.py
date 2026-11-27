@@ -33,6 +33,7 @@ class Job(Base):
         ),
         Index("ix_jobs_fingerprint", "fingerprint"),
         CheckConstraint("source IN ('google_jobs','getonbrd','pasted')", name="source"),
+        CheckConstraint("modality IN ('remote','hybrid','onsite','unknown')", name="modality"),
     )
 
     id: Mapped[UuidPk]
@@ -49,6 +50,9 @@ class Job(Base):
     company_domain: Mapped[str] = mapped_column(default="")
     title: Mapped[str]
     location_text: Mapped[str] = mapped_column(default="")
+    modality: Mapped[str] = mapped_column(
+        default="unknown", server_default="unknown"
+    )  # as the source declares it
     raw_text: Mapped[str]
     content_hash: Mapped[str]
     language: Mapped[str] = mapped_column(default="")

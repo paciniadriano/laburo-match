@@ -5,7 +5,7 @@ import pytest
 
 from src.app.jobs.candidate import Candidate
 from src.app.search.plan import build_plan
-from src.app.search.prefilter import prefilter_reason
+from src.app.search.prefilter import office_abroad, prefilter_reason
 from src.app.search.relevance import rank, title_relevance
 from src.models.profile import Preferences
 
@@ -92,3 +92,41 @@ def test_a_plan_without_roles_still_searches():
 
     assert plan.target_roles == ()
     assert "any role" in plan.summary()
+
+
+# --- office abroad -------------------------------------------------------------------------
+def at_office(modality: str, location: str, body: str = "3 dias en oficina") -> Candidate:
+    return Candidate(uuid4(), "Backend Developer", NOW, None, modality, location, body)
+
+
+@pytest.mark.parametrize("modality", ["hybrid", "onsite"])
+def test_a_job_that_needs_an_office_in_another_country_is_discarded(modality: str):
+    assert prefilter_reason(at_office(modality, "Chile"), NOW, 30, "AR") == "office_abroad"
+
+
+@pytest.mark.parametrize(
+    ("job", "why_it_stays"),
+    [
+        (at_office("hybrid", "Argentina"), "the office is in the user's country"),
+        (at_office("hybrid", "Chile, Argentina"), "one of the offices is in the user's country"),
+        (at_office("remote", "Chile"), "remote work crosses borders"),
+        (at_office("unknown", "Chile"), "the source does not say where the work happens"),
+        (at_office("hybrid", "Remote"), "no country is named"),
+        (at_office("hybrid", "Narnia"), "a place the table cannot read is never guessed"),
+        (at_office("hybrid", ""), "no place at all"),
+        (
+            at_office("hybrid", "Chile", "Presencialidad en oficinas de LATAM"),
+            "the text names a region that may include the user's country",
+        ),
+        (
+            at_office("onsite", "Chile", "Puedes trabajar desde cualquier lugar"),
+            "the text contradicts the source",
+        ),
+    ],
+)
+def test_any_doubt_keeps_the_job_for_screening(job: Candidate, why_it_stays: str):
+    assert office_abroad(job, "AR") is False, why_it_stays
+
+
+def test_without_the_users_country_nothing_is_discarded_for_its_office():
+    assert office_abroad(at_office("hybrid", "Chile"), None) is False

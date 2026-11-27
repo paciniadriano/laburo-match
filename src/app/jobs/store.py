@@ -15,8 +15,15 @@ from src.sources.base import SourceJob
 # Columns refreshed when a known job is seen again. `id`, `first_seen_at` and the dedupe
 # columns stay as they were: a job keeps its identity when its text changes.
 _REFRESHED = (
-    "url", "apply_url", "company", "company_normalized", "title", "location_text", "raw_text",
+    "url", "apply_url", "company", "company_normalized", "title", "location_text", "modality",
+    "raw_text",
     "content_hash", "language", "posted_at", "last_seen_at",
+)  # fmt: skip
+
+
+# What the search steps need of each stored job, in `Candidate` field order.
+_CANDIDATE_COLUMNS = (
+    Job.id, Job.title, Job.posted_at, Job.closed_at, Job.modality, Job.location_text, Job.raw_text,
 )  # fmt: skip
 
 
@@ -44,6 +51,7 @@ async def upsert_shared_jobs(
             "company_normalized": normalize_name(job.company),
             "title": job.title,
             "location_text": job.location_text,
+            "modality": job.modality,
             "raw_text": job.body,
             "content_hash": job_content_hash(job.title, job.body),
             "language": job.language,
@@ -58,6 +66,14 @@ async def upsert_shared_jobs(
         index_elements=["source", "external_id"],
         index_where=text("owner_user_id IS NULL"),  # the partial index of shared jobs
         set_={**{column: statement.excluded[column] for column in _REFRESHED}, "closed_at": None},
-    ).returning(Job.id, Job.title, Job.posted_at, Job.closed_at)
+    ).returning(
+        Job.id,
+        Job.title,
+        Job.posted_at,
+        Job.closed_at,
+        Job.modality,
+        Job.location_text,
+        Job.raw_text,
+    )
     result = await session.execute(statement, rows)
     return [Candidate(*row) for row in result.all()]

@@ -25,7 +25,7 @@ from src.config.settings import Settings
 from src.core import clock
 from src.core.errors import ProfileRequiredError
 from src.db.models import Profile
-from src.models.profile import Exclusions, Preferences
+from src.models.profile import Constraints, Exclusions, Preferences
 from src.models.search import SearchSummary
 from src.sources.base import JobSource, SourceQuery
 
@@ -43,6 +43,7 @@ async def search_jobs_tool(
         raise ProfileRequiredError()
     preferences = Preferences.model_validate(profile.preferences)
     exclusions = Exclusions.model_validate(profile.exclusions)
+    constraints = Constraints.model_validate(profile.constraints)
     now = clock.now()
 
     # 2. Plan, ask the sources, and store what they returned.
@@ -63,6 +64,7 @@ async def search_jobs_tool(
         now,
         max_age_days=exclusions.max_job_age_days or settings.job_max_age_days,
         limit=max(1, min(max_new, settings.max_new_jobs_per_search)),
+        country=constraints.country,
     )
 
     # 4. Save the run, take over the unfinished rows it now carries, and report.

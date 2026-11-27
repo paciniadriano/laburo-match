@@ -28,11 +28,13 @@ def select_for_screening(
     now: datetime,
     max_age_days: int,
     limit: int,
+    country: str | None = None,
 ) -> Selection:
+    """Filter first, cap after: a discarded job never takes a place under the cap."""
     kept: list[Candidate] = []
     discarded: list[tuple[Candidate, str]] = []
     for candidate in fresh:
-        reason = prefilter_reason(candidate, now, max_age_days)
+        reason = prefilter_reason(candidate, now, max_age_days, country)
         if reason:
             discarded.append((candidate, reason))
         else:

@@ -5,7 +5,7 @@ import pytest
 import respx
 
 from src.sources.base import SourceQuery
-from src.sources.getonbrd import BASE_URL, GetOnBoardSource
+from src.sources.getonbrd import BASE_URL, GetOnBoardSource, normalize_modality, parse_job
 from tests.factories import gob_item, gob_page
 
 JOBS_URL = f"{BASE_URL}/categories/programming/jobs"
@@ -214,3 +214,23 @@ async def test_the_same_job_in_two_categories_is_returned_once(
     result = await GetOnBoardSource(client).fetch(SourceQuery(("programming", "data-science"), 50))
 
     assert [job.external_id for job in result.jobs] == ["same"]
+
+
+@pytest.mark.parametrize(
+    ("declared", "expected"),
+    [
+        ("fully_remote", "remote"),
+        ("remote_local", "remote"),  # never read as "you must live here"
+        ("hybrid", "hybrid"),
+        ("no_remote", "onsite"),
+        ("something_new", "unknown"),
+        (None, "unknown"),
+    ],
+)
+def test_the_declared_modality_is_normalized(declared: object, expected: str):
+    assert normalize_modality(declared) == expected
+
+
+def test_a_parsed_job_carries_the_declared_modality():
+    job = parse_job(gob_item(remote_modality="hybrid"))
+    assert job is not None and job.modality == "hybrid"

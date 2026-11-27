@@ -299,3 +299,43 @@ async def test_unfinished_jobs_over_the_cap_stay_where_they_are(
     # Only the job the new run took moved; the other two still wait in the first run.
     assert len(await _rows(session, first.run_id)) == 2
     assert len(await _rows(session, second.run_id)) == 1
+
+
+async def test_jobs_with_an_office_abroad_never_take_a_place_under_the_cap(
+    session: AsyncSession, user_id: UUID
+):
+    abroad = [
+        make_source_job(f"chile-{n}", modality="hybrid", location_text="Chile", posted_at=NOW)
+        for n in range(3)
+    ]
+    possible = [make_source_job(f"remote-{n}", posted_at=days_ago(n + 1)) for n in range(2)]
+    source = FakeSource([*abroad, *possible])
+
+    with clock.freeze(NOW):
+        summary = await search_jobs_tool(session, [source], SETTINGS, user_id, max_new=2)
+
+    # The three newest jobs are in Chile, but the cap of 2 went to the two remote ones.
+    assert summary.discarded == {"office_abroad": 3}
+    assert (summary.to_screen, summary.over_cap) == (2, 0)
+    rows = await _rows(session, summary.run_id)
+    queued = {row.job_id for row in rows if row.status == "pending"}
+    stored = await session.scalars(select(Job).where(Job.id.in_(queued)))
+    assert {job.external_id for job in stored} == {"remote-0", "remote-1"}
+    # Each discard is recorded with its reason, so it can be audited later.
+    assert (
+        sorted(row.prefilter_reason for row in rows if row.prefilter_reason)
+        == ["office_abroad"] * 3
+    )
+
+
+async def test_the_declared_modality_is_stored_and_refreshed(session: AsyncSession, user_id: UUID):
+    with clock.freeze(NOW):
+        await search_jobs_tool(
+            session, [FakeSource([make_source_job("a", modality="hybrid")])], SETTINGS, user_id
+        )
+        await search_jobs_tool(
+            session, [FakeSource([make_source_job("a", modality="remote")])], SETTINGS, user_id
+        )
+
+    job = await session.scalar(select(Job).where(Job.external_id == "a"))
+    assert job is not None and job.modality == "remote"

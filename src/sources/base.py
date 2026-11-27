@@ -2,7 +2,9 @@
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Protocol
+from typing import Literal, Protocol
+
+SourceModality = Literal["remote", "hybrid", "onsite", "unknown"]
 
 
 @dataclass(frozen=True)
@@ -19,6 +21,9 @@ class SourceJob:
     body: str  # posting text as plain text, in sections
     language: str  # ISO 639-1
     posted_at: datetime | None
+    # Where the work happens, as the source declares it (not read from the text). "unknown"
+    # when the source does not say: never a reason to discard.
+    modality: SourceModality = "unknown"
 
 
 @dataclass(frozen=True)

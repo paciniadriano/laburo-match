@@ -19,7 +19,7 @@ from typing import Any
 import httpx
 
 from src.core import clock
-from src.sources.base import SourceJob, SourceQuery, SourceResult
+from src.sources.base import SourceJob, SourceModality, SourceQuery, SourceResult
 from src.sources.html_text import html_to_text
 
 BASE_URL = "https://www.getonbrd.com/api/v0"
@@ -64,6 +64,21 @@ def build_body(attributes: dict[str, Any]) -> str:
     return "\n\n".join(blocks)
 
 
+# Get on Board's `remote_modality`, filled in by the employer. `remote_local` is read as plain
+# remote, never as "you must live in our country": two hand-labelled `eligible` postings are
+# `remote_local`. A value we do not know maps to "unknown".
+_MODALITIES: dict[str, SourceModality] = {
+    "fully_remote": "remote",
+    "remote_local": "remote",
+    "hybrid": "hybrid",
+    "no_remote": "onsite",
+}
+
+
+def normalize_modality(value: object) -> SourceModality:
+    return _MODALITIES.get(value, "unknown") if isinstance(value, str) else "unknown"
+
+
 def parse_job(item: Any) -> SourceJob | None:
     """Turn one API item into a `SourceJob`; None if it lacks what we cannot do without."""
     attributes = _dig(item, "attributes")
@@ -85,6 +100,7 @@ def parse_job(item: Any) -> SourceJob | None:
         body=build_body(attributes),
         language=str(attributes.get("lang") or ""),
         posted_at=datetime.fromtimestamp(published, UTC) if isinstance(published, int) else None,
+        modality=normalize_modality(attributes.get("remote_modality")),
     )
 
 

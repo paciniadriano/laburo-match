@@ -14,9 +14,9 @@ phase 4 teaches the code to compare them.
 import re
 from dataclasses import dataclass, field
 
-from src.app.eligibility.places import resolve_places
 from src.app.eligibility.result import EligibilityResult
 from src.config.data.locations import COUNTRIES, US_PAYROLL_MARKERS
+from src.core.places import resolve_places
 from src.core.text import fold
 from src.models.job_facts import JobFacts, Restriction
 from src.models.profile import Constraints
