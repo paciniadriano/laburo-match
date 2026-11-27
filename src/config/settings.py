@@ -67,7 +67,7 @@ class Settings(BaseSettings):
     llm_concurrency: int = Field(default=4, gt=0)
     extraction_batch_size: int = Field(default=1, gt=0)
     linking_chunk_size: int = Field(default=15, gt=0)
-    job_max_age_days: int = Field(default=30, gt=0)
+    job_max_age_days: int = Field(default=60, gt=0)  # Get on Board lists open postings for months
     default_max_commute_km: int = Field(default=30, gt=0)
 
     # --- Cost control (remote) ---

@@ -143,7 +143,7 @@ Settings via pydantic-settings; secrets as `SecretStr`. The real `.env` is outsi
 | `SLOW_TOOL_WARNING_SECONDS` | Log warning threshold (set from measurements) | 30 |
 | `LLM_CONCURRENCY` | Parallel LLM calls | 4 |
 | `EXTRACTION_BATCH_SIZE` / `LINKING_CHUNK_SIZE` | Set by experiments | 1 / 15 |
-| `JOB_MAX_AGE_DAYS` | Freshness filter (default for new profiles) | 30 |
+| `JOB_MAX_AGE_DAYS` | Freshness filter (default for new profiles) | 60 |
 | `DEFAULT_MAX_COMMUTE_KM` | Default commute distance for new profiles | 30 |
 | `DAILY_COST_CEILING_USD`, per-user limits | Cost control (remote) | see §17 |
 
