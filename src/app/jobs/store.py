@@ -24,6 +24,7 @@ _REFRESHED = (
 # What the search steps need of each stored job, in `Candidate` field order.
 _CANDIDATE_COLUMNS = (
     Job.id, Job.title, Job.posted_at, Job.closed_at, Job.modality, Job.location_text, Job.raw_text,
+    Job.company_normalized,
 )  # fmt: skip
 
 
@@ -66,14 +67,6 @@ async def upsert_shared_jobs(
         index_elements=["source", "external_id"],
         index_where=text("owner_user_id IS NULL"),  # the partial index of shared jobs
         set_={**{column: statement.excluded[column] for column in _REFRESHED}, "closed_at": None},
-    ).returning(
-        Job.id,
-        Job.title,
-        Job.posted_at,
-        Job.closed_at,
-        Job.modality,
-        Job.location_text,
-        Job.raw_text,
-    )
+    ).returning(*_CANDIDATE_COLUMNS)
     result = await session.execute(statement, rows)
     return [Candidate(*row) for row in result.all()]

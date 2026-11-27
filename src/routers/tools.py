@@ -36,13 +36,13 @@ def register_mcp_tools(mcp: FastMCP) -> None:
             openWorldHint=True,  # asks external job sources
         ),
     )
-    async def search_jobs(ctx: Context, max_new: int = 30) -> SearchSummary:
+    async def search_jobs(ctx: Context, max_new: int = 300) -> SearchSummary:
         """Find new jobs for the user's profile and queue them for analysis.
 
         Fast: it only collects and filters postings; it does not say whether the user can
-        apply. Requires a complete profile. Afterwards call screen_batch with the returned
-        run_id until nothing remains. `max_new` is how many new jobs to queue (the server
-        applies its own ceiling).
+        apply. Requires a complete profile. It queues every new job that passes the filters;
+        leave `max_new` at its default unless the user asks for fewer. Afterwards call
+        screen_batch with the returned run_id.
         """
         state = app_state(ctx)
         async with user_session(state) as (session, user_id):

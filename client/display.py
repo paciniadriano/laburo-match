@@ -16,6 +16,7 @@ _BADGE = {"eligible": "ELIGIBLE", "doubtful": "DOUBTFUL"}
 _DISCARD_LABELS = {
     "office_abroad": "hybrid or on-site in another country",
     "not_eligible": "not open to your country",
+    "duplicate": "duplicate postings",
     "too_old": "too old",
     "closed": "closed",
 }

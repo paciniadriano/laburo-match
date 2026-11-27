@@ -188,21 +188,29 @@ def _backoff_seconds(response: httpx.Response) -> float:
 
 
 class GetOnBoardReplay:
-    """Demo mode: serves a recorded page instead of calling the API.
+    """Demo mode: serves recorded pages instead of calling the API.
 
-    Dates are moved forward so the newest recorded job reads as published now. Otherwise the
+    Pages are read in order and a job seen twice is kept once, as the live adapter does. Dates
+    are moved forward so the newest recorded job reads as published now. Otherwise the
     freshness filter would, a month later, discard the whole demo. It ignores the query: the
     recording holds one category.
     """
 
     name = "getonbrd"
 
-    def __init__(self, recorded_page: Path) -> None:
-        self._payload: dict[str, Any] = json.loads(recorded_page.read_text(encoding="utf-8"))
+    def __init__(self, recorded_pages: list[Path]) -> None:
+        self._items: list[Any] = []
+        for page in recorded_pages:
+            payload = json.loads(page.read_text(encoding="utf-8"))
+            self._items.extend(payload.get("data", []))
 
     async def fetch(self, query: SourceQuery) -> SourceResult:
-        parsed = [parse_job(item) for item in self._payload.get("data", [])]
-        jobs = [job for job in parsed if job is not None]
+        unique: dict[str, SourceJob] = {}
+        for item in self._items:
+            job = parse_job(item)
+            if job is not None:
+                unique.setdefault(job.external_id, job)
+        jobs = list(unique.values())
         dated = [job.posted_at for job in jobs if job.posted_at is not None]
         if dated:
             shift = clock.now() - max(dated)

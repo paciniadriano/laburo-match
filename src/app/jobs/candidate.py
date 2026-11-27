@@ -14,3 +14,4 @@ class Candidate:
     modality: str = "unknown"  # as the source declares it
     location_text: str = ""  # as the source declares it: "Chile", "Remote"...
     raw_text: str = ""  # the posting body, for the prefilter's look at the prose
+    company: str = ""  # normalized ("acme inc"), "" when the source does not name it

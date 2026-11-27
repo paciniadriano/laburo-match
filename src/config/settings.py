@@ -57,7 +57,7 @@ class Settings(BaseSettings):
     descope_project_id: str = ""
 
     # --- Limits and tuning ---
-    max_new_jobs_per_search: int = Field(default=30, gt=0)
+    max_new_jobs_per_search: int = Field(default=300, gt=0)  # a safety limit, not a target
     screen_max_jobs_per_call: int = Field(default=15, gt=0)
     claim_stale_seconds: int = Field(default=300, gt=0)
     draft_lease_seconds: int = Field(default=300, gt=0)

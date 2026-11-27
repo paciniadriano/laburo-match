@@ -57,7 +57,8 @@ def gob_page(items: list[Any], page: int = 1, total_pages: int = 1) -> dict[str,
 
 
 def make_source_job(external_id: str, title: str = "Frontend Engineer", **changes: Any) -> Any:
-    """A normalized job as a source adapter would return it."""
+    """A normalized job as a source adapter would return it. Each one is a different opening
+    (its own employer) unless a test says otherwise."""
     from datetime import UTC, datetime
 
     from src.sources.base import SourceJob
@@ -66,7 +67,7 @@ def make_source_job(external_id: str, title: str = "Frontend Engineer", **change
         "source": "getonbrd",
         "external_id": external_id,
         "title": title,
-        "company": "Acme",
+        "company": f"Company {external_id}",
         "url": f"https://www.getonbrd.com/jobs/{external_id}",
         "apply_url": f"https://www.getonbrd.com/jobs/{external_id}",
         "location_text": "Remote",

@@ -121,6 +121,12 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] Demo: `make up`, empty the runs, `make client`: no hybrid/on-site abroad in the shortlist
 - Note: the `remote_local` choice was checked on dev job 04 and on test job 09, so the test split is no longer fully untouched for that rule.
 
+## 2.15 Search everything (user decision: a job seeker wants every job they can apply to)
+- [x] `MAX_NEW_JOBS_PER_SEARCH` becomes a safety limit (300); `search_jobs(max_new=300)` queues every job that passes the filters, most relevant first
+- [x] Prefilter `duplicate`: same employer, title and place inside one search keeps the newest; no employer name, no merge
+- [x] `make record-fixtures` records every page of the category (50 jobs per file, under the 1 MB hook); the demo replays all pages in order, a job on two pages kept once
+- [ ] The user runs `make record-fixtures` (free) and commits the new pages
+
 ## Known limitation of this slice
 - The shortlist shows at most 10 cards (`SHORTLIST_SIZE`). Jobs beyond them stay saved in `run_jobs` and are counted in the totals, but nothing can open them until `list_jobs` (phase 6) and `explain_match` (phase 5). Accepted on purpose: no stopgap tool, so the real one is not shaped by a workaround.
 
@@ -140,4 +146,4 @@ Found in the demo: 21 of 30 jobs were hybrid or on-site in Chile and took 6 of t
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.14 built (office_abroad prefilter, 355 tests). Left: the user runs `make eval` (expected 10/10, $0) and the demo; then Definition of Done and the PR to main.
+Stopped at: 2.15 built (361 tests). Next: 2.16 time-boxed screening rounds. The user's real .env still says MAX_NEW_JOBS_PER_SEARCH=30: list every .env change for the user at the end of 2.16.

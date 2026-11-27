@@ -1,5 +1,5 @@
 # Daily commands. Targets are added as the pieces they run are built.
-.PHONY: setup db psql up down dev client eval eval-test migrate seed test test-fast lint format
+.PHONY: setup db psql up down dev client eval eval-test record-fixtures migrate seed test test-fast lint format
 
 setup:  ## Install dependencies exactly as locked and enable the git hooks
 	uv sync --frozen
@@ -28,6 +28,9 @@ eval:  ## Eligibility eval on the dev split (costs real money; $0.50 cap, see --
 
 eval-test:  ## Same on the held-out test split. Milestones only: never tune on it
 	uv run python -m evals.run_eval --dataset eligibility --split test $(ARGS)
+
+record-fixtures:  ## Record every Get on Board page of the category as scrubbed fixtures (free, manual only)
+	uv run python -m scripts.record_fixtures
 
 migrate:  ## Apply migrations to the dev database (same routine as container start)
 	uv run python -m src.db.startup

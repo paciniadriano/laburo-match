@@ -35,7 +35,7 @@ async def search_jobs_tool(
     sources: list[JobSource],
     settings: Settings,
     user_id: UUID,
-    max_new: int = 30,
+    max_new: int = 300,
 ) -> SearchSummary:
     # 1. Only a complete profile can search.
     profile = await session.get(Profile, user_id)

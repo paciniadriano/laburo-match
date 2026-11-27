@@ -339,3 +339,17 @@ async def test_the_declared_modality_is_stored_and_refreshed(session: AsyncSessi
 
     job = await session.scalar(select(Job).where(Job.external_id == "a"))
     assert job is not None and job.modality == "remote"
+
+
+async def test_a_repeated_opening_is_queued_once_and_the_copy_is_recorded(
+    session: AsyncSession, user_id: UUID
+):
+    copies = [
+        make_source_job("first", "Full-Stack Developer", company="BC", posted_at=days_ago(8)),
+        make_source_job("second", "Full-Stack Developer", company="BC", posted_at=days_ago(1)),
+    ]
+
+    with clock.freeze(NOW):
+        summary = await search_jobs_tool(session, [FakeSource(copies)], SETTINGS, user_id)
+
+    assert (summary.to_screen, summary.discarded) == (1, {"duplicate": 1})

@@ -37,3 +37,44 @@ def test_nothing_new_gives_an_empty_selection():
     selection = select_for_screening([], ROLES, NOW, 30, limit=10)
 
     assert (selection.to_screen, selection.discarded, selection.left_for_later) == ([], [], [])
+
+
+# --- duplicates -----------------------------------------------------------------------------
+def posting(title: str, company: str, days_old: int | None, location: str = "Remote") -> Candidate:
+    posted = None if days_old is None else NOW - timedelta(days=days_old)
+    return Candidate(uuid4(), title, posted, None, "remote", location, "", company)
+
+
+def test_the_same_opening_posted_twice_keeps_only_the_newest():
+    old = posting("Full-Stack Developer", "bc tecnologia", days_old=9)
+    new = posting("Full-stack  developer", "bc tecnologia", days_old=2)  # case and spaces differ
+
+    selection = select_for_screening([old, new], ROLES, NOW, 30, limit=10)
+
+    assert selection.to_screen == [new]
+    assert selection.discarded == [(old, "duplicate")]
+
+
+def test_postings_that_differ_in_employer_or_place_are_different_openings():
+    jobs = [
+        posting("Full-Stack Developer", "acme", 1),
+        posting("Full-Stack Developer", "globex", 1),  # another employer
+        posting("Full-Stack Developer", "acme", 1, location="Chile"),  # another place
+    ]
+
+    assert len(select_for_screening(jobs, ROLES, NOW, 30, limit=10).to_screen) == 3
+
+
+def test_without_an_employer_name_two_postings_are_never_merged():
+    jobs = [posting("Full-Stack Developer", "", 1), posting("Full-Stack Developer", "", 3)]
+
+    assert len(select_for_screening(jobs, ROLES, NOW, 30, limit=10).to_screen) == 2
+
+
+def test_a_dated_posting_wins_over_an_undated_copy():
+    undated = posting("Full-Stack Developer", "acme", None)
+    dated = posting("Full-Stack Developer", "acme", 5)
+
+    selection = select_for_screening([undated, dated], ROLES, NOW, 30, limit=10)
+
+    assert selection.to_screen == [dated]
