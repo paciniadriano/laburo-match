@@ -124,4 +124,4 @@
 - [ ] New decisions as one line in `CLAUDE.md`; `system.md` updated only where a contract changed
 - [ ] PR to `main`; **Current phase** → 3
 
-Stopped at: 2.11 built and tested with fakes (client/, llm/factory.py, server instructions). Left: the demo with the real LLM (`make up && make seed && make client`, then "find me jobs"). Then 2.12 CI.
+Stopped at: 2.12 workflow written and checked with actionlint, not yet run on GitHub (box stays unticked until it is green on the branch). Also done: filelock CVEs fixed in uv.lock. Left in 2.11: the demo with the real LLM. Next: push the branch to see CI run, then 2.13 eval harness.
